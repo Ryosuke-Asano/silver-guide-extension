@@ -1,0 +1,39 @@
+:root {
+  color-scheme: light;
+  color: #0f2747;
+  background: #ffffff;
+  font-family: "Noto Sans JP", "Yu Gothic UI", "Meiryo", sans-serif;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color-scheme: light;
+  margin: 0;
+  min-width: 360px;
+  background: #ffffff;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button:focus-visible,
+[data-focused] {
+  outline: 3px solid #0c75a6;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

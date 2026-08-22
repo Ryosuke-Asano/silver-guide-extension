@@ -1,0 +1,28 @@
+{
+  "name": "silver-guide-extension",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.13.1",
+  "scripts": {
+    "build": "pnpm run check && vite build",
+    "build:chromium": "pnpm run check && vite build --outDir dist-chromium && node scripts/prepare-chromium.mjs",
+    "check": "tsc --noEmit",
+    "dev": "vite --host 127.0.0.1 --port 4173",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-aria-components": "^1.12.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/firefox-webext-browser": "^120.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react-swc": "^4.2.2",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.0",
+    "vitest": "^4.0.7"
+  }
+}

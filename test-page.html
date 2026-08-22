@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Silver Guide 動作確認ページ</title>
+    <style>
+      body { max-width: 760px; margin: 48px auto; padding: 0 24px; color: #0f2747; font: 18px/1.8 system-ui, sans-serif; }
+      label { display: block; margin-top: 20px; font-weight: 700; }
+      input { box-sizing: border-box; width: 100%; margin-top: 6px; padding: 12px; font: inherit; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>介護保険サービスのご案内</h1>
+      <p>申請の前に、対象者と支給要件をご確認ください。</p>
+      <p>本人確認書類と必要書類をそろえ、期限までに窓口へ提出します。</p>
+      <p>代理人が手続きする場合は、委任状が必要になることがあります。</p>
+
+      <h2>確認用フォーム</h2>
+      <p>このフォームは拡張機能の入力補助を確かめるためだけのもので、送信先はありません。</p>
+      <form>
+        <label for="name">氏名（必須）</label>
+        <input id="name" name="name" autocomplete="name" required />
+        <label for="contact">連絡先</label>
+        <input id="contact" name="contact" type="tel" autocomplete="tel" />
+      </form>
+    </main>
+  </body>
+</html>
