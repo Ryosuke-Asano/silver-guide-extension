@@ -97,11 +97,12 @@ const ASSISTANT_STYLE = `
     border: 1px solid #cad3df;
     border-radius: 12px;
     box-shadow: 0 16px 40px rgba(15, 39, 71, .24);
+    left: 18px;
     max-height: calc(100vh - 36px);
     overflow: auto;
     padding: 24px;
     position: fixed;
-    right: 18px;
+    right: auto;
     top: 18px;
     width: min(380px, calc(100vw - 36px));
     z-index: 2147483647;
