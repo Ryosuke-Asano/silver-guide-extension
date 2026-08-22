@@ -1,14 +1,17 @@
 import { DEFAULT_SETTINGS, type SilverGuideSettings, loadSettings } from "./shared/settings";
+import type { PageCapabilities } from "./shared/capabilities";
 import { getWebExtensionApi } from "./shared/webextension";
 
 type AssistantResult = {
   active: boolean;
+  capabilities?: PageCapabilities;
   success: boolean;
   message: string;
 };
 
 type ContentState = {
   active: boolean;
+  capabilities?: PageCapabilities;
 };
 
 const extensionApi = getWebExtensionApi();
@@ -44,11 +47,16 @@ async function enableAssistant(): Promise<AssistantResult> {
   try {
     await injectContent(tabId);
     if (extensionApi === undefined) throw new Error("WebExtension API is unavailable.");
-    await extensionApi.tabs.sendMessage(tabId, {
+    const contentState = (await extensionApi.tabs.sendMessage(tabId, {
       type: "silver-guide-enable",
       settings: await settingsForPage()
-    });
-    return { active: true, success: true, message: "このページの支援を開始しました。" };
+    })) as ContentState;
+    return {
+      active: true,
+      capabilities: contentState.capabilities,
+      success: true,
+      message: "このページの支援を開始しました。"
+    };
   } catch (error: unknown) {
     console.error("[silver-guide] Unable to start assistance", error);
     return {

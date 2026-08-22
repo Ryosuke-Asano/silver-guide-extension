@@ -1,5 +1,6 @@
 import { GLOSSARY, type GlossaryEntry } from "./data/glossary";
 import { guidePackFor, type GuideField, type GuidePack } from "./data/guide-packs";
+import type { PageCapabilities } from "./shared/capabilities";
 import type { SilverGuideSettings } from "./shared/settings";
 
 type ContentMessage =
@@ -9,6 +10,11 @@ type ContentMessage =
   | { type: "silver-guide-update-settings"; settings: SilverGuideSettings };
 
 type SupportedField = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+
+type ContentState = {
+  active: boolean;
+  capabilities?: PageCapabilities;
+};
 
 declare const chrome: typeof browser;
 
@@ -367,6 +373,16 @@ function visibleFields(): SupportedField[] {
   return Array.from(document.querySelectorAll("input, select, textarea")).filter(isSupportedField);
 }
 
+function currentCapabilities(): PageCapabilities {
+  const guidePack = state?.guidePack ?? guidePackFor(new URL(location.href));
+  return {
+    canInput: visibleFields().length > 0,
+    canProceed: (guidePack?.routes.length ?? 0) > 0,
+    canRead: true,
+    hasVerifiedGuide: guidePack !== undefined
+  };
+}
+
 function focusNextField(currentField: SupportedField, guide?: GuideField): void {
   if (guide?.nextPublicSelector !== undefined) {
     const specifiedNext = document.querySelector<HTMLElement>(guide.nextPublicSelector);
@@ -583,17 +599,19 @@ function disableAssistant(): void {
 
 if (extensionApi !== undefined && !window.__silverGuideContentReady) {
   window.__silverGuideContentReady = true;
-  extensionApi.runtime.onMessage.addListener((message: unknown): Promise<{ active: boolean }> | undefined => {
+  extensionApi.runtime.onMessage.addListener((message: unknown): Promise<ContentState> | undefined => {
     if (!isContentMessage(message)) return undefined;
     switch (message.type) {
       case "silver-guide-enable":
         enableAssistant(message.settings);
-        return Promise.resolve({ active: true });
+        return Promise.resolve({ active: true, capabilities: currentCapabilities() });
       case "silver-guide-disable":
         disableAssistant();
         return Promise.resolve({ active: false });
       case "silver-guide-state":
-        return Promise.resolve({ active: state !== undefined });
+        return Promise.resolve(
+          state === undefined ? { active: false } : { active: true, capabilities: currentCapabilities() }
+        );
       case "silver-guide-update-settings":
         if (state !== undefined) {
           state.settings = message.settings;

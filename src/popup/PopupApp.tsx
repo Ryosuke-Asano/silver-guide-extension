@@ -1,6 +1,7 @@
 import { useEffect, useState, type ReactElement } from "react";
 import { Button, Radio, RadioGroup, Switch } from "react-aria-components";
 import { BookIcon, LockIcon } from "../shared/icons";
+import { BASIC_READING_CAPABILITIES, type PageCapabilities } from "../shared/capabilities";
 import {
   DEFAULT_SETTINGS,
   type FontSize,
@@ -13,9 +14,12 @@ import "./popup.css";
 
 type AssistantResult = {
   active: boolean;
+  capabilities?: PageCapabilities;
   success: boolean;
   message: string;
 };
+
+type AssistantState = Pick<AssistantResult, "active" | "capabilities">;
 
 const FONT_SIZE_OPTIONS: readonly FontSize[] = ["small", "medium", "large"];
 
@@ -25,6 +29,16 @@ const FONT_SIZE_LABELS: Readonly<Record<FontSize, string>> = {
   large: "大"
 };
 
+const SUPPORT_OPTIONS = [
+  { key: "canRead", label: "読む", description: "下線の言葉を選ぶと、やさしい説明が開きます。" },
+  { key: "canInput", label: "入力する", description: "入力欄を選ぶと、確認することを表示します。" },
+  { key: "canProceed", label: "進む", description: "確認済みの公式案内への道順を表示します。" }
+] as const satisfies readonly {
+  key: keyof Pick<PageCapabilities, "canRead" | "canInput" | "canProceed">;
+  label: string;
+  description: string;
+}[];
+
 async function sendRuntimeMessage<T>(message: unknown, fallback: T): Promise<T> {
   const extensionApi = getWebExtensionApi();
   return extensionApi === undefined ? fallback : ((await extensionApi.runtime.sendMessage(message)) as T);
@@ -33,6 +47,7 @@ async function sendRuntimeMessage<T>(message: unknown, fallback: T): Promise<T> 
 export function PopupApp(): ReactElement {
   const [settings, setSettings] = useState<SilverGuideSettings>(DEFAULT_SETTINGS);
   const [isActive, setIsActive] = useState(false);
+  const [capabilities, setCapabilities] = useState<PageCapabilities | undefined>();
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("入力内容は送信しません。ページを支援するだけです。");
   const [isError, setIsError] = useState(false);
@@ -40,11 +55,12 @@ export function PopupApp(): ReactElement {
   useEffect(() => {
     void Promise.all([
       loadSettings(),
-      sendRuntimeMessage({ type: "silver-guide-state" }, { active: false })
+      sendRuntimeMessage<AssistantState>({ type: "silver-guide-state" }, { active: false })
     ])
       .then(([storedSettings, state]) => {
         setSettings(storedSettings);
-        setIsActive(Boolean((state as { active?: boolean }).active));
+        setIsActive(state.active);
+        setCapabilities(state.capabilities);
       })
       .catch(() => setMessage("設定の読み込みができませんでした。"));
   }, []);
@@ -69,11 +85,13 @@ export function PopupApp(): ReactElement {
         { type: isActive ? "silver-guide-disable" : "silver-guide-enable" },
         {
           active: nextActive,
+          capabilities: nextActive ? BASIC_READING_CAPABILITIES : undefined,
           success: true,
           message: nextActive ? "このページの支援を開始しました。" : "このページの支援を停止しました。"
         }
       );
       setIsActive(result.active);
+      setCapabilities(result.capabilities);
       setMessage(result.message);
       setIsError(!result.success);
     } catch {
@@ -90,6 +108,22 @@ export function PopupApp(): ReactElement {
         <BookIcon className="brand-icon" />
         <h1>Silver Guide</h1>
       </header>
+
+      {!isActive ? (
+        <p className="start-hint">わからない言葉や入力欄を、その場で確認しやすくします。</p>
+      ) : (
+        <section className="support-options" aria-labelledby="support-options-title">
+          <h2 id="support-options-title">このページでできること</h2>
+          <ul>
+            {SUPPORT_OPTIONS.filter((option) => (capabilities ?? BASIC_READING_CAPABILITIES)[option.key]).map((option) => (
+              <li key={option.key}>
+                <strong>{option.label}</strong>
+                <span>{option.description}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <Button className="primary-action" isDisabled={isLoading} onPress={toggleAssistant}>
         <BookIcon className="action-icon" />
