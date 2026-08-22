@@ -159,6 +159,7 @@ const ASSISTANT_STYLE = `
     width: 100%;
   }
   .next:hover { background: #055b65; border-color: #055b65; }
+  .end-note { color: #39556f; font-size: 18px; font-weight: 700; line-height: 1.6; margin: 0; }
   .route-list { display: grid; gap: 10px; }
   .route {
     align-items: center;
@@ -383,41 +384,47 @@ function currentCapabilities(): PageCapabilities {
   };
 }
 
-function focusNextField(currentField: SupportedField, guide?: GuideField): void {
+function nextFieldFor(currentField: SupportedField, guide?: GuideField): SupportedField | undefined {
   if (guide?.nextPublicSelector !== undefined) {
-    const specifiedNext = document.querySelector<HTMLElement>(guide.nextPublicSelector);
-    if (specifiedNext !== null && isSupportedField(specifiedNext)) {
-      specifiedNext.focus({ preventScroll: true });
-      specifiedNext.scrollIntoView({ behavior: "smooth", block: "center" });
-      return;
+    try {
+      const specifiedNext = document.querySelector<HTMLElement>(guide.nextPublicSelector);
+      if (specifiedNext !== null && isSupportedField(specifiedNext)) {
+        return specifiedNext;
+      }
+    } catch {
+      // ページ改版などでセレクターが無効でも、一般フォームの次項目へ安全にフォールバックする。
     }
   }
   const fields = visibleFields();
-  const next = fields[fields.indexOf(currentField) + 1];
-  if (next !== undefined) {
-    next.focus({ preventScroll: true });
-    next.scrollIntoView({ behavior: "smooth", block: "center" });
-  }
+  return fields[fields.indexOf(currentField) + 1];
 }
 
-function safeNavigationLinks(): Array<{ href: string; label: string }> {
-  const seen = new Set<string>();
-  const links: Array<{ href: string; label: string }> = [];
-  for (const link of Array.from(rootForTerms().querySelectorAll<HTMLAnchorElement>("a[href]"))) {
-    const label = link.innerText.replaceAll(/\s+/g, " ").trim();
-    if (label.length === 0) continue;
-    let url: URL;
-    try {
-      url = new URL(link.href, location.href);
-    } catch {
-      continue;
-    }
-    if ((url.protocol !== "http:" && url.protocol !== "https:") || seen.has(url.href)) continue;
-    seen.add(url.href);
-    links.push({ href: url.href, label });
-    if (links.length === 3) break;
+function focusNextField(currentField: SupportedField, guide?: GuideField): void {
+  const next = nextFieldFor(currentField, guide);
+  if (next === undefined) {
+    return;
   }
-  return links;
+  next.focus({ preventScroll: true });
+  next.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function firstGlossaryTerm(): HTMLElement | undefined {
+  return document.querySelector<HTMLElement>(`[${GENERATED_ATTRIBUTE}="true"]`) ?? undefined;
+}
+
+function openFirstGlossaryExplanation(): void {
+  const term = firstGlossaryTerm();
+  if (term === undefined) {
+    return;
+  }
+  const entryId = term.getAttribute(TERM_ATTRIBUTE);
+  const entry = GLOSSARY.find((candidate) => candidate.id === entryId);
+  if (entry === undefined) {
+    return;
+  }
+  term.focus({ preventScroll: true });
+  term.scrollIntoView({ behavior: "auto", block: "center" });
+  showTooltip(term, entry);
 }
 
 function appendText(parent: HTMLElement, tag: "p" | "h3", text: string, className?: string): void {
@@ -458,28 +465,35 @@ function renderDock(current: AssistantState): void {
       detail.append(list);
     }
     current.dock.append(detail);
-    current.dock.append(
-      createButton("次の項目へ", "next", () => focusNextField(current.activeField as SupportedField, guide))
-    );
+    const nextField = nextFieldFor(current.activeField, guide);
+    if (nextField !== undefined) {
+      current.dock.append(
+        createButton("次の項目へ", "next", () => focusNextField(current.activeField as SupportedField, guide))
+      );
+    } else {
+      appendText(current.dock, "p", "このページで確認できる入力欄はここまでです。", "end-note");
+    }
   } else {
     appendText(current.dock, "p", "このページの案内", "lead");
     const detail = createElement("section", "detail");
-    appendText(detail, "p", "文章の下線が付いた言葉を選ぶと、やさしい説明を読めます。");
-    if (current.guidePack === undefined) {
-      appendText(detail, "p", "このページに個別の行政ガイドは登録されていません。");
+    const firstTerm = firstGlossaryTerm();
+    if (firstTerm === undefined) {
+      appendText(detail, "p", "このページでは、登録された言葉は見つかりませんでした。");
+    } else {
+      appendText(detail, "p", "下線の言葉を選ぶと、やさしい説明を読めます。");
     }
     current.dock.append(detail);
+    if (firstTerm !== undefined) {
+      current.dock.append(createButton("最初の説明を読む", "next", openFirstGlossaryExplanation));
+    }
 
-    const routes: Array<{ href: string; label: string }> =
-      current.guidePack === undefined
-        ? safeNavigationLinks()
-        : current.guidePack.routes.map((route) => ({ href: route.officialUrl, label: route.label }));
+    const routes = current.guidePack?.routes ?? [];
     if (routes.length > 0) {
       appendText(current.dock, "h3", "ページ内の案内", "section-title");
       const routeList = createElement("nav", "route-list");
       routes.forEach((route) => {
         const link = createElement("a", "route");
-        link.href = route.href;
+        link.href = route.officialUrl;
         link.textContent = route.label;
         routeList.append(link);
       });
