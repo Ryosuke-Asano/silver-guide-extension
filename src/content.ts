@@ -20,6 +20,7 @@ declare const chrome: typeof browser;
 
 type AssistantState = {
   activeField?: SupportedField;
+  activeTerm?: HTMLElement;
   dock: HTMLElement;
   guidePack?: GuidePack;
   host: HTMLElement;
@@ -379,7 +380,7 @@ function currentCapabilities(): PageCapabilities {
   return {
     canInput: visibleFields().length > 0,
     canProceed: (guidePack?.routes.length ?? 0) > 0,
-    canRead: true,
+    canRead: firstGlossaryTerm() !== undefined,
     hasVerifiedGuide: guidePack !== undefined
   };
 }
@@ -418,7 +419,7 @@ function openFirstGlossaryExplanation(): void {
     return;
   }
   const entryId = term.getAttribute(TERM_ATTRIBUTE);
-  const entry = GLOSSARY.find((candidate) => candidate.id === entryId);
+  const entry = entryId === null ? undefined : GLOSSARY_BY_ID.get(entryId);
   if (entry === undefined) {
     return;
   }
@@ -511,16 +512,18 @@ function renderDock(current: AssistantState): void {
 
 function showTooltip(anchor: HTMLElement, entry: GlossaryEntry): void {
   if (state === undefined) return;
+  hideTooltip(false);
   const tooltip = state.tooltip;
   tooltip.replaceChildren();
   tooltip.className = `font-${state.settings.fontSize}`;
+  tooltip.setAttribute("aria-label", `${entry.term} の説明`);
   tooltip.setAttribute("data-open", "true");
   tooltip.setAttribute("aria-hidden", "false");
 
   const header = createElement("header", "tooltip-header");
   const title = createElement("h2", "tooltip-title");
   title.textContent = entry.plainLabel;
-  header.append(title, createButton("閉じる", "close", hideTooltip));
+  header.append(title, createButton("閉じる", "close", () => hideTooltip(true)));
   tooltip.append(header);
 
   if (state.settings.showOriginal) {
@@ -536,15 +539,22 @@ function showTooltip(anchor: HTMLElement, entry: GlossaryEntry): void {
   tooltip.style.left = `${left}px`;
   tooltip.style.top = `${top}px`;
   anchor.setAttribute("aria-expanded", "true");
+  state.activeTerm = anchor;
+  tooltip.focus();
 }
 
-function hideTooltip(): void {
+function hideTooltip(returnFocus = false): void {
   if (state === undefined) return;
+  const activeTerm = state.activeTerm;
   state.tooltip.removeAttribute("data-open");
   state.tooltip.setAttribute("aria-hidden", "true");
   document.querySelectorAll<HTMLElement>(`[${GENERATED_ATTRIBUTE}="true"][aria-expanded="true"]`).forEach((term) => {
     term.setAttribute("aria-expanded", "false");
   });
+  state.activeTerm = undefined;
+  if (returnFocus && activeTerm !== undefined && document.contains(activeTerm)) {
+    activeTerm.focus({ preventScroll: true });
+  }
 }
 
 function enableAssistant(settings: SilverGuideSettings): void {
@@ -564,8 +574,9 @@ function enableAssistant(settings: SilverGuideSettings): void {
   dock.tabIndex = -1;
   const tooltip = createElement("aside");
   tooltip.id = "silver-guide-tooltip";
-  tooltip.setAttribute("role", "tooltip");
+  tooltip.setAttribute("role", "dialog");
   tooltip.setAttribute("aria-hidden", "true");
+  tooltip.tabIndex = -1;
   shadow.append(style, dock, tooltip);
   document.documentElement.append(host);
 
@@ -579,7 +590,7 @@ function enableAssistant(settings: SilverGuideSettings): void {
     }
   };
   const onKeyDown = (event: KeyboardEvent): void => {
-    if (event.key === "Escape") hideTooltip();
+    if (event.key === "Escape") hideTooltip(true);
   };
   state = {
     dock,
@@ -602,6 +613,7 @@ function enableAssistant(settings: SilverGuideSettings): void {
 
 function disableAssistant(): void {
   if (state === undefined) return;
+  hideTooltip(false);
   state.observer.disconnect();
   document.removeEventListener("focusin", state.onFocusIn, true);
   document.removeEventListener("keydown", state.onKeyDown, true);

@@ -63,6 +63,16 @@
   line-height: 1.6;
 }
 
+.support-options-empty {
+  background: #edf7f8;
+  border-left: 5px solid #076c78;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.6;
+  margin: 0;
+  padding: 12px;
+}
+
 .brand-icon,
 .action-icon,
 .privacy-icon {

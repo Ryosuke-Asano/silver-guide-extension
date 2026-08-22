@@ -5,7 +5,7 @@
 export type PageCapabilities = {
   canInput: boolean;
   canProceed: boolean;
-  canRead: true;
+  canRead: boolean;
   hasVerifiedGuide: boolean;
 };
 

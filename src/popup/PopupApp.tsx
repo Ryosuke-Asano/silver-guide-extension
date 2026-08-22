@@ -51,6 +51,9 @@ export function PopupApp(): ReactElement {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("入力内容は送信しません。ページを支援するだけです。");
   const [isError, setIsError] = useState(false);
+  const availableSupportOptions = SUPPORT_OPTIONS.filter(
+    (option) => (capabilities ?? BASIC_READING_CAPABILITIES)[option.key]
+  );
 
   useEffect(() => {
     void Promise.all([
@@ -114,14 +117,18 @@ export function PopupApp(): ReactElement {
       ) : (
         <section className="support-options" aria-labelledby="support-options-title">
           <h2 id="support-options-title">このページでできること</h2>
-          <ul>
-            {SUPPORT_OPTIONS.filter((option) => (capabilities ?? BASIC_READING_CAPABILITIES)[option.key]).map((option) => (
-              <li key={option.key}>
-                <strong>{option.label}</strong>
-                <span>{option.description}</span>
-              </li>
-            ))}
-          </ul>
+          {availableSupportOptions.length > 0 ? (
+            <ul>
+              {availableSupportOptions.map((option) => (
+                <li key={option.key}>
+                  <strong>{option.label}</strong>
+                  <span>{option.description}</span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="support-options-empty">このページでは、文字の大きさと表示設定を変更できます。</p>
+          )}
         </section>
       )}
 
