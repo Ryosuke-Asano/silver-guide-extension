@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="852" viewBox="0 0 1280 852">
+  <rect width="1280" height="852" fill="#f4f5f7"/>
+  <rect width="1280" height="38" fill="#eef0f4"/>
+  <rect x="70" y="7" width="282" height="31" rx="9" fill="#ffffff"/>
+  <path d="M91 16h10v10H91z" fill="#076c78"/>
+  <path d="M96 13l8 8-8 8-8-8z" fill="#3a9da7"/>
+  <text x="113" y="28" fill="#1f2937" font-family="Segoe UI, sans-serif" font-size="13">Silver Guide デモ</text>
+  <path d="M368 22h16M376 14v16" stroke="#52606d" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M1198 19h14M1205 12v14M1232 12l14 14M1246 12l-14 14" stroke="#52606d" stroke-width="1.4" stroke-linecap="round"/>
+  <rect y="38" width="1280" height="64" fill="#f8f9fb"/>
+  <path d="M34 70l10-10m-10 10l10 10M67 60l10 10m0-10l-10 10M100 60v20m-10-10h20" fill="none" stroke="#4e5d6c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="137" y="52" width="924" height="36" rx="18" fill="#e7ebf0"/>
+  <path d="M160 69v-5a6 6 0 0 1 12 0v5m-14 0h16v11h-16z" fill="none" stroke="#547081" stroke-width="1.6" stroke-linejoin="round"/>
+  <text x="191" y="75" fill="#34475a" font-family="Segoe UI, sans-serif" font-size="14">127.0.0.1:4174/test-page.html</text>
+  <circle cx="1098" cy="70" r="10" fill="#dce5e8"/>
+  <path d="M1094 70h8m-4-4v8" stroke="#426879" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="1140" cy="70" r="15" fill="#d5dde5"/>
+  <circle cx="1140" cy="66" r="5" fill="#71879b"/>
+  <path d="M1132 80c2-6 14-6 16 0" fill="#71879b"/>
+  <path d="M1181 65h4m-2-2v4m10-2h4m-2-2v4m10-2h4m-2-2v4" stroke="#536574" stroke-width="2" stroke-linecap="round"/>
+  <rect y="101" width="1280" height="751" fill="#ffffff"/>
+  <rect x="0" y="101" width="1280" height="5" fill="#d7dde4"/>
+  <rect x="0" y="846" width="1280" height="6" fill="#d7dde4"/>
+</svg>
