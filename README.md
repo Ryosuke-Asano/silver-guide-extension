@@ -19,6 +19,8 @@
 
 詳細は [docs/product-requirements.md](docs/product-requirements.md)、技術構成は [docs/architecture.md](docs/architecture.md)、画面規約は [docs/design-system.md](docs/design-system.md) に記録します。
 
+最初の確認済み行政ガイドとして、横浜市の住民票オンライン申請案内と横浜市電子申請・届出システムに対応しています。対象 URL・表示内容・非対応操作は [docs/yokohama-guide-pack.md](docs/yokohama-guide-pack.md) を参照してください。
+
 ## 現在の状態
 
 共通基盤を実装済みです。`dist/` は Floorp へ読み込めるビルド出力で、ポップアップ、ローカル用語ツールチップ、入力値を読まないフォーム補助、確認済みページだけの公式導線、停止処理を含みます。

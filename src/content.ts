@@ -1,5 +1,5 @@
 import { GLOSSARY, type GlossaryEntry } from "./data/glossary";
-import { guidePackFor, type GuideField, type GuidePack } from "./data/guide-packs";
+import { guidePackFor, type GuideField, type GuidePack, type GuidePageEvidence } from "./data/guide-packs";
 import type { PageCapabilities } from "./shared/capabilities";
 import type { SilverGuideSettings } from "./shared/settings";
 
@@ -234,6 +234,14 @@ function rootForTerms(): HTMLElement {
   return document.querySelector<HTMLElement>("main, article, [role=main]") ?? document.body;
 }
 
+function publicPageEvidence(): GuidePageEvidence {
+  return {
+    headings: Array.from(document.querySelectorAll<HTMLElement>("h1, h2, h3"))
+      .map((heading) => heading.innerText.trim())
+      .filter((heading) => heading.length > 0)
+  };
+}
+
 function isEligibleTextNode(node: Text): boolean {
   const parent = node.parentElement;
   if (parent === null || node.data.trim().length === 0) {
@@ -377,7 +385,7 @@ function visibleFields(): SupportedField[] {
 }
 
 function currentCapabilities(): PageCapabilities {
-  const guidePack = state?.guidePack ?? guidePackFor(new URL(location.href));
+  const guidePack = state?.guidePack ?? guidePackFor(new URL(location.href), publicPageEvidence());
   return {
     canInput: visibleFields().length > 0,
     canProceed: (guidePack?.routes.length ?? 0) > 0,
@@ -479,19 +487,21 @@ function renderDock(current: AssistantState): void {
     appendText(current.dock, "p", "このページの案内", "lead");
     const detail = createElement("section", "detail");
     const firstTerm = firstGlossaryTerm();
-    if (firstTerm === undefined) {
+    const routes = current.guidePack?.routes ?? [];
+    if (current.guidePack !== undefined) {
+      appendText(detail, "p", current.guidePack.summary);
+    } else if (firstTerm === undefined) {
       appendText(detail, "p", "このページでは、登録された言葉は見つかりませんでした。");
     } else {
       appendText(detail, "p", "下線の言葉を選ぶと、やさしい説明を読めます。");
     }
-    current.dock.append(detail);
-    if (firstTerm !== undefined) {
-      current.dock.append(createButton("最初の説明を読む", "next", openFirstGlossaryExplanation));
+    if (firstTerm !== undefined && current.guidePack !== undefined) {
+      appendText(detail, "p", "下線の言葉を選ぶと、やさしい説明を読めます。");
     }
+    current.dock.append(detail);
 
-    const routes = current.guidePack?.routes ?? [];
     if (routes.length > 0) {
-      appendText(current.dock, "h3", "ページ内の案内", "section-title");
+      appendText(current.dock, "h3", "公式の案内", "section-title");
       const routeList = createElement("nav", "route-list");
       routes.forEach((route) => {
         const link = createElement("a", "route");
@@ -500,6 +510,22 @@ function renderDock(current: AssistantState): void {
         routeList.append(link);
       });
       current.dock.append(routeList);
+    }
+
+    if ((current.guidePack?.preparation?.length ?? 0) > 0) {
+      appendText(current.dock, "h3", "申請前の確認", "section-title");
+      const checklist = createElement("section", "detail");
+      const list = createElement("ul");
+      current.guidePack?.preparation?.forEach((item) => {
+        const listItem = createElement("li");
+        listItem.textContent = item;
+        list.append(listItem);
+      });
+      checklist.append(list);
+      current.dock.append(checklist);
+    }
+    if (firstTerm !== undefined) {
+      current.dock.append(createButton("最初の説明を読む", "next", openFirstGlossaryExplanation));
     }
   }
 
@@ -595,7 +621,7 @@ function enableAssistant(settings: SilverGuideSettings): void {
   };
   state = {
     dock,
-    guidePack: guidePackFor(new URL(location.href)),
+    guidePack: guidePackFor(new URL(location.href), publicPageEvidence()),
     host,
     inlineStyle,
     observer,
