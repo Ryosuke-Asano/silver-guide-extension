@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>架空の証明書申請 — Semantic fixture</title><link rel="icon" href="data:,"><link rel="stylesheet" href="/forms.css"></head>
+<body><main>
+  <h1>架空の証明書申請</h1>
+  <p class="fixture-notice">これは架空のローカルテストです。申請や送信は行いません。</p>
+  <p>住民票の案内を読み、入力項目を確認できます。</p>
+  <form id="application" action="/must-not-submit" method="post">
+    <div class="field"><label for="full-name">氏名 <span>必須</span></label><input id="full-name" name="full-name" required autocomplete="name" aria-describedby="name-help"><p id="name-help">証明書に記載する名前を確認してください。</p></div>
+    <div class="field"><label for="birth-date">生年月日</label><input id="birth-date" name="birth-date" type="date"></div>
+    <div class="field"><label for="phone">連絡先の電話番号</label><input id="phone" name="phone" type="tel" maxlength="15"></div>
+    <fieldset><legend>証明書の使用目的</legend><label><input id="purpose-school" type="radio" name="purpose" required> 学校への提出</label><label><input id="purpose-work" type="radio" name="purpose"> 勤務先への提出</label></fieldset>
+    <div class="field"><label for="copies">必要な通数</label><select id="copies" name="copies"><option>1 通</option><option>2 通</option></select></div>
+    <div class="field"><label for="notification"><input id="notification" name="notification" type="checkbox"> 案内の通知を希望する</label></div>
+    <div class="field"><label for="attachment">補足資料</label><input id="attachment" name="attachment" type="file" accept=".pdf,image/*"></div>
+    <div class="field"><label for="notes">補足事項</label><textarea id="notes" name="notes" rows="3"></textarea></div>
+    <div class="field"><label for="readonly">変更できない受付番号</label><input id="readonly" readonly value="架空受付番号"></div>
+    <div class="field"><label for="disabled">使用できない項目</label><input id="disabled" disabled></div>
+    <fieldset disabled><legend>無効なグループ</legend><input id="fieldset-disabled" aria-label="無効な欄"></fieldset>
+    <div hidden><input id="hidden-section" aria-label="非表示の項目"></div>
+    <div inert><input id="inert-section" aria-label="操作できない項目"></div>
+    <input id="hidden-token" type="hidden" value="FAKE-HIDDEN-TOKEN">
+    <div class="field"><label for="password">テスト用パスワード</label><input id="password" type="password" value="FAKE-PASSWORD"></div>
+    <input id="submit-input" type="submit" value="テスト用送信 (実行禁止)">
+    <input id="reset-input" type="reset" value="取り消す (実行禁止)">
+  </form>
+  <form id="search" action="/must-not-search"><label for="search-field">別のフォームの検索</label><input id="search-field" type="search"><input id="search-hidden" type="hidden"></form>
+</main><script>
+window.fixtureSubmissions = 0;
+document.addEventListener('submit', (event) => { event.preventDefault(); window.fixtureSubmissions += 1; }, true);
+</script></body></html>

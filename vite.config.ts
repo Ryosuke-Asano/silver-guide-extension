@@ -4,7 +4,22 @@ import { defineConfig } from "vite";
 const extensionEntries = new Set(["background", "content"]);
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    {
+      name: "isolate-content-script",
+      generateBundle(_options, bundle) {
+        const content = bundle["content.js"];
+        if (content?.type !== "chunk") return;
+        if (content.imports.length > 0 || content.dynamicImports.length > 0) {
+          this.error("Injected content.js must be self-contained; it cannot import shared chunks.");
+        }
+        // executeScript injects a classic script. Isolate lexical declarations
+        // so stopping and starting on the same page never redeclares globals.
+        content.code = `(() => {\n${content.code}\n})();\n`;
+      }
+    }
+  ],
   build: {
     emptyOutDir: true,
     outDir: "dist",

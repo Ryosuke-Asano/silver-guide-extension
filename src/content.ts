@@ -2,6 +2,10 @@ import { GLOSSARY, type GlossaryEntry } from "./data/glossary";
 import { guidePackFor, type GuideField, type GuidePack, type GuidePageEvidence } from "./data/guide-packs";
 import type { PageCapabilities } from "./shared/capabilities";
 import type { SilverGuideSettings } from "./shared/settings";
+import {
+  adjacentField, fieldDetails, fieldLabel, fieldPosition, fieldsFor, hasPageError,
+  isSupportedField, logicalFields, publicText, visibleFields, type SupportedField
+} from "./content/form-analysis";
 
 type ContentMessage =
   | { type: "silver-guide-enable"; settings: SilverGuideSettings }
@@ -9,7 +13,6 @@ type ContentMessage =
   | { type: "silver-guide-state" }
   | { type: "silver-guide-update-settings"; settings: SilverGuideSettings };
 
-type SupportedField = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
 type DemoStep = "read" | "preparation";
 
 type ContentState = {
@@ -29,10 +32,20 @@ type AssistantState = {
   host: HTMLElement;
   inlineStyle: HTMLStyleElement;
   observer: MutationObserver;
+  nativeErrors: WeakSet<SupportedField>;
+  pendingRefresh?: number;
+  renderKey?: string;
+  renderTargets: SupportedField[];
+  renderedField?: SupportedField;
+  status: HTMLElement;
+  terms: Set<HTMLElement>;
   settings: SilverGuideSettings;
   tooltip: HTMLElement;
   onFocusIn: (event: FocusEvent) => void;
   onKeyDown: (event: KeyboardEvent) => void;
+  onInvalid: (event: Event) => void;
+  onInput: (event: Event) => void;
+  onNavigation: () => void;
 };
 
 declare global {
@@ -48,11 +61,41 @@ const EXCLUDED_TERM_CONTAINERS = [
   "a",
   "button",
   "code",
+  "script",
+  "style",
+  "label",
+  "legend",
+  "option",
+  "output",
+  "datalist",
+  "summary",
   "input",
   "select",
   "textarea",
-  "[contenteditable=true]",
+  "[contenteditable]",
   "[role=application]",
+  "[role=button]",
+  "[role=link]",
+  "[role=textbox]",
+  "[role=combobox]",
+  "[role=checkbox]",
+  "[role=radio]",
+  "[role=switch]",
+  "[role=searchbox]",
+  "[role=spinbutton]",
+  "[role=slider]",
+  "[role=listbox]",
+  "[role=option]",
+  "[role=grid]",
+  "[role=tree]",
+  "[role=tablist]",
+  "[role=menu]",
+  "[role=alert]",
+  "[role=status]",
+  "[aria-live]",
+  "[hidden]",
+  "[inert]",
+  "[aria-hidden=true]",
   `#${HOST_ID}`,
   `[${TERM_ATTRIBUTE}]`
 ].join(",");
@@ -91,6 +134,7 @@ const ASSISTANT_STYLE = `
     color-scheme: light;
     font-family: "Noto Sans JP", "Yu Gothic UI", Meiryo, sans-serif;
     line-height: 1.7;
+    overflow-wrap: anywhere;
   }
   .font-small { --body-size: 18px; --heading-size: 26px; }
   .font-medium { --body-size: 20px; --heading-size: 28px; }
@@ -125,9 +169,9 @@ const ASSISTANT_STYLE = `
     z-index: 2147483647;
   }
   #silver-guide-tooltip[data-open] { display: block; }
-  .dock-header, .tooltip-header { align-items: center; display: flex; gap: 12px; justify-content: space-between; }
+  .dock-header, .tooltip-header { align-items: center; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; }
   .dock-actions { align-items: center; display: flex; gap: 8px; }
-  .title { align-items: center; display: flex; font-size: var(--heading-size); font-weight: 700; gap: 10px; line-height: 1.3; margin: 0; white-space: nowrap; }
+  .title { align-items: center; display: flex; font-size: var(--heading-size); font-weight: 700; gap: 10px; line-height: 1.3; margin: 0; }
   .book { color: #076c78; font-size: 32px; font-weight: 700; line-height: 1; }
   .close {
     background: #ffffff;
@@ -187,6 +231,13 @@ const ASSISTANT_STYLE = `
   }
   .next:hover { background: #055b65; border-color: #055b65; }
   .end-note { color: #39556f; font-size: 18px; font-weight: 700; line-height: 1.6; margin: 0; }
+  .field-actions { display: grid; gap: 10px; margin: 16px 0; }
+  .position { font-size: var(--body-size); margin: 0 0 12px; }
+  .error-note { border: 2px solid #a02222; border-radius: 10px; color: #a02222; font-size: var(--body-size); margin: 16px 0; padding: 12px; }
+  .page-description { border: 2px solid #b5d5ec; border-radius: 10px; font-size: var(--body-size); margin: 16px 0; padding: 12px; }
+  .page-description p { margin: 0; }
+  .page-description p + p { margin-top: 8px; }
+  .sr-only { clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
   .route-list { display: grid; gap: 10px; }
   .route {
     align-items: center;
@@ -237,7 +288,7 @@ const ASSISTANT_STYLE = `
   }
   .listen:hover { background: #edf7f8; }
   @media (max-width: 620px) {
-    #silver-guide-dock { bottom: 0; left: 0; max-height: 82vh; right: 0; top: auto; width: 100vw; }
+    #silver-guide-dock { bottom: 0; left: 0; max-height: 48vh; right: 0; top: auto; width: 100vw; }
   }
   @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
 `;
@@ -280,6 +331,7 @@ function createButton(label: string, className: string, onClick: () => void): HT
   const button = createElement("button", className);
   button.type = "button";
   button.textContent = label;
+  button.setAttribute("data-silver-guide-action", label);
   button.addEventListener("click", onClick);
   return button;
 }
@@ -291,21 +343,40 @@ function rootForTerms(): HTMLElement {
 function publicPageEvidence(): GuidePageEvidence {
   return {
     headings: Array.from(document.querySelectorAll<HTMLElement>("h1, h2, h3"))
-      .map((heading) => heading.innerText.trim())
+      .filter(isVisibleElement)
+      .map((heading) => publicText(heading))
       .filter((heading) => heading.length > 0)
   };
 }
 
+function isVisibleElement(element: HTMLElement): boolean {
+  if (!element.isConnected || element.closest("[hidden], [inert], [aria-hidden=true]") !== null ||
+      element.getClientRects().length === 0) return false;
+  const visibility = window.getComputedStyle(element).visibility;
+  return visibility !== "hidden" && visibility !== "collapse";
+}
+
 function isEligibleTextNode(node: Text): boolean {
   const parent = node.parentElement;
-  if (parent === null || node.data.trim().length === 0) {
+  if (parent === null || parent.closest(EXCLUDED_TERM_CONTAINERS) !== null ||
+      parent.closest(TERM_CONTAINER_SELECTOR) === null || !isVisibleElement(parent)) {
     return false;
   }
 
-  return parent.closest(EXCLUDED_TERM_CONTAINERS) === null && parent.closest(TERM_CONTAINER_SELECTOR) !== null;
+  // Exclude private and interactive containers before accessing their text.
+  return node.data.trim().length > 0;
 }
 
 function wrapGlossaryTerms(): void {
+  if (state === undefined) return;
+  // Removed/hidden steps and containers that become editable must not retain
+  // generated controls. Unwrap by moving nodes without reading their text.
+  for (const term of state.terms) {
+    if (!isVisibleElement(term) || term.parentElement?.closest(EXCLUDED_TERM_CONTAINERS) !== null) {
+      term.replaceWith(...term.childNodes);
+      state.terms.delete(term);
+    }
+  }
   const walker = document.createTreeWalker(rootForTerms(), NodeFilter.SHOW_TEXT, {
     acceptNode: (node) =>
       node instanceof Text && isEligibleTextNode(node)
@@ -350,6 +421,7 @@ function wrapGlossaryTerms(): void {
             showTooltip(term, entry);
           }
         });
+        state.terms.add(term);
         fragment.append(term);
       }
       lastIndex = matchedIndex + matchedText.length;
@@ -365,63 +437,14 @@ function wrapGlossaryTerms(): void {
 
 function restoreGlossaryTerms(): void {
   const parents = new Set<ParentNode>();
-  document.querySelectorAll<HTMLElement>(`[${GENERATED_ATTRIBUTE}="true"]`).forEach((term) => {
+  state?.terms.forEach((term) => {
     const parent = term.parentNode;
-    term.replaceWith(document.createTextNode(term.textContent ?? ""));
+    term.replaceWith(...term.childNodes);
     if (parent !== null) {
       parents.add(parent);
     }
   });
   parents.forEach((parent) => parent.normalize());
-}
-
-function isSupportedField(element: EventTarget | null): element is SupportedField {
-  if (!(element instanceof HTMLInputElement || element instanceof HTMLSelectElement || element instanceof HTMLTextAreaElement)) {
-    return false;
-  }
-  if (element instanceof HTMLInputElement && (element.type === "hidden" || element.type === "password")) {
-    return false;
-  }
-  return element.getClientRects().length > 0;
-}
-
-function fieldLabel(field: SupportedField): string {
-  const ariaLabel = field.getAttribute("aria-label")?.trim();
-  if (ariaLabel !== undefined && ariaLabel.length > 0) {
-    return ariaLabel;
-  }
-  const label = field.labels?.item(0)?.innerText.trim();
-  if (label !== undefined && label.length > 0) {
-    return label;
-  }
-  if (field.id.length > 0) {
-    const explicitLabel = document.querySelector<HTMLLabelElement>(`label[for="${CSS.escape(field.id)}"]`);
-    if (explicitLabel?.innerText.trim()) {
-      return explicitLabel.innerText.trim();
-    }
-  }
-  return field.getAttribute("name")?.trim() || "この入力欄";
-}
-
-function fieldFacts(field: SupportedField): string[] {
-  const facts: string[] = [];
-  if (field.required || field.getAttribute("aria-required") === "true") {
-    facts.push("この欄は必ず入力する項目です。");
-  }
-  if (field instanceof HTMLInputElement) {
-    if (field.type === "email") facts.push("メールアドレスの形式で入力します。");
-    if (field.type === "date") facts.push("日付を選ぶ欄です。");
-    if (field.type === "tel") facts.push("電話番号を入力する欄です。");
-    if (field.inputMode === "numeric" || field.type === "number") facts.push("数字を入力する欄です。");
-  }
-  const descriptionIds = field.getAttribute("aria-describedby")?.trim().split(/\s+/) ?? [];
-  for (const id of descriptionIds) {
-    const description = document.getElementById(id)?.innerText.trim();
-    if (description !== undefined && description.length > 0) {
-      facts.push(description);
-    }
-  }
-  return facts.slice(0, 3);
 }
 
 function guideForField(pack: GuidePack | undefined, field: SupportedField): GuideField | undefined {
@@ -434,12 +457,8 @@ function guideForField(pack: GuidePack | undefined, field: SupportedField): Guid
   });
 }
 
-function visibleFields(): SupportedField[] {
-  return Array.from(document.querySelectorAll("input, select, textarea")).filter(isSupportedField);
-}
-
 function currentCapabilities(): PageCapabilities {
-  const guidePack = state?.guidePack ?? guidePackFor(new URL(location.href), publicPageEvidence());
+  const guidePack = guidePackFor(new URL(location.href), publicPageEvidence());
   return {
     canInput: visibleFields().length > 0,
     canProceed: (guidePack?.routes.length ?? 0) > 0,
@@ -448,32 +467,80 @@ function currentCapabilities(): PageCapabilities {
   };
 }
 
-function nextFieldFor(currentField: SupportedField, guide?: GuideField): SupportedField | undefined {
+function nextFieldFor(currentField: SupportedField, guide?: GuideField, scopeFields = fieldsFor(currentField)): SupportedField | undefined {
+  if (!isSupportedField(currentField)) return undefined;
   if (guide?.nextPublicSelector !== undefined) {
     try {
       const specifiedNext = document.querySelector<HTMLElement>(guide.nextPublicSelector);
-      if (specifiedNext !== null && isSupportedField(specifiedNext)) {
+      if (specifiedNext !== null && isSupportedField(specifiedNext) && scopeFields.includes(specifiedNext) && specifiedNext !== currentField) {
         return specifiedNext;
       }
     } catch {
       // ページ改版などでセレクターが無効でも、一般フォームの次項目へ安全にフォールバックする。
     }
   }
-  const fields = visibleFields();
-  return fields[fields.indexOf(currentField) + 1];
+  const index = fieldPosition(currentField, scopeFields);
+  return index < 0 ? undefined : scopeFields[index + 1];
 }
 
-function focusNextField(currentField: SupportedField, guide?: GuideField): void {
-  const next = nextFieldFor(currentField, guide);
-  if (next === undefined) {
+function focusField(field: SupportedField | undefined): void {
+  if (state === undefined) return;
+  if (field === undefined || !isSupportedField(field)) {
+    refreshAssistant(state);
     return;
   }
-  next.focus({ preventScroll: true });
-  next.scrollIntoView({ behavior: "smooth", block: "center" });
+  field.focus({ preventScroll: true });
+  field.scrollIntoView({ behavior: "instant", block: window.innerWidth <= 620 ? "start" : "center" });
+  if (window.innerWidth <= 620) {
+    const top = field.getBoundingClientRect().top;
+    if (top < 48) window.scrollBy({ top: top - 48, behavior: "instant" });
+  }
+  state.dock.scrollTop = 0;
+  positionDockForField(state, field);
+}
+
+/** Keep the focused native control visible when the viewport has room. */
+function positionDockForField(current: AssistantState, field?: SupportedField): void {
+  for (const property of ["left", "right", "top", "bottom", "max-height"]) current.dock.style.removeProperty(property);
+  if (field === undefined || window.innerWidth <= 620 || !isSupportedField(field)) return;
+  const rect = field.getBoundingClientRect();
+  const width = current.dock.getBoundingClientRect().width;
+  const gap = 30;
+  if (rect.left >= width + gap) return;
+  if (window.innerWidth - rect.right >= width + gap) {
+    current.dock.style.left = "auto";
+    current.dock.style.right = "18px";
+    return;
+  }
+  const above = Math.min(rect.top - gap, window.innerHeight - 36);
+  const below = Math.min(window.innerHeight - rect.bottom - gap, window.innerHeight - 36);
+  if (Math.max(above, below) < 180) return;
+  current.dock.style.maxHeight = `${Math.floor(Math.max(above, below))}px`;
+  if (below > above) {
+    current.dock.style.top = "auto";
+    current.dock.style.bottom = "18px";
+  }
+}
+
+function firstInputField(): SupportedField | undefined {
+  const fields = logicalFields(visibleFields());
+  return fields.find((field) => rootForTerms().contains(field)) ?? fields[0];
+}
+
+function errorFields(current: AssistantState, fields = visibleFields()): SupportedField[] {
+  return logicalFields(fields.filter((field) => hasPageError(field) || current.nativeErrors.has(field)));
+}
+
+function showFieldOverview(): void {
+  if (state === undefined) return;
+  state.activeField = undefined;
+  renderDock(state);
+  state.dock.focus({ preventScroll: true });
 }
 
 function firstGlossaryTerm(): HTMLElement | undefined {
-  return document.querySelector<HTMLElement>(`[${GENERATED_ATTRIBUTE}="true"]`) ?? undefined;
+  return state === undefined ? undefined : Array.from(document.querySelectorAll<HTMLElement>(`[${GENERATED_ATTRIBUTE}="true"]`))
+    .find((term) => state?.terms.has(term) && isVisibleElement(term));
 }
 
 function openFirstGlossaryExplanation(): void {
@@ -511,7 +578,7 @@ function showPreparation(): void {
     return;
   }
   preparation.focus({ preventScroll: true });
-  preparation.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  preparation.scrollIntoView({ behavior: "auto", block: "nearest" });
 }
 
 function setDockCollapsed(collapsed: boolean): void {
@@ -543,6 +610,43 @@ function appendText(parent: HTMLElement, tag: "p" | "h3", text: string, classNam
 }
 
 function renderDock(current: AssistantState): void {
+  if (current.activeField !== undefined && !isSupportedField(current.activeField)) current.activeField = undefined;
+  const activeField = current.activeField;
+  const visible = visibleFields();
+  const help = activeField === undefined ? undefined : fieldDetails(activeField, visible);
+  const fields = logicalFields(visible);
+  const errors = errorFields(current, visible);
+  const scopeFields = activeField === undefined ? [] : fieldsFor(activeField, visible);
+  const position = activeField === undefined ? -1 : fieldPosition(activeField, scopeFields);
+  const guide = activeField === undefined ? undefined : guideForField(current.guidePack, activeField);
+  const step = document.querySelector<HTMLElement>('[aria-current="step"]');
+  const stepText = step !== null && step.getClientRects().length > 0 ? publicText(step, 160) : "";
+  const hasError = activeField !== undefined && (hasPageError(activeField) || current.nativeErrors.has(activeField));
+  const renderKey = JSON.stringify({
+    help, count: fields.length, position,
+    scopeCount: scopeFields.length, errors: errors.length, hasError, stepText,
+    guide: current.guidePack?.id, term: firstGlossaryTerm() !== undefined,
+    collapsed: current.collapsed, settings: current.settings, demo: [...current.demoSteps]
+  });
+  const targets = [...fields, ...(activeField === undefined ? [] : [activeField]), ...errors];
+  if (renderKey === current.renderKey && targets.length === current.renderTargets.length &&
+      targets.every((field, index) => field === current.renderTargets[index])) return;
+  current.renderKey = renderKey;
+  current.renderTargets = targets;
+  const fieldChanged = current.renderedField !== activeField;
+  current.renderedField = activeField;
+
+  const focused = current.host.shadowRoot?.activeElement;
+  const focusedInDock = focused instanceof HTMLElement && current.dock.contains(focused);
+  const focusedAction = focusedInDock ? focused.getAttribute("data-silver-guide-action") : null;
+  const focusedId = focusedInDock ? focused.id : "";
+  const restoreDockFocus = (): void => {
+    if (!focusedInDock) return;
+    const replacement = Array.from(current.dock.querySelectorAll<HTMLElement>("[data-silver-guide-action]"))
+      .find((element) => element.getAttribute("data-silver-guide-action") === focusedAction);
+    const byId = focusedId ? current.dock.querySelector<HTMLElement>(`#${CSS.escape(focusedId)}`) : null;
+    (replacement ?? byId ?? current.dock).focus({ preventScroll: true });
+  };
   current.dock.replaceChildren();
   current.dock.className = `font-${current.settings.fontSize}`;
   current.dock.classList.toggle("is-collapsed", current.collapsed);
@@ -566,6 +670,9 @@ function renderDock(current: AssistantState): void {
 
   if (current.collapsed) {
     appendText(current.dock, "p", "必要なときに「開く」を選ぶと、案内をもう一度表示します。", "collapsed-note");
+    current.dock.scrollTop = 0;
+    positionDockForField(current, activeField);
+    restoreDockFocus();
     return;
   }
 
@@ -573,14 +680,27 @@ function renderDock(current: AssistantState): void {
   collapseButton.setAttribute("aria-expanded", "true");
   current.dock.append(collapseButton);
 
-  if (current.activeField !== undefined && document.contains(current.activeField)) {
-    const label = fieldLabel(current.activeField);
-    const guide = guideForField(current.guidePack, current.activeField);
+  if (stepText) appendText(current.dock, "p", `ページが示す現在の手順：${stepText}`, "position");
+  if (errors.length > 0) {
+    appendText(current.dock, "p", `確認が必要な項目：${errors.length} 件。ページで入力エラーが示されています。`, "error-note");
+    current.dock.append(createButton("最初のエラー項目へ", "demo-action", () => {
+      if (state !== undefined) focusField(errorFields(state)[0]);
+    }));
+  }
+
+  if (activeField !== undefined && help !== undefined) {
     appendText(current.dock, "p", "入力のヒント", "lead");
-    appendText(current.dock, "h3", `「${label}」について`, "section-title");
+    appendText(current.dock, "p", `現在の項目：${position + 1} / ${scopeFields.length}`, "position");
+    if (help.groupLabel !== undefined && help.groupLabel !== help.label) {
+      appendText(current.dock, "p", `項目のまとまり：${help.groupLabel}`, "position");
+    }
+    appendText(current.dock, "h3", `「${help.label}」について`, "section-title");
+    if (hasError) {
+      appendText(current.dock, "p", "ページから入力エラーが通知されています。欄の近くのエラー説明を確認して、ご自身で修正してください。", "error-note");
+    }
     const detail = createElement("section", "detail");
     appendText(detail, "p", guide?.purpose ?? "ページに表示されている説明を確認して、落ち着いて入力してください。");
-    const facts = guide?.preparation ?? fieldFacts(current.activeField);
+    const facts = [...help.facts, ...(guide?.preparation ?? [])];
     if (facts.length > 0) {
       const list = createElement("ul");
       facts.forEach((fact) => {
@@ -591,14 +711,26 @@ function renderDock(current: AssistantState): void {
       detail.append(list);
     }
     current.dock.append(detail);
-    const nextField = nextFieldFor(current.activeField, guide);
+    if (help.descriptions.length > 0) {
+      appendText(current.dock, "h3", "ページの説明・入力例", "section-title");
+      const description = createElement("section", "page-description");
+      help.descriptions.forEach((text) => appendText(description, "p", text));
+      current.dock.append(description);
+    }
+    const actions = createElement("div", "field-actions");
+    if (position > 0) {
+      actions.append(createButton("前の項目へ", "demo-action", () => focusField(adjacentField(activeField, -1))));
+    }
+    const nextField = nextFieldFor(activeField, guide, scopeFields);
     if (nextField !== undefined) {
-      current.dock.append(
-        createButton("次の項目へ", "next", () => focusNextField(current.activeField as SupportedField, guide))
+      actions.append(
+        createButton("次の項目へ", "next", () => focusField(nextFieldFor(activeField, guideForField(state?.guidePack, activeField))))
       );
     } else {
-      appendText(current.dock, "p", "このページで確認できる入力欄はここまでです。", "end-note");
+      appendText(actions, "p", "この画面の入力項目はここまでです。次の画面への移動や送信は、ページのボタンをご自身で確認してください。", "end-note");
     }
+    actions.append(createButton("項目の案内に戻る", "demo-action", showFieldOverview));
+    current.dock.append(actions);
   } else {
     appendText(current.dock, "p", "このページの案内", "lead");
     const detail = createElement("section", "detail");
@@ -615,6 +747,15 @@ function renderDock(current: AssistantState): void {
       appendText(detail, "p", "下線の言葉を選ぶと、やさしい説明を読めます。");
     }
     current.dock.append(detail);
+
+    if (fields.length > 0) {
+      appendText(current.dock, "h3", "入力項目の案内", "section-title");
+      appendText(current.dock, "p", `この画面の入力項目：${fields.length} 項目。入力済みかどうかは判定しません。`, "position");
+      appendText(current.dock, "p", "表示中の入力欄だけを案内します。画面を進めたら、この案内も更新します。", "position");
+      current.dock.append(createButton("最初の入力項目へ", "next", () => focusField(firstInputField())));
+    } else {
+      appendText(current.dock, "p", "この画面には支援できる入力欄がありません。", "end-note");
+    }
 
     if (current.guidePack !== undefined) {
       appendText(current.dock, "h3", "このページで試す", "section-title");
@@ -653,6 +794,7 @@ function renderDock(current: AssistantState): void {
         const link = createElement("a", "route");
         link.href = route.officialUrl;
         link.textContent = route.label;
+        link.setAttribute("data-silver-guide-action", route.officialUrl);
         routeList.append(link);
       });
       current.dock.append(routeList);
@@ -686,6 +828,9 @@ function renderDock(current: AssistantState): void {
   mark.textContent = "▣";
   privacy.append(mark, document.createTextNode("入力内容は送信しません"));
   current.dock.append(privacy);
+  if (fieldChanged) current.dock.scrollTop = 0;
+  positionDockForField(current, activeField);
+  restoreDockFocus();
 }
 
 function showTooltip(anchor: HTMLElement, entry: GlossaryEntry): void {
@@ -766,13 +911,51 @@ function hideTooltip(returnFocus = false): void {
   const activeTerm = state.activeTerm;
   state.tooltip.removeAttribute("data-open");
   state.tooltip.setAttribute("aria-hidden", "true");
-  document.querySelectorAll<HTMLElement>(`[${GENERATED_ATTRIBUTE}="true"][aria-expanded="true"]`).forEach((term) => {
-    term.setAttribute("aria-expanded", "false");
+  state.terms.forEach((term) => {
+    if (term.getAttribute("aria-expanded") === "true") term.setAttribute("aria-expanded", "false");
   });
   state.activeTerm = undefined;
   if (returnFocus && activeTerm !== undefined && document.contains(activeTerm)) {
     activeTerm.focus({ preventScroll: true });
   }
+}
+
+const PAGE_OBSERVATION: MutationObserverInit = {
+  childList: true,
+  characterData: true,
+  subtree: true,
+  attributes: true,
+  attributeFilter: [
+    "aria-labelledby", "aria-label", "aria-describedby", "aria-errormessage", "aria-required", "aria-invalid", "aria-current", "aria-disabled", "aria-readonly",
+    "required", "disabled", "readonly", "hidden", "inert", "aria-hidden", "style", "class", "type", "name", "id", "for", "form",
+    "inputmode", "min", "max", "minlength", "maxlength", "pattern", "placeholder", "multiple", "open", "tabindex",
+    "role", "contenteditable", "aria-live"
+  ]
+};
+
+function refreshAssistant(current: AssistantState): void {
+  const guidePack = guidePackFor(new URL(location.href), publicPageEvidence());
+  if (guidePack !== current.guidePack) current.demoSteps.clear();
+  current.guidePack = guidePack;
+  if (current.activeField !== undefined && !isSupportedField(current.activeField)) {
+    current.activeField = undefined;
+    current.status.textContent = "表示中の入力項目が変わりました。「最初の入力項目へ」から確認できます。";
+  }
+  if (current.activeTerm !== undefined && !isVisibleElement(current.activeTerm)) hideTooltip(false);
+  renderDock(current);
+}
+
+function scheduleRefresh(current: AssistantState): void {
+  if (current.pendingRefresh !== undefined) return;
+  current.pendingRefresh = window.requestAnimationFrame(() => {
+    current.pendingRefresh = undefined;
+    if (state !== current) return;
+    // Do not observe our own glossary replacements or queue repeated full scans.
+    current.observer.disconnect();
+    wrapGlossaryTerms();
+    current.observer.observe(document.documentElement, PAGE_OBSERVATION);
+    refreshAssistant(current);
+  });
 }
 
 function enableAssistant(settings: SilverGuideSettings): void {
@@ -788,6 +971,7 @@ function enableAssistant(settings: SilverGuideSettings): void {
   style.textContent = ASSISTANT_STYLE;
   const dock = createElement("aside");
   dock.id = "silver-guide-dock";
+  dock.lang = "ja";
   dock.setAttribute("aria-label", "Silver Guide の支援パネル");
   dock.tabIndex = -1;
   const tooltip = createElement("aside");
@@ -795,20 +979,46 @@ function enableAssistant(settings: SilverGuideSettings): void {
   tooltip.setAttribute("role", "dialog");
   tooltip.setAttribute("aria-hidden", "true");
   tooltip.tabIndex = -1;
-  shadow.append(style, dock, tooltip);
+  tooltip.lang = "ja";
+  const status = createElement("p", "sr-only");
+  status.id = "silver-guide-status";
+  status.lang = "ja";
+  status.setAttribute("role", "status");
+  status.setAttribute("aria-live", "polite");
+  status.setAttribute("aria-atomic", "true");
+  shadow.append(style, dock, tooltip, status);
   document.documentElement.append(host);
 
   const observer = new MutationObserver(() => {
-    window.requestAnimationFrame(wrapGlossaryTerms);
+    if (state !== undefined) scheduleRefresh(state);
   });
   const onFocusIn = (event: FocusEvent): void => {
-    if (state !== undefined && isSupportedField(event.target)) {
+    if (state === undefined || event.target === host) return;
+    if (state.activeTerm !== undefined && event.target !== state.activeTerm) hideTooltip(false);
+    if (isSupportedField(event.target)) {
       state.activeField = event.target;
-      renderDock(state);
+      status.textContent = `入力のヒント：${fieldLabel(event.target)}。${hasPageError(event.target) || state.nativeErrors.has(event.target) ? "ページで入力エラーが示されています。" : ""}`;
     }
+    refreshAssistant(state);
   };
   const onKeyDown = (event: KeyboardEvent): void => {
     if (event.key === "Escape") hideTooltip(true);
+  };
+  const onInvalid = (event: Event): void => {
+    if (state === undefined || !isSupportedField(event.target)) return;
+    state.nativeErrors.add(event.target);
+    status.textContent = "ページから入力エラーが通知されました。「最初のエラー項目へ」から確認できます。";
+    scheduleRefresh(state);
+  };
+  const onInput = (event: Event): void => {
+    if (state !== undefined &&
+        (event.target instanceof HTMLInputElement || event.target instanceof HTMLSelectElement || event.target instanceof HTMLTextAreaElement) &&
+        state.nativeErrors.delete(event.target)) {
+      scheduleRefresh(state);
+    }
+  };
+  const onNavigation = (): void => {
+    if (state !== undefined) scheduleRefresh(state);
   };
   state = {
     collapsed: false,
@@ -818,16 +1028,28 @@ function enableAssistant(settings: SilverGuideSettings): void {
     host,
     inlineStyle,
     observer,
+    nativeErrors: new WeakSet<SupportedField>(),
+    renderTargets: [],
+    status,
+    terms: new Set<HTMLElement>(),
     settings,
     tooltip,
     onFocusIn,
-    onKeyDown
+    onKeyDown,
+    onInvalid,
+    onInput,
+    onNavigation
   };
   document.addEventListener("focusin", onFocusIn, true);
   document.addEventListener("keydown", onKeyDown, true);
-  observer.observe(rootForTerms(), { childList: true, subtree: true });
+  document.addEventListener("invalid", onInvalid, true);
+  document.addEventListener("input", onInput, true);
+  document.addEventListener("change", onInput, true);
+  window.addEventListener("popstate", onNavigation);
+  window.addEventListener("hashchange", onNavigation);
   wrapGlossaryTerms();
   renderDock(state);
+  observer.observe(document.documentElement, PAGE_OBSERVATION);
   dock.focus();
 }
 
@@ -835,8 +1057,14 @@ function disableAssistant(): void {
   if (state === undefined) return;
   hideTooltip(false);
   state.observer.disconnect();
+  if (state.pendingRefresh !== undefined) window.cancelAnimationFrame(state.pendingRefresh);
   document.removeEventListener("focusin", state.onFocusIn, true);
   document.removeEventListener("keydown", state.onKeyDown, true);
+  document.removeEventListener("invalid", state.onInvalid, true);
+  document.removeEventListener("input", state.onInput, true);
+  document.removeEventListener("change", state.onInput, true);
+  window.removeEventListener("popstate", state.onNavigation);
+  window.removeEventListener("hashchange", state.onNavigation);
   restoreGlossaryTerms();
   state.inlineStyle.remove();
   state.host.remove();
@@ -855,6 +1083,7 @@ if (extensionApi !== undefined && !window.__silverGuideContentReady) {
         disableAssistant();
         return Promise.resolve({ active: false });
       case "silver-guide-state":
+        if (state !== undefined) refreshAssistant(state);
         return Promise.resolve(
           state === undefined ? { active: false } : { active: true, capabilities: currentCapabilities() }
         );

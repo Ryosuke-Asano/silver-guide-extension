@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>架空の届出 — ARIA and table fixture</title><link rel="icon" href="data:,"><link rel="stylesheet" href="/forms.css"></head>
+<body><main>
+  <h1>架空の届出</h1><p class="fixture-notice">入力構造を確認するローカルテストです。行政申請には接続しません。</p>
+  <form id="report" action="/must-not-submit" method="post" novalidate>
+    <div class="field"><span id="applicant-label">申請者の</span> <span id="email-label">電子メール</span><br><input id="email" name="email" type="email" aria-labelledby="applicant-label email-label" aria-describedby="email-help" aria-required="true"><p id="email-help">連絡を受け取れるメールアドレスを確認します。</p><p id="email-error" class="error" hidden>FAKE-PRIVATE-EMAIL を修正してください。</p></div>
+    <table><tbody>
+      <tr><th scope="row">郵便番号</th><td><input id="postal" name="postal" inputmode="numeric" minlength="7" maxlength="8" pattern="[0-9-]+" aria-describedby="postal-help"><p id="postal-help">数字とハイフンで入力します。</p></td></tr>
+      <tr><th scope="row">住所</th><td><textarea id="address" name="address" rows="2"></textarea></td></tr>
+    </tbody></table>
+    <dl><dt>連絡する時間帯</dt><dd><input id="contact-time" name="contact-time" type="text"></dd></dl>
+    <div class="field"><label for="native-required">確認用の項目</label><input id="native-required" name="native-required" required></div>
+    <button id="show-errors" type="button">入力エラーを表示する (ローカルテスト)</button>
+    <button id="clear-errors" type="button">エラーを解消する (ローカルテスト)</button>
+    <button id="check-native" type="button">ブラウザの入力チェック (ローカルテスト)</button>
+  </form>
+</main><script>
+window.fixtureSubmissions = 0;
+document.addEventListener('submit', (event) => { event.preventDefault(); window.fixtureSubmissions += 1; }, true);
+document.querySelector('#show-errors').addEventListener('click', () => {
+  const email = document.querySelector('#email');
+  email.setAttribute('aria-invalid', 'true');
+  email.setAttribute('aria-errormessage', 'email-error');
+  document.querySelector('#email-error').hidden = false;
+});
+document.querySelector('#clear-errors').addEventListener('click', () => {
+  document.querySelector('#email').removeAttribute('aria-invalid');
+  document.querySelector('#email').removeAttribute('aria-errormessage');
+  document.querySelector('#email-error').hidden = true;
+});
+document.querySelector('#check-native').addEventListener('click', () => document.querySelector('#native-required').reportValidity());
+</script></body></html>
