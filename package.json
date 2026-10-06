@@ -8,8 +8,11 @@
     "build": "pnpm run check && vite build",
     "build:chromium": "pnpm run check && vite build --outDir dist-chromium && node scripts/prepare-chromium.mjs",
     "check": "tsc --noEmit",
+    "lint": "eslint src vite.config.ts vitest.config.ts playwright.config.ts --max-warnings 0",
     "dev": "vite --host 127.0.0.1 --port 4173",
     "test": "vitest run",
+    "test:e2e": "pnpm run build:chromium && playwright test",
+    "test:firefox": "pnpm run build && node tests/firefox/smoke.mjs",
     "record:demo": "node scripts/record-demo.mjs"
   },
   "dependencies": {
@@ -18,12 +21,16 @@
     "react-dom": "^19.2.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/firefox-webext-browser": "^120.0.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react-swc": "^4.2.2",
+    "eslint": "^10.12.0",
+    "jsdom": "^26.1.0",
     "playwright": "1.58.2",
     "typescript": "^5.9.3",
+    "typescript-eslint": "^8.71.1",
     "vite": "^7.3.0",
     "vitest": "^4.0.7"
   }

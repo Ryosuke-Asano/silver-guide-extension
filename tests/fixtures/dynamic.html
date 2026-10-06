@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>架空の多段階フォーム — Dynamic fixture</title><link rel="icon" href="data:,"><link rel="stylesheet" href="/forms.css"></head>
+<body><main>
+  <h1>架空の多段階フォーム</h1><p class="fixture-notice">「次の画面」はローカルの DOM だけを切り替えます。申請や送信は行いません。</p>
+  <form id="wizard" action="/must-not-submit" method="post">
+    <h2 id="stage-title" aria-current="step">1. 申請者の情報</h2>
+    <section id="fields"><div class="field"><label for="stage-one">申請者の氏名</label><input id="stage-one" name="stage-one"></div><div class="field" id="conditional-container" hidden><label for="conditional">追加の連絡先</label><input id="conditional" name="conditional" disabled></div></section>
+    <button id="reveal" type="button">追加の項目を表示する</button>
+    <button id="next-stage" type="button">次の画面を表示する (ローカルテスト)</button>
+  </form>
+</main><script>
+window.fixtureSubmissions = 0;
+document.addEventListener('submit', (event) => { event.preventDefault(); window.fixtureSubmissions += 1; }, true);
+document.querySelector('#reveal').addEventListener('click', () => {
+  document.querySelector('#conditional-container').hidden = false;
+  document.querySelector('#conditional').disabled = false;
+});
+document.querySelector('#next-stage').addEventListener('click', () => {
+  document.querySelector('#stage-title').textContent = '2. 届出内容';
+  document.querySelector('#fields').innerHTML = '<div class="field"><label for="stage-two">届出内容</label><textarea id="stage-two" name="stage-two" required aria-describedby="stage-two-help"></textarea><p id="stage-two-help">表示された内容を確認して、ご自身で記入します。</p></div><div class="field"><label for="stage-two-date">届出の日付</label><input id="stage-two-date" type="date"></div>';
+  document.querySelector('#reveal').hidden = true;
+  document.querySelector('#next-stage').hidden = true;
+});
+</script></body></html>

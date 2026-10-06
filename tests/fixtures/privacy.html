@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>架空の入力値 — Privacy fixture</title><link rel="icon" href="data:,"><link rel="stylesheet" href="/forms.css"></head>
+<body><main>
+  <h1>架空の入力値</h1><p class="fixture-notice">値・選択状態・添付ファイルはすべて架空です。支援機能がこれらを読まないことを検証します。</p>
+  <form id="private-form" action="/must-not-submit" method="post">
+    <div class="field"><label for="private-name">氏名</label><input id="private-name" name="private-name" value="FAKE-SECRET-NAME-82731"></div>
+    <div class="field"><label for="private-notes">補足事項</label><textarea id="private-notes" name="private-notes">FAKE-SECRET-NOTES-49280</textarea></div>
+    <div class="field"><label for="private-choice">受け取る方法</label><select id="private-choice" name="private-choice"><option value="FAKE-SECRET-CHOICE-A">窓口</option><option value="FAKE-SECRET-CHOICE-B" selected>郵送</option></select></div>
+    <div class="field"><label for="private-check"><input id="private-check" name="private-check" type="checkbox" value="FAKE-SECRET-CHECK-17623" checked> 案内の通知を希望する</label></div>
+    <fieldset><legend>連絡の方法</legend><label><input id="private-radio-a" name="contact" type="radio" value="FAKE-SECRET-RADIO-A">電話</label><label><input id="private-radio-b" name="contact" type="radio" value="FAKE-SECRET-RADIO-B" checked>メール</label></fieldset>
+    <div class="field"><label for="private-file">補足資料</label><input id="private-file" type="file" accept=".txt"></div>
+    <div class="field"><label for="private-password">パスワード (支援対象外)</label><input id="private-password" type="password" value="FAKE-SECRET-PASSWORD-62314"></div>
+    <input type="hidden" id="private-hidden" value="FAKE-SECRET-HIDDEN-99244">
+    <div class="field"><label for="editable">入力済みの補足説明</label><div id="editable" contenteditable="true" role="textbox">FAKE-SECRET-EDITABLE-14687 住民票</div></div>
+    <div class="field"><label for="private-described">説明が入力済み領域を参照する項目</label><input id="private-described" aria-describedby="editable"></div>
+    <output id="private-output">FAKE-SECRET-OUTPUT-18493 住民票</output>
+    <div id="private-listbox" role="listbox" aria-label="架空の選択欄"><div id="private-option" role="option" aria-selected="true">FAKE-SECRET-OPTION-77932 住民票</div></div>
+    <div id="private-searchbox" role="searchbox" tabindex="0">FAKE-SECRET-SEARCH-63315 住民票</div>
+    <p id="private-error" role="alert" aria-live="assertive">FAKE-SECRET-ERROR-91028 住民票</p>
+    <p id="private-status" aria-live="polite">FAKE-SECRET-STATUS-82915 住民票</p>
+    <button type="submit">テスト用送信 (実行禁止)</button>
+  </form>
+</main><script>
+window.fixtureSubmissions = 0;
+document.addEventListener('submit', (event) => { event.preventDefault(); window.fixtureSubmissions += 1; }, true);
+</script></body></html>
