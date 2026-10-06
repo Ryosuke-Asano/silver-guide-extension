@@ -33,6 +33,7 @@ type AssistantState = {
   inlineStyle: HTMLStyleElement;
   observer: MutationObserver;
   nativeErrors: WeakSet<SupportedField>;
+  pendingLayout?: number;
   pendingRefresh?: number;
   renderKey?: string;
   renderTargets: SupportedField[];
@@ -46,6 +47,7 @@ type AssistantState = {
   onInvalid: (event: Event) => void;
   onInput: (event: Event) => void;
   onNavigation: () => void;
+  onResize: () => void;
 };
 
 declare global {
@@ -520,6 +522,40 @@ function positionDockForField(current: AssistantState, field?: SupportedField): 
     current.dock.style.top = "auto";
     current.dock.style.bottom = "18px";
   }
+}
+
+function scheduleDockLayout(current: AssistantState): void {
+  if (current.pendingLayout !== undefined) return;
+  current.pendingLayout = window.requestAnimationFrame(() => {
+    current.pendingLayout = undefined;
+    if (state !== current) return;
+    const field = current.activeField;
+    positionDockForField(current, field);
+    if (field === undefined || document.activeElement !== field || !isSupportedField(field) || window.innerWidth > 620) return;
+    const rect = field.getBoundingClientRect();
+    const dockRect = current.dock.getBoundingClientRect();
+    const overlaps = (control: DOMRect, panel: DOMRect): boolean =>
+      control.left < panel.right && control.right > panel.left && control.top < panel.bottom && control.bottom > panel.top;
+    // Native Tab/click focus can scroll after focusin. Wait for that layout,
+    // then move only an occluded control; visible controls keep their position.
+    if (!overlaps(rect, dockRect)) return;
+    if (Math.abs(rect.top - 48) >= 1) {
+      window.scrollBy({ top: rect.top - 48, behavior: "instant" });
+    }
+    const movedRect = field.getBoundingClientRect();
+    if (!overlaps(movedRect, current.dock.getBoundingClientRect())) return;
+    // Short forms cannot scroll. Use free space above/below the control, while
+    // keeping the mobile panel at most 48vh and a useful minimum height.
+    const above = movedRect.top - 30;
+    const below = window.innerHeight - movedRect.bottom - 30;
+    const space = Math.max(above, below);
+    if (space < 180) return;
+    current.dock.style.maxHeight = `${Math.floor(Math.min(space, window.innerHeight * 0.48))}px`;
+    if (above > below) {
+      current.dock.style.top = "0px";
+      current.dock.style.bottom = "auto";
+    }
+  });
 }
 
 function firstInputField(): SupportedField | undefined {
@@ -1000,6 +1036,7 @@ function enableAssistant(settings: SilverGuideSettings): void {
       status.textContent = `入力のヒント：${fieldLabel(event.target)}。${hasPageError(event.target) || state.nativeErrors.has(event.target) ? "ページで入力エラーが示されています。" : ""}`;
     }
     refreshAssistant(state);
+    if (isSupportedField(event.target)) scheduleDockLayout(state);
   };
   const onKeyDown = (event: KeyboardEvent): void => {
     if (event.key === "Escape") hideTooltip(true);
@@ -1020,6 +1057,9 @@ function enableAssistant(settings: SilverGuideSettings): void {
   const onNavigation = (): void => {
     if (state !== undefined) scheduleRefresh(state);
   };
+  const onResize = (): void => {
+    if (state !== undefined) scheduleDockLayout(state);
+  };
   state = {
     collapsed: false,
     demoSteps: new Set<DemoStep>(),
@@ -1038,7 +1078,8 @@ function enableAssistant(settings: SilverGuideSettings): void {
     onKeyDown,
     onInvalid,
     onInput,
-    onNavigation
+    onNavigation,
+    onResize
   };
   document.addEventListener("focusin", onFocusIn, true);
   document.addEventListener("keydown", onKeyDown, true);
@@ -1047,6 +1088,7 @@ function enableAssistant(settings: SilverGuideSettings): void {
   document.addEventListener("change", onInput, true);
   window.addEventListener("popstate", onNavigation);
   window.addEventListener("hashchange", onNavigation);
+  window.addEventListener("resize", onResize);
   wrapGlossaryTerms();
   renderDock(state);
   observer.observe(document.documentElement, PAGE_OBSERVATION);
@@ -1058,6 +1100,7 @@ function disableAssistant(): void {
   hideTooltip(false);
   state.observer.disconnect();
   if (state.pendingRefresh !== undefined) window.cancelAnimationFrame(state.pendingRefresh);
+  if (state.pendingLayout !== undefined) window.cancelAnimationFrame(state.pendingLayout);
   document.removeEventListener("focusin", state.onFocusIn, true);
   document.removeEventListener("keydown", state.onKeyDown, true);
   document.removeEventListener("invalid", state.onInvalid, true);
@@ -1065,6 +1108,7 @@ function disableAssistant(): void {
   document.removeEventListener("change", state.onInput, true);
   window.removeEventListener("popstate", state.onNavigation);
   window.removeEventListener("hashchange", state.onNavigation);
+  window.removeEventListener("resize", state.onResize);
   restoreGlossaryTerms();
   state.inlineStyle.remove();
   state.host.remove();

@@ -6,6 +6,8 @@
 
 ### 最終検証
 
+以下は 18:58 UTC の初回検証。マージ前の追加検証結果は後述する。
+
 | 確認 | 結果 | 範囲 |
 | --- | --- | --- |
 | `pnpm run check` | 成功 | 本体、単体テスト、Vite / Vitest / Playwright 設定の型チェック |
@@ -72,7 +74,31 @@ PLAYWRIGHT_BROWSERS_PATH=/tmp/silver-guide-playwright-browsers pnpm run test:e2e
 - 通常のページ遷移では支援を開始し直す。DOM / フォーカス変化を伴わない `history.pushState` / `replaceState` だけの変更は、次の状態照会・更新で再判定する。
 - fixture の成功は任意サイトでの完全動作を保証しない。詳しい対応範囲は [form-support.md](form-support.md) を参照する。
 
-公開ストア配信、本番デプロイ、デフォルトブランチへのマージは行っていない。
+初回記録の時点では、公開ストア配信、本番デプロイ、デフォルトブランチへのマージは行っていない。
+
+## 2026-10-06 — マージ前の追加確認
+
+### Firefox 実行環境の確認
+
+Mozilla 配布版 Firefox 157.0.1、Firefox ESR 140.17.0 と geckodriver 0.37.1 を `/tmp` に取得した。保存済み Floorp のスクリプト・プロファイルは使用せず、一時プロファイルと専用の描画環境で試した。Xvfb の実行ファイルだけは既存環境から読み取りで利用し、表示・ログは今回専用に分離した。製品 manifest の権限、システムのインストール、ブラウザ保護は変更していない。
+
+初回は Firefox のアプリデータ用ディレクトリが読み取り専用のホームを向き、プロファイルの初期化に失敗した。一時ディレクトリに XDG 設定・キャッシュの置き場を作ると Firefox 157 は Marionette の接続待ちまで起動したが、content process が繰り返し signal 11 で終了した。ログには `Sandbox: writing /proc/self/uid_map: EROFS`、`A content process crashed` が記録され、WebDriver は `Failed to decode response from marionette` を返した。ESR 版もセッション初期化が時間内に完了しなかった。headless と専用 Xvfb の両方を試した。
+
+これは**拡張を読み込む前の環境上の失敗**だった。次に、承認された一時的なテスト実行で Codex のファイルシステム隔離の外に専用ドライバーを起動したところ、Firefox 自身のサンドボックスを有効のまま接続に成功した。署名検証・証明書検証も無効にしていない。製品権限は同じ `activeTab` / `scripting` / `storage` だけ。保存済み Floorp のプロファイルは使用していない。
+
+Firefox 157.0.1 の実際のツールバー操作で `activeTab` を付与し、実際の popup の開始ボタンから background と content を起動する **6 / 6 件の smoke が成功**した。開始、フォームの前後移動、停止・再開、ARIA と native invalid のエラー復帰、動的画面と現在入力欄の可視性を確認した。架空 fixture の送信回数は 0。スクリーンショットも目視確認した。最終実行は 19:58 UTC、6.3 秒。Firefox の実 viewport は 500×758 であり、390px 幅を確認したと主張しない。Floorp 本体、スクリーンリーダーの発声は引き続き未検証。
+
+実行ログと結果は `/tmp/silver-guide-qa/firefox/` の `smoke-results.json`、`smoke-geckodriver.log`、`native-form-navigation.png`、`declared-error-recovery.png`、`dynamic-mobile-stage.png` に残した。再現 runner は [tests/firefox/README.md](../tests/firefox/README.md)、通常の Firefox / Floorp での最小手動手順は [E2E README](../tests/e2e/README.md#firefox--floorp-の手動確認) に記録した。認証・実申請・追加ホスト権限は不要。
+
+### 通常の Tab と狭い画面の追加修正
+
+独立した実操作レビューで、390×844 の通常の Tab 移動では select がパネルに隠れること、幅の変更で desktop の配置が残ってパネルがはみ出すこと、短い次画面ではスクロールできず date 欄が隠れることを再現した。フォーカス後と resize 時の配置を更新し、隠れた欄だけをスクロールする。短いページでは入力欄の上下の空きへパネルを移す。
+
+回帰 E2E 3 件を追加し、型チェック・lint（警告 0）・単体 **88 / 88**・Firefox / Chromium ビルドと、実 Chromium 拡張 E2E **13 / 13** が成功した。追加テスト 2 件は旧ビルドで失敗することも確認した。最終 E2E は 19:48:59 UTC 開始、15.4 秒。失敗・skip・flaky は 0。`/tmp/silver-guide-qa/premerge-after-fix/` に結果・画面を残した。空き領域が 180px 未満の画面では利用者によるパネルの縮小が必要。
+
+### GitHub のチェック状態
+
+PR #1 の初回 head `49dae95` に対する GitHub check run と commit status は各 0 件、Actions workflow も 0 件だった。集計 status の `pending` は実行中の CI ではなく、登録された status がない状態。型チェック・lint・単体・ビルド・Chromium E2E の実行結果を使ってレビューする。
 
 ## 以前の初期実装の確認記録
 

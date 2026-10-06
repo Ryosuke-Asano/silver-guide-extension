@@ -42,3 +42,18 @@ PLAYWRIGHT_BROWSERS_PATH=/tmp/silver-guide-playwright-browsers pnpm run test:e2e
 結果 JSON、失敗時のスクリーンショットと trace、確認用スクリーンショットは、既定で OS の一時ディレクトリの `silver-guide-qa` に保存します。この計算環境では `/tmp/silver-guide-qa` です。別の出力先は `SILVER_GUIDE_QA_DIR` で指定します。HTML レポート、実データ、ブラウザプロファイルをリポジトリに残しません。
 
 Firefox / Floorp、実際のツールバー操作、スクリーンリーダーの発声、実サイトの認証画面、iframe や独自 Shadow DOM のフォームは、この E2E では検証しません。fixture の成功は任意サイトでの完全動作を保証しません。Browser plugin がない環境では、ここに記載した通常の Playwright を使います。
+
+## Firefox / Floorp の手動確認
+
+Firefox 向けの実拡張と `activeTab` の付与は、ブラウザの通常のツールバー操作で確認します。以下は架空フォームだけの確認です。認証・実申請は不要で、追加のホスト権限も不要です。
+
+1. `pnpm run build` を実行し、別端末で `node tests/e2e/server.mjs` を起動します。
+2. Firefox / Floorp の `about:debugging#/runtime/this-firefox` で「一時的なアドオンを読み込む」から `dist/manifest.json` を選びます。
+3. `http://127.0.0.1:4187/semantic.html` を開き、ツールバーの拡張機能メニューから Silver Guide を選び、「このページを支援する」を押します。パネルが一つ表示され、「最初の入力項目へ」「次の項目へ」で氏名・生年月日などに移れること、通常の Tab でも入力欄がパネルに隠れないことを確認します。
+4. パネルの「閉じる」（支援の停止）で本文が戻ることを確認し、再びツールバーから開始します。パネルが重複しないことを確認します。
+5. `aria-table.html` を開いて支援を開始し、ページの「入力エラーを表示する (ローカルテスト)」を押します。「最初のエラー項目へ」で電子メール欄へ戻れることを確認します。表示される復帰案内に架空の入力値やエラー原文が転載されないことも確認します。
+6. `dynamic.html` を開いて支援を開始し、ページの「次の画面を表示する (ローカルテスト)」を押します。届出内容と日付の欄へ案内が切り替わることを確認します。
+
+ページ移動後はそのページで支援を開始し直します。テスト終了後は fixture サーバーを Ctrl+C で停止し、一時アドオンを削除するかブラウザを終了します。結果には Firefox / Floorp のバージョン、成功した操作、失敗した操作を分けて記録してください。
+
+Firefox の実拡張をツールバー操作から自動確認する方法は [tests/firefox/README.md](../firefox/README.md) を参照してください。

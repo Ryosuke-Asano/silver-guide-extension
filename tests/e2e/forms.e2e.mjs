@@ -294,6 +294,121 @@ test("390px viewport with large text keeps the dock and glossary dialog within t
   expect(audit.logs.filter((entry) => entry.type === "error" || entry.type === "warning")).toEqual([]);
 });
 
+test("native Tab exposes a mobile select and keeps visible fields in place without changing data", async ({ page, worker, audit }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/semantic.html");
+  const before = await fieldSnapshot(page);
+  await installSensitiveAccessGuard(worker, page);
+  await activate(worker, page);
+  const dock = dockFor(page);
+  await dock.getByRole("button", { name: "最初の入力項目へ" }).focus();
+  await page.keyboard.press("Enter");
+  await expect(page.locator("#full-name")).toBeFocused();
+  const initialScroll = await page.evaluate(() => window.scrollY);
+  let reachedSelect = false;
+  let checkedVisibleField = false;
+  for (let index = 0; index < 20; index += 1) {
+    await page.keyboard.press("Tab");
+    await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    const fieldId = await page.evaluate(() => document.activeElement?.id);
+    if (fieldId === "phone") {
+      // A native field already above the panel should not jump on focus.
+      expect(await page.evaluate(() => window.scrollY)).toBe(initialScroll);
+      checkedVisibleField = true;
+    }
+    if (fieldId === "copies") {
+      reachedSelect = true;
+      break;
+    }
+  }
+  expect(checkedVisibleField).toBe(true);
+  expect(reachedSelect).toBe(true);
+  await expect(page.locator("#copies")).toBeFocused();
+  await expect.poll(async () => {
+    const field = await page.locator("#copies").boundingBox();
+    const panel = await dock.boundingBox();
+    return field.y >= 12 && field.y + field.height <= panel.y;
+  }).toBe(true);
+  expect(await page.locator("#copies").evaluate((field) => {
+    const rect = field.getBoundingClientRect();
+    return document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2) === field;
+  })).toBe(true);
+  await expect(dock).toContainText("現在の項目：5 / 8");
+  expect(await fieldSnapshot(page)).toEqual(before);
+  const accesses = await sensitiveAccessAudit(worker, page);
+  expect(Object.values(accesses.reads).reduce((total, count) => total + count, 0), JSON.stringify(accesses.reads)).toBe(0);
+  expect(Object.values(accesses.writes).reduce((total, count) => total + count, 0), JSON.stringify(accesses.writes)).toBe(0);
+  expect(accesses.formOperations).toEqual([]);
+  expect(audit.pageErrors).toEqual([]);
+  await saveEvidence(page, "mobile-native-tab-select-visible");
+});
+
+test("resizing an active dock preserves visible controls and resets desktop placement for mobile", async ({ page, worker, audit }) => {
+  await page.goto("/semantic.html");
+  await activate(worker, page);
+  const dock = dockFor(page);
+  const field = page.locator("#full-name");
+  await dock.getByRole("button", { name: "最初の入力項目へ" }).click();
+  await expect(field).toBeFocused();
+  const initialScroll = await page.evaluate(() => window.scrollY);
+  await page.setViewportSize({ width: 650, height: 900 });
+  await expect.poll(async () => {
+    const panel = await dock.boundingBox();
+    const control = await field.boundingBox();
+    return panel.x >= 0 && panel.x + panel.width <= 650 &&
+      !(control.x < panel.x + panel.width && control.x + control.width > panel.x && control.y < panel.y + panel.height && control.y + control.height > panel.y);
+  }).toBe(true);
+  expect(await page.evaluate(() => window.scrollY)).toBe(initialScroll);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect.poll(async () => {
+    const panel = await dock.boundingBox();
+    return panel.x === 0 && panel.x + panel.width === 390;
+  }).toBe(true);
+  await expect(field).toBeFocused();
+  expect(await page.evaluate(() => window.scrollY)).toBe(initialScroll);
+  await saveEvidence(page, "active-dock-resized-to-mobile");
+  await messagePage(worker, page, { type: "silver-guide-disable" });
+  await page.setViewportSize({ width: 650, height: 900 });
+  await expect(page.locator("#silver-guide-host")).toHaveCount(0);
+  expect(audit.pageErrors).toEqual([]);
+});
+
+test("a short mobile step exposes its focused date even when the page cannot scroll", async ({ page, worker, audit }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/dynamic.html");
+  await installSensitiveAccessGuard(worker, page);
+  await activate(worker, page);
+  const dock = dockFor(page);
+  await pressFixtureButton(page, "#next-stage");
+  await expect(dock).toContainText("ページが示す現在の手順：2. 届出内容");
+  expect(await page.evaluate(() => document.documentElement.scrollHeight <= window.innerHeight)).toBe(true);
+  const before = await fieldSnapshot(page);
+  await dock.getByRole("button", { name: "最初の入力項目へ" }).focus();
+  await page.keyboard.press("Enter");
+  await expect(page.locator("#stage-two")).toBeFocused();
+  await dock.getByRole("button", { name: "次の項目へ" }).focus();
+  await page.keyboard.press("Enter");
+  const field = page.locator("#stage-two-date");
+  await expect(field).toBeFocused();
+  await expect.poll(async () => {
+    const control = await field.boundingBox();
+    const panel = await dock.boundingBox();
+    return control.y >= 12 && control.y + control.height <= 844 &&
+      !(control.x < panel.x + panel.width && control.x + control.width > panel.x && control.y < panel.y + panel.height && control.y + control.height > panel.y);
+  }).toBe(true);
+  expect(await field.evaluate((element) => {
+    const rect = element.getBoundingClientRect();
+    return document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2) === element;
+  })).toBe(true);
+  expect(await page.evaluate(() => window.scrollY)).toBe(0);
+  expect(await fieldSnapshot(page)).toEqual(before);
+  const accesses = await sensitiveAccessAudit(worker, page);
+  expect(Object.values(accesses.reads).reduce((total, count) => total + count, 0), JSON.stringify(accesses.reads)).toBe(0);
+  expect(accesses.formOperations).toEqual([]);
+  expect(audit.pageErrors).toEqual([]);
+  await saveEvidence(page, "mobile-short-form-field-visible");
+});
+
 test("input values, selected/checked states and attachments are neither read nor changed or leaked", async ({ page, worker, audit }) => {
   await page.goto("/privacy.html");
   await page.locator("#private-file").setInputFiles({ name: "FAKE-SECRET-ATTACHMENT-44072.txt", mimeType: "text/plain", buffer: Buffer.from("FAKE-SECRET-FILE-CONTENT-17489") });
