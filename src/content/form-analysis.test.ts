@@ -9,6 +9,7 @@ import {
   fieldsFor,
   hasPageError,
   isSupportedField,
+  isUtilityField,
   logicalFields,
   publicText,
   visibleFields,
@@ -79,6 +80,20 @@ function forbidPrivateText(root: HTMLElement): void {
   }
 }
 
+function forbidImageAttributeReads(image: HTMLElement, forbidden: string[]): void {
+  const getAttribute = image.getAttribute.bind(image);
+  vi.spyOn(image, "getAttribute").mockImplementation((name) => {
+    if (forbidden.includes(name.toLowerCase())) throw new Error(`Private image attribute read: ${name}`);
+    return getAttribute(name);
+  });
+  for (const name of forbidden) {
+    Object.defineProperty(image, name, {
+      configurable: true,
+      get: () => { throw new Error(`Private image property read: ${name}`); }
+    });
+  }
+}
+
 beforeEach(() => {
   document.body.innerHTML = "";
   // jsdom has no layout. Keep direct display/visibility checks in the analyzer,
@@ -138,6 +153,40 @@ describe("publicText", () => {
       <input id="address" aria-labelledby="label">`);
     expect(publicText(element("label"))).toBe("住民票の郵送先");
     expect(fieldLabel(field("address"))).toBe("住民票の郵送先");
+  });
+
+  it("reads image alternatives in public labels and headings without inspecting their source", () => {
+    page(`<label id="search-label" for="search"><img id="search-image" src="PRIVATE_IMAGE_URL" alt="サイト内検索"></label>
+      <input id="search" type="search" value="PRIVATE_SEARCH">
+      <h2 id="heading">申請前に <img id="heading-image" alt="必要なもの"> を確認</h2>`);
+    forbidPrivateState(field("search"));
+    forbidImageAttributeReads(element("search-image"), ["src"]);
+    forbidImageAttributeReads(element("heading-image"), ["src"]);
+    expect(fieldLabel(field("search"))).toBe("サイト内検索");
+    expect(publicText(element("search-label"))).toBe("サイト内検索");
+    expect(publicText(element("search-image"))).toBe("サイト内検索");
+    expect(publicText(element("heading"))).toBe("申請前に 必要なもの を確認");
+  });
+
+  it("bounds image alternatives and keeps decorative images out of the text", () => {
+    page(`<label for="target"><img alt=""><img alt="${"申".repeat(700)}"></label><input id="target">`);
+    expect(fieldLabel(field("target"))).toBe("申".repeat(600));
+    expect(publicText(document.querySelector("label"), 5)).toBe("申".repeat(5) + "…");
+  });
+
+  it("does not read image alternatives inside private controls or live regions", () => {
+    page(`<label for="target">連絡先
+      <span id="editor" contenteditable><img id="private-editor-image" alt="PRIVATE_EDITOR"></span>
+      <span role="combobox"><img id="private-combo-image" alt="PRIVATE_SELECTION"></span>
+      <output><img id="private-output-image" alt="PRIVATE_ECHO"></output>
+      <span role="alert"><img id="private-error-image" alt="PRIVATE_ERROR"></span>
+    </label><input id="target" value="PRIVATE_VALUE">`);
+    for (const id of ["private-editor-image", "private-combo-image", "private-output-image", "private-error-image"]) {
+      forbidImageAttributeReads(element(id), ["alt", "src"]);
+    }
+    forbidPrivateState(field("target"));
+    expect(fieldLabel(field("target"))).toBe("連絡先");
+    expect(fieldDetails(field("target"))).toMatchObject({ label: "連絡先", facts: [] });
   });
 
   it.each([
@@ -218,6 +267,117 @@ describe("fieldLabel", () => {
     page('<input id="target" name="PRIVATE_NAME" value="PRIVATE_VALUE" placeholder="入力例">');
     forbidPrivateState(field("target"));
     expect(fieldLabel(field("target"))).toBe("名称が確認できない入力欄");
+  });
+});
+
+describe("visible native label context", () => {
+  it("keeps an ARIA input example as the accessible name while supplementing the visible phone label", () => {
+    page(`<dl><dt><span class="required_span">必須</span></dt><dd>
+      <label id="phone-heading" for="phone">電話番号</label>
+      <input id="phone" type="text" aria-label="入力例）012-345-6789は0123456789と入力" aria-describedby="phone-heading" maxlength="20">
+    </dd></dl>`);
+    forbidPrivateState(field("phone"));
+    expect(fieldLabel(field("phone"))).toBe("入力例）012-345-6789は0123456789と入力");
+    expect(fieldDetails(field("phone"))).toMatchObject({
+      label: "入力例）012-345-6789は0123456789と入力", visibleLabel: "電話番号", required: false,
+      descriptions: ["電話番号"],
+      facts: ["ページの項目名や見出しに「必須」と表示されています。ページの説明を確認してください。", "ページでは20文字までと指定されています。"]
+    });
+  });
+
+  it("supplements aria-labelledby with wrapped and multiple public labels without control values", () => {
+    page(`<span id="aria">郵便番号を数字7桁で入力</span>
+      <label for="postal">郵便番号</label>
+      <label>住所の郵便番号 <input id="postal" aria-labelledby="aria" value="PRIVATE_VALUE">
+        <output id="echo">PRIVATE_ECHO</output></label>
+      <label for="postal">郵便番号</label>`);
+    forbidPrivateState(field("postal"));
+    forbidPrivateText(element("echo"));
+    expect(fieldDetails(field("postal"))).toMatchObject({
+      label: "郵便番号を数字7桁で入力", visibleLabel: "郵便番号 住所の郵便番号"
+    });
+  });
+
+  it("does not repeat an equal label or invent supplemental context without a native label", () => {
+    page('<label for="equal">氏名</label><input id="equal" aria-label="  氏名  "><input id="unlabelled" aria-label="住所">');
+    expect(fieldDetails(field("equal"))).not.toHaveProperty("visibleLabel");
+    expect(fieldDetails(field("unlabelled"))).not.toHaveProperty("visibleLabel");
+  });
+
+  it.each([
+    "hidden", 'aria-hidden="true"', "inert", 'style="display:none"',
+    'style="visibility:hidden"', 'style="visibility:collapse"'
+  ])("does not read or supplement a hidden native label with %s", (attribute) => {
+    page(`<label id="hidden-label" for="target" ${attribute}><img id="hidden-image" alt="PRIVATE_HIDDEN_NAME">PRIVATE_HIDDEN_TEXT</label>
+      <input id="target" aria-label="公開の読み上げ名">`);
+    forbidPrivateText(element("hidden-label"));
+    forbidImageAttributeReads(element("hidden-image"), ["alt", "src"]);
+    expect(fieldDetails(field("target"))).toMatchObject({ label: "公開の読み上げ名", facts: [] });
+    expect(fieldDetails(field("target"))).not.toHaveProperty("visibleLabel");
+  });
+
+  it("preserves hidden ARIA references while taking supplemental context only from visible native text", () => {
+    page(`<span id="aria" hidden>郵便番号を7桁で入力</span>
+      <label for="postal">郵便番号<span hidden>OLD_HIDDEN_LABEL</span></label>
+      <label for="postal" style="display:none">OLD_HIDDEN_LABEL_2</label>
+      <input id="postal" aria-labelledby="aria">`);
+    expect(fieldLabel(field("postal"))).toBe("郵便番号を7桁で入力");
+    expect(fieldDetails(field("postal")).visibleLabel).toBe("郵便番号");
+  });
+
+  it("allows visible descendants and display:contents labels without requiring a label rectangle", () => {
+    page(`<label for="target" style="display:contents;visibility:hidden"><span style="visibility:visible">申請者</span></label>
+      <input id="target" aria-label="氏名を入力">`);
+    expect(fieldDetails(field("target")).visibleLabel).toBe("申請者");
+  });
+});
+
+describe("utility field classification", () => {
+  it.each([
+    '<main><input id="target" type="search"></main>',
+    '<main><input id="target" role="searchbox"></main>',
+    '<main><form role="search"><input id="target"></form></main>',
+    '<header><input id="target"></header><main></main>',
+    '<nav><input id="target"></nav>',
+    '<section role="banner"><input id="target"></section>',
+    '<section role="navigation"><input id="target"></section>'
+  ])("identifies a structural site utility while retaining native support: %s", (markup) => {
+    page(markup);
+    forbidPrivateState(field("target"));
+    expect(isUtilityField(field("target"))).toBe(true);
+    expect(isSupportedField(field("target"))).toBe(true);
+  });
+
+  it.each([
+    '<main><header><input id="target"></header></main>',
+    '<section role="main"><nav><input id="target"></nav></section>',
+    '<article><header><input id="target"></header></article>',
+    '<form><input id="target" name="search" aria-label="サイト内検索"></form>',
+    '<section><input id="target"></section>',
+    '<footer><input id="target"></footer>'
+  ])("does not classify application content or guess from names: %s", (markup) => {
+    page(markup);
+    forbidPrivateState(field("target"));
+    expect(isUtilityField(field("target"))).toBe(false);
+  });
+
+  it("preserves same-form navigation when a utility field receives explicit focus", () => {
+    page(`<form><header><label for="lookup">書類を検索</label><input id="lookup" type="search"></header>
+      <main><label for="name">氏名</label><input id="name"></main></form>`);
+    for (const control of visibleFields()) forbidPrivateState(control);
+    expect(ids(visibleFields())).toEqual(["lookup", "name"]);
+    expect(ids(fieldsFor(field("lookup")))).toEqual(["lookup", "name"]);
+    expect(adjacentField(field("lookup"), 1)).toBe(field("name"));
+    expect(fieldDetails(field("lookup")).label).toBe("書類を検索");
+  });
+
+  it("updates its classification after structural or native type changes", () => {
+    page('<header><input id="target"></header><main id="content"></main>');
+    expect(isUtilityField(field("target"))).toBe(true);
+    element("content").append(field("target"));
+    expect(isUtilityField(field("target"))).toBe(false);
+    field("target").setAttribute("type", "search");
+    expect(isUtilityField(field("target"))).toBe(true);
   });
 });
 
@@ -363,7 +523,82 @@ describe("fieldDetails and declared page errors", () => {
     page('<label for="declared">メール</label><input id="declared" aria-required="true"><label for="wording">氏名（必須）</label><input id="wording">');
     expect(fieldDetails(field("declared")).required).toBe(true);
     expect(fieldDetails(field("wording"))).toMatchObject({ required: false });
-    expect(fieldDetails(field("wording")).facts).toContain("ページの項目名に「必須」と表示されています。ページの説明を確認してください。");
+    expect(fieldDetails(field("wording")).facts).toContain("ページの項目名や見出しに「必須」と表示されています。ページの説明を確認してください。");
+  });
+
+  it.each([
+    '<label for="target">氏名<span>必須</span></label><input id="target" aria-label="氏名の入力">',
+    '<dl><dt>連絡先<span>必須</span></dt><dd><label for="target">電話番号</label><input id="target"></dd></dl>',
+    '<table><tr><th scope="row">申請者<img alt="必須"></th><td><label for="target">氏名</label><input id="target"></td></tr></table>',
+    '<fieldset><legend>受取方法<span>必須</span></legend><label>郵送<input id="target" type="radio" name="delivery"></label></fieldset>'
+  ])("supplements an exact public required marker from the associated structural heading: %s", (markup) => {
+    page(markup);
+    forbidPrivateState(field("target"));
+    expect(fieldDetails(field("target")).required).toBe(false);
+    expect(fieldDetails(field("target")).facts).toContain(
+      "ページの項目名や見出しに「必須」と表示されています。ページの説明を確認してください。"
+    );
+  });
+
+  it.each(["任意", "必須ではありません", "必須でない", "非必須", "必須事項については案内を確認"]) (
+    "does not turn ambiguous or negative wording into a required fact: %s", (wording) => {
+      page(`<label for="target">氏名（${wording}）</label><input id="target">`);
+      expect(fieldDetails(field("target")).required).toBe(false);
+      expect(fieldDetails(field("target")).facts).toEqual([]);
+    }
+  );
+
+  it.each([
+    '氏名（<span>必須</span>ではありません）',
+    '氏名（非<span>必須</span>）',
+    '<span>必須</span>事項については案内を確認'
+  ])("does not mistake a fragment of negative or explanatory wording for a badge: %s", (heading) => {
+    page(`<label for="target">${heading}</label><input id="target">`);
+    expect(fieldDetails(field("target"))).toMatchObject({ required: false, facts: [] });
+  });
+
+  it.each(["hidden", 'aria-hidden="true"', 'style="display:none"', 'style="visibility:hidden"']) (
+    "does not read or infer a requirement from a hidden badge with %s", (attribute) => {
+      page(`<label for="target">氏名<span id="old-marker" ${attribute}><img id="old-image" alt="必須">必須</span></label>
+        <input id="target" aria-label="氏名の入力">`);
+      forbidPrivateText(element("old-marker"));
+      forbidImageAttributeReads(element("old-image"), ["alt", "src"]);
+      expect(fieldDetails(field("target"))).toMatchObject({ visibleLabel: "氏名", required: false, facts: [] });
+    }
+  );
+
+  it("uses the row heading and immediate definition heading rather than neighboring headings or paragraphs", () => {
+    page(`<table><tr><th scope="col">必須</th><th scope="row">備考</th><td><input id="table" aria-label="備考"></td></tr></table>
+      <dl><dt>必須</dt><dd>別の項目</dd><dt>備考</dt><dd><input id="definition" aria-label="備考">
+        <p id="unassociated-error">必須 PRIVATE_ECHO</p></dd></dl>`);
+    forbidPrivateText(element("unassociated-error"));
+    expect(fieldDetails(field("table")).facts).toEqual([]);
+    expect(fieldDetails(field("definition")).facts).toEqual([]);
+  });
+
+  it("does not infer visible requirements from an ARIA name or read private heading regions", () => {
+    page(`<dl><dt>問い合わせ
+      <span role="alert" id="error">必須 PRIVATE_ECHO</span>
+      <span contenteditable id="editor"><img id="private-marker" alt="必須">PRIVATE_INPUT</span>
+    </dt><dd><label for="target">備考</label><input id="target" aria-label="備考（必須）"></dd></dl>`);
+    forbidPrivateState(field("target"));
+    forbidPrivateText(element("error"));
+    forbidPrivateText(element("editor"));
+    forbidImageAttributeReads(element("private-marker"), ["alt", "src"]);
+    expect(fieldDetails(field("target"))).toMatchObject({ label: "備考（必須）", visibleLabel: "備考", required: false, facts: [] });
+  });
+
+  it("prefers native requirement state and avoids duplicating required facts from several badges", () => {
+    page(`<fieldset><legend>連絡先<span>必須</span></legend><dl><dt>必須</dt><dd>
+      <label for="target">電話番号（必須）</label><input id="target" required>
+    </dd></dl></fieldset>`);
+    expect(fieldDetails(field("target"))).toMatchObject({
+      required: true, facts: ["この項目は必須です。入力や選択が必要です。"]
+    });
+    field("target").required = false;
+    expect(fieldDetails(field("target")).facts).toEqual([
+      "ページの項目名や見出しに「必須」と表示されています。ページの説明を確認してください。"
+    ]);
   });
 
   it("derives format and length guidance from public attributes", () => {

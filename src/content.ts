@@ -3,8 +3,8 @@ import { guidePackFor, type GuideField, type GuidePack, type GuidePageEvidence }
 import type { PageCapabilities } from "./shared/capabilities";
 import type { SilverGuideSettings } from "./shared/settings";
 import {
-  adjacentField, fieldDetails, fieldLabel, fieldPosition, fieldsFor, hasPageError,
-  isSupportedField, logicalFields, publicText, visibleFields, type SupportedField
+  adjacentField, fieldDetails, fieldPosition, fieldsFor, hasPageError,
+  isSupportedField, isUtilityField, logicalFields, publicText, visibleFields, type SupportedField
 } from "./content/form-analysis";
 
 type ContentMessage =
@@ -498,13 +498,19 @@ function focusField(field: SupportedField | undefined): void {
     if (top < 48) window.scrollBy({ top: top - 48, behavior: "instant" });
   }
   state.dock.scrollTop = 0;
-  positionDockForField(state, field);
+  positionDockForControl(state, field);
 }
 
-/** Keep the focused native control visible when the viewport has room. */
-function positionDockForField(current: AssistantState, field?: SupportedField): void {
+/** Place around the focused page control without using it as a hint target. */
+function dockPlacementTarget(current: AssistantState): HTMLElement | undefined {
+  const focused = document.activeElement;
+  return focused instanceof HTMLElement && isPageValueControl(focused) ? focused : current.activeField;
+}
+
+/** Geometry alone keeps private and unsupported controls operable too. */
+function positionDockForControl(current: AssistantState, field?: HTMLElement): void {
   for (const property of ["left", "right", "top", "bottom", "max-height"]) current.dock.style.removeProperty(property);
-  if (field === undefined || window.innerWidth <= 620 || !isSupportedField(field)) return;
+  if (field === undefined || window.innerWidth <= 620 || !field.isConnected || field.getClientRects().length === 0) return;
   const rect = field.getBoundingClientRect();
   const width = current.dock.getBoundingClientRect().width;
   const gap = 30;
@@ -529,9 +535,9 @@ function scheduleDockLayout(current: AssistantState): void {
   current.pendingLayout = window.requestAnimationFrame(() => {
     current.pendingLayout = undefined;
     if (state !== current) return;
-    const field = current.activeField;
-    positionDockForField(current, field);
-    if (field === undefined || document.activeElement !== field || !isSupportedField(field) || window.innerWidth > 620) return;
+    const field = dockPlacementTarget(current);
+    positionDockForControl(current, field);
+    if (field === undefined || document.activeElement !== field || window.innerWidth > 620) return;
     const rect = field.getBoundingClientRect();
     const dockRect = current.dock.getBoundingClientRect();
     const overlaps = (control: DOMRect, panel: DOMRect): boolean =>
@@ -559,7 +565,7 @@ function scheduleDockLayout(current: AssistantState): void {
 }
 
 function firstInputField(): SupportedField | undefined {
-  const fields = logicalFields(visibleFields());
+  const fields = logicalFields(visibleFields().filter((field) => !isUtilityField(field)));
   return fields.find((field) => rootForTerms().contains(field)) ?? fields[0];
 }
 
@@ -650,16 +656,17 @@ function renderDock(current: AssistantState): void {
   const activeField = current.activeField;
   const visible = visibleFields();
   const help = activeField === undefined ? undefined : fieldDetails(activeField, visible);
-  const fields = logicalFields(visible);
+  const fields = logicalFields(visible.filter((field) => !isUtilityField(field)));
   const errors = errorFields(current, visible);
   const scopeFields = activeField === undefined ? [] : fieldsFor(activeField, visible);
   const position = activeField === undefined ? -1 : fieldPosition(activeField, scopeFields);
-  const guide = activeField === undefined ? undefined : guideForField(current.guidePack, activeField);
+  const utilityField = activeField !== undefined && isUtilityField(activeField);
+  const guide = activeField === undefined || utilityField ? undefined : guideForField(current.guidePack, activeField);
   const step = document.querySelector<HTMLElement>('[aria-current="step"]');
   const stepText = step !== null && step.getClientRects().length > 0 ? publicText(step, 160) : "";
   const hasError = activeField !== undefined && (hasPageError(activeField) || current.nativeErrors.has(activeField));
   const renderKey = JSON.stringify({
-    help, count: fields.length, position,
+    help, count: fields.length, position, utilityField,
     scopeCount: scopeFields.length, errors: errors.length, hasError, stepText,
     guide: current.guidePack?.id, term: firstGlossaryTerm() !== undefined,
     collapsed: current.collapsed, settings: current.settings, demo: [...current.demoSteps]
@@ -707,7 +714,7 @@ function renderDock(current: AssistantState): void {
   if (current.collapsed) {
     appendText(current.dock, "p", "必要なときに「開く」を選ぶと、案内をもう一度表示します。", "collapsed-note");
     current.dock.scrollTop = 0;
-    positionDockForField(current, activeField);
+    positionDockForControl(current, dockPlacementTarget(current));
     restoreDockFocus();
     return;
   }
@@ -726,11 +733,12 @@ function renderDock(current: AssistantState): void {
 
   if (activeField !== undefined && help !== undefined) {
     appendText(current.dock, "p", "入力のヒント", "lead");
+    if (utilityField) appendText(current.dock, "p", "ページ共通の入力欄（検索など）", "position");
     appendText(current.dock, "p", `現在の項目：${position + 1} / ${scopeFields.length}`, "position");
     if (help.groupLabel !== undefined && help.groupLabel !== help.label) {
       appendText(current.dock, "p", `項目のまとまり：${help.groupLabel}`, "position");
     }
-    appendText(current.dock, "h3", `「${help.label}」について`, "section-title");
+    appendText(current.dock, "h3", `「${help.visibleLabel ?? help.label}」について`, "section-title");
     if (hasError) {
       appendText(current.dock, "p", "ページから入力エラーが通知されています。欄の近くのエラー説明を確認して、ご自身で修正してください。", "error-note");
     }
@@ -747,9 +755,12 @@ function renderDock(current: AssistantState): void {
       detail.append(list);
     }
     current.dock.append(detail);
-    if (help.descriptions.length > 0) {
+    if (help.descriptions.length > 0 || help.visibleLabel !== undefined) {
       appendText(current.dock, "h3", "ページの説明・入力例", "section-title");
       const description = createElement("section", "page-description");
+      if (help.visibleLabel !== undefined) {
+        appendText(description, "p", `ページが設定した読み上げ名：${help.label}`);
+      }
       help.descriptions.forEach((text) => appendText(description, "p", text));
       current.dock.append(description);
     }
@@ -760,10 +771,13 @@ function renderDock(current: AssistantState): void {
     const nextField = nextFieldFor(activeField, guide, scopeFields);
     if (nextField !== undefined) {
       actions.append(
-        createButton("次の項目へ", "next", () => focusField(nextFieldFor(activeField, guideForField(state?.guidePack, activeField))))
+        createButton("次の項目へ", "next", () => focusField(nextFieldFor(activeField,
+          isUtilityField(activeField) ? undefined : guideForField(state?.guidePack, activeField))))
       );
     } else {
-      appendText(actions, "p", "この画面の入力項目はここまでです。次の画面への移動や送信は、ページのボタンをご自身で確認してください。", "end-note");
+      appendText(actions, "p", utilityField
+        ? "このフォームの入力欄はここまでです。検索などの操作は、ページのボタンをご自身で確認してください。"
+        : "この画面の入力項目はここまでです。次の画面への移動や送信は、ページのボタンをご自身で確認してください。", "end-note");
     }
     actions.append(createButton("項目の案内に戻る", "demo-action", showFieldOverview));
     current.dock.append(actions);
@@ -790,7 +804,9 @@ function renderDock(current: AssistantState): void {
       appendText(current.dock, "p", "表示中の入力欄だけを案内します。画面を進めたら、この案内も更新します。", "position");
       current.dock.append(createButton("最初の入力項目へ", "next", () => focusField(firstInputField())));
     } else {
-      appendText(current.dock, "p", "この画面には支援できる入力欄がありません。", "end-note");
+      appendText(current.dock, "p", visible.length > 0
+        ? "この画面には本文の入力欄がありません。検索などページ共通の入力欄は、欄を選ぶと案内します。"
+        : "この画面には支援できる入力欄がありません。", "end-note");
     }
 
     if (current.guidePack !== undefined) {
@@ -865,7 +881,7 @@ function renderDock(current: AssistantState): void {
   privacy.append(mark, document.createTextNode("入力内容は送信しません"));
   current.dock.append(privacy);
   if (fieldChanged) current.dock.scrollTop = 0;
-  positionDockForField(current, activeField);
+  positionDockForControl(current, dockPlacementTarget(current));
   restoreDockFocus();
 }
 
@@ -921,9 +937,16 @@ function showTooltip(anchor: HTMLElement, entry: GlossaryEntry): void {
     tooltip.append(actions);
   }
 
+  positionTooltip(state, anchor);
+  anchor.setAttribute("aria-expanded", "true");
+  state.activeTerm = anchor;
+  tooltip.focus();
+}
+
+function positionTooltip(current: AssistantState, anchor: HTMLElement): void {
   const rect = anchor.getBoundingClientRect();
-  const dockRect = state.dock.getBoundingClientRect();
-  const tooltipRect = tooltip.getBoundingClientRect();
+  const dockRect = current.dock.getBoundingClientRect();
+  const tooltipRect = current.tooltip.getBoundingClientRect();
   const maxLeft = Math.max(12, window.innerWidth - tooltipRect.width - 12);
   let left = Math.max(12, Math.min(rect.left, maxLeft));
   let top = Math.max(12, Math.min(rect.bottom + 10, window.innerHeight - tooltipRect.height - 12));
@@ -934,11 +957,27 @@ function showTooltip(anchor: HTMLElement, entry: GlossaryEntry): void {
   } else if (overlapsDock && dockRect.top >= tooltipRect.height + 24) {
     top = dockRect.top - tooltipRect.height - 12;
   }
-  tooltip.style.left = `${left}px`;
-  tooltip.style.top = `${top}px`;
-  anchor.setAttribute("aria-expanded", "true");
-  state.activeTerm = anchor;
-  tooltip.focus();
+  current.tooltip.style.left = `${left}px`;
+  current.tooltip.style.top = `${top}px`;
+}
+
+/** Keep the open explanation's controls, focus and reading state intact. */
+function updateTooltipSettings(current: AssistantState): void {
+  const anchor = current.activeTerm;
+  if (anchor === undefined) return;
+  const entryId = anchor.getAttribute(TERM_ATTRIBUTE);
+  const entry = entryId === null ? undefined : GLOSSARY_BY_ID.get(entryId);
+  if (entry === undefined) return;
+  current.tooltip.className = `font-${current.settings.fontSize}`;
+  const original = current.tooltip.querySelector<HTMLElement>(".original");
+  if (!current.settings.showOriginal) {
+    original?.remove();
+  } else if (original === null) {
+    const paragraph = createElement("p", "original");
+    paragraph.textContent = `元の言葉: ${entry.term}`;
+    current.tooltip.insertBefore(paragraph, current.tooltip.querySelector(".explanation"));
+  }
+  positionTooltip(current, anchor);
 }
 
 function hideTooltip(returnFocus = false): void {
@@ -963,7 +1002,7 @@ const PAGE_OBSERVATION: MutationObserverInit = {
   attributes: true,
   attributeFilter: [
     "aria-labelledby", "aria-label", "aria-describedby", "aria-errormessage", "aria-required", "aria-invalid", "aria-current", "aria-disabled", "aria-readonly",
-    "required", "disabled", "readonly", "hidden", "inert", "aria-hidden", "style", "class", "type", "name", "id", "for", "form",
+    "required", "disabled", "readonly", "hidden", "inert", "aria-hidden", "style", "class", "type", "name", "id", "for", "form", "alt",
     "inputmode", "min", "max", "minlength", "maxlength", "pattern", "placeholder", "multiple", "open", "tabindex",
     "role", "contenteditable", "aria-live"
   ]
@@ -992,6 +1031,15 @@ function scheduleRefresh(current: AssistantState): void {
     current.observer.observe(document.documentElement, PAGE_OBSERVATION);
     refreshAssistant(current);
   });
+}
+
+/** Recognize value-control containers without inspecting their private text. */
+function isPageValueControl(target: EventTarget | null): boolean {
+  return target instanceof Element && target.closest([
+    "input", "textarea", "select", "[contenteditable]", "[role=textbox]", "[role=searchbox]",
+    "[role=combobox]", "[role=spinbutton]", "[role=slider]", "[role=listbox]", "[role=option]",
+    "[role=checkbox]", "[role=radio]", "[role=switch]", "[role=grid]", "[role=tree]"
+  ].join(",")) !== null;
 }
 
 function enableAssistant(settings: SilverGuideSettings): void {
@@ -1033,10 +1081,14 @@ function enableAssistant(settings: SilverGuideSettings): void {
     if (state.activeTerm !== undefined && event.target !== state.activeTerm) hideTooltip(false);
     if (isSupportedField(event.target)) {
       state.activeField = event.target;
-      status.textContent = `入力のヒント：${fieldLabel(event.target)}。${hasPageError(event.target) || state.nativeErrors.has(event.target) ? "ページで入力エラーが示されています。" : ""}`;
+      const help = fieldDetails(event.target);
+      status.textContent = `${isUtilityField(event.target) ? "ページ共通の入力欄（検索など）。" : ""}入力のヒント：${help.visibleLabel ?? help.label}。${hasPageError(event.target) || state.nativeErrors.has(event.target) ? "ページで入力エラーが示されています。" : ""}`;
+    } else if (isPageValueControl(event.target)) {
+      state.activeField = undefined;
+      status.textContent = "この欄は入力支援の対象外です。ページの説明をご自身で確認してください。";
     }
     refreshAssistant(state);
-    if (isSupportedField(event.target)) scheduleDockLayout(state);
+    if (isPageValueControl(event.target)) scheduleDockLayout(state);
   };
   const onKeyDown = (event: KeyboardEvent): void => {
     if (event.key === "Escape") hideTooltip(true);
@@ -1135,6 +1187,7 @@ if (extensionApi !== undefined && !window.__silverGuideContentReady) {
         if (state !== undefined) {
           state.settings = message.settings;
           renderDock(state);
+          updateTooltipSettings(state);
         }
         return Promise.resolve({ active: state !== undefined });
     }

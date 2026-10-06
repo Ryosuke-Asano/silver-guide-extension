@@ -27,6 +27,8 @@
 
 通常のラベルに加え、ARIA の項目名、表の行見出し、定義リストに対応します。動的に現れる欄や同じページ内の手順切り替えも再解析します。制度ごとの条件や記入方法を追加する場合は、公開ページを確認して「ガイドパック」に登録します。汎用機能の詳細と制約は [docs/form-support.md](docs/form-support.md)、検証結果は [docs/qa.md](docs/qa.md) に記録しています。
 
+検索などの共通欄を最初の申請項目と区別し、画像のラベル、可視の項目名、関連見出しの必須表示も補足します。実際の公開ページで観察した問題と、架空フォームでの操作確認は [docs/usability-review.md](docs/usability-review.md) にまとめています。認証後の画面や任意サイトでの完全動作を検証したものではありません。
+
 ## 使い始める流れ
 
 1. ブラウザーツールバーの Silver Guide を開く。
@@ -64,6 +66,8 @@ pnpm run test:e2e
 ```
 
 E2E は架空データのローカルフォームだけを使い、隔離したプロファイルでビルド済みの拡張を読み込みます。製品のホスト権限は増やしません。テスト用コピーにだけ localhost へのアクセスを付けます。実行方法と未検証範囲は [tests/e2e/README.md](tests/e2e/README.md) を参照してください。
+
+Firefox と geckodriver が利用可能な環境では `pnpm run test:firefox` で実際のツールバー・popup から開始する smoke も実行できます。必要な環境変数と一時プロファイルの扱いは [tests/firefox/README.md](tests/firefox/README.md) を参照してください。
 
 ## Chromium / Microsoft Edge で試す
 

@@ -6,6 +6,7 @@ export type SupportedField = HTMLInputElement | HTMLSelectElement | HTMLTextArea
 
 export type FieldDetails = {
   label: string;
+  visibleLabel?: string;
   groupLabel?: string;
   required: boolean;
   facts: string[];
@@ -20,22 +21,58 @@ const EXCLUDED_TEXT = [
 ].join(",");
 const EXCLUDED_INPUT_TYPES = new Set(["hidden", "password", "submit", "reset", "button", "image"]);
 
-/** Read explanatory text without descending into controls or editable content. */
-export function publicText(element: Element | null, limit = 600): string {
-  if (element === null || element.closest(EXCLUDED_TEXT) !== null) return "";
-  const walker = element.ownerDocument.createTreeWalker(element, NodeFilter.SHOW_TEXT, {
-    acceptNode: (node) => node.parentElement?.closest(EXCLUDED_TEXT) === null
-      ? NodeFilter.FILTER_ACCEPT
-      : NodeFilter.FILTER_REJECT
+function isPubliclyVisible(element: Element): boolean {
+  if (element.closest("[hidden], [inert], [aria-hidden=true], details:not([open]), dialog:not([open])") !== null) return false;
+  const view = element.ownerDocument.defaultView;
+  if (view === null) return false;
+  const style = view.getComputedStyle(element);
+  if (style.visibility === "hidden" || style.visibility === "collapse") return false;
+  for (let ancestor: Element | null = element; ancestor !== null; ancestor = ancestor.parentElement) {
+    if (view.getComputedStyle(ancestor).display === "none") return false;
+  }
+  return true;
+}
+
+function publicTextWalker(element: Element, visibleOnly: boolean): TreeWalker {
+  return element.ownerDocument.createTreeWalker(element, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT, {
+    acceptNode: (node) => {
+      const container = node instanceof Element ? node : node.parentElement;
+      if (container === null || container.closest(EXCLUDED_TEXT) !== null) return NodeFilter.FILTER_REJECT;
+      if (visibleOnly && !isPubliclyVisible(container)) {
+        // A visibility:visible descendant can override visibility:hidden.
+        return node instanceof Element ? NodeFilter.FILTER_SKIP : NodeFilter.FILTER_REJECT;
+      }
+      return node instanceof Text || (node instanceof Element && node.matches("img"))
+        ? NodeFilter.FILTER_ACCEPT
+        : NodeFilter.FILTER_SKIP;
+    }
   });
+}
+
+function publicNodeText(node: Node): string {
+  if (node instanceof Element) {
+    const alternative = node.getAttribute("alt")?.trim() ?? "";
+    return alternative ? ` ${alternative} ` : "";
+  }
+  return (node as Text).data.replace(/\s+/g, " ");
+}
+
+function extractPublicText(element: Element | null, limit: number, visibleOnly = false): string {
+  if (element === null || element.closest(EXCLUDED_TEXT) !== null) return "";
+  const walker = publicTextWalker(element, visibleOnly);
   let text = "";
-  let node = walker.nextNode();
+  let node: Node | null = element.matches("img") && (!visibleOnly || isPubliclyVisible(element)) ? element : walker.nextNode();
   while (node !== null && text.length <= limit) {
-    text += (node as Text).data.replace(/\s+/g, " ");
+    text += publicNodeText(node);
     node = walker.nextNode();
   }
   const normalized = text.replace(/\s+/g, " ").trim();
   return normalized.length > limit ? `${normalized.slice(0, limit)}…` : normalized;
+}
+
+/** Read public text and image alternatives, without entering controls or editable content. */
+export function publicText(element: Element | null, limit = 600): string {
+  return extractPublicText(element, limit);
 }
 
 export function isSupportedField(element: EventTarget | null): element is SupportedField {
@@ -56,6 +93,15 @@ export function isSupportedField(element: EventTarget | null): element is Suppor
 
 export function visibleFields(root: Document = document): SupportedField[] {
   return Array.from(root.querySelectorAll("input, select, textarea")).filter(isSupportedField);
+}
+
+/** Site-wide controls stay available on explicit focus, outside initial form guidance. */
+export function isUtilityField(field: SupportedField): boolean {
+  if ((field instanceof HTMLInputElement && field.type === "search") || field.matches("[role=searchbox]") || field.closest("[role=search]") !== null) {
+    return true;
+  }
+  return field.closest("main, [role=main], article") === null &&
+    field.closest("header, nav, [role=banner], [role=navigation]") !== null;
 }
 
 function formScope(field: SupportedField): HTMLFormElement | Element | Document {
@@ -104,39 +150,79 @@ function referencedText(field: SupportedField, attribute: string): string[] {
     .filter(Boolean);
 }
 
+function nativeLabelText(field: SupportedField, visibleOnly = false): string {
+  const labels = Array.from(field.labels ?? [])
+    .map((label) => extractPublicText(label, 600, visibleOnly)).filter(Boolean);
+  return [...new Set(labels)].join(" ").slice(0, 600);
+}
+
+function rowHeading(field: SupportedField): Element | undefined {
+  const row = field.closest("td")?.parentElement;
+  if (!row?.matches("tr")) return undefined;
+  return Array.from(row.children).find((child) => child.matches("th[scope=row]")) ??
+    Array.from(row.children).find((child) => child.matches("th"));
+}
+
+function definitionHeading(field: SupportedField): Element | undefined {
+  const previous = field.closest("dd")?.previousElementSibling;
+  return previous?.matches("dt") ? previous : undefined;
+}
+
+function fieldLegend(field: SupportedField): Element | undefined {
+  const fieldset = field.closest("fieldset");
+  return fieldset === null ? undefined : Array.from(fieldset.children).find((child) => child.matches("legend"));
+}
+
 export function fieldLabel(field: SupportedField): string {
   const labelledBy = referencedText(field, "aria-labelledby").join(" ");
   if (labelledBy) return labelledBy.slice(0, 600);
   const ariaLabel = field.getAttribute("aria-label")?.trim();
   if (ariaLabel) return ariaLabel.slice(0, 600);
-  const labels = Array.from(field.labels ?? []).map((label) => publicText(label)).filter(Boolean);
-  if (labels.length > 0) return [...new Set(labels)].join(" ").slice(0, 600);
+  const nativeLabel = nativeLabelText(field);
+  if (nativeLabel) return nativeLabel;
 
   // Common legacy administrative layouts: row headers and definition lists.
   const cell = field.closest("td");
   const row = cell?.parentElement;
   if (row?.matches("tr")) {
-    const heading = Array.from(row.children).find((child) => child.matches("th[scope=row]")) ??
-      Array.from(row.children).find((child) => child.matches("th"));
+    const heading = rowHeading(field);
     const text = publicText(heading ?? (cell?.previousElementSibling?.matches("td") ? cell.previousElementSibling : null));
     if (text) return text;
   }
-  const description = field.closest("dd");
-  if (description?.previousElementSibling?.matches("dt")) {
-    const text = publicText(description.previousElementSibling);
-    if (text) return text;
-  }
+  const definition = publicText(definitionHeading(field) ?? null);
+  if (definition) return definition;
   return "名称が確認できない入力欄";
 }
 
 function groupLabel(field: SupportedField): string | undefined {
-  const fieldset = field.closest("fieldset");
-  const legend = fieldset === null ? undefined : Array.from(fieldset.children).find((child) => child.matches("legend"));
-  return publicText(legend ?? null) || undefined;
+  return publicText(fieldLegend(field) ?? null) || undefined;
+}
+
+function hasVisibleRequiredMarker(heading: Element): boolean {
+  if (heading.closest(EXCLUDED_TEXT) !== null) return false;
+  const marker = /(?:^|[（(\s【「『：:])必須(?:[）)\s】」』]|$)/;
+  const walker = publicTextWalker(heading, true);
+  let node: Node | null = heading.matches("img") && isPubliclyVisible(heading) ? heading : walker.nextNode();
+  let length = 0;
+  let containsMarker = false;
+  let wording = "";
+  while (node !== null && length <= 600) {
+    const text = publicNodeText(node);
+    containsMarker ||= marker.test(text.trim());
+    wording += text;
+    length += text.length;
+    node = walker.nextNode();
+  }
+  // A badge-shaped span can still be part of "必須ではありません" or
+  // "非必須". Keep such split wording out of requirement guidance too.
+  return containsMarker && !/(?:非\s*必須|必須\s*(?:で(?:は)?(?:ありません|ない|なく)|事項))/.test(wording);
 }
 
 export function fieldDetails(field: SupportedField, fields?: SupportedField[]): FieldDetails {
   const label = fieldLabel(field);
+  const nativeVisibleLabel = nativeLabelText(field, true);
+  const visibleLabel = nativeVisibleLabel && nativeVisibleLabel !== label.replace(/\s+/g, " ").trim()
+    ? nativeVisibleLabel : undefined;
   const group = groupLabel(field);
   const radioPeers = field instanceof HTMLInputElement && field.type === "radio" && field.name.length > 0
     ? (fields ?? visibleFields(field.ownerDocument)).filter((candidate) => candidate === field || sameRadioGroup(candidate, field))
@@ -145,8 +231,9 @@ export function fieldDetails(field: SupportedField, fields?: SupportedField[]): 
   const facts: string[] = [];
   if (required) {
     facts.push("この項目は必須です。入力や選択が必要です。");
-  } else if (/(?:^|[（(\s【])必須(?:[）)\s】]|$)/.test(`${label} ${group ?? ""}`)) {
-    facts.push("ページの項目名に「必須」と表示されています。ページの説明を確認してください。");
+  } else if ([...Array.from(field.labels ?? []), definitionHeading(field), rowHeading(field), fieldLegend(field)]
+    .some((heading) => heading !== undefined && hasVisibleRequiredMarker(heading))) {
+    facts.push("ページの項目名や見出しに「必須」と表示されています。ページの説明を確認してください。");
   }
 
   if (field instanceof HTMLSelectElement) {
@@ -197,7 +284,7 @@ export function fieldDetails(field: SupportedField, fields?: SupportedField[]): 
   const placeholder = field.getAttribute("placeholder")?.trim();
   if (placeholder) descriptions.push(`ページの入力例：${placeholder.slice(0, 600)}`);
 
-  return { label, groupLabel: group, required, facts: [...new Set(facts)], descriptions: [...new Set(descriptions)] };
+  return { label, ...(visibleLabel === undefined ? {} : { visibleLabel }), groupLabel: group, required, facts: [...new Set(facts)], descriptions: [...new Set(descriptions)] };
 }
 
 /** Use the page's declared error state; do not read or trigger validation. */

@@ -1,6 +1,6 @@
 # 横浜市ガイドパック（住民票オンライン申請）
 
-レビュー日: 2026-09-16
+住民票案内・FAQリンクの再確認日: 2026-10-06。電子申請システムホームのレビュー日: 2026-09-16。
 
 ## 対象とする公開ページ
 
@@ -8,6 +8,8 @@
   - `https://www.city.yokohama.lg.jp/kurashi/koseki-zei-hoken/todokede/koseki-juminhyo/shoumei/jyuminhyou/online.html`
 - 横浜市電子申請・届出システム: ホーム
   - `https://shinsei.city.yokohama.lg.jp/cu/141003/ea/residents/portal/home`
+
+よくある質問への公式リンクは [証明書（戸籍や住民票など）のオンライン申請 よくある質問](https://www.city.yokohama.lg.jp/kurashi/koseki-zei-hoken/todokede/koseki-juminhyo/shoumei/faq.html)。住民票案内の FAQ 見出しから参照する同じ公開ページへ移動する。
 
 URL と公開見出しの両方が一致したときだけ、詳細な案内を表示する。見出しが改版された場合は、一般的な用語解説だけに戻る。
 
