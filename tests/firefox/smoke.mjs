@@ -177,7 +177,7 @@ try {
     await visit("semantic.html");
     assert.equal(await dock(), null);
     await enable();
-    assert.match(await dock(), /この画面の入力項目：9 項目/);
+    assert.match(await dock(), /この画面の入力項目：8 項目/);
   });
   await check("form navigation without changing values or radio choices", async () => {
     const before = await evaluate("return [...document.querySelectorAll('input,textarea,select')].map(e=>({id:e.id,value:e.value,checked:e.checked}));");
@@ -238,6 +238,40 @@ try {
     report.mobileViewport = layout.viewport;
     assert.equal(layout.visible, true);
     await screenshot("dynamic-mobile-stage");
+  });
+  await check("public contact labels, utility fields and unsupported focus", async () => {
+    await request("POST", "/window/rect", { width: 1280, height: 900 });
+    await visit("public-contact.html");
+    const snapshot = () => evaluate("return [...document.querySelectorAll('input,textarea,select')].map(e=>({id:e.id,value:e.value,checked:e.checked}));");
+    const before = await snapshot();
+    await enable();
+    assert.match(await dock(), /この画面の入力項目：3 項目/);
+    await pressDock("最初の入力項目へ");
+    assert.equal(await evaluate("return document.activeElement.id;"), "contact-name");
+    await pressDock("次の項目へ");
+    assert.equal(await evaluate("return document.activeElement.id;"), "contact-phone");
+    assert.match(await dock(), /「電話番号」について/);
+    assert.match(await dock(), /ページが設定した読み上げ名：入力例：09012345678/);
+    assert.match(await dock(), /ページの項目名や見出しに「必須」と表示されています/);
+    await screenshot("public-contact-visible-label");
+    // Explicit fixture focus exercises the same focusin path as native Tab.
+    // It never invokes a search, selection, edit or submit action.
+    for (const id of ["header-search", "nav-filter", "body-search"]) {
+      await evaluate("document.getElementById(arguments[0]).focus();", [id]);
+      await waitFor(dock, (text) => text.includes("ページ共通の入力欄（検索など）"));
+      assert.match(await dock(), /現在の項目：1 \/ 1/);
+    }
+    for (const id of ["readonly-number", "contact-password", "custom-editor"]) {
+      await evaluate("document.getElementById('contact-name').focus();");
+      await waitFor(dock, (text) => text.includes("「お名前」について"));
+      await evaluate("document.getElementById(arguments[0]).focus();", [id]);
+      await waitFor(dock, (text) => !text.includes("「お名前」について"));
+      assert.match(await dock(), /このページの案内/);
+      await waitFor(() => evaluate("const field=document.activeElement.getBoundingClientRect(),panel=document.getElementById('silver-guide-host').shadowRoot.getElementById('silver-guide-dock').getBoundingClientRect();return field.top>=0&&field.bottom<=innerHeight&&!(field.left<panel.right&&field.right>panel.left&&field.top<panel.bottom&&field.bottom>panel.top);"));
+    }
+    assert.deepEqual(await snapshot(), before);
+    assert.ok(!(await dock()).includes("FAKE-PRIVATE"));
+    await screenshot("public-contact-guidance");
   });
   assert.equal(await evaluate("return window.fixtureSubmissions;"), 0);
   assert.ok(!driverLog.includes("[silver-guide] Unable to start assistance"));

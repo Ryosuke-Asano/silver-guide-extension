@@ -45,7 +45,7 @@ test("native forms group radio choices and navigate only editable fields in the 
   const activation = await activate(worker, page);
   expect(activation.capabilities).toMatchObject({ canInput: true, hasVerifiedGuide: false, canProceed: false });
   const dock = dockFor(page);
-  await expect(dock).toContainText("この画面の入力項目：9 項目。");
+  await expect(dock).toContainText("この画面の入力項目：8 項目。");
   await dock.getByRole("button", { name: "最初の入力項目へ" }).click();
   await expect(page.locator("#full-name")).toBeFocused();
   await expect(dock).toContainText("現在の項目：1 / 8");
@@ -77,6 +77,7 @@ test("native forms group radio choices and navigate only editable fields in the 
   await expect(page.locator("#purpose-school")).not.toBeChecked();
   await expect(page.locator("#purpose-work")).not.toBeChecked();
   await page.locator("#search-field").focus();
+  await expect(dock).toContainText("ページ共通の入力欄（検索など）");
   await expect(dock).toContainText("現在の項目：1 / 1");
   await expect(dock.getByRole("button", { name: "次の項目へ" })).toHaveCount(0);
   await expect(dock.getByRole("button", { name: "前の項目へ" })).toHaveCount(0);
@@ -407,6 +408,153 @@ test("a short mobile step exposes its focused date even when the page cannot scr
   expect(accesses.formOperations).toEqual([]);
   expect(audit.pageErrors).toEqual([]);
   await saveEvidence(page, "mobile-short-form-field-visible");
+});
+
+test("public utility fields stay outside the initial body guide while visible labels and required badges explain contact fields", async ({ page, worker, audit }) => {
+  await page.goto("/public-contact.html");
+  const before = await fieldSnapshot(page);
+  await installSensitiveAccessGuard(worker, page);
+  await activate(worker, page);
+  const dock = dockFor(page);
+  await expect(dock).toContainText("この画面の入力項目：3 項目。");
+  await dock.getByRole("button", { name: "最初の入力項目へ" }).click();
+  await expect(page.locator("#contact-name")).toBeFocused();
+  await expect(dock).toContainText("現在の項目：1 / 3");
+  await dock.getByRole("button", { name: "次の項目へ" }).click();
+  await expect(page.locator("#contact-phone")).toBeFocused();
+  await expect(dock.getByRole("heading", { name: "「電話番号」について", exact: true })).toBeVisible();
+  await expect(dock).toContainText("ページが設定した読み上げ名：入力例：09012345678");
+  await expect(dock).toContainText("必須");
+  await expect(dock).toContainText("連絡できる電話番号を確認してください。");
+  await expect(page.getByRole("status")).toContainText("入力のヒント：電話番号。");
+  await expect(page.getByRole("status")).not.toContainText("入力のヒント：入力例");
+  await saveEvidence(page, "public-contact-visible-label");
+  await dock.getByRole("button", { name: "次の項目へ" }).click();
+  await expect(page.locator("#contact-email")).toBeFocused();
+  await expect(dock).toContainText("必須");
+  await expect(dock.getByRole("button", { name: "次の項目へ" })).toHaveCount(0);
+  for (const selector of ["#header-search", "#nav-filter", "#body-search"]) {
+    await page.locator(selector).focus();
+    await expect(dock).toContainText("ページ共通の入力欄（検索など）");
+    await expect(dock).toContainText("現在の項目：1 / 1");
+    await expect(dock.getByRole("button", { name: "次の項目へ" })).toHaveCount(0);
+    await expect(dock).not.toContainText("次の画面への移動や送信");
+  }
+  await saveEvidence(page, "public-utility-explicit-focus");
+  await dock.getByRole("button", { name: "項目の案内に戻る" }).click();
+  await expect(dock).toContainText("この画面の入力項目：3 項目。");
+  await dock.getByRole("button", { name: "最初の入力項目へ" }).click();
+  await expect(page.locator("#contact-name")).toBeFocused();
+  await page.locator("#contact").evaluate((form) => { form.hidden = true; });
+  await expect(dock).toContainText("この画面には本文の入力欄がありません。");
+  await expect(dock).toContainText("検索などページ共通の入力欄は、欄を選ぶと案内します。");
+  await expect(dock.getByRole("button", { name: "最初の入力項目へ" })).toHaveCount(0);
+  await expect(dock).not.toContainText("この画面には支援できる入力欄がありません。");
+  await saveEvidence(page, "public-utility-only-overview");
+  expect(await fieldSnapshot(page)).toEqual(before);
+  const accesses = await sensitiveAccessAudit(worker, page);
+  expect(Object.values(accesses.reads).reduce((total, count) => total + count, 0), JSON.stringify(accesses.reads)).toBe(0);
+  expect(Object.values(accesses.writes).reduce((total, count) => total + count, 0), JSON.stringify(accesses.writes)).toBe(0);
+  expect(accesses.attributes).toEqual([]);
+  expect(accesses.formOperations).toEqual([]);
+  expect(audit.pageErrors).toEqual([]);
+  expect(await page.evaluate(() => window.fixtureSubmissions)).toBe(0);
+});
+
+test("unsupported page controls clear an old input hint while the assistant's own controls preserve it", async ({ page, worker, audit }) => {
+  await page.goto("/public-contact.html");
+  const before = await fieldSnapshot(page);
+  await installSensitiveAccessGuard(worker, page);
+  await activate(worker, page);
+  const dock = dockFor(page);
+  for (const viewport of [{ width: 1280, height: 900 }, { width: 390, height: 844 }]) {
+    await page.setViewportSize(viewport);
+    for (const selector of ["#readonly-number", "#readonly-notes", "#readonly-select", "#contact-password", "#custom-editor", "#custom-textbox", "#custom-combo", "#custom-listbox"]) {
+      await page.locator("#contact-name").focus();
+      await expect(dock.getByRole("heading", { name: "「お名前」について", exact: true })).toBeVisible();
+      await dock.getByRole("button", { name: "次の項目へ" }).focus();
+      await expect(dock.getByRole("heading", { name: "「お名前」について", exact: true })).toBeVisible();
+      const field = page.locator(selector);
+      await field.focus();
+      await expect(field).toBeFocused();
+      await expect(dock.getByRole("heading", { name: "「お名前」について", exact: true })).toHaveCount(0);
+      await expect(dock).toContainText("このページの案内");
+      await expect(page.getByRole("status")).toContainText("この欄は入力支援の対象外です。");
+      await expect.poll(async () => {
+        const control = await field.boundingBox();
+        const panel = await dock.boundingBox();
+        return control.y >= 12 && control.y + control.height <= viewport.height &&
+          !(control.x < panel.x + panel.width && control.x + control.width > panel.x && control.y < panel.y + panel.height && control.y + control.height > panel.y);
+      }).toBe(true);
+      expect(await field.evaluate((element) => {
+        const rect = element.getBoundingClientRect();
+        const target = document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2);
+        return target !== null && (target === element || element.contains(target));
+      })).toBe(true);
+      if (selector === "#contact-password") await saveEvidence(page, `unsupported-password-visible-${viewport.width}`);
+    }
+  }
+  await expect(dock).not.toContainText("FAKE-PRIVATE");
+  expect(await fieldSnapshot(page)).toEqual(before);
+  const accesses = await sensitiveAccessAudit(worker, page);
+  expect(Object.values(accesses.reads).reduce((total, count) => total + count, 0), JSON.stringify(accesses.reads)).toBe(0);
+  expect(Object.values(accesses.writes).reduce((total, count) => total + count, 0), JSON.stringify(accesses.writes)).toBe(0);
+  expect(accesses.formOperations).toEqual([]);
+  expect(audit.pageErrors).toEqual([]);
+  await saveEvidence(page, "unsupported-control-clears-old-hint");
+});
+
+test("an open glossary reflects changed settings while its focused close and listen controls stay in place", async ({ page, context, worker, audit }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/public-contact.html");
+  // A public explanation at the lower-right edge exercises box placement
+  // again after its height changes, without touching a value control.
+  await page.locator("#contact-explanation").evaluate((paragraph) => {
+    paragraph.style.cssText = "position:fixed;right:12px;bottom:12px;width:150px";
+  });
+  await activate(worker, page);
+  const anchor = page.locator("#contact-explanation [data-silver-guide-generated=true]").first();
+  await anchor.focus();
+  await page.keyboard.press("Enter");
+  const tooltip = page.getByRole("dialog");
+  const withinViewport = async () => {
+    const bounds = await tooltip.boundingBox();
+    return bounds.x >= 0 && bounds.y >= 0 && bounds.x + bounds.width <= 390 && bounds.y + bounds.height <= 844;
+  };
+  await expect(tooltip).toHaveClass(/font-medium/);
+  await expect(tooltip).toContainText("元の言葉:");
+  const close = tooltip.getByRole("button", { name: "閉じる", exact: true });
+  await close.focus();
+  await messagePage(worker, page, { type: "silver-guide-update-settings", settings: { fontSize: "large", showOriginal: false } });
+  await expect(tooltip).toHaveClass(/font-large/);
+  await expect(tooltip).not.toContainText("元の言葉:");
+  await expect(close).toBeFocused();
+  expect(await withinViewport()).toBe(true);
+  const listen = tooltip.getByRole("button", { name: "声で聞く", exact: true });
+  if (await listen.count() > 0) {
+    await listen.focus();
+    await messagePage(worker, page, { type: "silver-guide-update-settings", settings: { fontSize: "small", showOriginal: true } });
+    await expect(tooltip).toHaveClass(/font-small/);
+    await expect(tooltip).toContainText("元の言葉:");
+    await expect(listen).toBeFocused();
+    expect(await withinViewport()).toBe(true);
+  }
+  const popup = await context.newPage();
+  await popup.goto(`chrome-extension://${new URL(worker.url()).hostname}/popup.html`);
+  await page.bringToFront();
+  await popup.locator("label.font-size-radio").filter({ hasText: /^大$/ }).click();
+  await expect(tooltip).toHaveClass(/font-large/);
+  await popup.locator("label.original-switch").click();
+  await expect(popup.getByRole("switch")).not.toBeChecked();
+  await expect(tooltip).not.toContainText("元の言葉:");
+  await expect(tooltip).toBeVisible();
+  expect(await withinViewport()).toBe(true);
+  if (await listen.count() > 0) await expect(listen).toBeFocused();
+  await saveEvidence(page, "open-glossary-settings-updated");
+  await page.keyboard.press("Escape");
+  await expect(tooltip).toHaveCount(0);
+  await expect(anchor).toBeFocused();
+  expect(audit.pageErrors).toEqual([]);
 });
 
 test("input values, selected/checked states and attachments are neither read nor changed or leaked", async ({ page, worker, audit }) => {

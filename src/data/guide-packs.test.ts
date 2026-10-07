@@ -17,6 +17,16 @@ describe("guidePackFor", () => {
     );
   });
 
+  it("opens the official certificate FAQ when the guide offers frequently asked questions", () => {
+    const pack = guidePackFor(residentRecordGuideUrl, {
+      headings: ["住民票の写し・住民票記載事項証明書をオンライン申請する"]
+    });
+    const faq = pack?.routes.find((route) => route.label.includes("よくある質問"));
+    expect(faq?.officialUrl).toBe(
+      "https://www.city.yokohama.lg.jp/kurashi/koseki-zei-hoken/todokede/koseki-juminhyo/shoumei/faq.html"
+    );
+  });
+
   it("falls back to general assistance when the verified page changes", () => {
     expect(guidePackFor(residentRecordGuideUrl, { headings: ["別のページ"] })).toBeUndefined();
   });

@@ -27,6 +27,8 @@ Firefox の UI を操作するため、geckodriver の公式 [UI テスト用 `-
 - 停止とポップアップからの再開、二重注入・重複パネルがないこと
 - ページの ARIA エラーと native invalid 通知からの復帰、エラー原文の転載がないこと
 - 同じページの手順差し替えと、狭い画面で現在の入力欄がパネルに隠れないこと
+- 検索・共通欄を初期項目から除き、電話番号の可視ラベルと公開必須表示を補足すること
+- 対象外の readonly / password / 独自入力欄で前のヒントを解除し、欄にパネルが重ならないこと
 - fixture の送信回数が常に 0 であること
 
 Firefox の remote popup は HTML iframe として扱えないため、その browsing context に対して Mozilla の native Marionette commands を使用します。通常のクリック判定を保ち、拡張 API や background をテスト用コードに置き換えません。この橋渡しは Firefox 157.0.1 / geckodriver 0.37.1 で確認しました。Firefox の古い版や Floorp の UI では調整が必要な場合があります。

@@ -36,7 +36,7 @@ const YOKOHAMA_APPLICATION_ORIGIN = "https://shinsei.city.yokohama.lg.jp";
 export const GUIDE_PACKS: readonly GuidePack[] = [
   {
     id: "yokohama-resident-record-online-guide",
-    reviewedAt: "2026-09-16",
+    reviewedAt: "2026-10-06",
     origin: YOKOHAMA_CITY_ORIGIN,
     pathPattern:
       /^\/kurashi\/koseki-zei-hoken\/todokede\/koseki-juminhyo\/shoumei\/jyuminhyou\/online\.html$/,
@@ -57,7 +57,7 @@ export const GUIDE_PACKS: readonly GuidePack[] = [
       {
         label: "オンライン申請のよくある質問を確認する",
         officialUrl:
-          "https://www.city.yokohama.lg.jp/kurashi/koseki-zei-hoken/todokede/koseki-juminhyo/shoumei/shoumei-online.html"
+          "https://www.city.yokohama.lg.jp/kurashi/koseki-zei-hoken/todokede/koseki-juminhyo/shoumei/faq.html"
       }
     ]
   },

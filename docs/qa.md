@@ -100,6 +100,59 @@ Firefox 157.0.1 の実際のツールバー操作で `activeTab` を付与し、
 
 PR #1 の初回 head `49dae95` に対する GitHub check run と commit status は各 0 件、Actions workflow も 0 件だった。集計 status の `pending` は実行中の CI ではなく、登録された status がない状態。型チェック・lint・単体・ビルド・Chromium E2E の実行結果を使ってレビューする。
 
+## 2026-10-06 — 公開構造に基づく実用性の改善
+
+作業ブランチは `codex/practical-form-usability`、基準は PR #1 の追加検証を含む `c93ba8c`。PR #1 の汎用フォーム基盤と分けてレビューする後続変更である。
+
+### 観察と変更
+
+[実用性レビュー](usability-review.md) に、横浜市・e-kanagawa・デジタル庁の公開 GET と静的 DOM の観察を記録した。公開ページに拡張を注入した操作検証や、認証後の申請画面の確認ではない。操作は構造だけを反映した架空 localhost fixture で検証した。
+
+- 本文に入力欄がない案内ページで検索へ誘導しないよう、公開 HTML の検索・共通ランドマークを初期候補と区別した。検索欄の明示的なフォーカスでは支援し、同じフォーム内の移動は維持する。
+- 画像の `alt` と可視 native label を補足し、電話番号などの可視項目名と ARIA の入力例を区別した。構造上関連する見出しの可視「必須」も補足するが、`required` の判定を拡大しない。
+- 対象外欄へのフォーカスで前のヒントを解除し、配置だけはその欄の矩形を使う。開いた用語説明にも設定変更を反映し、操作中のフォーカスを保つ。
+- 横浜市本文の公式リンクと現行 FAQ のタイトルを確認し、ガイドの FAQ URL を訂正した。
+
+### 最終検証
+
+| 確認 | 結果 | 範囲 |
+| --- | --- | --- |
+| `pnpm run check` | 成功 | TypeScript と設定 |
+| `pnpm run lint` | 成功、警告 0 | 本体・単体テスト・設定 |
+| `pnpm test` | **137 / 137 成功、3 ファイル** | 公開ラベル・画像 alt、可視ラベル、構造上の必須表示、検索識別の追加回帰と既存テスト |
+| Firefox / Chromium ビルド | 成功 | `pnpm run build`、`pnpm run build:chromium` |
+| Chromium 実拡張 E2E | **16 / 16 成功** | 初期候補・検索のみのページ、ラベル・必須、対象外8種類、設定反映、既存フォーム・動的更新・エラー復帰 |
+| Firefox 実拡張 smoke | **7 / 7 成功** | 実ツールバーと popup による開始、既存6フロー、新しい公開構造 fixture と対象外欄の非重なり |
+| 独立ロジック確認 | **6 / 6 成功** | private getter / setter / Text.data、フォーム・検証・外部要求の throw guard。配置は stub と区別 |
+| `git diff --check`、Firefox runner 構文確認 | 成功 | 差分と `node --check tests/firefox/smoke.mjs` |
+
+Chromium は Chrome for Testing 145.0.7632.6 / Playwright 1.58.2。最終実行は 20:24:25.864 UTC 開始、21.3 秒、失敗・skip・flaky 0。新しい対象外欄のテストは readonly input / textarea、ARIA readonly select、password、contenteditable、custom textbox / combobox / listbox を 1280×900 と 390×844 で確認する。ヒント解除後も欄とパネルが重ならず、欄の中心が操作可能なことを確認した。既存の privacy guard も成功し、入力・選択・添付・私的文字列のアクセス、変更、検証・送信操作は 0。
+
+Firefox は Mozilla 配布版 157.0.1 / geckodriver 0.37.1。最終実行は 20:25:16.381–20:25:23.573 UTC、7.2 秒。製品と同じ manifest と実際の toolbar / popup を使い、前後移動・停止再開・エラー復帰・動的画面に加え、検索と本文の区別、電話番号の可視ラベルと必須補足、readonly / password / custom editor のヒント解除と非重なりを確認した。架空 fixture の送信回数は常に 0。狭い画面の実 viewport は 500×758。
+
+両ビルドの `content.js` の SHA256 は `6c9904a1e58a84e5e6279c2a24ad5e3c56b6175c2e15fa076ca312f6587ff755`。この同じバンドルを最終ブラウザ検証に使用した。電話番号、検索のみのページ、desktop / mobile の対象外欄、用語説明、Firefox の画面を目視確認した。
+
+### 失敗を検出して修正した点
+
+- 新しい E2E 3 件は旧バンドルで失敗した。初期候補に検索が混ざる、対象外欄へ移ってもお名前のヒントが残る、開いた用語説明の文字サイズが更新されない、という変更前の問題を検出した。
+- 中間版の16件成功後、スクリーンショットと追加の実測で、ヒントを消すとパネルが既定位置へ戻って対象外欄を覆う回帰を検出した。readonly / password の中心がパネルに当たり、390px 幅でも password と重なった。配置専用の矩形とヒント用の対象欄を分け、desktop / mobile の非重なりと中心の操作可能性を回帰 E2E に加えた。この assertion は中間の旧バンドルで失敗し、最終版で成功した。
+- 最初の Firefox smoke は、検索除外後の8項目に対し旧期待9項目が残って失敗した。意図した候補数へ期待を更新し、公開構造 fixture のフローも追加したうえで最終7件が成功した。
+
+これらは最終版では解消している。途中の成功を最終結果として扱わず、変更後の同じバンドルで再確認した。
+
+### 証拠・未実施
+
+- Chromium 最終結果・版の記録: `/tmp/silver-guide-qa/followon-final/results.json`、`verification.json` と `screenshots/`
+- Firefox 最終結果・画面: `/tmp/silver-guide-qa/followon-final-firefox/smoke-results.json` と PNG、driver ログ
+- 旧版の失敗: `followon-before-fix/`、`followon-placement-before-fix/`、`followon-firefox-before-expectation-fix/`
+- 独立確認: `/tmp/silver-guide-qa/followon-independent-review.md` と `followon-independent-results.json`
+
+再現用の fixture・unit・E2E・Firefox runner はリポジトリに含む。スクリーンショット、ログ、プロファイルはソースへ含めていない。
+
+Floorp 本体、実利用者による評価、スクリーンリーダー・音声エンジンの発声、公開サイトへの拡張注入、認証後の画面は未検証。iframe、サイトの Shadow DOM、独自入力部品の項目解析、PDF、極端な表示域には既存の制約がある。制度の適否や記入内容・送信可否は判断しない。任意サイトでの完全動作の保証ではない。
+
+製品の権限と runtime 依存は変更していない。実申請・同意・購入・本人確認、外部 AI、公開ストア配信、本番デプロイは行っていない。
+
 ## 以前の初期実装の確認記録
 
 ### 実行結果
