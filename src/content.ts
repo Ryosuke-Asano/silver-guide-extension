@@ -1,6 +1,7 @@
 import { GLOSSARY, type GlossaryEntry } from "./data/glossary";
 import { guidePackFor, type GuideField, type GuidePack, type GuidePageEvidence } from "./data/guide-packs";
 import type { PageCapabilities } from "./shared/capabilities";
+import type { AssistanceCommand, AssistanceResult, AssistanceSnapshot, AssistanceState } from "./shared/assistant";
 import type { SilverGuideSettings } from "./shared/settings";
 import {
   adjacentField, fieldDetails, fieldPosition, fieldsFor, hasPageError,
@@ -8,21 +9,23 @@ import {
 } from "./content/form-analysis";
 
 type ContentMessage =
-  | { type: "silver-guide-enable"; settings: SilverGuideSettings }
-  | { type: "silver-guide-disable" }
+  | { type: "silver-guide-enable"; settings: SilverGuideSettings; presentation?: "page" | "sidepanel" }
+  | { type: "silver-guide-disable"; sessionId?: string }
   | { type: "silver-guide-state" }
-  | { type: "silver-guide-update-settings"; settings: SilverGuideSettings };
+  | { type: "silver-guide-update-settings"; settings: SilverGuideSettings; sessionId?: string }
+  | { type: "silver-guide-command"; command: AssistanceCommand; sessionId: string; revision: number };
 
 type DemoStep = "read" | "preparation";
 
-type ContentState = {
-  active: boolean;
-  capabilities?: PageCapabilities;
-};
+type ContentState = AssistanceState;
 
 declare const chrome: typeof browser;
 
 type AssistantState = {
+  presentation: "page" | "sidepanel";
+  sessionId: string;
+  revision: number;
+  snapshot?: AssistanceSnapshot;
   activeField?: SupportedField;
   activeTerm?: HTMLElement;
   collapsed: boolean;
@@ -343,9 +346,10 @@ function rootForTerms(): HTMLElement {
 }
 
 function publicPageEvidence(): GuidePageEvidence {
+  const errors = errorTextRegions();
   return {
     headings: Array.from(document.querySelectorAll<HTMLElement>("h1, h2, h3"))
-      .filter(isVisibleElement)
+      .filter((heading) => isVisibleElement(heading) && !isWithinErrorText(heading, errors, true))
       .map((heading) => publicText(heading))
       .filter((heading) => heading.length > 0)
   };
@@ -358,10 +362,36 @@ function isVisibleElement(element: HTMLElement): boolean {
   return visibility !== "hidden" && visibility !== "collapse";
 }
 
-function isEligibleTextNode(node: Text): boolean {
+/** Error references are metadata; never inspect the referenced text to classify it. */
+function errorTextRegions(current = state): Set<HTMLElement> {
+  const regions = new Set<HTMLElement>();
+  for (const control of document.querySelectorAll<HTMLElement>("[aria-errormessage], [aria-invalid], input, select, textarea")) {
+    const invalid = control.getAttribute("aria-invalid")?.toLowerCase();
+    const declaredError = invalid === "true" || invalid === "grammar" || invalid === "spelling";
+    const nativeError = (control instanceof HTMLInputElement || control instanceof HTMLSelectElement || control instanceof HTMLTextAreaElement)
+      && current?.nativeErrors.has(control);
+    const attributes = declaredError || nativeError ? ["aria-errormessage", "aria-describedby"] : ["aria-errormessage"];
+    for (const attribute of attributes) {
+      for (const id of control.getAttribute(attribute)?.trim().split(/\s+/).filter(Boolean) ?? []) {
+        const region = document.getElementById(id);
+        if (region !== null) regions.add(region);
+      }
+    }
+  }
+  return regions;
+}
+
+function isWithinErrorText(element: Element, regions: ReadonlySet<HTMLElement>, includeDescendants = false): boolean {
+  for (const region of regions) {
+    if (region.contains(element) || (includeDescendants && element.contains(region))) return true;
+  }
+  return false;
+}
+
+function isEligibleTextNode(node: Text, errors: ReadonlySet<HTMLElement>): boolean {
   const parent = node.parentElement;
   if (parent === null || parent.closest(EXCLUDED_TERM_CONTAINERS) !== null ||
-      parent.closest(TERM_CONTAINER_SELECTOR) === null || !isVisibleElement(parent)) {
+      parent.closest(TERM_CONTAINER_SELECTOR) === null || !isVisibleElement(parent) || isWithinErrorText(parent, errors)) {
     return false;
   }
 
@@ -371,17 +401,18 @@ function isEligibleTextNode(node: Text): boolean {
 
 function wrapGlossaryTerms(): void {
   if (state === undefined) return;
+  const errors = errorTextRegions(state);
   // Removed/hidden steps and containers that become editable must not retain
   // generated controls. Unwrap by moving nodes without reading their text.
   for (const term of state.terms) {
-    if (!isVisibleElement(term) || term.parentElement?.closest(EXCLUDED_TERM_CONTAINERS) !== null) {
+    if (!isVisibleElement(term) || term.parentElement?.closest(EXCLUDED_TERM_CONTAINERS) !== null || isWithinErrorText(term, errors)) {
       term.replaceWith(...term.childNodes);
       state.terms.delete(term);
     }
   }
   const walker = document.createTreeWalker(rootForTerms(), NodeFilter.SHOW_TEXT, {
     acceptNode: (node) =>
-      node instanceof Text && isEligibleTextNode(node)
+      node instanceof Text && isEligibleTextNode(node, errors)
         ? NodeFilter.FILTER_ACCEPT
         : NodeFilter.FILTER_REJECT
   });
@@ -509,6 +540,7 @@ function dockPlacementTarget(current: AssistantState): HTMLElement | undefined {
 
 /** Geometry alone keeps private and unsupported controls operable too. */
 function positionDockForControl(current: AssistantState, field?: HTMLElement): void {
+  if (current.presentation === "sidepanel") return;
   for (const property of ["left", "right", "top", "bottom", "max-height"]) current.dock.style.removeProperty(property);
   if (field === undefined || window.innerWidth <= 620 || !field.isConnected || field.getClientRects().length === 0) return;
   const rect = field.getBoundingClientRect();
@@ -531,6 +563,7 @@ function positionDockForControl(current: AssistantState, field?: HTMLElement): v
 }
 
 function scheduleDockLayout(current: AssistantState): void {
+  if (current.presentation === "sidepanel") return;
   if (current.pendingLayout !== undefined) return;
   current.pendingLayout = window.requestAnimationFrame(() => {
     current.pendingLayout = undefined;
@@ -577,7 +610,7 @@ function showFieldOverview(): void {
   if (state === undefined) return;
   state.activeField = undefined;
   renderDock(state);
-  state.dock.focus({ preventScroll: true });
+  if (state.presentation === "page") state.dock.focus({ preventScroll: true });
 }
 
 function firstGlossaryTerm(): HTMLElement | undefined {
@@ -655,7 +688,8 @@ function renderDock(current: AssistantState): void {
   if (current.activeField !== undefined && !isSupportedField(current.activeField)) current.activeField = undefined;
   const activeField = current.activeField;
   const visible = visibleFields();
-  const help = activeField === undefined ? undefined : fieldDetails(activeField, visible);
+  const hasError = activeField !== undefined && (hasPageError(activeField) || current.nativeErrors.has(activeField));
+  const help = activeField === undefined ? undefined : fieldDetails(activeField, visible, hasError);
   const fields = logicalFields(visible.filter((field) => !isUtilityField(field)));
   const errors = errorFields(current, visible);
   const scopeFields = activeField === undefined ? [] : fieldsFor(activeField, visible);
@@ -663,8 +697,8 @@ function renderDock(current: AssistantState): void {
   const utilityField = activeField !== undefined && isUtilityField(activeField);
   const guide = activeField === undefined || utilityField ? undefined : guideForField(current.guidePack, activeField);
   const step = document.querySelector<HTMLElement>('[aria-current="step"]');
-  const stepText = step !== null && step.getClientRects().length > 0 ? publicText(step, 160) : "";
-  const hasError = activeField !== undefined && (hasPageError(activeField) || current.nativeErrors.has(activeField));
+  const stepText = step !== null && step.getClientRects().length > 0 && !isWithinErrorText(step, errorTextRegions(current), true)
+    ? publicText(step, 160) : "";
   const renderKey = JSON.stringify({
     help, count: fields.length, position, utilityField,
     scopeCount: scopeFields.length, errors: errors.length, hasError, stepText,
@@ -676,6 +710,43 @@ function renderDock(current: AssistantState): void {
       targets.every((field, index) => field === current.renderTargets[index])) return;
   current.renderKey = renderKey;
   current.renderTargets = targets;
+  current.revision += 1;
+  current.snapshot = {
+    revision: current.revision,
+    inputCount: fields.length,
+    visibleCount: visible.length,
+    errorCount: errors.length,
+    stepText,
+    hasTerms: firstGlossaryTerm() !== undefined,
+    field: help === undefined ? undefined : {
+      label: help.visibleLabel ?? help.label,
+      accessibleLabel: help.visibleLabel === undefined ? undefined : help.label,
+      groupLabel: help.groupLabel,
+      facts: [...help.facts, ...(guide?.preparation ?? [])],
+      descriptions: help.descriptions,
+      purpose: guide?.purpose ?? "ページに表示されている説明を確認して、落ち着いて入力してください。",
+      position: position + 1,
+      total: scopeFields.length,
+      hasError,
+      utility: utilityField,
+      canPrevious: position > 0,
+      canNext: activeField !== undefined && nextFieldFor(activeField, guide, scopeFields) !== undefined
+    },
+    guide: current.guidePack === undefined ? undefined : {
+      id: current.guidePack.id,
+      summary: current.guidePack.summary,
+      preparation: current.guidePack.preparation ?? [],
+      routes: current.guidePack.routes
+    }
+  };
+  if (current.presentation === "sidepanel") {
+    // The content script only parses the page and handles explicit focus
+    // commands. Chrome owns the assistance UI outside the page's DOM.
+    void extensionApi?.runtime.sendMessage({
+      type: "silver-guide-page-updated", state: contentState()
+    }).catch(() => undefined);
+    return;
+  }
   const fieldChanged = current.renderedField !== activeField;
   current.renderedField = activeField;
 
@@ -1042,7 +1113,7 @@ function isPageValueControl(target: EventTarget | null): boolean {
   ].join(",")) !== null;
 }
 
-function enableAssistant(settings: SilverGuideSettings): void {
+function enableAssistant(settings: SilverGuideSettings, presentation: "page" | "sidepanel"): void {
   disableAssistant();
   const host = createElement("div");
   host.id = HOST_ID;
@@ -1070,7 +1141,8 @@ function enableAssistant(settings: SilverGuideSettings): void {
   status.setAttribute("role", "status");
   status.setAttribute("aria-live", "polite");
   status.setAttribute("aria-atomic", "true");
-  shadow.append(style, dock, tooltip, status);
+  shadow.append(style, tooltip, status);
+  if (presentation === "page") shadow.append(dock);
   document.documentElement.append(host);
 
   const observer = new MutationObserver(() => {
@@ -1081,8 +1153,9 @@ function enableAssistant(settings: SilverGuideSettings): void {
     if (state.activeTerm !== undefined && event.target !== state.activeTerm) hideTooltip(false);
     if (isSupportedField(event.target)) {
       state.activeField = event.target;
-      const help = fieldDetails(event.target);
-      status.textContent = `${isUtilityField(event.target) ? "ページ共通の入力欄（検索など）。" : ""}入力のヒント：${help.visibleLabel ?? help.label}。${hasPageError(event.target) || state.nativeErrors.has(event.target) ? "ページで入力エラーが示されています。" : ""}`;
+      const hasError = hasPageError(event.target) || state.nativeErrors.has(event.target);
+      const help = fieldDetails(event.target, undefined, hasError);
+      status.textContent = `${isUtilityField(event.target) ? "ページ共通の入力欄（検索など）。" : ""}入力のヒント：${help.visibleLabel ?? help.label}。${hasError ? "ページで入力エラーが示されています。" : ""}`;
     } else if (isPageValueControl(event.target)) {
       state.activeField = undefined;
       status.textContent = "この欄は入力支援の対象外です。ページの説明をご自身で確認してください。";
@@ -1110,9 +1183,17 @@ function enableAssistant(settings: SilverGuideSettings): void {
     if (state !== undefined) scheduleRefresh(state);
   };
   const onResize = (): void => {
-    if (state !== undefined) scheduleDockLayout(state);
+    if (state !== undefined) {
+      if (state.presentation === "sidepanel") scheduleRefresh(state);
+      else scheduleDockLayout(state);
+    }
   };
   state = {
+    presentation,
+    // getRandomValues is available on ordinary HTTP pages too; randomUUID
+    // is restricted to secure contexts. This token identifies only this run.
+    sessionId: Array.from(crypto.getRandomValues(new Uint8Array(16)), (byte) => byte.toString(16).padStart(2, "0")).join(""),
+    revision: 0,
     collapsed: false,
     demoSteps: new Set<DemoStep>(),
     dock,
@@ -1144,7 +1225,7 @@ function enableAssistant(settings: SilverGuideSettings): void {
   wrapGlossaryTerms();
   renderDock(state);
   observer.observe(document.documentElement, PAGE_OBSERVATION);
-  dock.focus();
+  if (presentation === "page") dock.focus();
 }
 
 function disableAssistant(): void {
@@ -1167,29 +1248,64 @@ function disableAssistant(): void {
   state = undefined;
 }
 
+function contentState(): ContentState {
+  return state === undefined ? { active: false } : {
+    active: true,
+    sessionId: state.sessionId,
+    capabilities: currentCapabilities(),
+    snapshot: state.snapshot
+  };
+}
+
+function runCommand(message: Extract<ContentMessage, { type: "silver-guide-command" }>): AssistanceResult {
+  if (state !== undefined) refreshAssistant(state);
+  if (state === undefined || message.sessionId !== state.sessionId || message.revision !== state.revision) {
+    return { ...contentState(), success: false, message: "ページの項目が変わりました。最新の案内を確認して、もう一度選んでください。" };
+  }
+  const field = state.activeField;
+  switch (message.command) {
+    case "first-field": focusField(firstInputField()); break;
+    case "first-error": focusField(errorFields(state)[0]); break;
+    case "previous-field": if (field !== undefined) focusField(adjacentField(field, -1)); break;
+    case "next-field": if (field !== undefined) focusField(nextFieldFor(field,
+      isUtilityField(field) ? undefined : guideForField(state.guidePack, field))); break;
+    case "overview": showFieldOverview(); break;
+    case "first-term": openFirstGlossaryExplanation(); break;
+    default: return { ...contentState(), success: false, message: "この操作は利用できません。" };
+  }
+  return { ...contentState(), success: true, message: "ページの案内を更新しました。" };
+}
+
 if (extensionApi !== undefined && !window.__silverGuideContentReady) {
   window.__silverGuideContentReady = true;
-  extensionApi.runtime.onMessage.addListener((message: unknown): Promise<ContentState> | undefined => {
+  const handleMessage = (message: unknown): ContentState | AssistanceResult | undefined => {
     if (!isContentMessage(message)) return undefined;
     switch (message.type) {
       case "silver-guide-enable":
-        enableAssistant(message.settings);
-        return Promise.resolve({ active: true, capabilities: currentCapabilities() });
+        enableAssistant(message.settings, message.presentation ?? ("side_panel" in extensionApi.runtime.getManifest() ? "sidepanel" : "page"));
+        return contentState();
       case "silver-guide-disable":
+        if (message.sessionId !== undefined && message.sessionId !== state?.sessionId) return contentState();
         disableAssistant();
-        return Promise.resolve({ active: false });
+        return { active: false };
       case "silver-guide-state":
         if (state !== undefined) refreshAssistant(state);
-        return Promise.resolve(
-          state === undefined ? { active: false } : { active: true, capabilities: currentCapabilities() }
-        );
+        return contentState();
       case "silver-guide-update-settings":
-        if (state !== undefined) {
+        if (state !== undefined && (message.sessionId === undefined || message.sessionId === state.sessionId)) {
           state.settings = message.settings;
           renderDock(state);
           updateTooltipSettings(state);
         }
-        return Promise.resolve({ active: state !== undefined });
+        return contentState();
+      case "silver-guide-command":
+        return runCommand(message);
     }
+  };
+  extensionApi.runtime.onMessage.addListener((message: unknown, _sender, sendResponse) => {
+    const result = handleMessage(message);
+    if (result === undefined) return undefined;
+    sendResponse(result);
+    return false;
   });
 }

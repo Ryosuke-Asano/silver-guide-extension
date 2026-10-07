@@ -1,0 +1,81 @@
+html body { min-width: 0; width: 100%; }
+
+.sidepanel-shell {
+  --panel-body-size: 20px;
+  color: #0f2747;
+  font-size: var(--panel-body-size);
+  line-height: 1.7;
+  margin: 0 auto;
+  max-width: 640px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  padding: 20px 16px 28px;
+  width: 100%;
+}
+.sidepanel-shell[data-font-size="small"] { --panel-body-size: 18px; }
+.sidepanel-shell[data-font-size="large"] { --panel-body-size: 24px; }
+.sidepanel-shell h1, .sidepanel-shell h2, .sidepanel-shell h3, .sidepanel-shell h4 { line-height: 1.4; margin: 0 0 12px; }
+.sidepanel-shell h1 { font-size: 1.45em; }
+.sidepanel-shell h2 { font-size: 1.2em; }
+.sidepanel-shell h3 { font-size: 1.1em; }
+.sidepanel-shell h4 { font-size: 1em; }
+.sidepanel-shell p { margin: 0 0 14px; }
+.sidepanel-shell ul { margin: 0 0 18px; padding-left: 1.3em; }
+.sidepanel-shell li + li { margin-top: 10px; }
+.panel-header { align-items: center; display: flex; gap: 12px; margin-bottom: 16px; }
+.panel-header h1 { margin: 0; min-width: 0; }
+.panel-brand-icon, .panel-privacy-icon { fill: none; flex: 0 0 auto; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2.2; }
+.panel-brand-icon { color: #076c78; height: 36px; width: 36px; }
+.panel-introduction, .panel-note { color: #40566d; }
+.panel-button {
+  background: #edf7f8;
+  border: 2px solid #076c78;
+  border-radius: 9px;
+  color: #0f2747;
+  cursor: pointer;
+  display: block;
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 1.6;
+  min-height: 52px;
+  overflow-wrap: anywhere;
+  padding: 12px;
+  text-align: center;
+  white-space: normal;
+  width: 100%;
+}
+.panel-button:hover:not([data-disabled]) { background: #dceef0; }
+.panel-button[data-disabled] { background: #eff2f5; border-color: #cad3df; color: #53667b; cursor: default; }
+.panel-primary { background: #076c78; color: #fff; }
+.panel-primary:hover:not([data-disabled]) { background: #055b65; }
+.panel-refresh { background: #fff; margin-bottom: 24px; }
+.panel-status { font-size: 0.9em; min-height: 1.7em; padding: 12px 0 0; }
+.panel-status.is-error, .panel-error { border-left: 4px solid #a02222; color: #822323; padding-left: 12px; }
+.panel-content, .panel-settings { border-top: 2px solid #cad3df; padding-top: 22px; }
+.panel-overview, .panel-navigation { display: grid; gap: 12px; }
+.panel-overview p, .panel-navigation p { margin: 0; }
+.panel-field, .panel-guide, .panel-terms { border-top: 1px solid #cad3df; margin-top: 24px; padding-top: 22px; }
+.panel-position, .panel-step { background: #edf7f8; border-radius: 6px; padding: 10px 12px; }
+.panel-field h3 { margin-top: 18px; }
+.panel-routes { display: grid; gap: 12px; list-style: none; padding: 0 !important; }
+.panel-routes li + li { margin-top: 0; }
+.panel-routes a { border: 2px solid #076c78; border-radius: 9px; color: #075c67; display: block; font-weight: 700; padding: 12px; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.panel-link-note { color: #40566d; display: block; font-size: 0.85em; font-weight: 400; margin-top: 6px; }
+.panel-settings { margin-top: 28px; }
+.panel-font-choice { margin-bottom: 22px; }
+.panel-font-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.panel-font-radio { align-items: center; border: 2px solid #0f2747; cursor: pointer; display: flex; font-size: 1.1em; font-weight: 700; justify-content: center; min-height: 54px; min-width: 0; padding: 8px; }
+.panel-font-radio:first-child { border-radius: 8px 0 0 8px; }
+.panel-font-radio:last-child { border-radius: 0 8px 8px 0; }
+.panel-font-radio + .panel-font-radio { border-left: 0; }
+.panel-font-radio[data-selected] { background: #076c78; color: #fff; }
+.panel-original-switch { align-items: center; cursor: pointer; display: flex; font-weight: 700; gap: 12px; justify-content: space-between; min-height: 54px; }
+.panel-original-switch > span:first-of-type { min-width: 0; }
+.panel-switch-track { background: #5f7187; border-radius: 999px; flex: 0 0 58px; height: 32px; padding: 3px; }
+.panel-switch-thumb { background: #fff; border-radius: 50%; display: block; height: 26px; transform: translateX(0); width: 26px; }
+.panel-original-switch[data-selected] .panel-switch-track { background: #076c78; }
+.panel-original-switch[data-selected] .panel-switch-thumb { transform: translateX(26px); }
+.panel-font-radio[data-disabled], .panel-original-switch[data-disabled] { cursor: default; opacity: 0.7; }
+.sidepanel-shell [data-focus-visible], .sidepanel-shell :focus-visible { outline: 3px solid #0c75a6; outline-offset: 3px; }
+.panel-privacy { align-items: flex-start; display: flex; font-weight: 700; gap: 8px; margin-top: 26px !important; }
+.panel-privacy-icon { color: #076c78; height: 24px; margin-top: 4px; width: 24px; }

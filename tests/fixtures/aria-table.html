@@ -4,14 +4,15 @@
 <body><main>
   <h1>架空の届出</h1><p class="fixture-notice">入力構造を確認するローカルテストです。行政申請には接続しません。</p>
   <form id="report" action="/must-not-submit" method="post" novalidate>
-    <div class="field"><span id="applicant-label">申請者の</span> <span id="email-label">電子メール</span><br><input id="email" name="email" type="email" aria-labelledby="applicant-label email-label" aria-describedby="email-help" aria-required="true"><p id="email-help">連絡を受け取れるメールアドレスを確認します。</p><p id="email-error" class="error" hidden>FAKE-PRIVATE-EMAIL を修正してください。</p></div>
+    <div class="field"><span id="applicant-label">申請者の</span> <span id="email-label">電子メール</span><br><input id="email" name="email" type="email" aria-labelledby="applicant-label email-label" aria-describedby="email-help" aria-required="true"><p id="email-help">連絡を受け取れるメールアドレスを確認します。</p><p id="email-error" class="error" hidden>FAKE-PRIVATE-EMAIL を修正してください。</p><p><span id="unmarked-email-echo" data-fixture-private-echo hidden>FAKE-PRIVATE-UNMARKED-EMAIL 住民票 を修正してください。</span></p></div>
     <table><tbody>
       <tr><th scope="row">郵便番号</th><td><input id="postal" name="postal" inputmode="numeric" minlength="7" maxlength="8" pattern="[0-9-]+" aria-describedby="postal-help"><p id="postal-help">数字とハイフンで入力します。</p></td></tr>
       <tr><th scope="row">住所</th><td><textarea id="address" name="address" rows="2"></textarea></td></tr>
     </tbody></table>
     <dl><dt>連絡する時間帯</dt><dd><input id="contact-time" name="contact-time" type="text"></dd></dl>
-    <div class="field"><label for="native-required">確認用の項目</label><input id="native-required" name="native-required" required></div>
+    <div class="field"><label for="native-required">確認用の項目</label><input id="native-required" name="native-required" required aria-describedby="native-help"><p id="native-help">確認用の説明を読み、ご自身で入力してください。</p><p><span id="unmarked-native-echo" data-fixture-private-echo hidden>FAKE-PRIVATE-NATIVE-ECHO 住民票 を修正してください。</span></p></div>
     <button id="show-errors" type="button">入力エラーを表示する (ローカルテスト)</button>
+    <button id="show-unmarked-error" type="button">未標識の入力エラーを表示する (ローカルテスト)</button>
     <button id="clear-errors" type="button">エラーを解消する (ローカルテスト)</button>
     <button id="check-native" type="button">ブラウザの入力チェック (ローカルテスト)</button>
   </form>
@@ -27,7 +28,25 @@ document.querySelector('#show-errors').addEventListener('click', () => {
 document.querySelector('#clear-errors').addEventListener('click', () => {
   document.querySelector('#email').removeAttribute('aria-invalid');
   document.querySelector('#email').removeAttribute('aria-errormessage');
+  document.querySelector('#email').setAttribute('aria-describedby', 'email-help');
   document.querySelector('#email-error').hidden = true;
+  document.querySelector('#unmarked-email-echo').hidden = true;
 });
-document.querySelector('#check-native').addEventListener('click', () => document.querySelector('#native-required').reportValidity());
+document.querySelector('#show-unmarked-error').addEventListener('click', () => {
+  const email = document.querySelector('#email');
+  email.setAttribute('aria-invalid', 'true');
+  email.setAttribute('aria-describedby', 'email-help unmarked-email-echo');
+  email.removeAttribute('aria-errormessage');
+  document.querySelector('#email-error').hidden = true;
+  document.querySelector('#unmarked-email-echo').hidden = false;
+});
+document.querySelector('#check-native').addEventListener('click', () => {
+  document.querySelector('#native-required').setAttribute('aria-describedby', 'native-help unmarked-native-echo');
+  document.querySelector('#unmarked-native-echo').hidden = false;
+  document.querySelector('#native-required').reportValidity();
+});
+document.querySelector('#native-required').addEventListener('input', () => {
+  document.querySelector('#native-required').setAttribute('aria-describedby', 'native-help');
+  document.querySelector('#unmarked-native-echo').hidden = true;
+});
 </script></body></html>

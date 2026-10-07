@@ -634,7 +634,7 @@ describe("fieldDetails and declared page errors", () => {
 
   it("uses static descriptions but excludes error messages and alert text that could echo an input", () => {
     page(`<label for="email">メールアドレス</label>
-      <input id="email" type="email" aria-invalid="true" aria-describedby="hint hint error alert nested-alert assertive missing editable" aria-errormessage="error">
+      <input id="email" type="email" aria-invalid="false" aria-describedby="hint hint error alert nested-alert assertive missing editable" aria-errormessage="error">
       <p id="hint">半角で入力してください。<output id="echo">PRIVATE_ECHO</output></p>
       <p id="error">PRIVATE_ERROR</p><p id="alert" role="alert">PRIVATE_ALERT</p>
       <div role="alert"><p id="nested-alert">PRIVATE_NESTED_ALERT</p></div>
@@ -645,7 +645,40 @@ describe("fieldDetails and declared page errors", () => {
     forbidPrivateText(element("editable"));
     for (const id of ["error", "alert", "nested-alert", "assertive"]) forbidPrivateText(element(id));
     expect(fieldDetails(field("email")).descriptions).toEqual(["半角で入力してください。"]);
-    expect(hasPageError(field("email"))).toBe(true);
+    expect(hasPageError(field("email"))).toBe(false);
+  });
+
+  it.each([
+    ["true", false], [null, true]
+  ] as const)("does not resolve or read unmarked error descriptions (aria-invalid=%s, notified=%s)", (invalid, notified) => {
+    page(`<label for="email">メールアドレス</label>
+      <input id="email" type="email" required maxlength="40" aria-describedby="information" placeholder="example@example.invalid">
+      <span id="information">PRIVATE_REFLECTED_ERROR</span>`);
+    const control = field("email");
+    if (invalid !== null) control.setAttribute("aria-invalid", invalid);
+    forbidPrivateState(control);
+    forbidPrivateText(element("information"));
+    const lookup = vi.spyOn(document, "getElementById");
+    const details = fieldDetails(control, undefined, notified);
+    expect(lookup).not.toHaveBeenCalledWith("information");
+    expect(details).toMatchObject({
+      label: "メールアドレス", required: true,
+      facts: [
+        "この項目は必須です。入力や選択が必要です。", "メールアドレスの形式で入力します。", "ページでは40文字までと指定されています。"
+      ],
+      descriptions: ["ページの入力例：example@example.invalid"]
+    });
+    expect(JSON.stringify(details)).not.toContain("PRIVATE_REFLECTED_ERROR");
+  });
+
+  it("restores ordinary public descriptions after the native error notification is cleared", () => {
+    page(`<label for="email">メールアドレス</label>
+      <input id="email" type="email" aria-invalid="false" aria-describedby="hint" placeholder="example@example.invalid">
+      <p id="hint">半角で入力してください。</p>`);
+    const control = field("email");
+    forbidPrivateState(control);
+    expect(fieldDetails(control, undefined, true).descriptions).toEqual(["ページの入力例：example@example.invalid"]);
+    expect(fieldDetails(control, undefined, false).descriptions).toEqual(["半角で入力してください。", "ページの入力例：example@example.invalid"]);
   });
 
   it.each([

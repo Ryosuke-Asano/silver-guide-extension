@@ -218,7 +218,7 @@ function hasVisibleRequiredMarker(heading: Element): boolean {
   return containsMarker && !/(?:非\s*必須|必須\s*(?:で(?:は)?(?:ありません|ない|なく)|事項))/.test(wording);
 }
 
-export function fieldDetails(field: SupportedField, fields?: SupportedField[]): FieldDetails {
+export function fieldDetails(field: SupportedField, fields?: SupportedField[], hasNotifiedError = false): FieldDetails {
   const label = fieldLabel(field);
   const nativeVisibleLabel = nativeLabelText(field, true);
   const visibleLabel = nativeVisibleLabel && nativeVisibleLabel !== label.replace(/\s+/g, " ").trim()
@@ -273,7 +273,10 @@ export function fieldDetails(field: SupportedField, fields?: SupportedField[]): 
   }
 
   const errorIds = new Set(field.getAttribute("aria-errormessage")?.trim().split(/\s+/) ?? []);
-  const descriptionIds = field.getAttribute("aria-describedby")?.trim().split(/\s+/).filter(Boolean) ?? [];
+  // A page may reuse describedby for an unmarked error that echoes input.
+  // Known errors suppress ID resolution and text reads, not just UI output.
+  const descriptionIds = hasNotifiedError || hasPageError(field) ? []
+    : field.getAttribute("aria-describedby")?.trim().split(/\s+/).filter(Boolean) ?? [];
   const descriptions = [...new Set(descriptionIds)].slice(0, 8)
     .filter((id) => !errorIds.has(id))
     .map((id) => field.ownerDocument.getElementById(id))

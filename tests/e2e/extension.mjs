@@ -19,9 +19,24 @@ export const test = base.extend({
       const manifestPath = path.join(stagingDirectory, "manifest.json");
       const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
       // Only the disposable test copy receives access to localhost. The product
-      // keeps activeTab; opening a popup as a tab does not grant activeTab.
+      // keeps activeTab; the test opener does not grant activeTab to a fixture.
       manifest.host_permissions = ["http://127.0.0.1/*"];
       await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
+      if (manifest.side_panel !== undefined) {
+        // A real extension-page click opens Chrome's native panel. These two
+        // files exist only in the disposable stage, never in the product.
+        await writeFile(path.join(stagingDirectory, "qa-open-panel.html"), '<!doctype html><html lang="ja"><meta charset="utf-8"><title>Native panel QA opener</title><button id="open-native-panel" disabled>テスト用サイドパネルを開く</button><p id="open-result"></p><script src="qa-open-panel.js"></script></html>');
+        await writeFile(path.join(stagingDirectory, "qa-open-panel.js"), `chrome.windows.getCurrent().then(win => {
+          const button = document.getElementById('open-native-panel');
+          button.disabled = false;
+          button.addEventListener('click', () => {
+            chrome.sidePanel.open({ windowId: win.id }).then(
+              () => document.getElementById('open-result').textContent = 'opened',
+              error => document.getElementById('open-result').textContent = error.message
+            );
+          });
+        });`);
+      }
       context = await chromium.launchPersistentContext(profileDirectory, {
         ...contextOptions,
         channel: "chromium",
@@ -90,7 +105,7 @@ export async function messagePage(worker, page, message, inject = false) {
 }
 
 export async function activate(worker, page, settings = { fontSize: "medium", showOriginal: true }) {
-  const result = await messagePage(worker, page, { type: "silver-guide-enable", settings }, true);
+  const result = await messagePage(worker, page, { type: "silver-guide-enable", settings, presentation: "page" }, true);
   expect(result.active).toBe(true);
   await expect(page.locator("#silver-guide-dock")).toBeVisible();
   return result;
@@ -124,7 +139,7 @@ export async function installSensitiveAccessGuard(worker, page) {
       func: () => {
         const audit = { reads: {}, writes: {}, attributes: [], messages: [], formOperations: [] };
         window.__silverGuideSensitiveAccess = audit;
-        const protectedText = "input, textarea, select, option, output, [contenteditable], [role=textbox], [role=searchbox], [role=listbox], [role=option], [role=alert], [aria-live]";
+        const protectedText = "input, textarea, select, option, output, [contenteditable], [role=textbox], [role=searchbox], [role=listbox], [role=option], [role=alert], [aria-live], [data-fixture-private-echo]";
         const guard = (prototype, property, label) => {
           const descriptor = Object.getOwnPropertyDescriptor(prototype, property);
           if (descriptor === undefined || descriptor.configurable === false) return;

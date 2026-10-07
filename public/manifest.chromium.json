@@ -2,14 +2,17 @@
   "manifest_version": 3,
   "name": "Silver Guide",
   "version": "0.1.0",
+  "minimum_chrome_version": "114",
   "description": "すべてのページの理解を助け、行政ページでは入力と導線を支援します。",
   "action": {
-    "default_title": "Silver Guide",
-    "default_popup": "popup.html"
+    "default_title": "Silver Guide をサイドパネルで開く"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
   },
   "background": {
     "service_worker": "background.js",
     "type": "module"
   },
-  "permissions": ["activeTab", "scripting", "storage"]
+  "permissions": ["activeTab", "scripting", "storage", "sidePanel"]
 }

@@ -3,36 +3,20 @@ import {
   saveEvidence, installSensitiveAccessGuard, sensitiveAccessAudit, fieldSnapshot
 } from "./extension.mjs";
 
-test("popup, background and injected content activate, update settings, stop and resume", async ({ page, context, worker, audit }) => {
+test("legacy page presentation activates, updates settings, stops and resumes", async ({ page, worker, audit }) => {
   await page.goto("/semantic.html");
   await expect(page).toHaveTitle("架空の証明書申請 — Semantic fixture");
   await expect(page.locator("h1")).toHaveText("架空の証明書申請");
   await expect(page.locator("#silver-guide-host")).toHaveCount(0);
-  const popup = await context.newPage();
-  const extensionOrigin = new URL(worker.url()).origin;
-  // WHATWG URL reports "null" for chrome-extension origins; construct it from
-  // the hostname to exercise the packaged popup rather than a web imitation.
-  const popupURL = extensionOrigin === "null"
-    ? `chrome-extension://${new URL(worker.url()).hostname}/popup.html`
-    : `${extensionOrigin}/popup.html`;
-  await popup.goto(popupURL);
-  await expect(popup.getByRole("heading", { name: "Silver Guide" })).toBeVisible();
-  await page.bringToFront();
-  await popup.getByRole("button", { name: "このページを支援する" }).click();
+  await activate(worker, page);
   await expect(dockFor(page)).toBeVisible();
-  await expect(popup.getByRole("button", { name: "支援を停止する" })).toBeVisible();
-  await expect(popup.getByText("入力する", { exact: true })).toBeVisible();
-  await expect(popup.getByText("進む", { exact: true })).toHaveCount(0);
-  await popup.locator("label.font-size-radio").filter({ hasText: /^大$/ }).click();
-  await expect(popup.getByRole("radio", { name: "大", exact: true })).toBeChecked();
+  await messagePage(worker, page, { type: "silver-guide-update-settings", settings: { fontSize: "large", showOriginal: true } });
   await expect(dockFor(page)).toHaveClass(/font-large/);
-  const stored = await worker.evaluate(() => chrome.storage.local.get(null));
-  expect(stored).toEqual({ silverGuideSettings: { fontSize: "large", showOriginal: true } });
-  await saveEvidence(popup, "popup-large-settings");
-  await popup.getByRole("button", { name: "支援を停止する" }).click();
+  await saveEvidence(page, "legacy-page-large-settings");
+  await messagePage(worker, page, { type: "silver-guide-disable" });
   await expect(page.locator("#silver-guide-host")).toHaveCount(0);
   await expect(page.locator("[data-silver-guide-generated=true]")).toHaveCount(0);
-  await popup.getByRole("button", { name: "このページを支援する" }).click();
+  await activate(worker, page, { fontSize: "large", showOriginal: true });
   await expect(page.locator("#silver-guide-host")).toHaveCount(1);
   await expect(dockFor(page)).toHaveClass(/font-large/);
   expect(await page.evaluate(() => window.fixtureSubmissions)).toBe(0);
@@ -504,7 +488,7 @@ test("unsupported page controls clear an old input hint while the assistant's ow
   await saveEvidence(page, "unsupported-control-clears-old-hint");
 });
 
-test("an open glossary reflects changed settings while its focused close and listen controls stay in place", async ({ page, context, worker, audit }) => {
+test("an open glossary reflects changed settings while its focused close and listen controls stay in place", async ({ page, worker, audit }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/public-contact.html");
   // A public explanation at the lower-right edge exercises box placement
@@ -539,13 +523,11 @@ test("an open glossary reflects changed settings while its focused close and lis
     await expect(listen).toBeFocused();
     expect(await withinViewport()).toBe(true);
   }
-  const popup = await context.newPage();
-  await popup.goto(`chrome-extension://${new URL(worker.url()).hostname}/popup.html`);
-  await page.bringToFront();
-  await popup.locator("label.font-size-radio").filter({ hasText: /^大$/ }).click();
+  // Chrome background/UI integration is exercised through the actual native
+  // side panel in sidepanel.e2e.mjs. Keep this page fallback test independent.
+  await messagePage(worker, page, { type: "silver-guide-update-settings", settings: { fontSize: "large", showOriginal: true } });
   await expect(tooltip).toHaveClass(/font-large/);
-  await popup.locator("label.original-switch").click();
-  await expect(popup.getByRole("switch")).not.toBeChecked();
+  await messagePage(worker, page, { type: "silver-guide-update-settings", settings: { fontSize: "large", showOriginal: false } });
   await expect(tooltip).not.toContainText("元の言葉:");
   await expect(tooltip).toBeVisible();
   expect(await withinViewport()).toBe(true);

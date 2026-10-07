@@ -2,19 +2,23 @@
 
 ## 1. 方針
 
-Floorp で動作する Firefox 互換の WebExtension として、既存サイトの DOM を置き換えずに支援 UI を重ねる。拡張機能本体と、先行して作成した「やさしく読む」は別ディレクトリ・別 ID・別配布物にする。
+Firefox / Floorp と Chrome に対応する WebExtension とする。Chrome の支援 UI はブラウザーのサイドパネルに置き、Firefox / Floorp はページ内の隔離 UI を使う。拡張機能本体と、先行して作成した「やさしく読む」は別ディレクトリ・別 ID・別配布物にする。
 
 最小権限を優先し、初期版は `activeTab`、`scripting`、`storage` を利用する。全ページで使えることは、広範な常時ホスト権限を要求することではなく、利用者が支援を開始した現在のタブで動作することとして実現する。
+
+Chrome 版は `sidePanel` を追加する。`side_panel.default_path` と `setPanelBehavior({openPanelOnActionClick:true})` によりネイティブのサイドパネルを開く。公開メタデータのスナップショットだけを拡張内のメッセージで共有し、ページの値・選択状態や任意の HTML は渡さない。現在の windowId / tabId / sessionId / revision を照合し、古いタブ・画面・項目への操作を拒否する。背景ではページ状態をキャッシュ・保存しない。詳細は [side-panel.md](side-panel.md)。
 
 ## 2. 構成
 
 ```mermaid
 flowchart TB
-  P[Popup: React Aria] --> B[Background coordinator]
+  P[Firefox popup: React Aria] --> B[Background coordinator]
+  SP[Chrome native side panel: React Aria] <--> B
   B --> C[Content controller]
   C --> A[Page analyser]
   C --> T[Tooltip layer]
-  C --> D[Assistance dock]
+  C --> D[Firefox assistance dock]
+  C -->|Public snapshot only| B
   A --> G{Guide pack matches?}
   G -->|No| L[Local glossary]
   G -->|Information page| R[Official route definitions]
@@ -23,6 +27,7 @@ flowchart TB
   R --> D
   F --> D
   S[Local settings] --> P
+  S --> SP
   S --> C
 ```
 
