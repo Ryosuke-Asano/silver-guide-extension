@@ -1,0 +1,9 @@
+{
+  "name": "@internationalized/date",
+  "version": "3.12.3",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adobe/react-spectrum/tree/main/packages/@internationalized/date"
+  }
+}

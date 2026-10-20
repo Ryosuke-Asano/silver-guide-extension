@@ -1,0 +1,443 @@
+{
+  "version": 2,
+  "at": "2026-10-13T11:45:26.562Z",
+  "originalV1ProofPath": "E:\\others\\silverguide-qa\\accuracy/source-vector-fix-proof-v1.json",
+  "originalV1ProofSha256": "e87d4f9a6cbd6adfd0d460808742cc6aed8e3523899f8bf3d33676d4a43c4964",
+  "independentSourceDiagnosticSha256": "c82a4f3326cb0c12452a9a1fc7cd7ccbd8468bf7d7fcc8f6efb939ef079c087d",
+  "sourceNewEightExcluded": [
+    {
+      "label": "記入欄（項目名を確認）",
+      "kind": "checkbox",
+      "placements": [
+        {
+          "pageIndex": 1,
+          "quad": [
+            {
+              "x": 197.66890109863283,
+              "y": 252.10940003051758
+            },
+            {
+              "x": 205.5248962768555,
+              "y": 252.10940003051758
+            },
+            {
+              "x": 205.5248962768555,
+              "y": 259.96539520874023
+            },
+            {
+              "x": 197.66890109863283,
+              "y": 259.96539520874023
+            }
+          ],
+          "widgetRef": null,
+          "writingMode": "horizontal"
+        }
+      ],
+      "sourceDiagnosticNumber": 1,
+      "sourceClassification": "outlined explanatory glyph contour misdetected as blank checkbox allocation"
+    },
+    {
+      "label": "記入欄（項目名を確認）",
+      "kind": "checkbox",
+      "placements": [
+        {
+          "pageIndex": 1,
+          "quad": [
+            {
+              "x": 278.69580140380856,
+              "y": 240.70279988365172
+            },
+            {
+              "x": 286.5507971313476,
+              "y": 240.70279988365172
+            },
+            {
+              "x": 286.5507971313476,
+              "y": 248.55779561119078
+            },
+            {
+              "x": 278.69580140380856,
+              "y": 248.55779561119078
+            }
+          ],
+          "widgetRef": null,
+          "writingMode": "horizontal"
+        }
+      ],
+      "sourceDiagnosticNumber": 2,
+      "sourceClassification": "outlined explanatory glyph contour misdetected as blank checkbox allocation"
+    },
+    {
+      "label": "記入欄（項目名を確認）",
+      "kind": "checkbox",
+      "placements": [
+        {
+          "pageIndex": 2,
+          "quad": [
+            {
+              "x": 299.6912014038086,
+              "y": 177.06339988365173
+            },
+            {
+              "x": 307.54619713134764,
+              "y": 177.06339988365173
+            },
+            {
+              "x": 307.54619713134764,
+              "y": 184.9183956111908
+            },
+            {
+              "x": 299.6912014038086,
+              "y": 184.9183956111908
+            }
+          ],
+          "widgetRef": null,
+          "writingMode": "horizontal"
+        }
+      ],
+      "sourceDiagnosticNumber": 3,
+      "sourceClassification": "outlined explanatory glyph contour misdetected as blank checkbox allocation"
+    },
+    {
+      "label": "福祉コード",
+      "kind": "checkbox",
+      "placements": [
+        {
+          "pageIndex": 2,
+          "quad": [
+            {
+              "x": 402.07289645996093,
+              "y": 135.29809989509582
+            },
+            {
+              "x": 409.9278998168945,
+              "y": 135.29809989509582
+            },
+            {
+              "x": 409.9278998168945,
+              "y": 143.1531032520294
+            },
+            {
+              "x": 402.07289645996093,
+              "y": 143.1531032520294
+            }
+          ],
+          "widgetRef": null,
+          "writingMode": "horizontal"
+        }
+      ],
+      "sourceDiagnosticNumber": 4,
+      "sourceClassification": "outlined explanatory glyph contour misdetected as blank checkbox allocation"
+    },
+    {
+      "label": "福祉コード",
+      "kind": "checkbox",
+      "placements": [
+        {
+          "pageIndex": 2,
+          "quad": [
+            {
+              "x": 453.7678999694824,
+              "y": 130.64609994468688
+            },
+            {
+              "x": 461.62389991607665,
+              "y": 130.64609994468688
+            },
+            {
+              "x": 461.62389991607665,
+              "y": 138.50209989128112
+            },
+            {
+              "x": 453.7678999694824,
+              "y": 138.50209989128112
+            }
+          ],
+          "widgetRef": null,
+          "writingMode": "horizontal"
+        }
+      ],
+      "sourceDiagnosticNumber": 5,
+      "sourceClassification": "outlined explanatory glyph contour misdetected as blank checkbox allocation"
+    },
+    {
+      "label": "記入欄（項目名を確認）",
+      "kind": "checkbox",
+      "placements": [
+        {
+          "pageIndex": 2,
+          "quad": [
+            {
+              "x": 461.2940982299805,
+              "y": 107.71510005340576
+            },
+            {
+              "x": 469.15010103759766,
+              "y": 107.71510005340576
+            },
+            {
+              "x": 469.15010103759766,
+              "y": 115.57110286102295
+            },
+            {
+              "x": 461.2940982299805,
+              "y": 115.57110286102295
+            }
+          ],
+          "widgetRef": null,
+          "writingMode": "horizontal"
+        }
+      ],
+      "sourceDiagnosticNumber": 6,
+      "sourceClassification": "outlined explanatory glyph contour misdetected as blank checkbox allocation"
+    },
+    {
+      "label": "記入欄（項目名を確認）",
+      "kind": "checkbox",
+      "placements": [
+        {
+          "pageIndex": 2,
+          "quad": [
+            {
+              "x": 474.9020080566406,
+              "y": 98.6500015258789
+            },
+            {
+              "x": 482.82598876953125,
+              "y": 98.6500015258789
+            },
+            {
+              "x": 482.82598876953125,
+              "y": 106.57398223876953
+            },
+            {
+              "x": 474.9020080566406,
+              "y": 106.57398223876953
+            }
+          ],
+          "widgetRef": null,
+          "writingMode": "horizontal"
+        }
+      ],
+      "sourceDiagnosticNumber": 7,
+      "sourceClassification": "outlined explanatory glyph contour misdetected as blank checkbox allocation"
+    },
+    {
+      "label": "支給開始",
+      "kind": "text",
+      "placements": [
+        {
+          "pageIndex": 2,
+          "quad": [
+            {
+              "x": 457.5594940185547,
+              "y": 72.51580000119209
+            },
+            {
+              "x": 485.8612940185547,
+              "y": 72.51580000119209
+            },
+            {
+              "x": 485.8612940185547,
+              "y": 94.51580000119209
+            },
+            {
+              "x": 457.5594940185547,
+              "y": 94.51580000119209
+            }
+          ],
+          "widgetRef": null,
+          "writingMode": "horizontal"
+        }
+      ],
+      "sourceDiagnosticNumber": 8,
+      "sourceClassification": "printed explanatory underline tail misdetected as blank text allocation"
+    }
+  ],
+  "additionalLegacySixExcluded": [
+    {
+      "label": "記入欄（項目名を確認）",
+      "kind": "text",
+      "placements": [
+        {
+          "pageIndex": 1,
+          "quad": [
+            {
+              "x": 420.19449991989137,
+              "y": 833.2282999198914
+            },
+            {
+              "x": 527.8245014648437,
+              "y": 833.2282999198914
+            },
+            {
+              "x": 527.8245014648437,
+              "y": 855.2282999198914
+            },
+            {
+              "x": 420.19449991989137,
+              "y": 855.2282999198914
+            }
+          ],
+          "widgetRef": null,
+          "writingMode": "horizontal"
+        }
+      ]
+    },
+    {
+      "label": "記入欄（項目名を確認）",
+      "kind": "text",
+      "placements": [
+        {
+          "pageIndex": 2,
+          "quad": [
+            {
+              "x": 406.6751999198914,
+              "y": 831.2290999198914
+            },
+            {
+              "x": 527.8241986572266,
+              "y": 831.2290999198914
+            },
+            {
+              "x": 527.8241986572266,
+              "y": 853.2290999198914
+            },
+            {
+              "x": 406.6751999198914,
+              "y": 853.2290999198914
+            }
+          ],
+          "widgetRef": null,
+          "writingMode": "horizontal"
+        }
+      ]
+    },
+    {
+      "label": "フリガナ",
+      "kind": "text",
+      "placements": [
+        {
+          "pageIndex": 2,
+          "quad": [
+            {
+              "x": 110.88560007629394,
+              "y": 274.41500007629395
+            },
+            {
+              "x": 264.5436029296875,
+              "y": 274.41500007629395
+            },
+            {
+              "x": 264.5436029296875,
+              "y": 296.41500007629395
+            },
+            {
+              "x": 110.88560007629394,
+              "y": 296.41500007629395
+            }
+          ],
+          "widgetRef": null,
+          "writingMode": "horizontal"
+        }
+      ]
+    },
+    {
+      "label": "横浜",
+      "kind": "text",
+      "placements": [
+        {
+          "pageIndex": 2,
+          "quad": [
+            {
+              "x": 110.88560007629394,
+              "y": 196.8950015258789
+            },
+            {
+              "x": 264.5436029296875,
+              "y": 196.8950015258789
+            },
+            {
+              "x": 264.5436029296875,
+              "y": 218.8950015258789
+            },
+            {
+              "x": 110.88560007629394,
+              "y": 218.8950015258789
+            }
+          ],
+          "widgetRef": null,
+          "writingMode": "horizontal"
+        }
+      ]
+    },
+    {
+      "label": "福祉コード",
+      "kind": "text",
+      "placements": [
+        {
+          "pageIndex": 2,
+          "quad": [
+            {
+              "x": 348.7393,
+              "y": 72.51580000119209
+            },
+            {
+              "x": 399.26300048828125,
+              "y": 72.51580000119209
+            },
+            {
+              "x": 399.26300048828125,
+              "y": 94.51580000119209
+            },
+            {
+              "x": 348.7393,
+              "y": 94.51580000119209
+            }
+          ],
+          "widgetRef": null,
+          "writingMode": "horizontal"
+        }
+      ]
+    },
+    {
+      "label": "□所得証明〔請求者・配偶者〕",
+      "kind": "text",
+      "placements": [
+        {
+          "pageIndex": 2,
+          "quad": [
+            {
+              "x": 348.7393,
+              "y": 60.991100001192095
+            },
+            {
+              "x": 397.5433008544922,
+              "y": 60.991100001192095
+            },
+            {
+              "x": 397.5433008544922,
+              "y": 82.9911000011921
+            },
+            {
+              "x": 348.7393,
+              "y": 82.9911000011921
+            }
+          ],
+          "widgetRef": null,
+          "writingMode": "horizontal"
+        }
+      ]
+    }
+  ],
+  "additionalLegacyScope": "Six existing f53 candidates on original Yoko example/instruction pages2/3 were also removed by the same general contour provenance policy. These six are explicitly separate from the new eight regression. Original actual-input page1 allocations,1074 native text/quad evidence and cell geometry stay unchanged. They are not added truth annotations or formal precision qualification.",
+  "oldD4TotalCandidates": 198,
+  "oldF53TotalCandidates": 190,
+  "newSourceTotalCandidates": 184,
+  "addedCandidates": 0,
+  "sourceAndOriginalTruthUnchanged": true,
+  "sourceRunOwnedPid0": true,
+  "sourceRunDrift0": true,
+  "sourceShort10and13KindsPreserved": true,
+  "source21NeedsReviewUnknownGroupPreserved": true
+}

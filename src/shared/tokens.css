@@ -11,9 +11,12 @@
 }
 
 body {
+  font-family: inherit;
+  font-size: 18px;
+  line-height: 1.6;
   color-scheme: light;
   margin: 0;
-  min-width: 360px;
+  min-width: 320px;
   background: #ffffff;
 }
 
@@ -22,7 +25,7 @@ input {
   font: inherit;
 }
 
-button:focus-visible,
+button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, a:focus-visible, summary:focus-visible,
 [data-focused] {
   outline: 3px solid #0c75a6;
   outline-offset: 3px;

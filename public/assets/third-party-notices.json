@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "packages": [
+    {
+      "name": "@pdf-lib/fontkit",
+      "version": "1.1.1",
+      "license": "MIT",
+      "licenseTextStatus": "not-provided-by-package",
+      "files": [],
+      "metadata": "notices/@pdf-lib__fontkit@1.1.1/package-metadata.json"
+    },
+    {
+      "name": "@pdf-lib/standard-fonts",
+      "version": "1.0.0",
+      "license": "MIT",
+      "licenseTextStatus": "included",
+      "files": [
+        "notices/@pdf-lib__standard-fonts@1.0.0/LICENSE.md"
+      ],
+      "metadata": "notices/@pdf-lib__standard-fonts@1.0.0/package-metadata.json"
+    },
+    {
+      "name": "@pdf-lib/upng",
+      "version": "1.0.1",
+      "license": "MIT",
+      "licenseTextStatus": "included",
+      "files": [
+        "notices/@pdf-lib__upng@1.0.1/LICENSE"
+      ],
+      "metadata": "notices/@pdf-lib__upng@1.0.1/package-metadata.json"
+    },
+    {
+      "name": "bmp-js",
+      "version": "0.1.0",
+      "license": "MIT",
+      "licenseTextStatus": "included",
+      "files": [
+        "notices/bmp-js@0.1.0/LICENSE"
+      ],
+      "metadata": "notices/bmp-js@0.1.0/package-metadata.json"
+    },
+    {
+      "name": "idb-keyval",
+      "version": "6.3.0",
+      "license": "Apache-2.0",
+      "licenseTextStatus": "included",
+      "files": [
+        "notices/idb-keyval@6.3.0/LICENCE"
+      ],
+      "metadata": "notices/idb-keyval@6.3.0/package-metadata.json"
+    },
+    {
+      "name": "is-url",
+      "version": "1.2.4",
+      "license": "MIT",
+      "licenseTextStatus": "included",
+      "files": [
+        "notices/is-url@1.2.4/LICENSE-MIT"
+      ],
+      "metadata": "notices/is-url@1.2.4/package-metadata.json"
+    },
+    {
+      "name": "node-fetch",
+      "version": "2.7.0",
+      "license": "MIT",
+      "licenseTextStatus": "included",
+      "files": [
+        "notices/node-fetch@2.7.0/LICENSE.md"
+      ],
+      "metadata": "notices/node-fetch@2.7.0/package-metadata.json"
+    },
+    {
+      "name": "opencollective-postinstall",
+      "version": "2.0.3",
+      "license": "MIT",
+      "licenseTextStatus": "included",
+      "files": [
+        "notices/opencollective-postinstall@2.0.3/LICENSE"
+      ],
+      "metadata": "notices/opencollective-postinstall@2.0.3/package-metadata.json"
+    },
+    {
+      "name": "pako",
+      "version": "1.0.11",
+      "license": "(MIT AND Zlib)",
+      "licenseTextStatus": "included",
+      "files": [
+        "notices/pako@1.0.11/LICENSE"
+      ],
+      "metadata": "notices/pako@1.0.11/package-metadata.json"
+    },
+    {
+      "name": "pdf-lib",
+      "version": "1.17.1",
+      "license": "MIT",
+      "licenseTextStatus": "included",
+      "files": [
+        "notices/pdf-lib@1.17.1/LICENSE.md"
+      ],
+      "metadata": "notices/pdf-lib@1.17.1/package-metadata.json"
+    },
+    {
+      "name": "pdfjs-dist",
+      "version": "6.4.299",
+      "license": "Apache-2.0",
+      "licenseTextStatus": "included",
+      "files": [
+        "notices/pdfjs-dist@6.4.299/LICENSE"
+      ],
+      "metadata": "notices/pdfjs-dist@6.4.299/package-metadata.json"
+    },
+    {
+      "name": "react-dom",
+      "version": "19.2.8",
+      "license": "MIT",
+      "licenseTextStatus": "included",
+      "files": [
+        "notices/react-dom@19.2.8/LICENSE"
+      ],
+      "metadata": "notices/react-dom@19.2.8/package-metadata.json"
+    },
+    {
+      "name": "react",
+      "version": "19.2.8",
+      "license": "MIT",
+      "licenseTextStatus": "included",
+      "files": [
+        "notices/react@19.2.8/LICENSE"
+      ],
+      "metadata": "notices/react@19.2.8/package-metadata.json"
+    },
+    {
+      "name": "regenerator-runtime",
+      "version": "0.13.11",
+      "license": "MIT",
+      "licenseTextStatus": "included",
+      "files": [
+        "notices/regenerator-runtime@0.13.11/LICENSE"
+      ],
+      "metadata": "notices/regenerator-runtime@0.13.11/package-metadata.json"
+    },
+    {
+      "name": "scheduler",
+      "version": "0.27.0",
+      "license": "MIT",
+      "licenseTextStatus": "included",
+      "files": [
+        "notices/scheduler@0.27.0/LICENSE"
+      ],
+      "metadata": "notices/scheduler@0.27.0/package-metadata.json"
+    },
+    {
+      "name": "tesseract.js-core",
+      "version": "7.0.0",
+      "license": "Apache-2.0",
+      "licenseTextStatus": "included",
+      "files": [
+        "notices/tesseract.js-core@7.0.0/LICENSE"
+      ],
+      "metadata": "notices/tesseract.js-core@7.0.0/package-metadata.json"
+    },
+    {
+      "name": "tesseract.js",
+      "version": "7.0.0",
+      "license": "Apache-2.0",
+      "licenseTextStatus": "included",
+      "files": [
+        "notices/tesseract.js@7.0.0/LICENSE.md"
+      ],
+      "metadata": "notices/tesseract.js@7.0.0/package-metadata.json"
+    },
+    {
+      "name": "tr46",
+      "version": "0.0.3",
+      "license": "MIT",
+      "licenseTextStatus": "not-provided-by-package",
+      "files": [],
+      "metadata": "notices/tr46@0.0.3/package-metadata.json"
+    },
+    {
+      "name": "tslib",
+      "version": "1.14.1",
+      "license": "0BSD",
+      "licenseTextStatus": "included",
+      "files": [
+        "notices/tslib@1.14.1/LICENSE.txt"
+      ],
+      "metadata": "notices/tslib@1.14.1/package-metadata.json"
+    },
+    {
+      "name": "wasm-feature-detect",
+      "version": "1.9.0",
+      "license": "Apache-2.0",
+      "licenseTextStatus": "included",
+      "files": [
+        "notices/wasm-feature-detect@1.9.0/LICENSE"
+      ],
+      "metadata": "notices/wasm-feature-detect@1.9.0/package-metadata.json"
+    },
+    {
+      "name": "webidl-conversions",
+      "version": "3.0.1",
+      "license": "BSD-2-Clause",
+      "licenseTextStatus": "included",
+      "files": [
+        "notices/webidl-conversions@3.0.1/LICENSE.md"
+      ],
+      "metadata": "notices/webidl-conversions@3.0.1/package-metadata.json"
+    },
+    {
+      "name": "whatwg-url",
+      "version": "5.0.0",
+      "license": "MIT",
+      "licenseTextStatus": "included",
+      "files": [
+        "notices/whatwg-url@5.0.0/LICENSE.txt"
+      ],
+      "metadata": "notices/whatwg-url@5.0.0/package-metadata.json"
+    },
+    {
+      "name": "zlibjs",
+      "version": "0.3.1",
+      "license": "MIT",
+      "licenseTextStatus": "included",
+      "files": [
+        "notices/zlibjs@0.3.1/LICENSE"
+      ],
+      "metadata": "notices/zlibjs@0.3.1/package-metadata.json"
+    }
+  ]
+}

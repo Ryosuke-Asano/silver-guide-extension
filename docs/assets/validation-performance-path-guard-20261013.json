@@ -1,0 +1,89 @@
+{
+  "kind": "formal-performance-path-guard-review",
+  "version": 2,
+  "recordedAtUTC": "2026-10-13 13:25:29 UTC",
+  "sourceHash": "d5ce15ec4eae721b0c7cb51a05584c09c7c009cb0fc47a15b9d6047a551b4175",
+  "ownedExternalFiles": [
+    "E:/others/silverguide-qa/performance/formal-cohort-contract.mjs",
+    "E:/others/silverguide-qa/performance/formal-cohort-contract.test.mjs"
+  ],
+  "finding": {
+    "linesBefore": [
+      62,
+      63
+    ],
+    "cause": "win32.isAbsolute accepts drive-unspecified root paths; win32.normalize preserves non-root trailing separators, so equivalent directory strings could pass as distinct fresh profiles.",
+    "equivalentDirectoryCounterexample": [
+      "C:/qa/p01",
+      "C:/qa/p01/"
+    ],
+    "partiallyQualifiedCounterexamples": [
+      "/qa/p01",
+      "\\qa\\p01",
+      "C:qa/p01"
+    ]
+  },
+  "repair": {
+    "helper": "freshProfilePathIdentity",
+    "helperLines": [
+      19,
+      29
+    ],
+    "manifestCheckLines": [
+      74,
+      76
+    ],
+    "accepted": "Ordinary fully qualified letter-drive roots or complete UNC server/share roots.",
+    "rejected": "Root-relative, drive-relative, incomplete UNC, verbatim/device namespace paths.",
+    "identity": "win32.normalize then inspect the drive/share root; only fully qualified paths enter win32.resolve and lowercase comparison. Non-root trailing separators are removed; roots remain roots.",
+    "unchangedGuards": [
+      "Same60 profiles per target in all11 primary metrics",
+      "120 distinct profile identities",
+      "One expected sourceHash",
+      "Explicit per-profile and cohort ownedPidZero",
+      "Failed/censored +Infinity remains in n60 statistics"
+    ],
+    "limits": "Pure string qualification/canonicalization; does not authenticate external logs or resolve filesystem symlink/8.3 aliases."
+  },
+  "meaningfulRegressions": [
+    "Keep1320 primary rows and120 ownership identities while equivalent trailing/case/dot/parent-segment drive/UNC paths make recordComplete true and complete false with path-reused issue.",
+    "Reject root-relative/drive-relative/incomplete-UNC/device paths without changing the primary record cohort.",
+    "Accept legitimate fully qualified drive and UNC profiles, including distinct p0/p01 prefixes, while preserving a timeout as +Infinity in all60 observations."
+  ],
+  "beforeRepair": {
+    "command": "node --test --test-name-pattern='same-directory trailing|partially qualified|ordinary fully' E:/others/silverguide-qa/performance/formal-cohort-contract.test.mjs",
+    "tests": 3,
+    "passed": 1,
+    "failed": 2,
+    "durationMs": 87.7754,
+    "failures": [
+      "Same-directory trailing separators incorrectly completed the cohort.",
+      "A root-relative /qa/p01 incorrectly completed the cohort."
+    ],
+    "existingNineTestsRerun": false
+  },
+  "afterRepair": {
+    "command": "node --test E:/others/silverguide-qa/performance/formal-cohort-contract.test.mjs",
+    "tests": 12,
+    "existingTests": 9,
+    "newTests": 3,
+    "passed": 12,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "durationMs": 674.8679,
+    "rerunForThisEvidenceSave": false
+  },
+  "impact": {
+    "productSourceChanged": false,
+    "productBundlesChanged": false,
+    "browserOCRServerStarted": false,
+    "runtimeMeasurementsChanged": false,
+    "performanceStatsFileChanged": false,
+    "existingRunGeneratedPathsWereCanonical": true,
+    "existingThreeSamplesInvalidatedByThisPathIssue": false,
+    "existingSamplesNote": "run-cohort.mjs:70 already generates fully qualified paths with no trailing separator. No evidence that this path issue affected the retained3 samples; their separate Floorp02 timeout/ownership diagnosis is not altered.",
+    "hashVerificationScope": "No product file was edited and no new large SHA traversal was executed for this external-only repair.",
+    "finalExternalSourceQuiet": true
+  }
+}

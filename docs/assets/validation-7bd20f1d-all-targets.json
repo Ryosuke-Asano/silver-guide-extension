@@ -1,0 +1,1161 @@
+{
+  "sourceHash": "7bd20f1d29487d89d1cc279fcef83efb3ec7de21d99196c2c5cc864b4d3d4e8e",
+  "builds": [
+    {
+      "target": "dist",
+      "fileCount": 323,
+      "matches": true,
+      "build": {
+        "version": "2.0.0",
+        "browserTarget": "gecko",
+        "contentScriptFormat": "iife",
+        "sourceHash": "7bd20f1d29487d89d1cc279fcef83efb3ec7de21d99196c2c5cc864b4d3d4e8e",
+        "builtAt": "2026-10-13T07:50:52.082Z"
+      }
+    },
+    {
+      "target": "dist-chromium",
+      "fileCount": 323,
+      "matches": true,
+      "build": {
+        "version": "2.0.0",
+        "browserTarget": "chromium",
+        "contentScriptFormat": "iife",
+        "sourceHash": "7bd20f1d29487d89d1cc279fcef83efb3ec7de21d99196c2c5cc864b4d3d4e8e",
+        "builtAt": "2026-10-13T07:51:38.107Z"
+      }
+    }
+  ],
+  "scope": {
+    "exploratory": [
+      "nta-dependent-2026",
+      "mhlw-cv-a4",
+      "cfa-employment",
+      "setagaya-residence",
+      "yokohama-childbenefit",
+      "sapporo-insurance",
+      "kyoto-care",
+      "nagoya-moving",
+      "fukuoka-park-activity"
+    ],
+    "holdoutBytesRead": false,
+    "layouts": [
+      {
+        "width": 320,
+        "zoom": 75
+      },
+      {
+        "width": 320,
+        "zoom": 100
+      },
+      {
+        "width": 320,
+        "zoom": 200
+      },
+      {
+        "width": 1080,
+        "zoom": 75
+      },
+      {
+        "width": 1080,
+        "zoom": 100
+      },
+      {
+        "width": 1080,
+        "zoom": 200
+      }
+    ],
+    "setup": "Actual isolated native Chromium extension. Previously public-saved original PDFs reopened through public encrypted backup import/draft UI; no framework/controller/task injection. All saved direct/option aliases independently enumerated outside browser and compared against all rendered physical locations. All large location buttons pointer-selected in every layout, all large buttons and overlays focus+Enter at1080/100. Keyboard focus() is public DOM targeting, not a complete human Tab/AT audit.",
+    "limitations": [
+      "Small original overlay raw axe flags remain separately recorded. No full WCAG/NVDA/human trial claim.",
+      "This is UI equivalence of saved extracted candidates, not a new extraction accuracy evaluation.",
+      "Nine exploratory PDFs only; reserved/held-out binaries and truth not read.",
+      "Synthetic option/shared/rejected geometry is explicitly seeded saved draft data, not inferred accuracy."
+    ]
+  },
+  "nineDocumentCandidatePathChecks": "passed",
+  "knownCompiledUxDefect": "7bd list internal scroll retains its previous bottom on next/previous batch and original-page switch; source-only correction passed targeted checks but awaits later compiled proof.",
+  "documents": [
+    {
+      "id": "nta-dependent-2026",
+      "title": "nta-dependent-2026.pdf",
+      "original": {
+        "bytes": 2218311,
+        "sha256": "4c0dd45c47a95c0f231bd2d082f23f043ae6c9691e89f92f8abbd0b0873f2370"
+      },
+      "savedFieldCount": 251,
+      "nativeBackedCandidateFields": 193,
+      "sourceKinds": {
+        "acroform": 193,
+        "inferred": 58
+      },
+      "directPlacementAliases": 251,
+      "options": 82,
+      "optionPlacementAliases": 0,
+      "physicalProjectionCount": 251,
+      "pageCount": 2,
+      "documentInspectionOnly": true,
+      "layoutCells": 12,
+      "pointerLargeSelections": 1506,
+      "keyboardLargeSelections": 251,
+      "keyboardOriginalOverlaySelections": 251,
+      "largeButtonMinWidth": 240,
+      "largeButtonMinHeight": 84.796875,
+      "bodyOverflowCells": 0,
+      "originalUndersizedByLayout": [
+        {
+          "width": 320,
+          "zoom": 75,
+          "page": 1,
+          "count": 251
+        },
+        {
+          "width": 320,
+          "zoom": 75,
+          "page": 2,
+          "count": 0
+        },
+        {
+          "width": 320,
+          "zoom": 100,
+          "page": 1,
+          "count": 251
+        },
+        {
+          "width": 320,
+          "zoom": 100,
+          "page": 2,
+          "count": 0
+        },
+        {
+          "width": 320,
+          "zoom": 200,
+          "page": 1,
+          "count": 249
+        },
+        {
+          "width": 320,
+          "zoom": 200,
+          "page": 2,
+          "count": 0
+        },
+        {
+          "width": 1080,
+          "zoom": 75,
+          "page": 1,
+          "count": 250
+        },
+        {
+          "width": 1080,
+          "zoom": 75,
+          "page": 2,
+          "count": 0
+        },
+        {
+          "width": 1080,
+          "zoom": 100,
+          "page": 1,
+          "count": 249
+        },
+        {
+          "width": 1080,
+          "zoom": 100,
+          "page": 2,
+          "count": 0
+        },
+        {
+          "width": 1080,
+          "zoom": 200,
+          "page": 1,
+          "count": 223
+        },
+        {
+          "width": 1080,
+          "zoom": 200,
+          "page": 2,
+          "count": 0
+        }
+      ],
+      "log": "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791878581619/nta-dependent-2026.json"
+    },
+    {
+      "id": "mhlw-cv-a4",
+      "title": "mhlw-cv-a4.pdf",
+      "original": {
+        "bytes": 98654,
+        "sha256": "5944d4af98964ba5eee3119369bcfd6589d3864f033f7aabafc5803554da5e0d"
+      },
+      "savedFieldCount": 109,
+      "nativeBackedCandidateFields": 0,
+      "sourceKinds": {
+        "inferred": 109
+      },
+      "directPlacementAliases": 109,
+      "options": 0,
+      "optionPlacementAliases": 0,
+      "physicalProjectionCount": 109,
+      "pageCount": 2,
+      "documentInspectionOnly": false,
+      "layoutCells": 12,
+      "pointerLargeSelections": 654,
+      "keyboardLargeSelections": 109,
+      "keyboardOriginalOverlaySelections": 109,
+      "largeButtonMinWidth": 240,
+      "largeButtonMinHeight": 84.796875,
+      "bodyOverflowCells": 0,
+      "originalUndersizedByLayout": [
+        {
+          "width": 320,
+          "zoom": 75,
+          "page": 1,
+          "count": 55
+        },
+        {
+          "width": 320,
+          "zoom": 75,
+          "page": 2,
+          "count": 49
+        },
+        {
+          "width": 320,
+          "zoom": 100,
+          "page": 1,
+          "count": 55
+        },
+        {
+          "width": 320,
+          "zoom": 100,
+          "page": 2,
+          "count": 49
+        },
+        {
+          "width": 320,
+          "zoom": 200,
+          "page": 1,
+          "count": 53
+        },
+        {
+          "width": 320,
+          "zoom": 200,
+          "page": 2,
+          "count": 49
+        },
+        {
+          "width": 1080,
+          "zoom": 75,
+          "page": 1,
+          "count": 53
+        },
+        {
+          "width": 1080,
+          "zoom": 75,
+          "page": 2,
+          "count": 49
+        },
+        {
+          "width": 1080,
+          "zoom": 100,
+          "page": 1,
+          "count": 53
+        },
+        {
+          "width": 1080,
+          "zoom": 100,
+          "page": 2,
+          "count": 49
+        },
+        {
+          "width": 1080,
+          "zoom": 200,
+          "page": 1,
+          "count": 3
+        },
+        {
+          "width": 1080,
+          "zoom": 200,
+          "page": 2,
+          "count": 0
+        }
+      ],
+      "log": "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791878581619/mhlw-cv-a4.json"
+    },
+    {
+      "id": "cfa-employment",
+      "title": "cfa-employment.pdf",
+      "original": {
+        "bytes": 331984,
+        "sha256": "d2ee22b407d2923820d5443fb222352d910c445b89fc77dbbb1120687c7f6bf4"
+      },
+      "savedFieldCount": 782,
+      "nativeBackedCandidateFields": 0,
+      "sourceKinds": {
+        "inferred": 782
+      },
+      "directPlacementAliases": 782,
+      "options": 0,
+      "optionPlacementAliases": 0,
+      "physicalProjectionCount": 782,
+      "pageCount": 6,
+      "documentInspectionOnly": false,
+      "layoutCells": 36,
+      "pointerLargeSelections": 4692,
+      "keyboardLargeSelections": 782,
+      "keyboardOriginalOverlaySelections": 782,
+      "largeButtonMinWidth": 240,
+      "largeButtonMinHeight": 84.796875,
+      "bodyOverflowCells": 0,
+      "originalUndersizedByLayout": [
+        {
+          "width": 320,
+          "zoom": 75,
+          "page": 1,
+          "count": 107
+        },
+        {
+          "width": 320,
+          "zoom": 75,
+          "page": 2,
+          "count": 625
+        },
+        {
+          "width": 320,
+          "zoom": 75,
+          "page": 3,
+          "count": 15
+        },
+        {
+          "width": 320,
+          "zoom": 75,
+          "page": 4,
+          "count": 0
+        },
+        {
+          "width": 320,
+          "zoom": 75,
+          "page": 5,
+          "count": 3
+        },
+        {
+          "width": 320,
+          "zoom": 75,
+          "page": 6,
+          "count": 4
+        },
+        {
+          "width": 320,
+          "zoom": 100,
+          "page": 1,
+          "count": 107
+        },
+        {
+          "width": 320,
+          "zoom": 100,
+          "page": 2,
+          "count": 625
+        },
+        {
+          "width": 320,
+          "zoom": 100,
+          "page": 3,
+          "count": 15
+        },
+        {
+          "width": 320,
+          "zoom": 100,
+          "page": 4,
+          "count": 0
+        },
+        {
+          "width": 320,
+          "zoom": 100,
+          "page": 5,
+          "count": 3
+        },
+        {
+          "width": 320,
+          "zoom": 100,
+          "page": 6,
+          "count": 4
+        },
+        {
+          "width": 320,
+          "zoom": 200,
+          "page": 1,
+          "count": 105
+        },
+        {
+          "width": 320,
+          "zoom": 200,
+          "page": 2,
+          "count": 625
+        },
+        {
+          "width": 320,
+          "zoom": 200,
+          "page": 3,
+          "count": 6
+        },
+        {
+          "width": 320,
+          "zoom": 200,
+          "page": 4,
+          "count": 0
+        },
+        {
+          "width": 320,
+          "zoom": 200,
+          "page": 5,
+          "count": 0
+        },
+        {
+          "width": 320,
+          "zoom": 200,
+          "page": 6,
+          "count": 2
+        },
+        {
+          "width": 1080,
+          "zoom": 75,
+          "page": 1,
+          "count": 106
+        },
+        {
+          "width": 1080,
+          "zoom": 75,
+          "page": 2,
+          "count": 625
+        },
+        {
+          "width": 1080,
+          "zoom": 75,
+          "page": 3,
+          "count": 13
+        },
+        {
+          "width": 1080,
+          "zoom": 75,
+          "page": 4,
+          "count": 0
+        },
+        {
+          "width": 1080,
+          "zoom": 75,
+          "page": 5,
+          "count": 0
+        },
+        {
+          "width": 1080,
+          "zoom": 75,
+          "page": 6,
+          "count": 4
+        },
+        {
+          "width": 1080,
+          "zoom": 100,
+          "page": 1,
+          "count": 105
+        },
+        {
+          "width": 1080,
+          "zoom": 100,
+          "page": 2,
+          "count": 625
+        },
+        {
+          "width": 1080,
+          "zoom": 100,
+          "page": 3,
+          "count": 6
+        },
+        {
+          "width": 1080,
+          "zoom": 100,
+          "page": 4,
+          "count": 0
+        },
+        {
+          "width": 1080,
+          "zoom": 100,
+          "page": 5,
+          "count": 0
+        },
+        {
+          "width": 1080,
+          "zoom": 100,
+          "page": 6,
+          "count": 2
+        },
+        {
+          "width": 1080,
+          "zoom": 200,
+          "page": 1,
+          "count": 86
+        },
+        {
+          "width": 1080,
+          "zoom": 200,
+          "page": 2,
+          "count": 583
+        },
+        {
+          "width": 1080,
+          "zoom": 200,
+          "page": 3,
+          "count": 2
+        },
+        {
+          "width": 1080,
+          "zoom": 200,
+          "page": 4,
+          "count": 0
+        },
+        {
+          "width": 1080,
+          "zoom": 200,
+          "page": 5,
+          "count": 0
+        },
+        {
+          "width": 1080,
+          "zoom": 200,
+          "page": 6,
+          "count": 1
+        }
+      ],
+      "log": "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791878581619/cfa-employment.json"
+    },
+    {
+      "id": "setagaya-residence",
+      "title": "setagaya-residence.pdf",
+      "original": {
+        "bytes": 386619,
+        "sha256": "67ccfbf6a10cfed2052a4e1fda10b4065555fd0efbf620a5678af13483b27181"
+      },
+      "savedFieldCount": 13,
+      "nativeBackedCandidateFields": 0,
+      "sourceKinds": {
+        "inferred": 13
+      },
+      "directPlacementAliases": 13,
+      "options": 0,
+      "optionPlacementAliases": 0,
+      "physicalProjectionCount": 13,
+      "pageCount": 1,
+      "documentInspectionOnly": false,
+      "layoutCells": 6,
+      "pointerLargeSelections": 78,
+      "keyboardLargeSelections": 13,
+      "keyboardOriginalOverlaySelections": 13,
+      "largeButtonMinWidth": 240,
+      "largeButtonMinHeight": 52,
+      "bodyOverflowCells": 0,
+      "originalUndersizedByLayout": [
+        {
+          "width": 320,
+          "zoom": 75,
+          "page": 1,
+          "count": 13
+        },
+        {
+          "width": 320,
+          "zoom": 100,
+          "page": 1,
+          "count": 13
+        },
+        {
+          "width": 320,
+          "zoom": 200,
+          "page": 1,
+          "count": 8
+        },
+        {
+          "width": 1080,
+          "zoom": 75,
+          "page": 1,
+          "count": 12
+        },
+        {
+          "width": 1080,
+          "zoom": 100,
+          "page": 1,
+          "count": 8
+        },
+        {
+          "width": 1080,
+          "zoom": 200,
+          "page": 1,
+          "count": 2
+        }
+      ],
+      "log": "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791878581619/setagaya-residence.json"
+    },
+    {
+      "id": "yokohama-childbenefit",
+      "title": "yokohama-childbenefit.pdf",
+      "original": {
+        "bytes": 546398,
+        "sha256": "37a52fa512a790105dbd528246c2d5f61e0185c2238a677e8e9cdb8d6e0ea3df"
+      },
+      "savedFieldCount": 190,
+      "nativeBackedCandidateFields": 0,
+      "sourceKinds": {
+        "inferred": 190
+      },
+      "directPlacementAliases": 190,
+      "options": 0,
+      "optionPlacementAliases": 0,
+      "physicalProjectionCount": 190,
+      "pageCount": 3,
+      "documentInspectionOnly": false,
+      "layoutCells": 18,
+      "pointerLargeSelections": 1140,
+      "keyboardLargeSelections": 190,
+      "keyboardOriginalOverlaySelections": 190,
+      "largeButtonMinWidth": 240,
+      "largeButtonMinHeight": 84.796875,
+      "bodyOverflowCells": 0,
+      "originalUndersizedByLayout": [
+        {
+          "width": 320,
+          "zoom": 75,
+          "page": 1,
+          "count": 66
+        },
+        {
+          "width": 320,
+          "zoom": 75,
+          "page": 2,
+          "count": 62
+        },
+        {
+          "width": 320,
+          "zoom": 75,
+          "page": 3,
+          "count": 61
+        },
+        {
+          "width": 320,
+          "zoom": 100,
+          "page": 1,
+          "count": 66
+        },
+        {
+          "width": 320,
+          "zoom": 100,
+          "page": 2,
+          "count": 62
+        },
+        {
+          "width": 320,
+          "zoom": 100,
+          "page": 3,
+          "count": 61
+        },
+        {
+          "width": 320,
+          "zoom": 200,
+          "page": 1,
+          "count": 51
+        },
+        {
+          "width": 320,
+          "zoom": 200,
+          "page": 2,
+          "count": 50
+        },
+        {
+          "width": 320,
+          "zoom": 200,
+          "page": 3,
+          "count": 49
+        },
+        {
+          "width": 1080,
+          "zoom": 75,
+          "page": 1,
+          "count": 63
+        },
+        {
+          "width": 1080,
+          "zoom": 75,
+          "page": 2,
+          "count": 62
+        },
+        {
+          "width": 1080,
+          "zoom": 75,
+          "page": 3,
+          "count": 60
+        },
+        {
+          "width": 1080,
+          "zoom": 100,
+          "page": 1,
+          "count": 51
+        },
+        {
+          "width": 1080,
+          "zoom": 100,
+          "page": 2,
+          "count": 50
+        },
+        {
+          "width": 1080,
+          "zoom": 100,
+          "page": 3,
+          "count": 49
+        },
+        {
+          "width": 1080,
+          "zoom": 200,
+          "page": 1,
+          "count": 13
+        },
+        {
+          "width": 1080,
+          "zoom": 200,
+          "page": 2,
+          "count": 13
+        },
+        {
+          "width": 1080,
+          "zoom": 200,
+          "page": 3,
+          "count": 11
+        }
+      ],
+      "log": "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791878581619/yokohama-childbenefit.json"
+    },
+    {
+      "id": "sapporo-insurance",
+      "title": "sapporo-insurance.pdf",
+      "original": {
+        "bytes": 191208,
+        "sha256": "e87e0fd4464263d107b69327453c02d5afd7e9c892a7f3097eb7c6b465de678a"
+      },
+      "savedFieldCount": 98,
+      "nativeBackedCandidateFields": 0,
+      "sourceKinds": {
+        "inferred": 98
+      },
+      "directPlacementAliases": 98,
+      "options": 0,
+      "optionPlacementAliases": 0,
+      "physicalProjectionCount": 98,
+      "pageCount": 1,
+      "documentInspectionOnly": false,
+      "layoutCells": 6,
+      "pointerLargeSelections": 588,
+      "keyboardLargeSelections": 98,
+      "keyboardOriginalOverlaySelections": 98,
+      "largeButtonMinWidth": 240,
+      "largeButtonMinHeight": 84.796875,
+      "bodyOverflowCells": 0,
+      "originalUndersizedByLayout": [
+        {
+          "width": 320,
+          "zoom": 75,
+          "page": 1,
+          "count": 97
+        },
+        {
+          "width": 320,
+          "zoom": 100,
+          "page": 1,
+          "count": 97
+        },
+        {
+          "width": 320,
+          "zoom": 200,
+          "page": 1,
+          "count": 95
+        },
+        {
+          "width": 1080,
+          "zoom": 75,
+          "page": 1,
+          "count": 97
+        },
+        {
+          "width": 1080,
+          "zoom": 100,
+          "page": 1,
+          "count": 96
+        },
+        {
+          "width": 1080,
+          "zoom": 200,
+          "page": 1,
+          "count": 44
+        }
+      ],
+      "log": "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791878581619/sapporo-insurance.json"
+    },
+    {
+      "id": "kyoto-care",
+      "title": "kyoto-care.pdf",
+      "original": {
+        "bytes": 387472,
+        "sha256": "a26c3d6c52673742a1dbf6851138774db1e3e7df7c1a13a949635747d02e12ef"
+      },
+      "savedFieldCount": 98,
+      "nativeBackedCandidateFields": 0,
+      "sourceKinds": {
+        "inferred": 98
+      },
+      "directPlacementAliases": 98,
+      "options": 0,
+      "optionPlacementAliases": 0,
+      "physicalProjectionCount": 98,
+      "pageCount": 2,
+      "documentInspectionOnly": false,
+      "layoutCells": 12,
+      "pointerLargeSelections": 588,
+      "keyboardLargeSelections": 98,
+      "keyboardOriginalOverlaySelections": 98,
+      "largeButtonMinWidth": 240,
+      "largeButtonMinHeight": 84.796875,
+      "bodyOverflowCells": 0,
+      "originalUndersizedByLayout": [
+        {
+          "width": 320,
+          "zoom": 75,
+          "page": 1,
+          "count": 42
+        },
+        {
+          "width": 320,
+          "zoom": 75,
+          "page": 2,
+          "count": 46
+        },
+        {
+          "width": 320,
+          "zoom": 100,
+          "page": 1,
+          "count": 42
+        },
+        {
+          "width": 320,
+          "zoom": 100,
+          "page": 2,
+          "count": 46
+        },
+        {
+          "width": 320,
+          "zoom": 200,
+          "page": 1,
+          "count": 37
+        },
+        {
+          "width": 320,
+          "zoom": 200,
+          "page": 2,
+          "count": 37
+        },
+        {
+          "width": 1080,
+          "zoom": 75,
+          "page": 1,
+          "count": 42
+        },
+        {
+          "width": 1080,
+          "zoom": 75,
+          "page": 2,
+          "count": 41
+        },
+        {
+          "width": 1080,
+          "zoom": 100,
+          "page": 1,
+          "count": 37
+        },
+        {
+          "width": 1080,
+          "zoom": 100,
+          "page": 2,
+          "count": 38
+        },
+        {
+          "width": 1080,
+          "zoom": 200,
+          "page": 1,
+          "count": 11
+        },
+        {
+          "width": 1080,
+          "zoom": 200,
+          "page": 2,
+          "count": 15
+        }
+      ],
+      "log": "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791878581619/kyoto-care.json"
+    },
+    {
+      "id": "nagoya-moving",
+      "title": "nagoya-moving.pdf",
+      "original": {
+        "bytes": 415042,
+        "sha256": "cb66f408d6b094d19916e3f326401c08776a96a906bbea9ed63bbbebf8f68176"
+      },
+      "savedFieldCount": 61,
+      "nativeBackedCandidateFields": 0,
+      "sourceKinds": {
+        "inferred": 61
+      },
+      "directPlacementAliases": 61,
+      "options": 0,
+      "optionPlacementAliases": 0,
+      "physicalProjectionCount": 61,
+      "pageCount": 1,
+      "documentInspectionOnly": false,
+      "layoutCells": 6,
+      "pointerLargeSelections": 366,
+      "keyboardLargeSelections": 61,
+      "keyboardOriginalOverlaySelections": 61,
+      "largeButtonMinWidth": 240,
+      "largeButtonMinHeight": 84.796875,
+      "bodyOverflowCells": 0,
+      "originalUndersizedByLayout": [
+        {
+          "width": 320,
+          "zoom": 75,
+          "page": 1,
+          "count": 60
+        },
+        {
+          "width": 320,
+          "zoom": 100,
+          "page": 1,
+          "count": 60
+        },
+        {
+          "width": 320,
+          "zoom": 200,
+          "page": 1,
+          "count": 32
+        },
+        {
+          "width": 1080,
+          "zoom": 75,
+          "page": 1,
+          "count": 56
+        },
+        {
+          "width": 1080,
+          "zoom": 100,
+          "page": 1,
+          "count": 47
+        },
+        {
+          "width": 1080,
+          "zoom": 200,
+          "page": 1,
+          "count": 19
+        }
+      ],
+      "log": "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791878581619/nagoya-moving.json"
+    },
+    {
+      "id": "fukuoka-park-activity",
+      "title": "fukuoka-park-activity-original.pdf",
+      "original": {
+        "bytes": 96923,
+        "sha256": "8763641f1e5ea2ef9f2a11e88e4b05ed61ada48755f290ecd24669b4bf833add"
+      },
+      "savedFieldCount": 12,
+      "nativeBackedCandidateFields": 0,
+      "sourceKinds": {
+        "inferred": 12
+      },
+      "directPlacementAliases": 12,
+      "options": 0,
+      "optionPlacementAliases": 0,
+      "physicalProjectionCount": 12,
+      "pageCount": 1,
+      "documentInspectionOnly": false,
+      "layoutCells": 6,
+      "pointerLargeSelections": 72,
+      "keyboardLargeSelections": 12,
+      "keyboardOriginalOverlaySelections": 12,
+      "largeButtonMinWidth": 240,
+      "largeButtonMinHeight": 52,
+      "bodyOverflowCells": 0,
+      "originalUndersizedByLayout": [
+        {
+          "width": 320,
+          "zoom": 75,
+          "page": 1,
+          "count": 9
+        },
+        {
+          "width": 320,
+          "zoom": 100,
+          "page": 1,
+          "count": 9
+        },
+        {
+          "width": 320,
+          "zoom": 200,
+          "page": 1,
+          "count": 1
+        },
+        {
+          "width": 1080,
+          "zoom": 75,
+          "page": 1,
+          "count": 8
+        },
+        {
+          "width": 1080,
+          "zoom": 100,
+          "page": 1,
+          "count": 1
+        },
+        {
+          "width": 1080,
+          "zoom": 200,
+          "page": 1,
+          "count": 0
+        }
+      ],
+      "log": "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791878581619/fukuoka-park-activity.json"
+    }
+  ],
+  "totals": {
+    "documents": 9,
+    "pages": 19,
+    "savedCandidateFields": 1614,
+    "nativeBackedCandidateFields": 193,
+    "directPlacementAliases": 1614,
+    "optionPlacementAliases": 0,
+    "physicalProjections": 1614,
+    "layoutCells": 114,
+    "pointerLarge": 9684,
+    "keyboardLarge": 1614,
+    "keyboardOriginalOverlay": 1614,
+    "largeMinWidth": 240,
+    "largeMinHeight": 52,
+    "bodyOverflowCells": 0
+  },
+  "seed": {
+    "setup": "Deliberately seeded saved manual-draft edge cases, imported only through the public encrypted backup UI. Original PDF and real native DTOs unchanged; manual fields are explicitly authored draft geometry, not automatically inferred accuracy.",
+    "savedFields": 5,
+    "directLogicalAliases": 5,
+    "optionLogicalAliases": 5,
+    "logicalAliases": 10,
+    "physicalDefault": 6,
+    "physicalWithRejected": 8,
+    "layoutCells": 36,
+    "pointerLarge": 84,
+    "keyboardLarge": 14,
+    "keyboardOriginalOverlay": 14,
+    "currentPagePreserved": true,
+    "optionOnlyNavigated": true,
+    "exactAliasesChecked": true,
+    "success": true,
+    "log": "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791879349262/qa-log.json"
+  },
+  "rawAxe": [
+    {
+      "path": "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791878581619/axe-nta-dependent-2026-320-100-p1.json",
+      "instrumentation": "CDP evaluation of external axe inspection code; extension CSP unchanged.",
+      "violations": [
+        {
+          "id": "target-size",
+          "impact": "serious",
+          "nodes": 167
+        }
+      ],
+      "incomplete": []
+    },
+    {
+      "path": "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791878581619/axe-cfa-employment-320-100-p2.json",
+      "instrumentation": "CDP evaluation of external axe inspection code; extension CSP unchanged.",
+      "violations": [
+        {
+          "id": "target-size",
+          "impact": "serious",
+          "nodes": 625
+        }
+      ],
+      "incomplete": []
+    },
+    {
+      "path": "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791879349262/axe-seed-option-only-rejected-320.json",
+      "instrumentation": "CDP evaluation of external axe inspection code; extension CSP unchanged.",
+      "violations": [],
+      "incomplete": []
+    }
+  ],
+  "independentBackupComparison": {
+    "success": true,
+    "tasks": 10,
+    "path": "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791879349262/independent-backup-comparison.json",
+    "originalGeometryNativeAnswersStatusPagesHistoryUnchanged": true
+  },
+  "scrollAndKeyboard": {
+    "path": "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791878581619/scroll-keyboard-qa.json",
+    "nextPreviousScrollTop": 2656,
+    "originalPageScrollTop": 2656,
+    "number625RepeatedFocusWithoutSelection": true,
+    "tabRouteFromPageControl": true
+  },
+  "sourceOnlyFix": {
+    "files": [
+      "src/apps/workspace/PdfPreview.tsx",
+      "tests/workspace/pdf-preview-page-review.test.tsx"
+    ],
+    "tests": {
+      "files": 5,
+      "total": 67,
+      "passed": 67,
+      "failed": 0
+    },
+    "typecheck": "passed",
+    "log": "E:/others/silverguide-qa/accessibility/pdf-location-scroll-after-fix-20261013.json",
+    "compiledProof": "pending new frozen build"
+  },
+  "immutability": {
+    "main": true,
+    "edge": true,
+    "scroll": true,
+    "parentBaselineAllFilesMatch": true
+  },
+  "processes": {
+    "capturedAt": "2026-10-13T08:16:56.2721185Z",
+    "ownedProcessCount": 0,
+    "processes": [],
+    "scope": "All three 7bd actual UI harness profiles and associated browser/node command paths; contexts closed normally."
+  },
+  "harnessCorrections": [
+    {
+      "run": "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791878496138/qa-log.json",
+      "reason": "axe addScriptTag correctly blocked by extension CSP; CDP inspection evaluation used in clean rerun without weakening CSP."
+    },
+    {
+      "run": "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791878581619/qa-log.json",
+      "reason": "All9 documents completed; seed rejected outline intentionally omits ordinary index prefix, harness wrongly required it. Only seed resumed with label+exact ID/key validation; original log retains failure."
+    }
+  ],
+  "paths": {
+    "main": "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791878581619/qa-log.json",
+    "edge": "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791879349262/qa-log.json",
+    "backup": "E:\\others\\silverguide-qa\\accessibility\\all-targets-final-7bd20f1d-1791879349262\\downloads\\5bc69bd8-64f0-4582-a7e0-aba5a34d1473",
+    "backupRaw": "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791879349262/raw-task-after.json",
+    "png": [
+      "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791878581619/cfa-employment-320-100-p2.png",
+      "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791878581619/nta-dependent-2026-320-100-p1.png",
+      "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791879349262/seed-option-only-rejected-320.png",
+      "E:/others/silverguide-qa/accessibility/all-targets-final-7bd20f1d-1791878581619/scroll-next-320.png"
+    ]
+  },
+  "limits": [
+    "Saved extracted proposals are not source-ground-truth fields, precision/recall, or fresh extraction results. NTA251=193native+58inferred; native ground truth is independently determined elsewhere.",
+    "All large alternative pointer and keyboard routes and all original-overlay keyboard selections were checked. All tiny-original pointer hits were not tested or claimed.",
+    "Keyboard all-location runs use public DOM focus then Enter; an additional real Tab route from page control was checked, not a full human AT audit.",
+    "Raw axe target-size counts remain167/625/0 for3 representative views; large-equivalent path evidence is separate, not auto-exception or zero violation certification.",
+    "No human/NVDA/listening/IME/fullWCAG claim;9exploratory only, held-out PDFs/truth/generators unread."
+  ]
+}

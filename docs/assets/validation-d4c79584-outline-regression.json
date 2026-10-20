@@ -1,0 +1,4004 @@
+{
+  "sourceResultSha256": "c82a4f3326cb0c12452a9a1fc7cd7ccbd8468bf7d7fcc8f6efb939ef079c087d",
+  "originalReport": "E:\\others\\silverguide-qa\\accuracy\\public-yoko-new-fp-diagnostic-v1.json",
+  "diagnostic": {
+    "version": 1,
+    "createdAtUtc": "2026-10-13T11:26:44.013338+00:00",
+    "scope": "Yokohama childbenefit unsealed official original PDF only, fixed partial field GT with no-input pages2/3, existing f53 and d4 raw DTOs, existing evaluator-v3 code and manifest/selected input metadata. Exactly the new8 scorable FP positions. No new scoring, browser, OCR, generator, reserved, held, or old sealed payload access; no product/GT/scorer/raw/source edits. Original PDF pages2/3 rendered once at100dpi and visually inspected.",
+    "sourceDocumentId": "yokohama-childbenefit",
+    "originalPdfPath": "E:\\others\\silverguide-qa\\real-corpus\\pdf\\yokohama-childbenefit.pdf",
+    "originalPdfSha256": "37a52fa512a790105dbd528246c2d5f61e0185c2238a677e8e9cdb8d6e0ea3df",
+    "originalTruthPath": "E:\\others\\silverguide-qa\\accuracy\\public-truth-v1\\yokohama-childbenefit.json",
+    "originalTruthSha256": "10cd48d987d65913cfb3067f1565860fa583f8cc8445da8c2c6ae315d7d4f60e",
+    "officialManifestSelectedMetadata": {
+      "id": "yokohama-childbenefit",
+      "split": "exploratory",
+      "localPath": "E:\\others\\silverguide-qa\\real-corpus\\pdf\\yokohama-childbenefit.pdf",
+      "sha256": "37a52fa512a790105dbd528246c2d5f61e0185c2238a677e8e9cdb8d6e0ea3df",
+      "byteLength": 546398,
+      "sourcePdfUrl": "https://www.city.yokohama.lg.jp/kosodate-kyoiku/oyakokenko/teate/teate/jite-seikyu.files/20260612_1.pdf"
+    },
+    "runs": [
+      {
+        "label": "corrected-f53f383f-train-v3",
+        "buildHash": "f53f383f2b6a15db771299ccd455c277a71d8a0863d33a3b97813287429f8b85",
+        "engineSha256": "faf81a8f18c9a5365932481bc5d8bd3b5fc82fea91e8b6abcdd37176534ecd5d",
+        "sourceSha256": "37a52fa512a790105dbd528246c2d5f61e0185c2238a677e8e9cdb8d6e0ea3df",
+        "truthSha256": "10cd48d987d65913cfb3067f1565860fa583f8cc8445da8c2c6ae315d7d4f60e",
+        "rawCandidateCount": 190,
+        "unknownCandidateCount": 66,
+        "scorableFP": 124,
+        "noInputFalseCandidates": 124,
+        "ocrCallCount": 0,
+        "rawOcrEvidenceCount": 0
+      },
+      {
+        "label": "corrected-d4c79584-train-v4",
+        "buildHash": "d4c795847fbcb405ab070ac9354be3b69cf2e30c66064f3d635ed3e08b13b7d2",
+        "engineSha256": "eaec2730930925717d77fd49363d239def8a295dad39101f3ff787b2fec3ccef",
+        "sourceSha256": "37a52fa512a790105dbd528246c2d5f61e0185c2238a677e8e9cdb8d6e0ea3df",
+        "truthSha256": "10cd48d987d65913cfb3067f1565860fa583f8cc8445da8c2c6ae315d7d4f60e",
+        "rawCandidateCount": 198,
+        "unknownCandidateCount": 66,
+        "scorableFP": 132,
+        "noInputFalseCandidates": 132,
+        "ocrCallCount": 0,
+        "rawOcrEvidenceCount": 0
+      }
+    ],
+    "summary": {
+      "beforeScorableFP": 124,
+      "afterScorableFP": 132,
+      "addedScorableFP": 8,
+      "oldCandidatesUnchangedWithIoU1AndSameKind": 124,
+      "oldCandidatesRemoved": 0,
+      "addedByPageNumber": {
+        "2": 2,
+        "3": 6
+      },
+      "outlinedGlyphMisdetects": 7,
+      "printedInstructionUnderlineMisdetects": 1,
+      "newActualSourceAnswerAllocations": 0,
+      "fineRasterDuplication": false,
+      "nativeEvidenceSamePageTextQuadMethodMultiset": true,
+      "nativeEvidenceCountPerRun": 1074,
+      "sourceAndTruthMetadataEqual": true,
+      "allPinsUnchanged": true,
+      "groundTruthChanged": false
+    },
+    "conclusion": "The new8 are printed explanation graphics/lettering misdetected through geometry-to-underline allocation, not legitimate source answer allocations newly found. Seven tiny boxes come from closed black glyph contours sharing paragraph MCIDs; the eighth is a closed printed underline Artifact in a worked-example callout. The risk was already present in generic geometric inference and is now exposed by accepting these additional short spans. No raster OCR/fineRaster path is involved.",
+    "whyQuestionsRemain": "Each is non-native, export allowed, readOnly=false, role=unknown, kind=checkbox/text, mappingState=needs-review rather than rejected, so evaluator-v3 questionCandidate(line29) treats it as a question. The existing inferFields logic detects only specific no-input/sample text contained within an individual candidate frame and does not consume the fixed GT no-input page classification. The sample headings and explained glyph lettering lie outside the tiny allocations or are path outlines; the default label/nearby footer label makes no office/example role. Existing GT is retained and therefore properly counts these as errors.",
+    "diagnosticOnlyBoundary": "No source sentence, geometry, threshold, or GT was adjusted to match predictions. Other eight public documents and all TRAIN/held documents were not inspected for this diagnosis; their reported invariance comes from the parent task, not this report. Product code may concurrently be edited by root; this report pins the immutable existing DTOs/source/evaluator and does not claim a product-source snapshot.",
+    "coordinateCalibration": [
+      {
+        "pageIndex": 2,
+        "nativeText": "福祉コード",
+        "pypdfOriginalTextMatrices": [
+          {
+            "text": "福祉コード　　　　　　　　　　　",
+            "cm": [
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0
+            ],
+            "tm": [
+              7.8,
+              0.0,
+              0.0,
+              7.8,
+              406.2,
+              125.16
+            ],
+            "fontSize": 1.0
+          }
+        ],
+        "pdfplumberFirstGlyphNormalizedMatrix": [
+          7.8,
+          0.0,
+          0.0,
+          7.8,
+          418.1622,
+          113.1694
+        ],
+        "pdfplumberFirstGlyphReportedY0": 112.10079999999999,
+        "originalMediaBoxYMin": 11.9906,
+        "rawUserSpaceNormalization": "pdfplumber source y values are lower-origin normalized; add original MediaBox.yMin=11.9906. For path top coordinates, y_raw=pdfplumber_page.bbox[3]-top+MediaBox.yMin. x values already use the raw x domain. Pypdf original text matrix is the independent cross-check.",
+        "newMergedNativeLabelEvidence": {
+          "id": "a94176f2-5819-4956-a42d-ea5e82e0157a",
+          "pageIndex": 2,
+          "text": "福祉コード",
+          "quad": [
+            {
+              "x": 406.2,
+              "y": 124.063125
+            },
+            {
+              "x": 445.66800000000006,
+              "y": 124.063125
+            },
+            {
+              "x": 445.66800000000006,
+              "y": 131.863125
+            },
+            {
+              "x": 406.2,
+              "y": 131.863125
+            }
+          ],
+          "method": "native",
+          "rawOcrConfidence": null
+        }
+      }
+    ],
+    "originalPageVisualReview": [
+      {
+        "pageNumber": 2,
+        "path": "E:\\others\\tmp\\pdfs\\yoko-original-fp-v1\\page-2.png",
+        "sha256": "828aaac45680251bfe218c4abb1f3c219969209efc5998c82fb740f437df6bb1",
+        "renderer": "Poppler pdftoppm original PDF only",
+        "dpi": 100,
+        "visuallyInspected": true,
+        "sourceContext": "Original filled worked example with callout paragraph graphics, not a request for the reader to fill page."
+      },
+      {
+        "pageNumber": 3,
+        "path": "E:\\others\\tmp\\pdfs\\yoko-original-fp-v1\\page-3.png",
+        "sha256": "98b0579c7d5fe9f9cac8f99fe0e0e14ece99409079dd00e313456569f1e6873f",
+        "renderer": "Poppler pdftoppm original PDF only",
+        "dpi": 100,
+        "visuallyInspected": true,
+        "sourceContext": "Original filled worked example with callout paragraph graphics, not a request for the reader to fill page."
+      }
+    ],
+    "addedCandidates": [
+      {
+        "number": 1,
+        "candidateId": "b6a770c4-c1bb-4470-a071-2aeca7e86f9b",
+        "pageIndex": 1,
+        "pageNumber": 2,
+        "quad": [
+          {
+            "x": 197.66890109863283,
+            "y": 252.10940003051758
+          },
+          {
+            "x": 205.5248962768555,
+            "y": 252.10940003051758
+          },
+          {
+            "x": 205.5248962768555,
+            "y": 259.96539520874023
+          },
+          {
+            "x": 197.66890109863283,
+            "y": 259.96539520874023
+          }
+        ],
+        "box": [
+          197.66890109863283,
+          252.10940003051758,
+          205.5248962768555,
+          259.96539520874023
+        ],
+        "width": 7.855995178222656,
+        "height": 7.855995178222656,
+        "kind": "checkbox",
+        "label": "記入欄（項目名を確認）",
+        "role": "unknown",
+        "native": null,
+        "readOnly": false,
+        "mappingState": "needs-review",
+        "labelEvidence": [],
+        "classification": "outlined explanatory glyph contour misdetected as blank checkbox allocation",
+        "sourceContext": "Black outlined paragraph lettering inside the birth-example explanatory callout; not a standalone answer rule.",
+        "sourceObjects": [
+          {
+            "pdfplumberCurveIndex": 70,
+            "sourceRawBox": [
+              197.8069,
+              246.4584,
+              205.4559,
+              251.1094
+            ],
+            "mcid": 8387,
+            "tag": "P",
+            "stroke": true,
+            "fill": false,
+            "linewidth": 0.706,
+            "strokeColor": 0,
+            "closed": true,
+            "commandCounts": {
+              "m": 1,
+              "l": 21,
+              "h": 1
+            },
+            "sourcePathRaw": [
+              [
+                "m",
+                [
+                  198.9439,
+                  251.10939999999997
+                ]
+              ],
+              [
+                "l",
+                [
+                  204.24990000000003,
+                  251.10939999999997
+                ]
+              ],
+              [
+                "l",
+                [
+                  204.24990000000003,
+                  248.66340000000005
+                ]
+              ],
+              [
+                "l",
+                [
+                  201.87290000000002,
+                  248.66340000000005
+                ]
+              ],
+              [
+                "l",
+                [
+                  201.87290000000002,
+                  248.1464
+                ]
+              ],
+              [
+                "l",
+                [
+                  204.45690000000002,
+                  248.1464
+                ]
+              ],
+              [
+                "l",
+                [
+                  204.45690000000002,
+                  247.59540000000007
+                ]
+              ],
+              [
+                "l",
+                [
+                  201.87290000000002,
+                  247.59540000000007
+                ]
+              ],
+              [
+                "l",
+                [
+                  201.87290000000002,
+                  247.01040000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  205.4559,
+                  247.01040000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  205.4559,
+                  246.4584
+                ]
+              ],
+              [
+                "l",
+                [
+                  197.8069,
+                  246.4584
+                ]
+              ],
+              [
+                "l",
+                [
+                  197.8069,
+                  247.01040000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  201.2869,
+                  247.01040000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  201.2869,
+                  247.59540000000007
+                ]
+              ],
+              [
+                "l",
+                [
+                  198.73690000000002,
+                  247.59540000000007
+                ]
+              ],
+              [
+                "l",
+                [
+                  198.73690000000002,
+                  248.1464
+                ]
+              ],
+              [
+                "l",
+                [
+                  201.2869,
+                  248.1464
+                ]
+              ],
+              [
+                "l",
+                [
+                  201.2869,
+                  248.66340000000005
+                ]
+              ],
+              [
+                "l",
+                [
+                  200.1499,
+                  248.66340000000005
+                ]
+              ],
+              [
+                "l",
+                [
+                  198.9439,
+                  248.66340000000005
+                ]
+              ],
+              [
+                "l",
+                [
+                  198.9439,
+                  251.10939999999997
+                ]
+              ],
+              [
+                "h"
+              ]
+            ]
+          },
+          {
+            "pdfplumberCurveIndex": 97,
+            "sourceRawBox": [
+              197.6689,
+              251.5924,
+              205.5249,
+              254.1764
+            ],
+            "mcid": 8387,
+            "tag": "P",
+            "stroke": true,
+            "fill": false,
+            "linewidth": 0.706,
+            "strokeColor": 0,
+            "closed": true,
+            "commandCounts": {
+              "m": 1,
+              "l": 16,
+              "c": 1,
+              "h": 1
+            },
+            "sourcePathRaw": [
+              [
+                "m",
+                [
+                  201.2869,
+                  254.17639999999997
+                ]
+              ],
+              [
+                "l",
+                [
+                  201.94190000000003,
+                  254.17639999999997
+                ]
+              ],
+              [
+                "c",
+                [
+                  202.12490000000003,
+                  254.15340000000006
+                ],
+                [
+                  202.13690000000003,
+                  254.0844
+                ],
+                [
+                  201.97590000000002,
+                  253.96939999999998
+                ]
+              ],
+              [
+                "l",
+                [
+                  201.97590000000002,
+                  253.4874
+                ]
+              ],
+              [
+                "l",
+                [
+                  204.9049,
+                  253.4874
+                ]
+              ],
+              [
+                "l",
+                [
+                  204.9049,
+                  252.9354
+                ]
+              ],
+              [
+                "l",
+                [
+                  203.49190000000002,
+                  252.9354
+                ]
+              ],
+              [
+                "l",
+                [
+                  203.14690000000002,
+                  252.14339999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  205.5249,
+                  252.14339999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  205.5249,
+                  251.59240000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  197.6689,
+                  251.59240000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  197.6689,
+                  252.14339999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  199.97790000000003,
+                  252.14339999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  199.70190000000002,
+                  252.9354
+                ]
+              ],
+              [
+                "l",
+                [
+                  198.28990000000002,
+                  252.9354
+                ]
+              ],
+              [
+                "l",
+                [
+                  198.28990000000002,
+                  253.4874
+                ]
+              ],
+              [
+                "l",
+                [
+                  201.2869,
+                  253.4874
+                ]
+              ],
+              [
+                "l",
+                [
+                  201.2869,
+                  254.17639999999997
+                ]
+              ],
+              [
+                "h"
+              ]
+            ]
+          }
+        ],
+        "matchingSourceHorizontalEdges": [
+          {
+            "curveIndex": 70,
+            "startX": 198.9439,
+            "y": 251.10939999999997,
+            "endX": 204.24990000000003,
+            "length": 5.306000000000012
+          },
+          {
+            "curveIndex": 97,
+            "startX": 197.6689,
+            "y": 251.59240000000003,
+            "endX": 205.5249,
+            "length": 7.8559999999999945
+          }
+        ],
+        "nearestOldScorableFP": {
+          "candidateId": "7a019740-472f-4155-921e-0c797764c60d",
+          "quadIoU": 0.01553265770756814,
+          "quad": [
+            {
+              "x": 65.87950134277344,
+              "y": 246.4584000076294
+            },
+            {
+              "x": 273.239501953125,
+              "y": 246.4584000076294
+            },
+            {
+              "x": 273.239501953125,
+              "y": 265.6199951171875
+            },
+            {
+              "x": 65.87950134277344,
+              "y": 265.6199951171875
+            }
+          ]
+        },
+        "exactOldCorrespondence": false,
+        "questionCandidateRemainsTrue": true,
+        "gtPageInputEligibility": "no-input",
+        "sourceInferenceBasis": "The source coordinates match the retained synthetic underline box bottom=y_edge+1 and height=min(22,span). For paired glyph contours, the geometry merge coalesces horizontal components less than0.75pt apart; the lower retained y and union x endpoints match the synthetic box. This is source-object diagnosis, not an engine/scorer rerun."
+      },
+      {
+        "number": 2,
+        "candidateId": "d2dcdfa5-c84d-497d-9708-65315895179a",
+        "pageIndex": 1,
+        "pageNumber": 2,
+        "quad": [
+          {
+            "x": 278.69580140380856,
+            "y": 240.70279988365172
+          },
+          {
+            "x": 286.5507971313476,
+            "y": 240.70279988365172
+          },
+          {
+            "x": 286.5507971313476,
+            "y": 248.55779561119078
+          },
+          {
+            "x": 278.69580140380856,
+            "y": 248.55779561119078
+          }
+        ],
+        "box": [
+          278.69580140380856,
+          240.70279988365172,
+          286.5507971313476,
+          248.55779561119078
+        ],
+        "width": 7.8549957275390625,
+        "height": 7.8549957275390625,
+        "kind": "checkbox",
+        "label": "記入欄（項目名を確認）",
+        "role": "unknown",
+        "native": null,
+        "readOnly": false,
+        "mappingState": "needs-review",
+        "labelEvidence": [],
+        "classification": "outlined explanatory glyph contour misdetected as blank checkbox allocation",
+        "sourceContext": "Black outlined paragraph lettering inside the birth-example explanatory callout; not a standalone answer rule.",
+        "sourceObjects": [
+          {
+            "pdfplumberCurveIndex": 158,
+            "sourceRawBox": [
+              278.8338,
+              235.0518,
+              286.48179999999996,
+              239.7028
+            ],
+            "mcid": 8387,
+            "tag": "P",
+            "stroke": true,
+            "fill": false,
+            "linewidth": 0.706,
+            "strokeColor": 0,
+            "closed": true,
+            "commandCounts": {
+              "m": 1,
+              "l": 21,
+              "h": 1
+            },
+            "sourcePathRaw": [
+              [
+                "m",
+                [
+                  279.9708,
+                  239.70279999999994
+                ]
+              ],
+              [
+                "l",
+                [
+                  285.2758,
+                  239.70279999999994
+                ]
+              ],
+              [
+                "l",
+                [
+                  285.2758,
+                  237.25680000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  282.8988,
+                  237.25680000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  282.8988,
+                  236.73979999999997
+                ]
+              ],
+              [
+                "l",
+                [
+                  285.4828,
+                  236.73979999999997
+                ]
+              ],
+              [
+                "l",
+                [
+                  285.4828,
+                  236.18880000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  282.8988,
+                  236.18880000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  282.8988,
+                  235.60280000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  286.48179999999996,
+                  235.60280000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  286.48179999999996,
+                  235.0518
+                ]
+              ],
+              [
+                "l",
+                [
+                  278.8338,
+                  235.0518
+                ]
+              ],
+              [
+                "l",
+                [
+                  278.8338,
+                  235.60280000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  282.3128,
+                  235.60280000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  282.3128,
+                  236.18880000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  279.7638,
+                  236.18880000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  279.7638,
+                  236.73979999999997
+                ]
+              ],
+              [
+                "l",
+                [
+                  282.3128,
+                  236.73979999999997
+                ]
+              ],
+              [
+                "l",
+                [
+                  282.3128,
+                  237.25680000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  281.1768,
+                  237.25680000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  279.9708,
+                  237.25680000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  279.9708,
+                  239.70279999999994
+                ]
+              ],
+              [
+                "h"
+              ]
+            ]
+          },
+          {
+            "pdfplumberCurveIndex": 193,
+            "sourceRawBox": [
+              278.6958,
+              240.1848,
+              286.5508,
+              242.7688
+            ],
+            "mcid": 8387,
+            "tag": "P",
+            "stroke": true,
+            "fill": false,
+            "linewidth": 0.706,
+            "strokeColor": 0,
+            "closed": true,
+            "commandCounts": {
+              "m": 1,
+              "l": 16,
+              "c": 1,
+              "h": 1
+            },
+            "sourcePathRaw": [
+              [
+                "m",
+                [
+                  282.3128,
+                  242.76879999999997
+                ]
+              ],
+              [
+                "l",
+                [
+                  282.9678,
+                  242.76879999999997
+                ]
+              ],
+              [
+                "c",
+                [
+                  283.1518,
+                  242.74579999999995
+                ],
+                [
+                  283.1628,
+                  242.6768
+                ],
+                [
+                  283.0028,
+                  242.56179999999998
+                ]
+              ],
+              [
+                "l",
+                [
+                  283.0028,
+                  242.0798
+                ]
+              ],
+              [
+                "l",
+                [
+                  285.9308,
+                  242.0798
+                ]
+              ],
+              [
+                "l",
+                [
+                  285.9308,
+                  241.52879999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  284.5178,
+                  241.52879999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  284.17379999999997,
+                  240.73579999999995
+                ]
+              ],
+              [
+                "l",
+                [
+                  286.5508,
+                  240.73579999999995
+                ]
+              ],
+              [
+                "l",
+                [
+                  286.5508,
+                  240.18480000000002
+                ]
+              ],
+              [
+                "l",
+                [
+                  278.6958,
+                  240.18480000000002
+                ]
+              ],
+              [
+                "l",
+                [
+                  278.6958,
+                  240.73579999999995
+                ]
+              ],
+              [
+                "l",
+                [
+                  281.0038,
+                  240.73579999999995
+                ]
+              ],
+              [
+                "l",
+                [
+                  280.7288,
+                  241.52879999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  279.3158,
+                  241.52879999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  279.3158,
+                  242.0798
+                ]
+              ],
+              [
+                "l",
+                [
+                  282.3128,
+                  242.0798
+                ]
+              ],
+              [
+                "l",
+                [
+                  282.3128,
+                  242.76879999999997
+                ]
+              ],
+              [
+                "h"
+              ]
+            ]
+          }
+        ],
+        "matchingSourceHorizontalEdges": [
+          {
+            "curveIndex": 158,
+            "startX": 279.9708,
+            "y": 239.70279999999994,
+            "endX": 285.2758,
+            "length": 5.305000000000007
+          },
+          {
+            "curveIndex": 193,
+            "startX": 278.6958,
+            "y": 240.18480000000002,
+            "endX": 286.5508,
+            "length": 7.854999999999961
+          }
+        ],
+        "nearestOldScorableFP": {
+          "candidateId": "faf81aa3-8389-4f09-ac4a-2dfff3d6e965",
+          "quadIoU": 0.045019520330665065,
+          "quad": [
+            {
+              "x": 273.239501953125,
+              "y": 217.31999969482422
+            },
+            {
+              "x": 307.1378990539551,
+              "y": 217.31999969482422
+            },
+            {
+              "x": 307.1378990539551,
+              "y": 246.4584000076294
+            },
+            {
+              "x": 273.239501953125,
+              "y": 246.4584000076294
+            }
+          ]
+        },
+        "exactOldCorrespondence": false,
+        "questionCandidateRemainsTrue": true,
+        "gtPageInputEligibility": "no-input",
+        "sourceInferenceBasis": "The source coordinates match the retained synthetic underline box bottom=y_edge+1 and height=min(22,span). For paired glyph contours, the geometry merge coalesces horizontal components less than0.75pt apart; the lower retained y and union x endpoints match the synthetic box. This is source-object diagnosis, not an engine/scorer rerun."
+      },
+      {
+        "number": 3,
+        "candidateId": "2b5d7afb-ee08-4c3d-8f13-d8b13313d09c",
+        "pageIndex": 2,
+        "pageNumber": 3,
+        "quad": [
+          {
+            "x": 299.6912014038086,
+            "y": 177.06339988365173
+          },
+          {
+            "x": 307.54619713134764,
+            "y": 177.06339988365173
+          },
+          {
+            "x": 307.54619713134764,
+            "y": 184.9183956111908
+          },
+          {
+            "x": 299.6912014038086,
+            "y": 184.9183956111908
+          }
+        ],
+        "box": [
+          299.6912014038086,
+          177.06339988365173,
+          307.54619713134764,
+          184.9183956111908
+        ],
+        "width": 7.8549957275390625,
+        "height": 7.8549957275390625,
+        "kind": "checkbox",
+        "label": "記入欄（項目名を確認）",
+        "role": "unknown",
+        "native": null,
+        "readOnly": false,
+        "mappingState": "needs-review",
+        "labelEvidence": [],
+        "classification": "outlined explanatory glyph contour misdetected as blank checkbox allocation",
+        "sourceContext": "Black outlined paragraph lettering inside the transfer-example explanatory callout; not a standalone answer rule.",
+        "sourceObjects": [
+          {
+            "pdfplumberCurveIndex": 159,
+            "sourceRawBox": [
+              299.8292,
+              171.4124,
+              307.4772,
+              176.0634
+            ],
+            "mcid": 8381,
+            "tag": "P",
+            "stroke": true,
+            "fill": false,
+            "linewidth": 0.706,
+            "strokeColor": 0,
+            "closed": true,
+            "commandCounts": {
+              "m": 1,
+              "l": 21,
+              "h": 1
+            },
+            "sourcePathRaw": [
+              [
+                "m",
+                [
+                  300.9662,
+                  176.06340000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  306.2712,
+                  176.06340000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  306.2712,
+                  173.6174
+                ]
+              ],
+              [
+                "l",
+                [
+                  303.8942,
+                  173.6174
+                ]
+              ],
+              [
+                "l",
+                [
+                  303.8942,
+                  173.10039999999995
+                ]
+              ],
+              [
+                "l",
+                [
+                  306.4782,
+                  173.10039999999995
+                ]
+              ],
+              [
+                "l",
+                [
+                  306.4782,
+                  172.54940000000002
+                ]
+              ],
+              [
+                "l",
+                [
+                  303.8942,
+                  172.54940000000002
+                ]
+              ],
+              [
+                "l",
+                [
+                  303.8942,
+                  171.9634
+                ]
+              ],
+              [
+                "l",
+                [
+                  307.4772,
+                  171.9634
+                ]
+              ],
+              [
+                "l",
+                [
+                  307.4772,
+                  171.41239999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  299.8292,
+                  171.41239999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  299.8292,
+                  171.9634
+                ]
+              ],
+              [
+                "l",
+                [
+                  303.30920000000003,
+                  171.9634
+                ]
+              ],
+              [
+                "l",
+                [
+                  303.30920000000003,
+                  172.54940000000002
+                ]
+              ],
+              [
+                "l",
+                [
+                  300.7592,
+                  172.54940000000002
+                ]
+              ],
+              [
+                "l",
+                [
+                  300.7592,
+                  173.10039999999995
+                ]
+              ],
+              [
+                "l",
+                [
+                  303.30920000000003,
+                  173.10039999999995
+                ]
+              ],
+              [
+                "l",
+                [
+                  303.30920000000003,
+                  173.6174
+                ]
+              ],
+              [
+                "l",
+                [
+                  302.17220000000003,
+                  173.6174
+                ]
+              ],
+              [
+                "l",
+                [
+                  300.9662,
+                  173.6174
+                ]
+              ],
+              [
+                "l",
+                [
+                  300.9662,
+                  176.06340000000003
+                ]
+              ],
+              [
+                "h"
+              ]
+            ]
+          },
+          {
+            "pdfplumberCurveIndex": 193,
+            "sourceRawBox": [
+              299.69120000000004,
+              176.5454,
+              307.5462,
+              179.1294
+            ],
+            "mcid": 8381,
+            "tag": "P",
+            "stroke": true,
+            "fill": false,
+            "linewidth": 0.706,
+            "strokeColor": 0,
+            "closed": true,
+            "commandCounts": {
+              "m": 1,
+              "l": 16,
+              "c": 1,
+              "h": 1
+            },
+            "sourcePathRaw": [
+              [
+                "m",
+                [
+                  303.30920000000003,
+                  179.12939999999995
+                ]
+              ],
+              [
+                "l",
+                [
+                  303.96320000000003,
+                  179.12939999999995
+                ]
+              ],
+              [
+                "c",
+                [
+                  304.1472,
+                  179.10640000000004
+                ],
+                [
+                  304.1582,
+                  179.03739999999996
+                ],
+                [
+                  303.9982,
+                  178.92239999999995
+                ]
+              ],
+              [
+                "l",
+                [
+                  303.9982,
+                  178.44039999999998
+                ]
+              ],
+              [
+                "l",
+                [
+                  306.9262,
+                  178.44039999999998
+                ]
+              ],
+              [
+                "l",
+                [
+                  306.9262,
+                  177.88939999999994
+                ]
+              ],
+              [
+                "l",
+                [
+                  305.51320000000004,
+                  177.88939999999994
+                ]
+              ],
+              [
+                "l",
+                [
+                  305.1692,
+                  177.09640000000005
+                ]
+              ],
+              [
+                "l",
+                [
+                  307.5462,
+                  177.09640000000005
+                ]
+              ],
+              [
+                "l",
+                [
+                  307.5462,
+                  176.5454
+                ]
+              ],
+              [
+                "l",
+                [
+                  299.69120000000004,
+                  176.5454
+                ]
+              ],
+              [
+                "l",
+                [
+                  299.69120000000004,
+                  177.09640000000005
+                ]
+              ],
+              [
+                "l",
+                [
+                  301.99920000000003,
+                  177.09640000000005
+                ]
+              ],
+              [
+                "l",
+                [
+                  301.7242,
+                  177.88939999999994
+                ]
+              ],
+              [
+                "l",
+                [
+                  300.31120000000004,
+                  177.88939999999994
+                ]
+              ],
+              [
+                "l",
+                [
+                  300.31120000000004,
+                  178.44039999999998
+                ]
+              ],
+              [
+                "l",
+                [
+                  303.30920000000003,
+                  178.44039999999998
+                ]
+              ],
+              [
+                "l",
+                [
+                  303.30920000000003,
+                  179.12939999999995
+                ]
+              ],
+              [
+                "h"
+              ]
+            ]
+          }
+        ],
+        "matchingSourceHorizontalEdges": [
+          {
+            "curveIndex": 159,
+            "startX": 300.9662,
+            "y": 176.06340000000003,
+            "endX": 306.2712,
+            "length": 5.305000000000007
+          },
+          {
+            "curveIndex": 193,
+            "startX": 299.69120000000004,
+            "y": 176.5454,
+            "endX": 307.5462,
+            "length": 7.854999999999961
+          }
+        ],
+        "nearestOldScorableFP": {
+          "candidateId": "b4ab428b-2cbb-4e80-9545-145a267d3bf2",
+          "quadIoU": 0.0,
+          "quad": [
+            {
+              "x": 406.6751999198914,
+              "y": 831.2290999198914
+            },
+            {
+              "x": 527.8241986572266,
+              "y": 831.2290999198914
+            },
+            {
+              "x": 527.8241986572266,
+              "y": 853.2290999198914
+            },
+            {
+              "x": 406.6751999198914,
+              "y": 853.2290999198914
+            }
+          ]
+        },
+        "exactOldCorrespondence": false,
+        "questionCandidateRemainsTrue": true,
+        "gtPageInputEligibility": "no-input",
+        "sourceInferenceBasis": "The source coordinates match the retained synthetic underline box bottom=y_edge+1 and height=min(22,span). For paired glyph contours, the geometry merge coalesces horizontal components less than0.75pt apart; the lower retained y and union x endpoints match the synthetic box. This is source-object diagnosis, not an engine/scorer rerun."
+      },
+      {
+        "number": 4,
+        "candidateId": "b2c55d49-6fa0-49ab-97a4-a0b37e4f7f72",
+        "pageIndex": 2,
+        "pageNumber": 3,
+        "quad": [
+          {
+            "x": 402.07289645996093,
+            "y": 135.29809989509582
+          },
+          {
+            "x": 409.9278998168945,
+            "y": 135.29809989509582
+          },
+          {
+            "x": 409.9278998168945,
+            "y": 143.1531032520294
+          },
+          {
+            "x": 402.07289645996093,
+            "y": 143.1531032520294
+          }
+        ],
+        "box": [
+          402.07289645996093,
+          135.29809989509582,
+          409.9278998168945,
+          143.1531032520294
+        ],
+        "width": 7.855003356933594,
+        "height": 7.855003356933594,
+        "kind": "checkbox",
+        "label": "福祉コード",
+        "role": "unknown",
+        "native": null,
+        "readOnly": false,
+        "mappingState": "needs-review",
+        "labelEvidence": [
+          {
+            "id": "a94176f2-5819-4956-a42d-ea5e82e0157a",
+            "pageIndex": 2,
+            "text": "福祉コード",
+            "quad": [
+              {
+                "x": 406.2,
+                "y": 124.063125
+              },
+              {
+                "x": 445.66800000000006,
+                "y": 124.063125
+              },
+              {
+                "x": 445.66800000000006,
+                "y": 131.863125
+              },
+              {
+                "x": 406.2,
+                "y": 131.863125
+              }
+            ],
+            "method": "native",
+            "rawOcrConfidence": null
+          }
+        ],
+        "classification": "outlined explanatory glyph contour misdetected as blank checkbox allocation",
+        "sourceContext": "Black outlined paragraph lettering inside the transfer-example explanatory callout; not a standalone answer rule.",
+        "sourceObjects": [
+          {
+            "pdfplumberCurveIndex": 448,
+            "sourceRawBox": [
+              402.2109,
+              129.6461,
+              409.8589,
+              134.29809999999998
+            ],
+            "mcid": 8391,
+            "tag": "P",
+            "stroke": true,
+            "fill": false,
+            "linewidth": 0.706,
+            "strokeColor": 0,
+            "closed": true,
+            "commandCounts": {
+              "m": 1,
+              "l": 21,
+              "h": 1
+            },
+            "sourcePathRaw": [
+              [
+                "m",
+                [
+                  403.3479,
+                  134.2981
+                ]
+              ],
+              [
+                "l",
+                [
+                  408.6529,
+                  134.2981
+                ]
+              ],
+              [
+                "l",
+                [
+                  408.6529,
+                  131.8511
+                ]
+              ],
+              [
+                "l",
+                [
+                  406.2759,
+                  131.8511
+                ]
+              ],
+              [
+                "l",
+                [
+                  406.2759,
+                  131.33510000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  408.8599,
+                  131.33510000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  408.8599,
+                  130.78310000000002
+                ]
+              ],
+              [
+                "l",
+                [
+                  406.2759,
+                  130.78310000000002
+                ]
+              ],
+              [
+                "l",
+                [
+                  406.2759,
+                  130.19809999999998
+                ]
+              ],
+              [
+                "l",
+                [
+                  409.8589,
+                  130.19809999999998
+                ]
+              ],
+              [
+                "l",
+                [
+                  409.8589,
+                  129.64609999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  402.2109,
+                  129.64609999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  402.2109,
+                  130.19809999999998
+                ]
+              ],
+              [
+                "l",
+                [
+                  405.6899,
+                  130.19809999999998
+                ]
+              ],
+              [
+                "l",
+                [
+                  405.6899,
+                  130.78310000000002
+                ]
+              ],
+              [
+                "l",
+                [
+                  403.1409,
+                  130.78310000000002
+                ]
+              ],
+              [
+                "l",
+                [
+                  403.1409,
+                  131.33510000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  405.6899,
+                  131.33510000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  405.6899,
+                  131.8511
+                ]
+              ],
+              [
+                "l",
+                [
+                  404.5539,
+                  131.8511
+                ]
+              ],
+              [
+                "l",
+                [
+                  403.3479,
+                  131.8511
+                ]
+              ],
+              [
+                "l",
+                [
+                  403.3479,
+                  134.2981
+                ]
+              ],
+              [
+                "h"
+              ]
+            ]
+          },
+          {
+            "pdfplumberCurveIndex": 477,
+            "sourceRawBox": [
+              402.0729,
+              134.7801,
+              409.92789999999997,
+              137.3641
+            ],
+            "mcid": 8391,
+            "tag": "P",
+            "stroke": true,
+            "fill": false,
+            "linewidth": 0.706,
+            "strokeColor": 0,
+            "closed": true,
+            "commandCounts": {
+              "m": 1,
+              "l": 16,
+              "c": 1,
+              "h": 1
+            },
+            "sourcePathRaw": [
+              [
+                "m",
+                [
+                  405.6899,
+                  137.36410000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  406.3449,
+                  137.36410000000004
+                ]
+              ],
+              [
+                "c",
+                [
+                  406.52889999999996,
+                  137.3411
+                ],
+                [
+                  406.5399,
+                  137.27210000000005
+                ],
+                [
+                  406.37989999999996,
+                  137.15710000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  406.37989999999996,
+                  136.67509999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  409.30789999999996,
+                  136.67509999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  409.30789999999996,
+                  136.12410000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  407.8949,
+                  136.12410000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  407.5509,
+                  135.33110000000002
+                ]
+              ],
+              [
+                "l",
+                [
+                  409.92789999999997,
+                  135.33110000000002
+                ]
+              ],
+              [
+                "l",
+                [
+                  409.92789999999997,
+                  134.78009999999998
+                ]
+              ],
+              [
+                "l",
+                [
+                  402.0729,
+                  134.78009999999998
+                ]
+              ],
+              [
+                "l",
+                [
+                  402.0729,
+                  135.33110000000002
+                ]
+              ],
+              [
+                "l",
+                [
+                  404.3809,
+                  135.33110000000002
+                ]
+              ],
+              [
+                "l",
+                [
+                  404.10589999999996,
+                  136.12410000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  402.6929,
+                  136.12410000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  402.6929,
+                  136.67509999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  405.6899,
+                  136.67509999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  405.6899,
+                  137.36410000000004
+                ]
+              ],
+              [
+                "h"
+              ]
+            ]
+          }
+        ],
+        "matchingSourceHorizontalEdges": [
+          {
+            "curveIndex": 448,
+            "startX": 403.3479,
+            "y": 134.2981,
+            "endX": 408.6529,
+            "length": 5.305000000000007
+          },
+          {
+            "curveIndex": 477,
+            "startX": 402.0729,
+            "y": 134.78009999999998,
+            "endX": 409.92789999999997,
+            "length": 7.854999999999961
+          }
+        ],
+        "nearestOldScorableFP": {
+          "candidateId": "b4ab428b-2cbb-4e80-9545-145a267d3bf2",
+          "quadIoU": 0.0,
+          "quad": [
+            {
+              "x": 406.6751999198914,
+              "y": 831.2290999198914
+            },
+            {
+              "x": 527.8241986572266,
+              "y": 831.2290999198914
+            },
+            {
+              "x": 527.8241986572266,
+              "y": 853.2290999198914
+            },
+            {
+              "x": 406.6751999198914,
+              "y": 853.2290999198914
+            }
+          ]
+        },
+        "exactOldCorrespondence": false,
+        "questionCandidateRemainsTrue": true,
+        "gtPageInputEligibility": "no-input",
+        "sourceInferenceBasis": "The source coordinates match the retained synthetic underline box bottom=y_edge+1 and height=min(22,span). For paired glyph contours, the geometry merge coalesces horizontal components less than0.75pt apart; the lower retained y and union x endpoints match the synthetic box. This is source-object diagnosis, not an engine/scorer rerun."
+      },
+      {
+        "number": 5,
+        "candidateId": "ef860c64-55a5-4d16-a66d-d22e103a5911",
+        "pageIndex": 2,
+        "pageNumber": 3,
+        "quad": [
+          {
+            "x": 453.7678999694824,
+            "y": 130.64609994468688
+          },
+          {
+            "x": 461.62389991607665,
+            "y": 130.64609994468688
+          },
+          {
+            "x": 461.62389991607665,
+            "y": 138.50209989128112
+          },
+          {
+            "x": 453.7678999694824,
+            "y": 138.50209989128112
+          }
+        ],
+        "box": [
+          453.7678999694824,
+          130.64609994468688,
+          461.62389991607665,
+          138.50209989128112
+        ],
+        "width": 7.855999946594238,
+        "height": 7.855999946594238,
+        "kind": "checkbox",
+        "label": "福祉コード",
+        "role": "unknown",
+        "native": null,
+        "readOnly": false,
+        "mappingState": "needs-review",
+        "labelEvidence": [
+          {
+            "id": "a94176f2-5819-4956-a42d-ea5e82e0157a",
+            "pageIndex": 2,
+            "text": "福祉コード",
+            "quad": [
+              {
+                "x": 406.2,
+                "y": 124.063125
+              },
+              {
+                "x": 445.66800000000006,
+                "y": 124.063125
+              },
+              {
+                "x": 445.66800000000006,
+                "y": 131.863125
+              },
+              {
+                "x": 406.2,
+                "y": 131.863125
+              }
+            ],
+            "method": "native",
+            "rawOcrConfidence": null
+          }
+        ],
+        "classification": "outlined explanatory glyph contour misdetected as blank checkbox allocation",
+        "sourceContext": "Black outlined paragraph lettering inside the transfer-example explanatory callout; not a standalone answer rule.",
+        "sourceObjects": [
+          {
+            "pdfplumberCurveIndex": 441,
+            "sourceRawBox": [
+              453.7679,
+              129.6461,
+              461.6239,
+              132.5061
+            ],
+            "mcid": 8391,
+            "tag": "P",
+            "stroke": true,
+            "fill": false,
+            "linewidth": 0.706,
+            "strokeColor": 0,
+            "closed": true,
+            "commandCounts": {
+              "m": 1,
+              "l": 8,
+              "h": 1
+            },
+            "sourcePathRaw": [
+              [
+                "m",
+                [
+                  455.0079,
+                  132.50609999999998
+                ]
+              ],
+              [
+                "l",
+                [
+                  460.45189999999997,
+                  132.50609999999998
+                ]
+              ],
+              [
+                "l",
+                [
+                  460.45189999999997,
+                  130.30110000000005
+                ]
+              ],
+              [
+                "l",
+                [
+                  461.6239,
+                  130.30110000000005
+                ]
+              ],
+              [
+                "l",
+                [
+                  461.6239,
+                  129.64609999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  453.7679,
+                  129.64609999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  453.7679,
+                  130.30110000000005
+                ]
+              ],
+              [
+                "l",
+                [
+                  455.0079,
+                  130.30110000000005
+                ]
+              ],
+              [
+                "l",
+                [
+                  455.0079,
+                  132.50609999999998
+                ]
+              ],
+              [
+                "h"
+              ]
+            ]
+          }
+        ],
+        "matchingSourceHorizontalEdges": [
+          {
+            "curveIndex": 441,
+            "startX": 453.7679,
+            "y": 129.64609999999996,
+            "endX": 461.6239,
+            "length": 7.8559999999999945
+          }
+        ],
+        "nearestOldScorableFP": {
+          "candidateId": "b4ab428b-2cbb-4e80-9545-145a267d3bf2",
+          "quadIoU": 0.0,
+          "quad": [
+            {
+              "x": 406.6751999198914,
+              "y": 831.2290999198914
+            },
+            {
+              "x": 527.8241986572266,
+              "y": 831.2290999198914
+            },
+            {
+              "x": 527.8241986572266,
+              "y": 853.2290999198914
+            },
+            {
+              "x": 406.6751999198914,
+              "y": 853.2290999198914
+            }
+          ]
+        },
+        "exactOldCorrespondence": false,
+        "questionCandidateRemainsTrue": true,
+        "gtPageInputEligibility": "no-input",
+        "sourceInferenceBasis": "The source coordinates match the retained synthetic underline box bottom=y_edge+1 and height=min(22,span). For paired glyph contours, the geometry merge coalesces horizontal components less than0.75pt apart; the lower retained y and union x endpoints match the synthetic box. This is source-object diagnosis, not an engine/scorer rerun."
+      },
+      {
+        "number": 6,
+        "candidateId": "977ae8ec-b382-48c3-b6e1-5e8f34b6a3d0",
+        "pageIndex": 2,
+        "pageNumber": 3,
+        "quad": [
+          {
+            "x": 461.2940982299805,
+            "y": 107.71510005340576
+          },
+          {
+            "x": 469.15010103759766,
+            "y": 107.71510005340576
+          },
+          {
+            "x": 469.15010103759766,
+            "y": 115.57110286102295
+          },
+          {
+            "x": 461.2940982299805,
+            "y": 115.57110286102295
+          }
+        ],
+        "box": [
+          461.2940982299805,
+          107.71510005340576,
+          469.15010103759766,
+          115.57110286102295
+        ],
+        "width": 7.8560028076171875,
+        "height": 7.8560028076171875,
+        "kind": "checkbox",
+        "label": "記入欄（項目名を確認）",
+        "role": "unknown",
+        "native": null,
+        "readOnly": false,
+        "mappingState": "needs-review",
+        "labelEvidence": [],
+        "classification": "outlined explanatory glyph contour misdetected as blank checkbox allocation",
+        "sourceContext": "Black outlined paragraph lettering inside the transfer-example explanatory callout; not a standalone answer rule.",
+        "sourceObjects": [
+          {
+            "pdfplumberCurveIndex": 587,
+            "sourceRawBox": [
+              461.2941,
+              106.7151,
+              469.1501,
+              109.5741
+            ],
+            "mcid": 8391,
+            "tag": "P",
+            "stroke": true,
+            "fill": false,
+            "linewidth": 0.706,
+            "strokeColor": 0,
+            "closed": true,
+            "commandCounts": {
+              "m": 1,
+              "l": 8,
+              "h": 1
+            },
+            "sourcePathRaw": [
+              [
+                "m",
+                [
+                  462.5351,
+                  109.57409999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  467.9781,
+                  109.57409999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  467.9781,
+                  107.36910000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  469.1501,
+                  107.36910000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  469.1501,
+                  106.71510000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  461.2941,
+                  106.71510000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  461.2941,
+                  107.36910000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  462.5351,
+                  107.36910000000003
+                ]
+              ],
+              [
+                "l",
+                [
+                  462.5351,
+                  109.57409999999996
+                ]
+              ],
+              [
+                "h"
+              ]
+            ]
+          }
+        ],
+        "matchingSourceHorizontalEdges": [
+          {
+            "curveIndex": 587,
+            "startX": 461.2941,
+            "y": 106.71510000000004,
+            "endX": 469.1501,
+            "length": 7.8559999999999945
+          }
+        ],
+        "nearestOldScorableFP": {
+          "candidateId": "82d230ba-83ad-410f-939e-6726f048360c",
+          "quadIoU": 0.029257726246845018,
+          "quad": [
+            {
+              "x": 399.26300048828125,
+              "y": 111
+            },
+            {
+              "x": 503.6394958496094,
+              "y": 111
+            },
+            {
+              "x": 503.6394958496094,
+              "y": 122.51200103759766
+            },
+            {
+              "x": 399.26300048828125,
+              "y": 122.51200103759766
+            }
+          ]
+        },
+        "exactOldCorrespondence": false,
+        "questionCandidateRemainsTrue": true,
+        "gtPageInputEligibility": "no-input",
+        "sourceInferenceBasis": "The source coordinates match the retained synthetic underline box bottom=y_edge+1 and height=min(22,span). For paired glyph contours, the geometry merge coalesces horizontal components less than0.75pt apart; the lower retained y and union x endpoints match the synthetic box. This is source-object diagnosis, not an engine/scorer rerun."
+      },
+      {
+        "number": 7,
+        "candidateId": "c6da841a-e090-4f6b-b362-52af5f4e87f4",
+        "pageIndex": 2,
+        "pageNumber": 3,
+        "quad": [
+          {
+            "x": 474.9020080566406,
+            "y": 98.6500015258789
+          },
+          {
+            "x": 482.82598876953125,
+            "y": 98.6500015258789
+          },
+          {
+            "x": 482.82598876953125,
+            "y": 106.57398223876953
+          },
+          {
+            "x": 474.9020080566406,
+            "y": 106.57398223876953
+          }
+        ],
+        "box": [
+          474.9020080566406,
+          98.6500015258789,
+          482.82598876953125,
+          106.57398223876953
+        ],
+        "width": 7.923980712890625,
+        "height": 7.923980712890625,
+        "kind": "checkbox",
+        "label": "記入欄（項目名を確認）",
+        "role": "unknown",
+        "native": null,
+        "readOnly": false,
+        "mappingState": "needs-review",
+        "labelEvidence": [],
+        "classification": "outlined explanatory glyph contour misdetected as blank checkbox allocation",
+        "sourceContext": "Black outlined paragraph lettering inside the transfer-example explanatory callout; not a standalone answer rule.",
+        "sourceObjects": [
+          {
+            "pdfplumberCurveIndex": 652,
+            "sourceRawBox": [
+              476.176,
+              95.135,
+              481.517,
+              97.65
+            ],
+            "mcid": 8391,
+            "tag": "P",
+            "stroke": true,
+            "fill": false,
+            "linewidth": 0.706,
+            "strokeColor": 0,
+            "closed": true,
+            "commandCounts": {
+              "m": 1,
+              "l": 8,
+              "h": 1
+            },
+            "sourcePathRaw": [
+              [
+                "m",
+                [
+                  476.176,
+                  97.65
+                ]
+              ],
+              [
+                "l",
+                [
+                  481.517,
+                  97.65
+                ]
+              ],
+              [
+                "l",
+                [
+                  481.517,
+                  95.13500000000002
+                ]
+              ],
+              [
+                "l",
+                [
+                  480.828,
+                  95.13500000000002
+                ]
+              ],
+              [
+                "l",
+                [
+                  480.828,
+                  95.30700000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  476.865,
+                  95.30700000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  476.865,
+                  95.13500000000002
+                ]
+              ],
+              [
+                "l",
+                [
+                  476.176,
+                  95.13500000000002
+                ]
+              ],
+              [
+                "l",
+                [
+                  476.176,
+                  97.65
+                ]
+              ],
+              [
+                "h"
+              ]
+            ]
+          },
+          {
+            "pdfplumberCurveIndex": 685,
+            "sourceRawBox": [
+              474.902,
+              98.064,
+              482.826,
+              103.059
+            ],
+            "mcid": 8391,
+            "tag": "P",
+            "stroke": true,
+            "fill": false,
+            "linewidth": 0.706,
+            "strokeColor": 0,
+            "closed": true,
+            "commandCounts": {
+              "m": 1,
+              "l": 36,
+              "c": 1,
+              "h": 1
+            },
+            "sourcePathRaw": [
+              [
+                "m",
+                [
+                  478.519,
+                  103.059
+                ]
+              ],
+              [
+                "l",
+                [
+                  479.174,
+                  103.059
+                ]
+              ],
+              [
+                "c",
+                [
+                  479.358,
+                  103.03599999999997
+                ],
+                [
+                  479.369,
+                  102.96799999999999
+                ],
+                [
+                  479.208,
+                  102.85299999999998
+                ]
+              ],
+              [
+                "l",
+                [
+                  479.208,
+                  102.439
+                ]
+              ],
+              [
+                "l",
+                [
+                  481.586,
+                  102.439
+                ]
+              ],
+              [
+                "l",
+                [
+                  481.586,
+                  101.50900000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  482.722,
+                  101.50900000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  482.722,
+                  100.958
+                ]
+              ],
+              [
+                "l",
+                [
+                  481.586,
+                  100.958
+                ]
+              ],
+              [
+                "l",
+                [
+                  481.586,
+                  99.99299999999997
+                ]
+              ],
+              [
+                "l",
+                [
+                  479.208,
+                  99.99299999999997
+                ]
+              ],
+              [
+                "l",
+                [
+                  479.208,
+                  99.57999999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  481.723,
+                  99.57999999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  481.723,
+                  99.02800000000005
+                ]
+              ],
+              [
+                "l",
+                [
+                  479.208,
+                  99.02800000000005
+                ]
+              ],
+              [
+                "l",
+                [
+                  479.208,
+                  98.61500000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  482.826,
+                  98.61500000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  482.826,
+                  98.064
+                ]
+              ],
+              [
+                "l",
+                [
+                  474.902,
+                  98.064
+                ]
+              ],
+              [
+                "l",
+                [
+                  474.902,
+                  98.61500000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  478.519,
+                  98.61500000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  478.519,
+                  99.02800000000005
+                ]
+              ],
+              [
+                "l",
+                [
+                  476.004,
+                  99.02800000000005
+                ]
+              ],
+              [
+                "l",
+                [
+                  476.004,
+                  99.57999999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  478.519,
+                  99.57999999999996
+                ]
+              ],
+              [
+                "l",
+                [
+                  478.519,
+                  99.99299999999997
+                ]
+              ],
+              [
+                "l",
+                [
+                  476.073,
+                  99.99299999999997
+                ]
+              ],
+              [
+                "l",
+                [
+                  476.073,
+                  100.54400000000001
+                ]
+              ],
+              [
+                "l",
+                [
+                  478.519,
+                  100.54400000000001
+                ]
+              ],
+              [
+                "l",
+                [
+                  478.519,
+                  100.958
+                ]
+              ],
+              [
+                "l",
+                [
+                  475.039,
+                  100.958
+                ]
+              ],
+              [
+                "l",
+                [
+                  475.039,
+                  101.50900000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  478.519,
+                  101.50900000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  478.519,
+                  101.88800000000006
+                ]
+              ],
+              [
+                "l",
+                [
+                  476.107,
+                  101.88800000000006
+                ]
+              ],
+              [
+                "l",
+                [
+                  476.107,
+                  102.439
+                ]
+              ],
+              [
+                "l",
+                [
+                  478.519,
+                  102.439
+                ]
+              ],
+              [
+                "l",
+                [
+                  478.519,
+                  103.059
+                ]
+              ],
+              [
+                "h"
+              ]
+            ]
+          }
+        ],
+        "matchingSourceHorizontalEdges": [
+          {
+            "curveIndex": 652,
+            "startX": 476.176,
+            "y": 97.65,
+            "endX": 481.517,
+            "length": 5.341000000000008
+          },
+          {
+            "curveIndex": 685,
+            "startX": 474.902,
+            "y": 98.064,
+            "endX": 482.826,
+            "length": 7.924000000000035
+          }
+        ],
+        "nearestOldScorableFP": {
+          "candidateId": "7899264a-b59a-4545-b502-582ce774930b",
+          "quadIoU": 0.04353944478788213,
+          "quad": [
+            {
+              "x": 399.26300048828125,
+              "y": 100.43949890136719
+            },
+            {
+              "x": 503.6394958496094,
+              "y": 100.43949890136719
+            },
+            {
+              "x": 503.6394958496094,
+              "y": 111
+            },
+            {
+              "x": 399.26300048828125,
+              "y": 111
+            }
+          ]
+        },
+        "exactOldCorrespondence": false,
+        "questionCandidateRemainsTrue": true,
+        "gtPageInputEligibility": "no-input",
+        "sourceInferenceBasis": "The source coordinates match the retained synthetic underline box bottom=y_edge+1 and height=min(22,span). For paired glyph contours, the geometry merge coalesces horizontal components less than0.75pt apart; the lower retained y and union x endpoints match the synthetic box. This is source-object diagnosis, not an engine/scorer rerun."
+      },
+      {
+        "number": 8,
+        "candidateId": "4350244f-0640-4083-8532-98dfbadf76cf",
+        "pageIndex": 2,
+        "pageNumber": 3,
+        "quad": [
+          {
+            "x": 457.5594940185547,
+            "y": 72.51580000119209
+          },
+          {
+            "x": 485.8612940185547,
+            "y": 72.51580000119209
+          },
+          {
+            "x": 485.8612940185547,
+            "y": 94.51580000119209
+          },
+          {
+            "x": 457.5594940185547,
+            "y": 94.51580000119209
+          }
+        ],
+        "box": [
+          457.5594940185547,
+          72.51580000119209,
+          485.8612940185547,
+          94.51580000119209
+        ],
+        "width": 28.301800000000014,
+        "height": 22.0,
+        "kind": "text",
+        "label": "支給開始",
+        "role": "unknown",
+        "native": null,
+        "readOnly": false,
+        "mappingState": "needs-review",
+        "labelEvidence": [
+          {
+            "id": "f7cc34f6-91ff-4118-8756-647f27ee7db4",
+            "pageIndex": 2,
+            "text": "支給開始",
+            "quad": [
+              {
+                "x": 407.64,
+                "y": 72.88125000000001
+              },
+              {
+                "x": 450.84,
+                "y": 72.88125000000001
+              },
+              {
+                "x": 450.84,
+                "y": 83.68125
+              },
+              {
+                "x": 407.64,
+                "y": 83.68125
+              }
+            ],
+            "method": "native",
+            "rawOcrConfidence": null
+          }
+        ],
+        "classification": "printed explanatory underline tail misdetected as blank text allocation",
+        "sourceContext": "A closed thin stroked underline polygon (Artifact MCID8394) below printed explanatory text in the transfer-example callout. Its full raw box is x348.7393..485.8613, y71.5158..71.9858. The retained tail allocation x457.559494..485.861294 is not an empty answer underline.",
+        "sourceObjects": [
+          {
+            "pdfplumberCurveIndex": 725,
+            "sourceRawBox": [
+              348.7393,
+              71.5158,
+              485.8613,
+              71.9858
+            ],
+            "mcid": 8394,
+            "tag": "Artifact",
+            "stroke": true,
+            "fill": false,
+            "linewidth": 0.706,
+            "strokeColor": 0,
+            "closed": true,
+            "commandCounts": {
+              "m": 1,
+              "l": 10,
+              "h": 1
+            },
+            "sourcePathRaw": [
+              [
+                "m",
+                [
+                  348.7393,
+                  71.98579999999995
+                ]
+              ],
+              [
+                "l",
+                [
+                  383.0193,
+                  71.98579999999995
+                ]
+              ],
+              [
+                "l",
+                [
+                  417.30030000000005,
+                  71.98579999999995
+                ]
+              ],
+              [
+                "l",
+                [
+                  451.5803,
+                  71.98579999999995
+                ]
+              ],
+              [
+                "l",
+                [
+                  485.8613,
+                  71.98579999999995
+                ]
+              ],
+              [
+                "l",
+                [
+                  485.8613,
+                  71.51580000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  451.5803,
+                  71.51580000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  417.30030000000005,
+                  71.51580000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  383.0193,
+                  71.51580000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  348.7393,
+                  71.51580000000004
+                ]
+              ],
+              [
+                "l",
+                [
+                  348.7393,
+                  71.98579999999995
+                ]
+              ],
+              [
+                "h"
+              ]
+            ]
+          }
+        ],
+        "matchingSourceHorizontalEdges": [
+          {
+            "curveIndex": 725,
+            "startX": 451.5803,
+            "y": 71.98579999999995,
+            "endX": 485.8613,
+            "length": 34.281000000000006
+          },
+          {
+            "curveIndex": 725,
+            "startX": 451.5803,
+            "y": 71.51580000000004,
+            "endX": 485.8613,
+            "length": 34.281000000000006
+          }
+        ],
+        "nearestOldScorableFP": {
+          "candidateId": "78b6c321-4c83-45e4-b569-9536066342f3",
+          "quadIoU": 0.24075439883455763,
+          "quad": [
+            {
+              "x": 457.5594940185547,
+              "y": 67.8442001411438
+            },
+            {
+              "x": 538.1994934082031,
+              "y": 67.8442001411438
+            },
+            {
+              "x": 538.1994934082031,
+              "y": 87.8395004272461
+            },
+            {
+              "x": 457.5594940185547,
+              "y": 87.8395004272461
+            }
+          ]
+        },
+        "exactOldCorrespondence": false,
+        "questionCandidateRemainsTrue": true,
+        "gtPageInputEligibility": "no-input",
+        "sourceInferenceBasis": "The source coordinates match the retained synthetic underline box bottom=y_edge+1 and height=min(22,span). For paired glyph contours, the geometry merge coalesces horizontal components less than0.75pt apart; the lower retained y and union x endpoints match the synthetic box. This is source-object diagnosis, not an engine/scorer rerun."
+      }
+    ],
+    "oldNewScorableFPCorrespondence": [
+      {
+        "oldCandidateId": "d2720d46-fc25-4b4a-a0a0-2d7ee607c441",
+        "newCandidateId": "6f637d5a-f8b5-4737-aa44-ca94f9c728a6",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "fbf83b66-e641-48b0-bd4f-26b851c55925",
+        "newCandidateId": "c5e3eefa-de35-447e-9bc6-d64111bfb328",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "1a79d75f-391d-478d-a049-989c5940e192",
+        "newCandidateId": "594e7e9e-28c5-460f-ad55-c14b3126f328",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "07a6d133-5377-4965-b62e-cfae0e6e5f01",
+        "newCandidateId": "4a3f3f86-c866-4b57-82d6-b1fc1e520203",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "3ace01da-1790-4a71-9b12-7e6143b1e2ec",
+        "newCandidateId": "a6a97466-0555-43db-9fea-54c9220a95af",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "15a570cf-a0b3-4025-a368-46fcbd78dbd9",
+        "newCandidateId": "0e911f61-d1a4-4018-b48c-0423635c8764",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "fa545ebc-6a4b-4ea1-ac69-afdd29b5f072",
+        "newCandidateId": "f7205bc6-20fb-4744-b65b-1057ee7bb414",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "ac368b8f-d656-40eb-a455-37aa6dbe260b",
+        "newCandidateId": "f2302046-57d3-4151-8f2a-a64e93d421a8",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "9ff7989d-01e3-4433-8ac7-8d7f9d540dd1",
+        "newCandidateId": "5d63e291-dd7f-453d-b238-ee1b932d9386",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "f13ef5e7-bdac-4730-afde-0b9311db5680",
+        "newCandidateId": "264ee78e-de35-44b3-95d2-75a2a40c6b8b",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "118f743b-3933-4f91-b472-702351420cee",
+        "newCandidateId": "c50c8e8b-4fbe-4419-bba0-fccf1b499dc1",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "7914851b-f913-4076-bdb2-fdf636e29fd7",
+        "newCandidateId": "360a8e3f-81bc-4d40-8365-b19a0720cc2b",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "8ee27ea4-4517-4a54-bd88-588cc1f238df",
+        "newCandidateId": "541c1a29-ddc6-4a88-a815-f03d1ff264d1",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "da491e82-4d06-4dd5-98f6-424a4d6937c8",
+        "newCandidateId": "fdb61a1c-2a97-4d86-8e89-929b7904f6ff",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "4d67201d-3d39-4f22-8831-94066da6999d",
+        "newCandidateId": "dc6e2d71-2082-4aca-a0ac-567a6293e157",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "42c1d279-7207-4cae-ace8-dc556eba66c9",
+        "newCandidateId": "097eae11-5511-4280-82a2-922199bad490",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "ddff0f0b-d2f0-425c-b818-31783127a7c5",
+        "newCandidateId": "96d046f1-56e5-4e4d-a413-313863b30a79",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "e85e8bff-0f62-4c00-ae4c-f22b5882bb0a",
+        "newCandidateId": "c31eb344-c2d0-49c4-b5f8-dbb59797f0a9",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "51cabf2c-43e9-4d34-a8ba-89297b842601",
+        "newCandidateId": "2f7caf9a-83b3-4cdb-8275-0fe005e35d11",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "fe72cbd1-af07-44a1-80ba-2d6145b1f023",
+        "newCandidateId": "0643298f-4b76-48a0-8dde-c90359a44baa",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "d6560b84-9284-461a-97df-93c8ad162d11",
+        "newCandidateId": "d44e9dab-f70d-4290-a955-a138bccb8d3e",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "dc34fd41-10c3-4e94-a4f2-99aec759b69b",
+        "newCandidateId": "317e7979-1f64-4d94-8a44-c4c8775f9418",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "4813132e-f03f-4ac0-9237-657a2d4eadba",
+        "newCandidateId": "986a0416-d9d2-4713-acc1-03e0a6e92bae",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "c781e04e-d7d3-4183-a426-ba762d466493",
+        "newCandidateId": "55f33fde-6a83-47aa-91c8-81548656f2dd",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "efe0e14c-1f79-466a-9b5f-ab4ed7c7400a",
+        "newCandidateId": "34419cf4-de70-4e89-b21c-ebbf9a0bb028",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "6bcba992-e69d-45c8-a497-b2c6d10da26b",
+        "newCandidateId": "13b259c4-bb47-437c-a785-be6281806198",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "6711e8bd-f550-403a-9c32-811c5c5b6500",
+        "newCandidateId": "2ec98a51-6569-499c-9379-d489fbc5d158",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "71730094-b0f8-4113-8c3b-323b8024c829",
+        "newCandidateId": "a420db06-c24f-426a-8040-b815e814db0d",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "eddffbe5-772b-4d40-9bc6-abf6dc839f0d",
+        "newCandidateId": "5512a778-8937-461a-9886-8fabecf15f43",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "ed076ac9-7e27-4be4-a2ad-037f7d36458c",
+        "newCandidateId": "85be2565-7143-47d2-8283-62a03efd2b49",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "a06c9fc2-95ac-49e8-9c82-fae26bac220e",
+        "newCandidateId": "c9b83a5b-15cb-4e06-b53e-81f240202bf4",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "d868299d-1155-4d68-8e4d-6d9c97e2d0f0",
+        "newCandidateId": "0886f17c-e589-45e5-8418-d82e07917897",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "f400339c-96f2-4a4f-831b-f66505d71660",
+        "newCandidateId": "a2ce21ed-d55d-4e0f-be7e-a32f573aa2b0",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "0bacd111-f8ea-4dcc-bdd8-649809daf07f",
+        "newCandidateId": "0a7ca1ac-121a-479f-9a6b-466e1040ae9f",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "125c90ba-71b2-4720-b1b0-f196a2ac183a",
+        "newCandidateId": "282b5e1a-076d-40d6-9447-e0b6e01ae79d",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "93878658-f703-423b-b8a5-c3957ee10738",
+        "newCandidateId": "815410df-1900-4bd6-80eb-a1195eca093e",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "b17b960c-537a-45c1-9638-25459e40753f",
+        "newCandidateId": "71957f5f-7c5f-43f2-be4e-920e7270f46a",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "2eee90e7-fcff-4ef8-bb96-c61768e0491c",
+        "newCandidateId": "a6f21f4b-ecb2-416a-8b37-70aafe911afd",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "3cc92c99-31e7-4c4b-b199-a96352d37b34",
+        "newCandidateId": "c2a68418-d155-4104-b3ef-c7aad5321ad8",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "1622e16a-17be-46c7-a51c-c5103dd90a87",
+        "newCandidateId": "9d8e40a7-e9c7-45e3-b765-e3083b6bbb4e",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "29b7ca6e-4577-4a73-b8fd-569cc00a088c",
+        "newCandidateId": "7ff7b1c8-9ca8-40ae-9f4f-1435d0cc0882",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "5fe2783d-0696-41b5-bd64-1e2725303ff0",
+        "newCandidateId": "abb2f264-a831-4046-b8b3-956b3c2d88fa",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "49d921de-5452-43e8-a54c-6cc1c7e9c154",
+        "newCandidateId": "7d0eee83-298b-401e-b575-eda3e1f951c4",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "1d6136de-4533-43df-a5d0-a1da0aa1f901",
+        "newCandidateId": "ce1409ab-0fce-47d7-a5d5-b6979903fa29",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "7a019740-472f-4155-921e-0c797764c60d",
+        "newCandidateId": "838ed944-6a70-43ed-b072-81472e6d5d8e",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "69ea35fb-dd10-49d3-bd4a-85ad88f857ca",
+        "newCandidateId": "8c1c84c3-7b26-436b-b530-276bae11d96a",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "faf81aa3-8389-4f09-ac4a-2dfff3d6e965",
+        "newCandidateId": "56df1949-c0d8-4d7f-b473-4e6fdc43697c",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "a78d7656-50f5-425c-b1bf-f43b493fad69",
+        "newCandidateId": "3e8eee7f-2d0e-43b2-8199-2c8a9cc7767a",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "4fc55194-750a-4e8d-92df-74bd91705043",
+        "newCandidateId": "e9cbad51-69d0-48a6-ae3d-61c2bc780e7f",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "f3016e30-eb2d-4ea3-aba0-2edabb958251",
+        "newCandidateId": "8035fafe-2533-4b34-a706-d734e3cb4d23",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "7fb3f58a-7246-4aa6-83d8-93f8369911b1",
+        "newCandidateId": "4213a9cb-29eb-4206-b8fa-17162e85bcbb",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "3baefc77-b376-457c-b4e1-b646c0c5a8de",
+        "newCandidateId": "a19e865a-190c-47f9-9514-6608d20916e0",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "4649e3c3-4e29-4053-b25f-b28db7f0c829",
+        "newCandidateId": "f5f609e0-cb9f-481e-a144-3b06b011bd11",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "5b92a02d-5374-45f4-a891-04276dfea439",
+        "newCandidateId": "58443b74-0330-48ec-8f76-a7a1eaa920ec",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "bc57aa9b-af78-46bf-914d-b41588864d23",
+        "newCandidateId": "4df889d7-ee73-40e0-aee0-7c8177301bd0",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "77bb9cb8-8867-4940-afd2-a270de569609",
+        "newCandidateId": "cbc56f0f-c614-4fc8-bc8b-8faa636dc475",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "405b94dd-7bc8-45f3-ab8f-1f5f837e4dd7",
+        "newCandidateId": "0508472a-ed64-4490-879c-9a8daea66018",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "21d2743b-716c-4902-8219-a32dcb03a8b8",
+        "newCandidateId": "285d718c-174e-4f9e-9253-624f57c9833c",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "15e40cc6-e888-41d5-992d-c43995b112bc",
+        "newCandidateId": "3daadbbf-baa2-4f47-9e21-f44c2f7c4639",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "39600f96-9ee3-4197-be2c-f03e4dcdcd7b",
+        "newCandidateId": "c8ddfbb7-ca1b-4469-8ab5-6aa8157ff16c",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "62f45856-ba46-434a-84a9-e61d73d94ff3",
+        "newCandidateId": "2e180749-2376-44ff-a0d3-6b0042a54481",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "8db79b1a-a859-405b-a584-cd6db6d35e8b",
+        "newCandidateId": "b758f517-1c38-4ff3-99b4-6c8b31a1ba83",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "00379d6f-5d99-470e-82d5-d6546b64dff9",
+        "newCandidateId": "a8d573e6-32ea-434f-991d-5bc18bcf610e",
+        "pageIndex": 1,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "b4ab428b-2cbb-4e80-9545-145a267d3bf2",
+        "newCandidateId": "0064829b-9865-45db-9d8e-1ec2a298d9a0",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "d26b800c-a50d-48f2-9db4-ddf0bea4dfa9",
+        "newCandidateId": "1d591e67-b3f8-4c79-a490-eed1a4d7cc66",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "e8d39edd-9513-449e-a357-de1612718559",
+        "newCandidateId": "acf41aa4-03e0-4bea-95dd-b2ee91c41587",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "2c4ca068-4d44-4459-bff0-2a282fe09294",
+        "newCandidateId": "03d0164b-fd2f-4951-a807-35708465ded4",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "3f70bc7d-c9ab-4b4b-a834-cd4cd7c11fbf",
+        "newCandidateId": "4af92004-7c32-4ffe-a811-b920309fd6ca",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "3deb8634-547d-418f-b52a-2537281524d8",
+        "newCandidateId": "46a4316d-6595-4618-b840-c4781e698ca4",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "bf79fd42-66e1-4edb-9950-3f6c5c0118f9",
+        "newCandidateId": "c9849a0d-62b1-423c-80b8-8475626bd75d",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "70aa1719-523d-405a-8b7e-bcd8757a950c",
+        "newCandidateId": "31e3afd7-9c59-4967-8cd7-3ab33c1ccb7c",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "0419893e-ce3e-43da-bded-01bfc605f973",
+        "newCandidateId": "782c8e61-7aa4-44b3-aef0-47ac447827a9",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "cb7fb684-a797-450f-b63e-b9ea4234aa32",
+        "newCandidateId": "a7b6d594-d554-42c2-acbd-6cb7a19d7b79",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "fb519132-1f09-46fa-bd83-682718085254",
+        "newCandidateId": "8fb69b55-a3b2-4f60-898b-27206b3b1492",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "87440e14-4b4d-491d-9e10-f002d8c74c81",
+        "newCandidateId": "95e6463a-73fb-4cc7-b8a2-6649fa4f9332",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "ac898895-fab0-4086-9b7e-03b7dcd39ad0",
+        "newCandidateId": "280124e2-86f5-489a-a925-b43e3bfb1500",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "c4a4a03e-a87a-4496-bd82-f77a29b04e9f",
+        "newCandidateId": "e45345d1-5983-427b-8c6d-0d57d5e829e8",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "96c2998f-e930-45e4-8ac9-b33fcda2f188",
+        "newCandidateId": "24643291-727d-4258-b8a7-f0823e5a88fd",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "88cdffdd-2047-4ac9-bd27-35b132abef62",
+        "newCandidateId": "89bd5b23-e16a-4ac1-ab48-68199ee95713",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "5590e545-a215-4438-a65a-d19b5ea4b013",
+        "newCandidateId": "5c87d617-8b93-4d3d-8b0b-032fab41c1aa",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "d9f4786c-599d-4f31-b98d-b871fd65b830",
+        "newCandidateId": "5ad111d1-c953-40e0-87f3-a4d6e8b105cb",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "66616167-dd10-4310-8537-49b9dfceddcd",
+        "newCandidateId": "1fa07cf1-914a-4290-a5ab-cc716b169d2a",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "c01a55a5-8bc4-475a-b5fd-e4d94b0c1715",
+        "newCandidateId": "b902aa83-3f27-49f2-ad64-ce133b485fb8",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "4f59f08c-861f-4872-a400-0c1ace4e9e0b",
+        "newCandidateId": "ea73235b-0aba-445f-90c5-895192e591d0",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "e7ca2528-219e-4b42-b99f-edb675f8a98c",
+        "newCandidateId": "14a03834-b270-4c9d-b75b-d451c3e957ff",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "245e982b-1427-48e2-89a9-1f5673289764",
+        "newCandidateId": "4b6603bd-033e-4491-a415-2bb1169d8036",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "b6977d7c-ae6f-4a5c-ac48-9cdc77b1518c",
+        "newCandidateId": "7b8200d9-36c5-406f-8cb8-206817484a3a",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "fce9d17a-e9c3-4700-a709-3f5b50592cb1",
+        "newCandidateId": "7712cf48-fd83-4b8c-983b-2341a5eeda1f",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "af735f5c-5949-45c9-bcbd-3942d9908ffd",
+        "newCandidateId": "ed1eb7d4-f20f-49d8-958b-69c83a7a2190",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "eb490f4b-ab20-42b6-aa34-8a2d9dcbd2fe",
+        "newCandidateId": "9fb2b169-6756-4700-8089-b964f31cd0fc",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "66b89e47-8186-4eea-92f0-0b594cebae73",
+        "newCandidateId": "c18eb331-52a3-4abe-8bdd-b7aa1dc1d75e",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "f8082335-222f-498c-bd08-398f226a2ed0",
+        "newCandidateId": "ca435b14-536b-43f7-ae9d-67bd8ce29025",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "1ac02a89-58b6-42d2-8c9b-0fd0e632390b",
+        "newCandidateId": "792cca29-48cf-47ad-ac17-3b5cbd09b409",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "7aa6eda4-8096-4f46-85b4-6e9bfe8d97cd",
+        "newCandidateId": "760bd007-a639-431c-8b6f-d482982193f6",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "be12801c-cbef-4d9c-9eb3-d5082e96a662",
+        "newCandidateId": "92f0ee00-5beb-48d5-a8e4-991ecea03df3",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "1e510352-7cf3-41ef-9e81-e105ad250693",
+        "newCandidateId": "3def4eb7-d0dc-4a11-a76f-45087cb1cb2e",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "9ed16713-6b0a-40e2-8ac8-6a8c5792438e",
+        "newCandidateId": "672bdbbf-ef87-4953-8d56-23bb722dd6ed",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "0cf93c53-3183-4d12-acbd-9ada97b3f898",
+        "newCandidateId": "a7bf771b-c0b8-4d3b-aa14-992e9d48defb",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "e9a98237-fb85-42ed-8720-12a31e80e2df",
+        "newCandidateId": "657b94be-ece3-4258-9c00-3e25ff52f5bb",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "64c74634-109b-42b4-add9-2593423049f0",
+        "newCandidateId": "dd331b3d-7a5f-41fb-a141-af82c25c18bd",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "758640d8-b5ac-4f54-a00c-d21fa6ba12e3",
+        "newCandidateId": "e8fa1bd6-9476-463a-a466-c21a458da7c1",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "6665f468-bc77-408c-96d4-bbc0dbd21928",
+        "newCandidateId": "004fbd75-d4af-4cb0-a880-4f57e761605f",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "28df926d-87e6-48ef-bd37-0f8905f4a23e",
+        "newCandidateId": "6d34e0b8-71bb-45b2-980e-f20c73fa7e35",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "97595ced-7acd-4f01-a173-69ed8e2cba2b",
+        "newCandidateId": "876a8d30-df28-4e9b-8906-55401a906fd6",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "240d937d-e741-4ad8-b6bc-7c7a920d408d",
+        "newCandidateId": "9d009323-8196-4153-b75e-da4e5a5fb6d7",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "f1712189-a548-4c35-ac7b-53467b71884f",
+        "newCandidateId": "f6576bc1-4ce1-4cd1-88bd-5fe941c4b073",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "36606838-2732-44d9-a8f7-f6871e7b8f36",
+        "newCandidateId": "26795b5b-e5c4-4396-9966-d40ac4a8ca03",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "c4942e91-0c92-46b6-9393-b07fab0ea54c",
+        "newCandidateId": "82bd8132-dfa6-43dd-a41d-8b41fd8a533f",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "e41dce3a-07ac-43c5-bc69-ef2cf0c28cd0",
+        "newCandidateId": "5936be3d-495d-4df8-97f1-96fcf9d4d64a",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "6950f1e0-ffb4-40a9-9a6b-77962f008fd7",
+        "newCandidateId": "5eb9187e-a66e-4ce9-81e4-a01136e8d365",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "cdca039a-d049-4709-b5cb-e144542fb53d",
+        "newCandidateId": "71801a36-e90f-4d10-833f-2b971e8fee68",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "4779aef7-7535-40e7-a266-349fd71fb5e9",
+        "newCandidateId": "05652579-0011-411b-a203-7a35ac1a5e56",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "37dfaefb-e69c-468a-8a9f-e39fe71da924",
+        "newCandidateId": "2266bfd0-a55a-4736-a27e-e80f19e73be2",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "b3100af7-0a9a-4860-8b0b-9b6506d9edb5",
+        "newCandidateId": "2349d0d5-e771-494e-9baf-e6af26785982",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "d8778715-1405-4243-bd11-5cf10e296abc",
+        "newCandidateId": "f737be7a-99b1-44cf-9724-f162f71e2eae",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "bc9ba5f4-7d45-4ba8-ad72-fb97642ae297",
+        "newCandidateId": "f2466c84-8cf5-46ee-a87f-c2be5eebfc56",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "82d230ba-83ad-410f-939e-6726f048360c",
+        "newCandidateId": "6f95fa46-1233-4af6-8bad-2f5dd0723192",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "43cfc09f-5ffb-47ea-8898-7f197e455918",
+        "newCandidateId": "05e0f8ca-147d-4db2-9b0f-014d0acf694a",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "7899264a-b59a-4545-b502-582ce774930b",
+        "newCandidateId": "c86cce2f-301f-4a4c-9280-52db0a73ff46",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "bd1368be-250e-4c0f-bb2b-c3057ab6f115",
+        "newCandidateId": "ad2da7ea-cff5-44f6-838d-f6dab95bf793",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "e8612411-751a-4b70-b2ba-7bd037b2ef36",
+        "newCandidateId": "9c71461a-5979-4ca4-a23b-e08b8daf8642",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "78b6c321-4c83-45e4-b569-9536066342f3",
+        "newCandidateId": "c42e0887-d335-4af1-8120-006ab6eb09e3",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "997be38e-e4dc-4912-8105-6965861bb4b7",
+        "newCandidateId": "a7f88105-faf2-4d3d-86c8-1cd151b23c75",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      },
+      {
+        "oldCandidateId": "e66e6fbf-5cfc-4812-aaaa-1b637fdd9310",
+        "newCandidateId": "3ddbf526-3020-4c54-ba69-1ad443dc2784",
+        "pageIndex": 2,
+        "quadIoU": 1.0,
+        "sameKind": true,
+        "sameExactQuad": true
+      }
+    ],
+    "pins": [
+      {
+        "path": "E:\\others\\silverguide-qa\\accuracy\\runs\\corrected-f53f383f-train-v3\\inputs.json",
+        "beforeSha256": "a563e3a356ef0439bd5a4d541118bb7a63ecb4ebedb172685ea33872a0cf3822",
+        "byteLength": 759772,
+        "afterSha256": "a563e3a356ef0439bd5a4d541118bb7a63ecb4ebedb172685ea33872a0cf3822",
+        "unchanged": true
+      },
+      {
+        "path": "E:\\others\\silverguide-qa\\accuracy\\runs\\corrected-d4c79584-train-v4\\inputs.json",
+        "beforeSha256": "c086cd2b98b530a66e6bc330484971427d77ab0fdec2d6bbaa7277b7240665c0",
+        "byteLength": 1267326,
+        "afterSha256": "c086cd2b98b530a66e6bc330484971427d77ab0fdec2d6bbaa7277b7240665c0",
+        "unchanged": true
+      },
+      {
+        "path": "E:\\others\\silverguide-qa\\real-corpus\\manifest.json",
+        "beforeSha256": "a5d6eb5d4be37eb5c29965ac6a237612fbcb4c9766f1f69a4833b19d69e5090e",
+        "byteLength": 111756,
+        "afterSha256": "a5d6eb5d4be37eb5c29965ac6a237612fbcb4c9766f1f69a4833b19d69e5090e",
+        "unchanged": true
+      },
+      {
+        "path": "E:\\others\\silverguide-qa\\real-corpus\\pdf\\yokohama-childbenefit.pdf",
+        "beforeSha256": "37a52fa512a790105dbd528246c2d5f61e0185c2238a677e8e9cdb8d6e0ea3df",
+        "byteLength": 546398,
+        "afterSha256": "37a52fa512a790105dbd528246c2d5f61e0185c2238a677e8e9cdb8d6e0ea3df",
+        "unchanged": true
+      },
+      {
+        "path": "E:\\others\\silverguide-qa\\accuracy\\public-truth-v1\\yokohama-childbenefit.json",
+        "beforeSha256": "10cd48d987d65913cfb3067f1565860fa583f8cc8445da8c2c6ae315d7d4f60e",
+        "byteLength": 2364,
+        "afterSha256": "10cd48d987d65913cfb3067f1565860fa583f8cc8445da8c2c6ae315d7d4f60e",
+        "unchanged": true
+      },
+      {
+        "path": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\corrected-f53f383f-train-v3\\yokohama-childbenefit.json",
+        "beforeSha256": "67c7427a8ef7db8769b1802952b41643ce3a96946c43ee69e05efc3937b718c7",
+        "byteLength": 1231572,
+        "afterSha256": "67c7427a8ef7db8769b1802952b41643ce3a96946c43ee69e05efc3937b718c7",
+        "unchanged": true
+      },
+      {
+        "path": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\corrected-d4c79584-train-v4\\yokohama-childbenefit.json",
+        "beforeSha256": "f45931dc5db77b4c32a49411ba2931cb7708024cb94d83b1f57ec2fd606d044f",
+        "byteLength": 1197095,
+        "afterSha256": "f45931dc5db77b4c32a49411ba2931cb7708024cb94d83b1f57ec2fd606d044f",
+        "unchanged": true
+      },
+      {
+        "path": "E:\\others\\silverguide-qa\\accuracy\\evaluator-v3.mjs",
+        "beforeSha256": "ab864648545697b266bd35e8673273b69b2d319836a0bd251bc581515cf8fea0",
+        "byteLength": 21223,
+        "afterSha256": "ab864648545697b266bd35e8673273b69b2d319836a0bd251bc581515cf8fea0",
+        "unchanged": true
+      },
+      {
+        "path": "E:\\others\\tmp\\pdfs\\yoko-original-fp-v1\\page-2.png",
+        "beforeSha256": "828aaac45680251bfe218c4abb1f3c219969209efc5998c82fb740f437df6bb1",
+        "byteLength": 316861,
+        "afterSha256": "828aaac45680251bfe218c4abb1f3c219969209efc5998c82fb740f437df6bb1",
+        "unchanged": true
+      },
+      {
+        "path": "E:\\others\\tmp\\pdfs\\yoko-original-fp-v1\\page-3.png",
+        "beforeSha256": "98b0579c7d5fe9f9cac8f99fe0e0e14ece99409079dd00e313456569f1e6873f",
+        "byteLength": 354601,
+        "afterSha256": "98b0579c7d5fe9f9cac8f99fe0e0e14ece99409079dd00e313456569f1e6873f",
+        "unchanged": true
+      }
+    ]
+  }
+}

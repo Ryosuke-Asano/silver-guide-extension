@@ -1,0 +1,287 @@
+{
+  "sourceHash": "76685b27414b25a5f570f3c1107d26678204ed85c16782145931738ac7d4b1e9",
+  "browser": "Actual isolated native Chromium extension",
+  "builds": [
+    {
+      "target": "dist",
+      "match": true,
+      "fileCount": 323,
+      "metadata": {
+        "version": "2.0.0",
+        "browserTarget": "gecko",
+        "contentScriptFormat": "iife",
+        "sourceHash": "76685b27414b25a5f570f3c1107d26678204ed85c16782145931738ac7d4b1e9",
+        "builtAt": "2026-10-13T17:35:10.389Z"
+      }
+    },
+    {
+      "target": "dist-chromium",
+      "match": true,
+      "fileCount": 323,
+      "metadata": {
+        "version": "2.0.0",
+        "browserTarget": "chromium",
+        "contentScriptFormat": "iife",
+        "sourceHash": "76685b27414b25a5f570f3c1107d26678204ed85c16782145931738ac7d4b1e9",
+        "builtAt": "2026-10-13T17:35:36.753Z"
+      }
+    }
+  ],
+  "success": true,
+  "scope": {
+    "setup": "Isolated genuine compiled Chromium extension. Public encrypted-backup import and draft UI only; previously saved625CFA candidates, not fresh detector output or source-ground-truth. Root exclusive release is required before invocation.",
+    "layouts": [
+      {
+        "width": 320,
+        "zoom": 75
+      },
+      {
+        "width": 320,
+        "zoom": 100
+      },
+      {
+        "width": 320,
+        "zoom": 200
+      },
+      {
+        "width": 1080,
+        "zoom": 75
+      },
+      {
+        "width": 1080,
+        "zoom": 100
+      },
+      {
+        "width": 1080,
+        "zoom": 200
+      }
+    ],
+    "unreadHoldouts": true,
+    "frameworkStateInjection": false,
+    "minimumOrdinaryLargeTargetCssPx": 44,
+    "limits": [
+      "Original7bd full1614/d5 post-scroll proofs remain historical. This final-UI run covers saved625dense candidates, readonly inspection and manually seeded aliases; no fresh accuracy claim.",
+      "Original small overlay raw axe flags remain. Large-route equivalence is not fullWCAG/NVDA/human-user certification.",
+      "All-location keyboard operation uses public DOM focus then Enter; additional Tab route is measured separately.",
+      "No tiny-overlay all-pointer claim, no automatic page classification, no precision/recall claim."
+    ]
+  },
+  "cfa": {
+    "original": {
+      "bytes": 331984,
+      "sha256": "d2ee22b407d2923820d5443fb222352d910c445b89fc77dbbb1120687c7f6bf4"
+    },
+    "savedFieldsAcross6pages": 782,
+    "inspectedPage": 2,
+    "savedCandidatesOnPage": 625,
+    "directPlacementAliases": 625,
+    "optionPlacementAliases": 0,
+    "physicalProjections": 625,
+    "layoutCells": 6,
+    "pointerLargeSelections": 3750,
+    "keyboardLargeSelections": 625,
+    "keyboardOriginalOverlaySelections": 625,
+    "minLargeWidth": 240,
+    "minLargeHeight": 84.796875,
+    "bodyOverflowCells": 0
+  },
+  "scroll": [
+    {
+      "name": "list batch and original-page scroll reset",
+      "before": {
+        "scrollTop": 2656,
+        "scrollHeight": 3079,
+        "clientHeight": 384,
+        "firstKey": "[\"9747d195-5f8b-4e5a-9efc-7c43b6822d69\",1,null,[[396.30999755859375,788.3200073242188],[434.4700012207031,788.3200073242188],[434.4700012207031,810.3200073242188],[396.30999755859375,810.3200073242188]]]",
+        "firstNumber": "位置1：休憩時間",
+        "focusedKey": null,
+        "selectedKey": "[\"019b2cf8-1320-4a96-a9d3-4b88b2216252\",1,null,[[269.3299865722656,758.52001953125],[290.4499816894531,758.52001953125],[290.4499816894531,766.3200073242188],[269.3299865722656,766.3200073242188]]]"
+      },
+      "next": {
+        "scrollTop": 0,
+        "scrollHeight": 3040,
+        "clientHeight": 384,
+        "firstKey": "[\"c7e8a1b4-b76b-40dc-96c1-f8ab368791d4\",1,null,[[290.4499816894531,758.52001953125],[311.5900115966797,758.52001953125],[311.5900115966797,766.3200073242188],[290.4499816894531,766.3200073242188]]]",
+        "firstNumber": "位置26：3",
+        "focusedKey": null,
+        "selectedKey": "[\"019b2cf8-1320-4a96-a9d3-4b88b2216252\",1,null,[[269.3299865722656,758.52001953125],[290.4499816894531,758.52001953125],[290.4499816894531,766.3200073242188],[269.3299865722656,766.3200073242188]]]"
+      },
+      "previous": {
+        "scrollTop": 0,
+        "scrollHeight": 3040,
+        "clientHeight": 384,
+        "firstKey": "[\"9747d195-5f8b-4e5a-9efc-7c43b6822d69\",1,null,[[396.30999755859375,788.3200073242188],[434.4700012207031,788.3200073242188],[434.4700012207031,810.3200073242188],[396.30999755859375,810.3200073242188]]]",
+        "firstNumber": "位置1：休憩時間",
+        "focusedKey": null,
+        "selectedKey": "[\"a106c163-29c0-47ca-87ec-418e7ba60707\",1,null,[[219.40999603271484,735.1199951171875],[244.37000274658203,735.1199951171875],[244.37000274658203,742.9199829101562],[219.40999603271484,742.9199829101562]]]"
+      },
+      "originalPage": {
+        "scrollTop": 0,
+        "scrollHeight": 3232,
+        "clientHeight": 384,
+        "firstKey": "[\"129a1b12-bb16-4ee1-9861-e877b212b5f6\",0,null,[[51.14400100708008,764.7999877929688],[170.78399658203125,764.7999877929688],[170.78399658203125,786.7999877929688],[51.14400100708008,786.7999877929688]]]",
+        "firstNumber": "位置1：記入欄（項目名を確認）",
+        "focusedKey": null
+      }
+    },
+    {
+      "name": "number625 and repeated focus preserve selection/visibility",
+      "jump": {
+        "scrollTop": 2656,
+        "scrollHeight": 3040,
+        "clientHeight": 384,
+        "firstKey": "[\"af9abc8a-079d-4ac3-8aa3-8ffb4f7413d1\",1,null,[[176.57000732421875,223.01998901367188],[396.30999755859375,223.01998901367188],[396.30999755859375,245.01998901367188],[176.57000732421875,245.01998901367188]]]",
+        "firstNumber": "位置601：1952",
+        "focusedKey": "[\"d8df3d52-fb97-4f10-aaad-b847ca68a38d\",1,null,[[176.57000732421875,93.39999008178711],[396.30999755859375,93.39999008178711],[396.30999755859375,115.39999008178711],[176.57000732421875,115.39999008178711]]]",
+        "selectedKey": "[\"9747d195-5f8b-4e5a-9efc-7c43b6822d69\",1,null,[[396.30999755859375,788.3200073242188],[434.4700012207031,788.3200073242188],[434.4700012207031,810.3200073242188],[396.30999755859375,810.3200073242188]]]"
+      },
+      "repeat": {
+        "scrollTop": 2656,
+        "scrollHeight": 3040,
+        "clientHeight": 384,
+        "firstKey": "[\"af9abc8a-079d-4ac3-8aa3-8ffb4f7413d1\",1,null,[[176.57000732421875,223.01998901367188],[396.30999755859375,223.01998901367188],[396.30999755859375,245.01998901367188],[176.57000732421875,245.01998901367188]]]",
+        "firstNumber": "位置601：1952",
+        "focusedKey": "[\"d8df3d52-fb97-4f10-aaad-b847ca68a38d\",1,null,[[176.57000732421875,93.39999008178711],[396.30999755859375,93.39999008178711],[396.30999755859375,115.39999008178711],[176.57000732421875,115.39999008178711]]]",
+        "selectedKey": "[\"9747d195-5f8b-4e5a-9efc-7c43b6822d69\",1,null,[[396.30999755859375,788.3200073242188],[434.4700012207031,788.3200073242188],[434.4700012207031,810.3200073242188],[396.30999755859375,810.3200073242188]]]"
+      }
+    },
+    {
+      "name": "invalid jump has associated status",
+      "describedBy": "_r_o_-notice",
+      "text": "このページに表示している位置の番号を入力してください。対象外の位置は、項目一覧から対象外の候補を開くと確認できます。"
+    },
+    {
+      "name": "Tab route from ordinary page control",
+      "steps": [
+        {
+          "tag": "BUTTON",
+          "text": "次",
+          "key": null
+        },
+        {
+          "tag": "SELECT",
+          "text": "75%100%125%150%200%",
+          "key": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "前の25か所を表示",
+          "key": null
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "key": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "番号のボタンへ移動",
+          "key": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "位置601：1952項目710。この位置の質問へ移動",
+          "key": "[\"af9abc8a-079d-4ac3-8aa3-8ffb4f7413d1\",1,null,[[176.57000732421875,223.01998901367188],[396.30999755859375,223.01998901367188],[396.30999755859375,245.01998901367188],[176.57000732421875,245.01998901367188]]]"
+        }
+      ]
+    }
+  ],
+  "seed": {
+    "original": {
+      "bytes": 13188,
+      "sha256": "e088f4102d16e203a563a70dfff2837d8128f4d25b593daea8cadc7f4f16e10d"
+    },
+    "setup": "Deliberately seeded saved manual-draft edge cases, imported only through the public encrypted backup UI. Original PDF and real native DTOs unchanged; manual fields are explicitly authored draft geometry, not automatically inferred accuracy.",
+    "savedFields": 5,
+    "directAliases": 5,
+    "optionAliases": 5,
+    "physicalDefault": 6,
+    "physicalWithRejected": 8,
+    "layoutCells": 36,
+    "pointerLargeSelections": 84,
+    "keyboardLargeSelections": 14,
+    "keyboardOriginalOverlaySelections": 14,
+    "checks": [
+      {
+        "name": "A option onpage2 retains currentpage"
+      },
+      {
+        "name": "option-only B global navigation reachespage3"
+      }
+    ],
+    "minLargeWidth": 240,
+    "minLargeHeight": 84.796875
+  },
+  "readonly": {
+    "original": {
+      "bytes": 2218311,
+      "sha256": "4c0dd45c47a95c0f231bd2d082f23f043ae6c9691e89f92f8abbd0b0873f2370"
+    },
+    "checks": [
+      {
+        "name": "first25large readonly locations inspect without input/output path",
+        "count": 25
+      }
+    ]
+  },
+  "rawAxe": [
+    {
+      "path": "E:/others/silverguide-qa/accessibility/small-targets-post-scroll-76685b27-1791913118083/axe-cfa625-320.json",
+      "violations": [
+        {
+          "id": "target-size",
+          "nodes": 625
+        }
+      ],
+      "incomplete": []
+    },
+    {
+      "path": "E:/others/silverguide-qa/accessibility/small-targets-post-scroll-76685b27-1791913118083/axe-seed320.json",
+      "violations": [],
+      "incomplete": []
+    }
+  ],
+  "pageErrors": [],
+  "otherConsole": [],
+  "backupComparison": {
+    "success": true,
+    "tasks": 10,
+    "path": "E:/others/silverguide-qa/accessibility/small-targets-post-scroll-76685b27-1791913118083/independent-backup-comparison.json",
+    "before": {
+      "path": "E:\\others\\silverguide-qa\\accessibility\\small-targets-post-scroll-76685b27-1791913118083\\downloads\\56bf9479-333f-45eb-b3e9-07ac93c324f4",
+      "bytes": 16025582,
+      "sha256": "bd08b7cdcc62956534e0c43c5e83f7f9f6ce8aa22e0c6b52fe948ebc5dfbeb46"
+    },
+    "after": {
+      "path": "E:\\others\\silverguide-qa\\accessibility\\small-targets-post-scroll-76685b27-1791913118083\\downloads\\127ee43a-6d53-43ef-8308-70672729f488",
+      "bytes": 16025560,
+      "sha256": "c3f17fb68f6f05057d6427da64ac48e77e1021aa80deb300a86225eb44db873b"
+    }
+  },
+  "beforeAfterSourceAndBothBundlesUnchanged": true,
+  "parentBaselineAllFilesMatched": true,
+  "ownedProcesses": {
+    "sourceHash": "76685b27414b25a5f570f3c1107d26678204ed85c16782145931738ac7d4b1e9",
+    "capturedAt": "2026-10-13T17:44:20.3233439Z",
+    "runDirectory": "E:/others/silverguide-qa/accessibility/small-targets-post-scroll-76685b27-1791913118083",
+    "ownershipGraphVersion": 6,
+    "complete": true,
+    "ownedProcessCount": 0,
+    "processes": [],
+    "uncertain": [],
+    "rejectedParentBirthEdges": [],
+    "scope": "Task marker + exact current seed birth + child birth not earlier than current parent; unknown birth is not promoted. No user process termination. Previously observed exact browser-family tuples are rechecked; not exhaustive unobserved-lifetime coverage. The runner exit must be independently awaited."
+  },
+  "paths": {
+    "raw": "E:/others/silverguide-qa/accessibility/small-targets-post-scroll-76685b27-1791913118083/qa-log.json",
+    "before": "E:/others/silverguide-qa/accessibility/small-targets-post-scroll-76685b27-1791913118083/raw-task-before.json",
+    "after": "E:/others/silverguide-qa/accessibility/small-targets-post-scroll-76685b27-1791913118083/raw-task-after.json",
+    "png": [
+      "E:/others/silverguide-qa/accessibility/small-targets-post-scroll-76685b27-1791913118083/cfa-next-batch-320.png",
+      "E:/others/silverguide-qa/accessibility/small-targets-post-scroll-76685b27-1791913118083/cfa-number625-320.png",
+      "E:/others/silverguide-qa/accessibility/small-targets-post-scroll-76685b27-1791913118083/seed-option-rejected-320.png",
+      "E:/others/silverguide-qa/accessibility/small-targets-post-scroll-76685b27-1791913118083/readonly-inspection-320.png"
+    ]
+  },
+  "priorProof": "7bd20f1d full1614 saved-candidate/all114layout proof and f53f383f targeted proof remain historical. This targeted proof under 76685b27414b25a5f570f3c1107d26678204ed85c16782145931738ac7d4b1e9 does not relabel either, and does not count saved proposals as source-ground-truth or fresh extraction accuracy."
+}

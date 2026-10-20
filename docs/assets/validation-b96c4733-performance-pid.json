@@ -1,0 +1,96 @@
+{
+  "checkedAtUtc": "2026-10-13T23:16:05.2618442Z",
+  "distinctBirthTuples": 1472,
+  "matchingAlive": [],
+  "unknown": [],
+  "foreignReusedPidTuples": [
+    {
+      "pid": 7156,
+      "ownedBirth": "134363983155401226",
+      "currentForeignBirth": "134363984928289560"
+    },
+    {
+      "pid": 16900,
+      "ownedBirth": "134364009579473408",
+      "currentForeignBirth": "134364039301827042"
+    },
+    {
+      "pid": 16900,
+      "ownedBirth": "134364016233524843",
+      "currentForeignBirth": "134364039301827042"
+    },
+    {
+      "pid": 36856,
+      "ownedBirth": "134364039382061774",
+      "currentForeignBirth": "134364057604073566"
+    },
+    {
+      "pid": 42236,
+      "ownedBirth": "134364026435978799",
+      "currentForeignBirth": "134364057603830261"
+    },
+    {
+      "pid": 51808,
+      "ownedBirth": "134364036640826420",
+      "currentForeignBirth": "134364057624575852"
+    },
+    {
+      "pid": 51960,
+      "ownedBirth": "134364047542553269",
+      "currentForeignBirth": "134364057604036382"
+    },
+    {
+      "pid": 55268,
+      "ownedBirth": "134364017691225180",
+      "currentForeignBirth": "134364039300701356"
+    },
+    {
+      "pid": 62084,
+      "ownedBirth": "134363985090170000",
+      "currentForeignBirth": "134364001245113234"
+    },
+    {
+      "pid": 66244,
+      "ownedBirth": "134364043341300877",
+      "currentForeignBirth": "134364069643867712"
+    },
+    {
+      "pid": 73012,
+      "ownedBirth": "134364025814605529",
+      "currentForeignBirth": "134364039302257890"
+    },
+    {
+      "pid": 85224,
+      "ownedBirth": "134363981182831240",
+      "currentForeignBirth": "134363988283127964"
+    }
+  ],
+  "scratchCommandLineAlive": [],
+  "ownedPidZero": true,
+  "compiledContract": {
+    "type": "SilverGuidePerfMonitorV7",
+    "requiredMetadataProperties": [
+      "samplerVersion",
+      "tickId",
+      "familyGaugeStartUtc",
+      "familyGaugeEndUtc",
+      "familyGaugeStartElapsedMs",
+      "familyGaugeEndElapsedMs",
+      "stageWallMs",
+      "collectionGcGenerationDeltas",
+      "previousOutput",
+      "lastOutput",
+      "gcGenerationDeltas",
+      "serializeMs",
+      "writeMs",
+      "flushMs",
+      "collectionEndedAtUtc",
+      "discoveryIntervalMs",
+      "pdhIntervalMs"
+    ],
+    "mainInvoked": false,
+    "nativeApisInvoked": false,
+    "samplerStarted": false
+  },
+  "scope": "Fresh read-only PID+FILETIME proof and compiled assembly metadata reflection; no termination/deletion and no sampler Main/native API invocation. Numeric PID reuse is foreign and untouched."
+}

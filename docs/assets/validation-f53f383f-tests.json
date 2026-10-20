@@ -1,0 +1,23 @@
+{
+  "sourceHash": "f53f383f2b6a15db771299ccd455c277a71d8a0863d33a3b97813287429f8b85",
+  "scope": "Whole run 530 plus separately executed additional writer case; not full531 re-run",
+  "fullRun": {
+    "files": 47,
+    "tests": 530,
+    "pass": 530,
+    "fail": 0,
+    "elapsedMs": 123235.16333007812,
+    "path": "E:/others/silverguide-qa/all-tests-pdf-accuracy-fixed-recheck-20261013.json"
+  },
+  "additionalTargeted": {
+    "tests": 5,
+    "newSinceWholeRun": 1,
+    "pass": 5,
+    "scope": "UserUnit/CropBox/4rotation ordered cells and raw180 right-side-label writer end-to-end"
+  },
+  "typeCheck": true,
+  "geckoBuild": true,
+  "chromiumBuild": true,
+  "runtimeAssetsPerTarget": 298,
+  "bundleFilesPerTarget": 323
+}

@@ -1,0 +1,103 @@
+{
+  "version": 3,
+  "kind": "scoped-recorded-scenario-report",
+  "createdAtUtc": "2026-10-13T20:33:07.199053+00:00",
+  "historicalProductSourceHash": "b96c473355a5a9a81bba5874c0b463a8e7aabec4131d98630b87bfbea807a11f",
+  "recordedScenarioEvidenceComplete": true,
+  "scope": "Only the recorded 17-state/34-capture synthetic public-UI scenario, actual PDF readback/public PDF reopen, and authenticated four-kind backup readback. This is not complete product functional, accessibility, permission-grant, or user-study verification.",
+  "originalUIExecution": {
+    "handle": 80034,
+    "exitCode": 1,
+    "rawSuccess": false,
+    "error": {
+      "message": "Observation did not settle within 20000 ms",
+      "stack": "Error: Observation did not settle within 20000 ms\n    at poll (file:///E:/others/silverguide-qa/performance/browser-transports.mjs:8:315)\n    at async completedDownload (file:///E:/others/silverguide-qa/ui-final-design/capture-after-ui-v2.mjs:110:15)\n    at async file:///E:/others/silverguide-qa/ui-final-design/capture-after-ui-v2.mjs:187:200"
+    }
+  },
+  "independentFinalizerExitCode": 0,
+  "mainStates": {
+    "logicalStates": 17,
+    "captures": 34,
+    "artifactCount": 102,
+    "zoom": 100,
+    "nativePopupActualWidths": {
+      "normal": 440,
+      "pdf": 380
+    },
+    "sourceWidths": [
+      320,
+      1080
+    ]
+  },
+  "backup": {
+    "bytes": 109531,
+    "sha256": "4a1cc3749b26d6a489121560ca00c25b95c83e3e2d972670504cd7e0a7856ce4",
+    "freshAssociationUnique": true,
+    "authenticatedImportSucceeded": true,
+    "authenticationScope": "Existing normal importer in fresh in-memory store; not a second cryptographic implementation",
+    "suggestedFilenameSuffixPresent": false,
+    "taskKinds": [
+      {
+        "kind": "web",
+        "currentTypeValid": true,
+        "title": "確認用の入力欄"
+      },
+      {
+        "kind": "reading",
+        "currentTypeValid": true,
+        "title": "UI確認用の準備案内"
+      },
+      {
+        "kind": "pdf",
+        "currentTypeValid": true,
+        "title": "page-review-native.pdf"
+      },
+      {
+        "kind": "checklist",
+        "currentTypeValid": true,
+        "title": "横浜市：住民票の写しを郵送で請求する準備"
+      }
+    ],
+    "uiReopenScope": "Public PDF reopen was exercised; reading/web/checklist payloads were independently authenticated and validated in the backup, without claiming their public UI reopen was tested in this scenario."
+  },
+  "pdfReadback": {
+    "path": "E:\\others\\silverguide-qa\\ui-final-design\\after-ui-v2-b96c4733-1791922699844\\downloads\\f4f9d8b1-7fd3-43d3-8d62-f0fd41951b80.pdf",
+    "bytes": 16735,
+    "sha256": "aa3bd5cff484eff78150687f188c3838c65a7aca02b9b60f6b706d7b7ab904d5",
+    "pageCount": 3,
+    "name": "山田 花子（UI整理前の保存確認）",
+    "actualFileIndependentlyRead": true,
+    "publicEncryptedReopenObserved": true
+  },
+  "nativePermissionGrantVerified": false,
+  "urlFetchSuccessVerified": false,
+  "alternateImport": "Native permission pending naturally observed; public Cancel restored file input; public native file chooser supplied unchanged original fixture",
+  "insecureHTTPSourceConfirmed": true,
+  "pageErrors": 0,
+  "historicalCapturedBundleInvariance": {
+    "totalFiles": 646,
+    "both323SizeSHAUnchanged": true,
+    "comparisonScope": "Historical captured before/after bundle entries against pinned b96 baseline, not current live build"
+  },
+  "ownedProcessCountAfterOriginalNodeExit": 0,
+  "pid0ObservedAt": "2026-10-13T20:23:16.3075772Z",
+  "inputPins": {
+    "fileCount": 178,
+    "allPinnedInputsUnchanged": true,
+    "differences": []
+  },
+  "targetSizeRaw": {
+    "ordinaryDisplayed44Violations": 0,
+    "primaryDisplayed56Violations": 0,
+    "ordinaryOverlayExcluded": true,
+    "automaticAccessibilityPass": false,
+    "disclosureSummariesCountedSeparately": true
+  },
+  "detailedReport": "E:\\others\\silverguide-qa\\ui-final-design\\after-ui-v3-finalized-b96c4733-1791923421856\\final-report-v3.json",
+  "independentReadOnlyReview": {
+    "agent": "backup_association_review",
+    "factsMatchSourceAndDecodedEvidence": true,
+    "terminologyCorrection": "The earlier detailed report field functionalEvidenceComplete is bounded to its assessment/limitations. This compact report uses recordedScenarioEvidenceComplete to make that scope explicit."
+  },
+  "oldArtifactsOverwritten": false
+}

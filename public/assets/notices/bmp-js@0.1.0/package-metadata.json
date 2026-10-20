@@ -1,0 +1,13 @@
+{
+  "name": "bmp-js",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": {
+    "name": "shaozilee",
+    "email": "shaozilee@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shaozilee/bmp-js"
+  }
+}

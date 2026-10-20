@@ -1,0 +1,280 @@
+{
+  "sourceHash": "f53f383f2b6a15db771299ccd455c277a71d8a0863d33a3b97813287429f8b85",
+  "browser": "Actual isolated native Chromium extension",
+  "builds": [
+    {
+      "target": "dist",
+      "match": true,
+      "fileCount": 323,
+      "metadata": {
+        "version": "2.0.0",
+        "browserTarget": "gecko",
+        "contentScriptFormat": "iife",
+        "sourceHash": "f53f383f2b6a15db771299ccd455c277a71d8a0863d33a3b97813287429f8b85",
+        "builtAt": "2026-10-13T09:33:59.955Z"
+      }
+    },
+    {
+      "target": "dist-chromium",
+      "match": true,
+      "fileCount": 323,
+      "metadata": {
+        "version": "2.0.0",
+        "browserTarget": "chromium",
+        "contentScriptFormat": "iife",
+        "sourceHash": "f53f383f2b6a15db771299ccd455c277a71d8a0863d33a3b97813287429f8b85",
+        "builtAt": "2026-10-13T09:34:33.142Z"
+      }
+    }
+  ],
+  "success": true,
+  "scope": {
+    "setup": "Isolated genuine compiled Chromium extension. Public encrypted-backup import and draft UI only; previously saved625CFA candidates, not fresh detector output or source-ground-truth. Root exclusive release is required before invocation.",
+    "layouts": [
+      {
+        "width": 320,
+        "zoom": 75
+      },
+      {
+        "width": 320,
+        "zoom": 100
+      },
+      {
+        "width": 320,
+        "zoom": 200
+      },
+      {
+        "width": 1080,
+        "zoom": 75
+      },
+      {
+        "width": 1080,
+        "zoom": 100
+      },
+      {
+        "width": 1080,
+        "zoom": 200
+      }
+    ],
+    "unreadHoldouts": true,
+    "frameworkStateInjection": false,
+    "limits": [
+      "Original7bd full1614 proof remains historical. This run covers changed scroll path plus saved625dense candidates, readonly inspection and manual seeded aliases.",
+      "Original small overlay raw axe flags remain. Large-route equivalence is not fullWCAG/NVDA/human-user certification.",
+      "All-location keyboard operation uses public DOM focus then Enter; additional Tab route is measured separately.",
+      "No tiny-overlay all-pointer claim, no automatic page classification, no precision/recall claim."
+    ]
+  },
+  "cfa": {
+    "original": {
+      "bytes": 331984,
+      "sha256": "d2ee22b407d2923820d5443fb222352d910c445b89fc77dbbb1120687c7f6bf4"
+    },
+    "savedFieldsAcross6pages": 782,
+    "inspectedPage": 2,
+    "savedCandidatesOnPage": 625,
+    "directPlacementAliases": 625,
+    "optionPlacementAliases": 0,
+    "physicalProjections": 625,
+    "layoutCells": 6,
+    "pointerLargeSelections": 3750,
+    "keyboardLargeSelections": 625,
+    "keyboardOriginalOverlaySelections": 625,
+    "minLargeWidth": 240,
+    "minLargeHeight": 84.796875,
+    "bodyOverflowCells": 0
+  },
+  "scroll": [
+    {
+      "name": "list batch and original-page scroll reset",
+      "before": {
+        "scrollTop": 2656,
+        "scrollHeight": 3040,
+        "clientHeight": 384,
+        "firstKey": "[\"9747d195-5f8b-4e5a-9efc-7c43b6822d69\",1,null,[[396.30999755859375,788.3200073242188],[434.4700012207031,788.3200073242188],[434.4700012207031,810.3200073242188],[396.30999755859375,810.3200073242188]]]",
+        "firstNumber": "位置1：休憩時間",
+        "focusedKey": null,
+        "selectedKey": "[\"019b2cf8-1320-4a96-a9d3-4b88b2216252\",1,null,[[269.3299865722656,758.52001953125],[290.4499816894531,758.52001953125],[290.4499816894531,766.3200073242188],[269.3299865722656,766.3200073242188]]]"
+      },
+      "next": {
+        "scrollTop": 0,
+        "scrollHeight": 3040,
+        "clientHeight": 384,
+        "firstKey": "[\"c7e8a1b4-b76b-40dc-96c1-f8ab368791d4\",1,null,[[290.4499816894531,758.52001953125],[311.5900115966797,758.52001953125],[311.5900115966797,766.3200073242188],[290.4499816894531,766.3200073242188]]]",
+        "firstNumber": "位置26：3",
+        "focusedKey": null,
+        "selectedKey": "[\"019b2cf8-1320-4a96-a9d3-4b88b2216252\",1,null,[[269.3299865722656,758.52001953125],[290.4499816894531,758.52001953125],[290.4499816894531,766.3200073242188],[269.3299865722656,766.3200073242188]]]"
+      },
+      "previous": {
+        "scrollTop": 0,
+        "scrollHeight": 3040,
+        "clientHeight": 384,
+        "firstKey": "[\"9747d195-5f8b-4e5a-9efc-7c43b6822d69\",1,null,[[396.30999755859375,788.3200073242188],[434.4700012207031,788.3200073242188],[434.4700012207031,810.3200073242188],[396.30999755859375,810.3200073242188]]]",
+        "firstNumber": "位置1：休憩時間",
+        "focusedKey": null,
+        "selectedKey": "[\"a106c163-29c0-47ca-87ec-418e7ba60707\",1,null,[[219.40999603271484,735.1199951171875],[244.37000274658203,735.1199951171875],[244.37000274658203,742.9199829101562],[219.40999603271484,742.9199829101562]]]"
+      },
+      "originalPage": {
+        "scrollTop": 0,
+        "scrollHeight": 3232,
+        "clientHeight": 384,
+        "firstKey": "[\"129a1b12-bb16-4ee1-9861-e877b212b5f6\",0,null,[[51.14400100708008,764.7999877929688],[170.78399658203125,764.7999877929688],[170.78399658203125,786.7999877929688],[51.14400100708008,786.7999877929688]]]",
+        "firstNumber": "位置1：記入欄（項目名を確認）",
+        "focusedKey": null
+      }
+    },
+    {
+      "name": "number625 and repeated focus preserve selection/visibility",
+      "jump": {
+        "scrollTop": 2656,
+        "scrollHeight": 3040,
+        "clientHeight": 384,
+        "firstKey": "[\"af9abc8a-079d-4ac3-8aa3-8ffb4f7413d1\",1,null,[[176.57000732421875,223.01998901367188],[396.30999755859375,223.01998901367188],[396.30999755859375,245.01998901367188],[176.57000732421875,245.01998901367188]]]",
+        "firstNumber": "位置601：1952",
+        "focusedKey": "[\"d8df3d52-fb97-4f10-aaad-b847ca68a38d\",1,null,[[176.57000732421875,93.39999008178711],[396.30999755859375,93.39999008178711],[396.30999755859375,115.39999008178711],[176.57000732421875,115.39999008178711]]]",
+        "selectedKey": "[\"9747d195-5f8b-4e5a-9efc-7c43b6822d69\",1,null,[[396.30999755859375,788.3200073242188],[434.4700012207031,788.3200073242188],[434.4700012207031,810.3200073242188],[396.30999755859375,810.3200073242188]]]"
+      },
+      "repeat": {
+        "scrollTop": 2656,
+        "scrollHeight": 3040,
+        "clientHeight": 384,
+        "firstKey": "[\"af9abc8a-079d-4ac3-8aa3-8ffb4f7413d1\",1,null,[[176.57000732421875,223.01998901367188],[396.30999755859375,223.01998901367188],[396.30999755859375,245.01998901367188],[176.57000732421875,245.01998901367188]]]",
+        "firstNumber": "位置601：1952",
+        "focusedKey": "[\"d8df3d52-fb97-4f10-aaad-b847ca68a38d\",1,null,[[176.57000732421875,93.39999008178711],[396.30999755859375,93.39999008178711],[396.30999755859375,115.39999008178711],[176.57000732421875,115.39999008178711]]]",
+        "selectedKey": "[\"9747d195-5f8b-4e5a-9efc-7c43b6822d69\",1,null,[[396.30999755859375,788.3200073242188],[434.4700012207031,788.3200073242188],[434.4700012207031,810.3200073242188],[396.30999755859375,810.3200073242188]]]"
+      }
+    },
+    {
+      "name": "invalid jump has associated status",
+      "describedBy": "_r_c_-notice",
+      "text": "このページに表示している位置の番号を入力してください。対象外の位置は、項目一覧から対象外の候補を開くと確認できます。"
+    },
+    {
+      "name": "Tab route from ordinary page control",
+      "steps": [
+        {
+          "tag": "BUTTON",
+          "text": "次",
+          "key": null
+        },
+        {
+          "tag": "SELECT",
+          "text": "75%100%125%150%200%",
+          "key": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "前の25か所を表示",
+          "key": null
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "key": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "番号のボタンへ移動",
+          "key": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "位置601：1952項目710。この位置の質問へ移動",
+          "key": "[\"af9abc8a-079d-4ac3-8aa3-8ffb4f7413d1\",1,null,[[176.57000732421875,223.01998901367188],[396.30999755859375,223.01998901367188],[396.30999755859375,245.01998901367188],[176.57000732421875,245.01998901367188]]]"
+        }
+      ]
+    }
+  ],
+  "seed": {
+    "original": {
+      "bytes": 13188,
+      "sha256": "e088f4102d16e203a563a70dfff2837d8128f4d25b593daea8cadc7f4f16e10d"
+    },
+    "setup": "Deliberately seeded saved manual-draft edge cases, imported only through the public encrypted backup UI. Original PDF and real native DTOs unchanged; manual fields are explicitly authored draft geometry, not automatically inferred accuracy.",
+    "savedFields": 5,
+    "directAliases": 5,
+    "optionAliases": 5,
+    "physicalDefault": 6,
+    "physicalWithRejected": 8,
+    "layoutCells": 36,
+    "pointerLargeSelections": 84,
+    "keyboardLargeSelections": 14,
+    "keyboardOriginalOverlaySelections": 14,
+    "checks": [
+      {
+        "name": "A option onpage2 retains currentpage"
+      },
+      {
+        "name": "option-only B global navigation reachespage3"
+      }
+    ],
+    "minLargeWidth": 240,
+    "minLargeHeight": 84.796875
+  },
+  "readonly": {
+    "original": {
+      "bytes": 2218311,
+      "sha256": "4c0dd45c47a95c0f231bd2d082f23f043ae6c9691e89f92f8abbd0b0873f2370"
+    },
+    "checks": [
+      {
+        "name": "first25large readonly locations inspect without input/output path",
+        "count": 25
+      }
+    ]
+  },
+  "rawAxe": [
+    {
+      "path": "E:/others/silverguide-qa/accessibility/small-targets-post-scroll-f53f383f-1791884190942/axe-cfa625-320.json",
+      "violations": [
+        {
+          "id": "target-size",
+          "nodes": 625
+        }
+      ],
+      "incomplete": []
+    },
+    {
+      "path": "E:/others/silverguide-qa/accessibility/small-targets-post-scroll-f53f383f-1791884190942/axe-seed320.json",
+      "violations": [],
+      "incomplete": []
+    }
+  ],
+  "pageErrors": [],
+  "otherConsole": [],
+  "backupComparison": {
+    "success": true,
+    "tasks": 10,
+    "path": "E:/others/silverguide-qa/accessibility/small-targets-post-scroll-f53f383f-1791884190942/independent-backup-comparison.json",
+    "before": {
+      "path": "E:\\others\\silverguide-qa\\accessibility\\small-targets-post-scroll-f53f383f-1791884190942\\downloads\\cb15f9df-107a-4ded-ad4e-677db8116892",
+      "bytes": 16025582,
+      "sha256": "95fac86ea3bae333f5e827f2c9ab8196bf39821739695b1821880175f26f556c"
+    },
+    "after": {
+      "path": "E:\\others\\silverguide-qa\\accessibility\\small-targets-post-scroll-f53f383f-1791884190942\\downloads\\9ff39c09-736f-4b37-8311-b0858cd40607",
+      "bytes": 16025560,
+      "sha256": "312382f7a9334af4e252d78513b3b227e42b00b00bcb4802110e17a1fa10370d"
+    }
+  },
+  "beforeAfterSourceAndBothBundlesUnchanged": true,
+  "parentBaselineAllFilesMatched": true,
+  "ownedProcesses": {
+    "capturedAt": "2026-10-13T09:41:48.6586514Z",
+    "ownedProcessCount": 0,
+    "processes": [],
+    "scope": "Fresh isolated f53f383f post-scroll native Chromium extension QA profile and associated harness/browser paths. Context closed normally."
+  },
+  "paths": {
+    "raw": "E:/others/silverguide-qa/accessibility/small-targets-post-scroll-f53f383f-1791884190942/qa-log.json",
+    "before": "E:/others/silverguide-qa/accessibility/small-targets-post-scroll-f53f383f-1791884190942/raw-task-before.json",
+    "after": "E:/others/silverguide-qa/accessibility/small-targets-post-scroll-f53f383f-1791884190942/raw-task-after.json",
+    "png": [
+      "E:/others/silverguide-qa/accessibility/small-targets-post-scroll-f53f383f-1791884190942/cfa-next-batch-320.png",
+      "E:/others/silverguide-qa/accessibility/small-targets-post-scroll-f53f383f-1791884190942/cfa-number625-320.png",
+      "E:/others/silverguide-qa/accessibility/small-targets-post-scroll-f53f383f-1791884190942/seed-option-rejected-320.png",
+      "E:/others/silverguide-qa/accessibility/small-targets-post-scroll-f53f383f-1791884190942/readonly-inspection-320.png"
+    ]
+  },
+  "priorProof": "7bd20f1d full1614 saved-candidate/all114layout proof remains historical. This f53f383f targeted proof does not relabel it, and does not count saved proposals as source-ground-truth or fresh extraction accuracy."
+}

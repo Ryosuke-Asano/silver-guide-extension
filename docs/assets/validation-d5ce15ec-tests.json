@@ -1,0 +1,31 @@
+{
+  "sourceHash": "d5ce15ec4eae721b0c7cb51a05584c09c7c009cb0fc47a15b9d6047a551b4175",
+  "fullSuite": true,
+  "fileCount": 47,
+  "tests": 541,
+  "passed": 541,
+  "failed": 0,
+  "durationMs": 86728.92724609375,
+  "typecheckPassed": true,
+  "builds": [
+    {
+      "version": "2.0.0",
+      "browserTarget": "gecko",
+      "contentScriptFormat": "iife",
+      "sourceHash": "d5ce15ec4eae721b0c7cb51a05584c09c7c009cb0fc47a15b9d6047a551b4175",
+      "builtAt": "2026-10-13T11:44:33.275Z"
+    },
+    {
+      "version": "2.0.0",
+      "browserTarget": "chromium",
+      "contentScriptFormat": "iife",
+      "sourceHash": "d5ce15ec4eae721b0c7cb51a05584c09c7c009cb0fc47a15b9d6047a551b4175",
+      "builtAt": "2026-10-13T11:44:50.733Z"
+    }
+  ],
+  "runtimeAssetsPerPackage": 298,
+  "filesPerPackage": 323,
+  "all646FrozenBytesAndShaMatch": true,
+  "originalReport": "E:/others/silverguide-qa/all-tests-underline-outline-fixed-20261013.json",
+  "finalRuntimeAccuracyUiPerformancePending": true
+}

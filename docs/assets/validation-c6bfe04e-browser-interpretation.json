@@ -1,0 +1,456 @@
+{
+  "version": 1,
+  "createdAtUtc": "2026-10-14T03:32:38.518Z",
+  "sourceHash": "c6bfe04e2b137479207d1d06eb580161292880ee1307e03e2d3a4ecaedf660a5",
+  "status": "limited-two-browser-integration-complete",
+  "records": [
+    {
+      "target": "chromium",
+      "id": "inline-chromium-c6bfe04e-1791948568363-549e3570",
+      "runRoot": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570",
+      "sourceHash": "c6bfe04e2b137479207d1d06eb580161292880ee1307e03e2d3a4ecaedf660a5",
+      "actualSession": 79446,
+      "actualExitCode": 0,
+      "result": {
+        "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/result.json",
+        "bytes": 897150,
+        "sha256": "de91e54558e84d33a4738ff4946eca87e60dd83024d16743fbc9977514fee797"
+      },
+      "closure": {
+        "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/closure-observed-v1.json",
+        "bytes": 801,
+        "sha256": "e61b51232bb24827dd20bc64850e4dd3aed28251e154324d4d0b48915a87b811"
+      },
+      "limitedFlowComplete": true,
+      "checkRows": 17,
+      "checkRowInterpretation": "17 result rows include optional-route inner and outer assertions; not 17 independent user scenarios.",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "pageErrors": 0,
+      "ownedAlive": 0,
+      "unknown": 0,
+      "sourceFileCount": 105,
+      "compiledFileCounts": {
+        "dist": 323,
+        "dist-chromium": 323
+      },
+      "allSourceAnd646CompiledBytesUnchanged": true,
+      "harnessAndFixturePinCount": 11,
+      "currentHarnessAndFixturePinsMatch": true,
+      "initialSameTabPreservation": {
+        "normalTabs": 1,
+        "sourceIdentity": {
+          "targetId": "BDDA0DABD66173A8EA9A6C0809ED1FE0",
+          "type": "page",
+          "url": "http://silverguide-http.test:57272/source"
+        },
+        "termCount": 14,
+        "textSha256": "c1ec21d590d2066c8bd5e00406be3105e78abc727333478314780b917aee911a",
+        "fieldsIncludingSelectionSha256": "35bd1f93da795db889c6ac99bfcc8d81dea29f6b532470bb7f52c903f070571f"
+      },
+      "sourceFieldNavigation": {
+        "nextFocus": {
+          "id": "source-address",
+          "tag": "TEXTAREA",
+          "term": null,
+          "rect": {
+            "x": 108,
+            "y": 390.59375,
+            "width": 864,
+            "height": 118,
+            "right": 972,
+            "bottom": 508.59375
+          }
+        },
+        "afterFocus": {
+          "id": "source-name",
+          "tag": "INPUT",
+          "term": null,
+          "rect": {
+            "x": 108,
+            "y": 421.59375,
+            "width": 864,
+            "height": 56,
+            "right": 972,
+            "bottom": 477.59375
+          }
+        }
+      },
+      "viewports": [
+        {
+          "requestedWidth": 1080,
+          "actualWidth": 1080,
+          "requestedWidthAchieved": true,
+          "covering": []
+        },
+        {
+          "requestedWidth": 320,
+          "actualWidth": 320,
+          "requestedWidthAchieved": true,
+          "covering": []
+        }
+      ],
+      "zoom200": {
+        "fullPageZoom": 2,
+        "method": "Actual native chrome.tabs.setZoom/getZoom in the isolated browser; no CSS or Emulation substitution and no product-state change",
+        "actualViewport": {
+          "width": 540,
+          "height": 450,
+          "dpr": 2
+        },
+        "sourceWheelCount": 2,
+        "active": {
+          "id": "source-name",
+          "tag": "INPUT",
+          "term": null,
+          "rect": {
+            "x": 34,
+            "y": 310.59375,
+            "width": 472,
+            "height": 56,
+            "right": 506,
+            "bottom": 366.59375
+          }
+        },
+        "dock": [
+          {
+            "x": 12,
+            "y": 8,
+            "width": 516,
+            "height": 294.59375
+          }
+        ],
+        "covering": [],
+        "observation": {
+          "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/zoom200-observation.json",
+          "bytes": 65591,
+          "sha256": "4442b9f7dbe47ab9307081f4619b51d3945b2549e8c7fa009a86611a9260da53"
+        },
+        "visualImageQualified": false
+      },
+      "stoppedPreservation": {
+        "currentTextPreserved": true,
+        "currentFieldsPreserved": true,
+        "terms": 0,
+        "host": false
+      },
+      "positionRestart": {
+        "moved": {
+          "x": 34,
+          "y": 230.59375,
+          "width": 400,
+          "height": 495
+        },
+        "restored": {
+          "x": 34,
+          "y": 230.59375,
+          "width": 400,
+          "height": 495
+        }
+      },
+      "originalCounters": {
+        "input": 1,
+        "change": 1,
+        "submit": 0,
+        "invalid": 0,
+        "dynamic": 1,
+        "textEdits": 1,
+        "pageErrors": [],
+        "unhandledRejections": []
+      },
+      "observedAttributedExternalHttpAttempts": 0,
+      "requestsScope": "Synthetic source and attributable extension traffic observed by transport; not global OS/browser offline certification.",
+      "primaryImages": [
+        {
+          "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/01-inline-enabled-1080.png",
+          "bytes": 90067,
+          "sha256": "2c71159b445e9695b983b8dc9b06c7de956ae5eef57fcce4af97348a50bbd3ca"
+        },
+        {
+          "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/02-term-pointer-explanation.png",
+          "bytes": 106005,
+          "sha256": "1f228fb1a637726bb0c630be55e78a7e74cd93d106ff63ab43ea7e22a0a13657"
+        },
+        {
+          "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/04-field-hint-navigation.png",
+          "bytes": 55817,
+          "sha256": "2ed3bface9fa3f1a9d1dd96afa89fe7ca3e51c8977dae2160f5cabce18f62e5d"
+        },
+        {
+          "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/06-focus-avoidance-requested320.png",
+          "bytes": 53916,
+          "sha256": "4ec6882d2ee1fe2c33277c420203301e1fed185980dc9288c1b9b1bda479a03b"
+        },
+        {
+          "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/08-inline-stopped-current-source.png",
+          "bytes": 34495,
+          "sha256": "b80c182e38a48911242da23f0f9e88ff6a3ff9ed01475533938c48f3ba06cc94"
+        },
+        {
+          "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/08b-dock-position-restored.png",
+          "bytes": 77334,
+          "sha256": "120c95e6754a3a7e06241a00360c81110aa1dba4e8782ccc9c42eed399e371ed"
+        },
+        {
+          "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/workspace-reading.png",
+          "bytes": 95266,
+          "sha256": "0a703c6ae7aebabe53f829123be1b45791e437412822d5338ba572ee7ffa044e"
+        },
+        {
+          "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/workspace-pdf.png",
+          "bytes": 63171,
+          "sha256": "c65a3eb3a299ae6c10f0635001085632f7e8ea7bfa2567d2929a05571d860cb9"
+        }
+      ],
+      "limitations": [
+        "Prepared external isolated synthetic integration only; no real-user, WCAG/AT/IME, accuracy or performance certification.",
+        "Browser plugin not available; existing authorized Playwright/CDP and official geckodriver fallback.",
+        "Native popup is opened through the real toolbar action. Gecko remote-frame public DOM clicks are labeled and are not pointer latency measurements.",
+        "Closed shadow observations use browser-native privileged read-only DOM transport. No product message, controller, API result, crypto or state shim is injected.",
+        "No source form submit. Ordinary browser background network traffic outside source/extension observation scope is not a global offline certification.",
+        "Requested window width is not an achieved content viewport. Actual widths and real native full-page zoom are retained.",
+        "Profiles are retained for evidence; this runner closes its owned browser and verifies exact process births but performs no recursive deletion."
+      ]
+    },
+    {
+      "target": "gecko-floorp",
+      "id": "inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926",
+      "runRoot": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926",
+      "sourceHash": "c6bfe04e2b137479207d1d06eb580161292880ee1307e03e2d3a4ecaedf660a5",
+      "actualSession": 90294,
+      "actualExitCode": 0,
+      "result": {
+        "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/result.json",
+        "bytes": 1577594,
+        "sha256": "d6cd3a7adcf20bb79ece6a225e521eda231bcf947752176158df4794d9892ded"
+      },
+      "closure": {
+        "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/closure-observed-v1.json",
+        "bytes": 801,
+        "sha256": "d6805aa8fba31b838ae58ab7b5b1c243dd8784ccae4ecc432c03a8db6842fa08"
+      },
+      "limitedFlowComplete": true,
+      "checkRows": 17,
+      "checkRowInterpretation": "17 result rows include optional-route inner and outer assertions; not 17 independent user scenarios.",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "pageErrors": 0,
+      "ownedAlive": 0,
+      "unknown": 0,
+      "sourceFileCount": 105,
+      "compiledFileCounts": {
+        "dist": 323,
+        "dist-chromium": 323
+      },
+      "allSourceAnd646CompiledBytesUnchanged": true,
+      "harnessAndFixturePinCount": 11,
+      "currentHarnessAndFixturePinsMatch": true,
+      "initialSameTabPreservation": {
+        "normalTabs": 1,
+        "sourceIdentity": {
+          "windowHandle": "87a8ab8a-933a-4ac7-b400-169bac42611e",
+          "url": "http://silverguide-http.test:51165/source"
+        },
+        "termCount": 14,
+        "textSha256": "c1ec21d590d2066c8bd5e00406be3105e78abc727333478314780b917aee911a",
+        "fieldsIncludingSelectionSha256": "5355c287680afb632d5c8c2078b41a4e2aa135ea4ea17f1d6bdd10b3e5328266"
+      },
+      "sourceFieldNavigation": {
+        "nextFocus": {
+          "id": "source-address",
+          "rect": {
+            "bottom": 562.6000061035156,
+            "height": 120,
+            "right": 1371,
+            "width": 864,
+            "x": 507,
+            "y": 442.6000061035156
+          },
+          "tag": "TEXTAREA",
+          "term": null
+        },
+        "afterFocus": {
+          "id": "source-name",
+          "rect": {
+            "bottom": 530.6000061035156,
+            "height": 56,
+            "right": 1371,
+            "width": 864,
+            "x": 507,
+            "y": 474.6000061035156
+          },
+          "tag": "INPUT",
+          "term": null
+        }
+      },
+      "viewports": [
+        {
+          "requestedWidth": 1080,
+          "actualWidth": 1038,
+          "requestedWidthAchieved": false,
+          "covering": []
+        },
+        {
+          "requestedWidth": 320,
+          "actualWidth": 458,
+          "requestedWidthAchieved": false,
+          "covering": []
+        }
+      ],
+      "zoom200": {
+        "fullPageZoom": 2,
+        "method": "Actual native selectedBrowser fullZoom/textZoom read-only",
+        "actualViewport": {
+          "width": 519,
+          "height": 503,
+          "dpr": 2
+        },
+        "sourceWheelCount": 2,
+        "active": {
+          "id": "source-name",
+          "rect": {
+            "bottom": 319.6000061035156,
+            "height": 56,
+            "right": 485,
+            "width": 451,
+            "x": 34,
+            "y": 263.6000061035156
+          },
+          "tag": "INPUT",
+          "term": null
+        },
+        "dock": [
+          {
+            "height": 247.6000061035156,
+            "width": 495,
+            "x": 12,
+            "y": 8
+          }
+        ],
+        "covering": [],
+        "observation": {
+          "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/zoom200-observation.json",
+          "bytes": 67347,
+          "sha256": "2a0b449b4d2b3bdc3ecf2ffdf39ba2a1833d860731580160464fc84058e34288"
+        },
+        "visualImageQualified": true
+      },
+      "stoppedPreservation": {
+        "currentTextPreserved": true,
+        "currentFieldsPreserved": true,
+        "terms": 0,
+        "host": false
+      },
+      "positionRestart": {
+        "moved": {
+          "height": 553.2999877929688,
+          "width": 400,
+          "x": 34,
+          "y": 279.6000061035156
+        },
+        "restored": {
+          "height": 553.2999877929688,
+          "width": 400,
+          "x": 34,
+          "y": 279.6000061035156
+        }
+      },
+      "originalCounters": {
+        "change": 2,
+        "dynamic": 1,
+        "input": 11,
+        "invalid": 0,
+        "pageErrors": [],
+        "submit": 0,
+        "textEdits": 1,
+        "unhandledRejections": []
+      },
+      "observedAttributedExternalHttpAttempts": 0,
+      "requestsScope": "Synthetic source and attributable extension traffic observed by transport; not global OS/browser offline certification.",
+      "primaryImages": [
+        {
+          "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/01-inline-enabled-1080.png",
+          "bytes": 96320,
+          "sha256": "09656cf0dc43eeb18879a428ad47ded03d7483989afb96b8cc3b25ea46289e2f"
+        },
+        {
+          "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/02-term-pointer-explanation.png",
+          "bytes": 104162,
+          "sha256": "527664ed3f763d4582205ccf9ea550f477c5d0e7f22d7e0e6fb8eea3b5b2d94f"
+        },
+        {
+          "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/04-field-hint-navigation.png",
+          "bytes": 92047,
+          "sha256": "d311fa94b1aa4b46b4bfd61601c9f72d31c8e40171976874aed857207f87a88f"
+        },
+        {
+          "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/06-focus-avoidance-requested320.png",
+          "bytes": 56139,
+          "sha256": "34c6dcc1eae2a1dae13e056fff823aef862095ae991d0415aa366dac4b098df5"
+        },
+        {
+          "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/08-inline-stopped-current-source.png",
+          "bytes": 42599,
+          "sha256": "29e78a7005b3082c646399f1e8d383a598dba5f8c7ef0bd3d063f96c32eec57a"
+        },
+        {
+          "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/08b-dock-position-restored.png",
+          "bytes": 72864,
+          "sha256": "849a78c8363e78bcd3dc8ccb0d06c131bf14a554514bcdb72232dc93fe99aa2f"
+        },
+        {
+          "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/workspace-reading.png",
+          "bytes": 80483,
+          "sha256": "4724d7417c66fbb35466c07288b5dbf26e887b2ef2faf4302f28b7036d1ec70f"
+        },
+        {
+          "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/workspace-pdf.png",
+          "bytes": 51272,
+          "sha256": "5bf107dfcd8229f5455ec5e051c632c276144d35d0907a9dcae2a206dafb3517"
+        },
+        {
+          "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/07-native-browser-zoom200.png",
+          "bytes": 31682,
+          "sha256": "7d4cee51518527ea354b0062294575727ae28a7cea85bfc3f9ccca595a359597"
+        }
+      ],
+      "limitations": [
+        "Prepared external isolated synthetic integration only; no real-user, WCAG/AT/IME, accuracy or performance certification.",
+        "Browser plugin not available; existing authorized Playwright/CDP and official geckodriver fallback.",
+        "Native popup is opened through the real toolbar action. Gecko remote-frame public DOM clicks are labeled and are not pointer latency measurements.",
+        "Closed shadow observations use browser-native privileged read-only DOM transport. No product message, controller, API result, crypto or state shim is injected.",
+        "No source form submit. Ordinary browser background network traffic outside source/extension observation scope is not a global offline certification.",
+        "Requested window width is not an achieved content viewport. Actual widths and real native full-page zoom are retained.",
+        "Profiles are retained for evidence; this runner closes its owned browser and verifies exact process births but performs no recursive deletion.",
+        "Requested320 on gecko-floorp observed458; this is not 320px certification"
+      ]
+    }
+  ],
+  "repairedObservedProductIssues": [
+    "The focused-field help was removed during the pointer focus transition, losing the Next activation. Final compiled native pointer moves to address and back without source-value changes.",
+    "Dock focus/position changes during pointer focus and the header wrapping were corrected in earlier retained revisions; final Stop and explicit moved-position restart are exercised.",
+    "The maximum dock height was not bounded by the viewport when the focused source input was outside the visible area. The final source clamps the available region; native200% source-wheel and focused-input nonoverlap are exercised."
+  ],
+  "historicalFailuresPreserved": [
+    "1b7e181d v1 Chromium failed; original harness/raw preserved.",
+    "53780a2d v2 Chromium failed; Floorp frame eval was rejected before product activation; original harness/raw preserved.",
+    "3782a5ca v3 Chromium failed; actual pointer trace proved the focus transition defect.",
+    "ec62d4b6 v4 Chromium complete; Floorp direct WebDriver implicit-scroll pointer failed at200%.",
+    "ec62d4b6 v5 Floorp failed and interpretation-correction-v1.json excludes the inaccurate unfocused classification and host-active pass interpretation."
+  ],
+  "screenshotScope": {
+    "chromium200": "The Playwright PNG does not visually align with the contemporaneous saved CSS dock coordinates. It is retained as raw but excluded from visual-layout certification. Native tabs.getZoom=2, actual source pointer hit/focus, viewport bounds and nonoverlap are separately supported by saved DOM/interaction observations. Cause of capture inconsistency is unconfirmed.",
+    "floorp200": "Native WebDriver screenshot was visually inspected: original focused name input is below the dock with8px gap; actual native fullZoom=2 and source focus are separately recorded."
+  },
+  "scopeLimits": [
+    "Limited synthetic original-page regression; not real-user study, complete WCAG/AT/IME or general website compatibility certification.",
+    "Chromium actual ordinary widths1080 and320; Floorp requested1080/320 observed1038/458, so no Floorp320px claim.",
+    "Chrome native browser API setZoom/getZoom in headless mode; Floorp native keyboard zoom plus selectedBrowser fullZoom readback. No Chrome keyboard-success claim.",
+    "One native source form only; cross-form/search-only/external form-associated controls are outside these integration runs.",
+    "Reader/PDF public workspace entry is confirmed, not a fresh PDF OCR/export/performance evaluation.",
+    "Separate demo, signed distribution and real participant testing are not certified here.",
+    "Previous b96 formal performance and generated accuracy remain historical; this source was not freshly qualified for their budgets/targets.",
+    "Profiles are retained. Exact owned birth PID0 is verified; scratch-directory deletion is not claimed."
+  ],
+  "resources": "Both browsers closed sequentially. Heavy resource slot explicitly returned to root after actual sessions79446/90294 ended."
+}

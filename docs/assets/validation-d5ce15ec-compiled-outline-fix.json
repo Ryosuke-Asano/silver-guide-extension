@@ -1,0 +1,432 @@
+{
+  "version": 1,
+  "at": "2026-10-13T12:05:18.608Z",
+  "sourceBuildHash": "d5ce15ec4eae721b0c7cb51a05584c09c7c009cb0fc47a15b9d6047a551b4175",
+  "scope": "Actual frozen compiled full249 regression proof, source/fieldGT/scoper domains unchanged, formal public qualification false",
+  "actualSourceNewEightChecks": [
+    {
+      "number": 1,
+      "pageIndex": 1,
+      "classification": "outlined explanatory glyph contour misdetected as blank checkbox allocation",
+      "maximumNewIoU": 0.015532657707568148
+    },
+    {
+      "number": 2,
+      "pageIndex": 1,
+      "classification": "outlined explanatory glyph contour misdetected as blank checkbox allocation",
+      "maximumNewIoU": 0.045019520330672094
+    },
+    {
+      "number": 3,
+      "pageIndex": 2,
+      "classification": "outlined explanatory glyph contour misdetected as blank checkbox allocation",
+      "maximumNewIoU": 0
+    },
+    {
+      "number": 4,
+      "pageIndex": 2,
+      "classification": "outlined explanatory glyph contour misdetected as blank checkbox allocation",
+      "maximumNewIoU": 0
+    },
+    {
+      "number": 5,
+      "pageIndex": 2,
+      "classification": "outlined explanatory glyph contour misdetected as blank checkbox allocation",
+      "maximumNewIoU": 0
+    },
+    {
+      "number": 6,
+      "pageIndex": 2,
+      "classification": "outlined explanatory glyph contour misdetected as blank checkbox allocation",
+      "maximumNewIoU": 0.029257726246842402
+    },
+    {
+      "number": 7,
+      "pageIndex": 2,
+      "classification": "outlined explanatory glyph contour misdetected as blank checkbox allocation",
+      "maximumNewIoU": 0.04353944478788213
+    },
+    {
+      "number": 8,
+      "pageIndex": 2,
+      "classification": "printed explanatory underline tail misdetected as blank text allocation",
+      "maximumNewIoU": 0.2407543988345585
+    }
+  ],
+  "allEightExcluded": true,
+  "shortControls": [
+    {
+      "id": "text-underlined-list-00",
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "sourceProxyKind": "correct",
+      "sourceConsentKind": "correct",
+      "sourceCategoryKind": "wrong"
+    },
+    {
+      "id": "text-underlined-list-01",
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "sourceProxyKind": "correct",
+      "sourceConsentKind": "correct",
+      "sourceCategoryKind": "wrong"
+    },
+    {
+      "id": "text-underlined-list-02",
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "sourceProxyKind": "correct",
+      "sourceConsentKind": "correct",
+      "sourceCategoryKind": "wrong"
+    },
+    {
+      "id": "text-underlined-list-03",
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "sourceProxyKind": "correct",
+      "sourceConsentKind": "correct",
+      "sourceCategoryKind": "wrong"
+    },
+    {
+      "id": "text-underlined-list-04",
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "sourceProxyKind": "correct",
+      "sourceConsentKind": "correct",
+      "sourceCategoryKind": "wrong"
+    },
+    {
+      "id": "text-underlined-list-05",
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "sourceProxyKind": "correct",
+      "sourceConsentKind": "correct",
+      "sourceCategoryKind": "wrong"
+    },
+    {
+      "id": "text-underlined-list-06",
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "sourceProxyKind": "correct",
+      "sourceConsentKind": "correct",
+      "sourceCategoryKind": "wrong"
+    },
+    {
+      "id": "text-underlined-list-07",
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "sourceProxyKind": "correct",
+      "sourceConsentKind": "correct",
+      "sourceCategoryKind": "wrong"
+    },
+    {
+      "id": "text-underlined-list-08",
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "sourceProxyKind": "correct",
+      "sourceConsentKind": "correct",
+      "sourceCategoryKind": "wrong"
+    },
+    {
+      "id": "text-underlined-list-09",
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "sourceProxyKind": "correct",
+      "sourceConsentKind": "correct",
+      "sourceCategoryKind": "wrong"
+    },
+    {
+      "id": "text-underlined-list-10",
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "sourceProxyKind": "correct",
+      "sourceConsentKind": "correct",
+      "sourceCategoryKind": "wrong"
+    },
+    {
+      "id": "text-underlined-list-11",
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "sourceProxyKind": "correct",
+      "sourceConsentKind": "correct",
+      "sourceCategoryKind": "wrong"
+    },
+    {
+      "id": "text-underlined-list-12",
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "sourceProxyKind": "correct",
+      "sourceConsentKind": "correct",
+      "sourceCategoryKind": "wrong"
+    },
+    {
+      "id": "text-underlined-list-13",
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "sourceProxyKind": "correct",
+      "sourceConsentKind": "correct",
+      "sourceCategoryKind": "wrong"
+    },
+    {
+      "id": "text-underlined-list-14",
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "sourceProxyKind": "correct",
+      "sourceConsentKind": "correct",
+      "sourceCategoryKind": "wrong"
+    },
+    {
+      "id": "text-underlined-list-15",
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "sourceProxyKind": "correct",
+      "sourceConsentKind": "correct",
+      "sourceCategoryKind": "wrong"
+    },
+    {
+      "id": "text-underlined-list-16",
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "sourceProxyKind": "correct",
+      "sourceConsentKind": "correct",
+      "sourceCategoryKind": "wrong"
+    },
+    {
+      "id": "text-underlined-list-17",
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "sourceProxyKind": "correct",
+      "sourceConsentKind": "correct",
+      "sourceCategoryKind": "wrong"
+    },
+    {
+      "id": "text-underlined-list-18",
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "sourceProxyKind": "correct",
+      "sourceConsentKind": "correct",
+      "sourceCategoryKind": "wrong"
+    },
+    {
+      "id": "text-underlined-list-19",
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "sourceProxyKind": "correct",
+      "sourceConsentKind": "correct",
+      "sourceCategoryKind": "wrong"
+    }
+  ],
+  "allTwentyShortSourceControlsPreserved": true,
+  "logicalRadioVsIndependentCheckboxKindDifferenceRemains": true,
+  "trainGeometryChangedFromD4Count": 0,
+  "publicYokoScorableFalsePositives": 118,
+  "publicYokoNativeEvidenceCount": 1074,
+  "caseErrors": 0,
+  "incomplete": 0,
+  "sourceAssetGuards": {
+    "at": "2026-10-13T12:02:43.543Z",
+    "pinnedCount": 4223,
+    "bundleFiles": 646,
+    "drift": [],
+    "unchanged": true
+  },
+  "ownedPid0": true,
+  "pins": [
+    {
+      "path": "E:\\others\\silverguide-qa\\accuracy/runs/corrected-d5ce15ec-train-v5/run.json",
+      "sha256": "6048925473655a5b86e61937b8be51a290dd542fe0b9934e9afa6c7774729c0d"
+    },
+    {
+      "path": "E:\\others\\silverguide-qa\\accuracy/public-yoko-new-fp-diagnostic-v1.json",
+      "sha256": "c82a4f3326cb0c12452a9a1fc7cd7ccbd8468bf7d7fcc8f6efb939ef079c087d"
+    },
+    {
+      "path": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\corrected-d5ce15ec-train-v5/yokohama-childbenefit.json",
+      "sha256": "38c7747ca94ac1b05b705dd24563b6177d07d8526f5c646a62b397c37f4bdb95"
+    },
+    {
+      "path": "E:\\others\\silverguide-qa\\accuracy/runs/corrected-d4c79584-train-v4/run.json",
+      "sha256": "f16850b7043eae864c1a1cd92a41961effcd399637e4ba0a0536fe062613715c"
+    }
+  ]
+}

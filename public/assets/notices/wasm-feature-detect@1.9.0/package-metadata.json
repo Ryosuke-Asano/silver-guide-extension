@@ -1,0 +1,7 @@
+{
+  "name": "wasm-feature-detect",
+  "version": "1.9.0",
+  "license": "Apache-2.0",
+  "author": "Surma <surma@surma.link>",
+  "repository": "GoogleChromeLabs/wasm-feature-detect"
+}

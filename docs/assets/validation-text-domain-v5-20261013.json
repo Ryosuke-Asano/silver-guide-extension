@@ -1,0 +1,1465 @@
+{
+  "schemaVersion": 1,
+  "atUtc": "2026-10-13T10:46:41.119Z",
+  "reviewer": "independent-text-scoper-v5",
+  "reviewMode": "source-only static code/domain review plus lightweight synthetic unit tests",
+  "verdict": "no unresolved calculation defect in requested TRAIN text scope checks",
+  "pins": {
+    "scorer": {
+      "path": "E:/others/silverguide-qa/accuracy/ocr-scorer-v5.mjs",
+      "sha256": "594ad1ff9a92ac427f6d075439b0444cc3f73547f85a974927393e5a23764b3a"
+    },
+    "tests": {
+      "path": "E:/others/silverguide-qa/accuracy/ocr-scorer-v5.test.mjs",
+      "sha256": "0a433c2f450e653de55c500a35e6c6d99378e035d117fea2b7f425dad989040e"
+    },
+    "scoper": {
+      "path": "E:/others/silverguide-qa/accuracy/rescore-text-domains-v5.mjs",
+      "sha256": "496877d492b9787e769947c6ed42c727661424e9c7f4626c45c0b7ede51185ae"
+    },
+    "manifest": {
+      "path": "E:/others/silverguide-qa/accuracy_review/train-text-domains-v2/domain-manifest.json",
+      "sha256": "135eb2524b5e45df7ab367d422f6da707e64bd79e6c0b78ada9501dc8e853937"
+    },
+    "helper": {
+      "path": "E:/others/silverguide-qa/accuracy_review/derive_train_text_domains_v2.py",
+      "sha256": "4095cca22c9e49e11fd0038df45676d6728b6e55fed1d56ddcb6f0f8ba9056eb"
+    }
+  },
+  "tests": {
+    "command": "node --test E:/others/silverguide-qa/accuracy/ocr-scorer-v5.test.mjs",
+    "pass": 23,
+    "fail": 0
+  },
+  "sourceDomainAudit": {
+    "trainDocuments": 240,
+    "pinnedDomainHashMismatches": 0,
+    "pages": 500,
+    "visibleSourceRows": 10589,
+    "visibleSourceCodePoints": 97245,
+    "nativeFullSourceRows": 7136,
+    "nativeFullSourceCodePoints": 67840,
+    "nativeWithinSourceRows": 7136,
+    "nativeWithinSourceCodePoints": 67840,
+    "visibleUnresolvedRegions": 115,
+    "actualUnknownRegionVertexCounts": {
+      "4": 115
+    },
+    "arbitraryPolygonTestVertexCount": 5,
+    "printedVisibilityCompletenessDeclared": false
+  },
+  "verified": [
+    "Visible reference and numerator include visible native and raster printing once on a physical line.",
+    "Native full and within-view source reference views are scored against method=native items filtered from merged analysis.evidence, not raw native extraction.",
+    "Known matching runs before unknown-mask containment; only unmatched fully contained evidence can be unassessed.",
+    "Polygon validation accepts at least three vertices; containment uses area intersection, not centroid or bounding envelope.",
+    "Source CropBox excludes only zero-overlap evidence; boundary-crossing evidence is retained for matching or insertion.",
+    "Nominal source membership completeness flags license outside-mask insertion assessment; scene hash/input geometry completeness alone do not.",
+    "Matching is geometric; reference text is used only for character error computation, not matching, repair, output filtering, or product changes.",
+    "Page-limited numerator and diagnostic counters now filter by evaluatedPages."
+  ],
+  "findings": [
+    {
+      "id": "V5-NAMING",
+      "status": "resolved",
+      "summary": "Native metricKind changed from native-extraction-fidelity to native-method-evidence-in-merged-analysis and scoper scope explicitly identifies the merged native method subset."
+    },
+    {
+      "id": "V5-PAGE-DIAGNOSTICS",
+      "status": "resolved",
+      "summary": "Excluded-page evidence contaminated unknown/outside counters. Scorer now filters by pageSet before assessment; new regression passes. S/D/I and CER were unaffected."
+    },
+    {
+      "id": "V5-SCOPE-WORDING",
+      "status": "minor-open-wording",
+      "summary": "Generic per-metric scope string says printed scope even for native source-reference views containing invisible injected OCR. Correct metricKind and top-level rescore wording remove the operational ambiguity; source-domain wording would be more precise."
+    }
+  ],
+  "limitations": [
+    "Review qualifies nominal source-domain diagnostics, not rendered glyph/ink accuracy.",
+    "Public exploratory records retain their original partial truth and do not gain independent full/within viewing-box domain views.",
+    "No browser, OCR, rendering, reserved/holdout payload, old sealed source, runtime edit, GT/domain edit, or rescore execution performed by this reviewer."
+  ],
+  "separateComparisonReports": {
+    "baseline-3b67-train-v2": {
+      "sourceBuildHash": "3b67ad1d8f2af335c4dcc433dd2797b9df7bb50008f23acb1419b5dbb93b76b1",
+      "domainManifestSha256": "135eb2524b5e45df7ab367d422f6da707e64bd79e6c0b78ada9501dc8e853937",
+      "scorerSha256": "594ad1ff9a92ac427f6d075439b0444cc3f73547f85a974927393e5a23764b3a",
+      "sourceAndRawUnchanged": true,
+      "fieldTruthUnchanged": true,
+      "generatedReservedTruthRead": false,
+      "oldSealedBinaryRead": false,
+      "scope": "Separate source-only nominal text-domain diagnostic, not formal print/glyph qualification. Known text wins; only fully contained unmatched text-bearing AP or source-clipped polygons unassessed. Source original CropBox scopes only fully outside evidence; boundary-crossing predictions retained. Both full native content and within-view native content separately reported against the native-method subset of merged analysis.evidence; these are not raw native-extraction stream metrics. All outside-region insertions retained. Native extraction and visible printing distinct. Original GT/raw/field metrics untouched. Selected raw includes final tile overlap; no raw stream available for old3b baseline.",
+      "reports": {
+        "generated-train": {
+          "documentCount": 240,
+          "visibleMergedAll": {
+            "substitutions": 13359,
+            "deletions": 9251,
+            "insertions": 8296,
+            "errorCount": 30906,
+            "characterDenominator": 96765,
+            "recognizedCharacterCount": 95810,
+            "cer": 0.3193923422725159,
+            "availableDocuments": 240,
+            "assessedDocuments": 240,
+            "unassessedEvidenceCount": 47,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 368,
+            "qualityStrata": {
+              "native-text": {
+                "substitutions": 0,
+                "deletions": 0,
+                "insertions": 0,
+                "errorCount": 0,
+                "characterDenominator": 61334,
+                "recognizedCharacterCount": 61334,
+                "cer": 0
+              },
+              "good300dpi": {
+                "substitutions": 3618,
+                "deletions": 2100,
+                "insertions": 2425,
+                "errorCount": 8143,
+                "characterDenominator": 10614,
+                "recognizedCharacterCount": 10939,
+                "cer": 0.7671942717166007
+              },
+              "degraded150dpi": {
+                "substitutions": 2324,
+                "deletions": 818,
+                "insertions": 1351,
+                "errorCount": 4493,
+                "characterDenominator": 5316,
+                "recognizedCharacterCount": 5849,
+                "cer": 0.8451843491346878
+              },
+              "degraded75dpi": {
+                "substitutions": 2196,
+                "deletions": 2160,
+                "insertions": 914,
+                "errorCount": 5270,
+                "characterDenominator": 5316,
+                "recognizedCharacterCount": 4070,
+                "cer": 0.991346877351392
+              },
+              "skew": {
+                "substitutions": 2008,
+                "deletions": 860,
+                "insertions": 1545,
+                "errorCount": 4413,
+                "characterDenominator": 5316,
+                "recognizedCharacterCount": 6001,
+                "cer": 0.8301354401805869
+              },
+              "shadow": {
+                "substitutions": 766,
+                "deletions": 2814,
+                "insertions": 731,
+                "errorCount": 4311,
+                "characterDenominator": 5316,
+                "recognizedCharacterCount": 3233,
+                "cer": 0.8109480812641083
+              },
+              "noise": {
+                "substitutions": 2447,
+                "deletions": 499,
+                "insertions": 1330,
+                "errorCount": 4276,
+                "characterDenominator": 3553,
+                "recognizedCharacterCount": 4384,
+                "cer": 1.203490008443569
+              }
+            }
+          },
+          "visibleRasterMerged": {
+            "substitutions": 13359,
+            "deletions": 9251,
+            "insertions": 8296,
+            "errorCount": 30906,
+            "characterDenominator": 35431,
+            "recognizedCharacterCount": 34476,
+            "cer": 0.8722869803279614,
+            "availableDocuments": 240,
+            "assessedDocuments": 120,
+            "unassessedEvidenceCount": 19,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 116,
+            "qualityStrata": {
+              "good300dpi": {
+                "substitutions": 3618,
+                "deletions": 2100,
+                "insertions": 2425,
+                "errorCount": 8143,
+                "characterDenominator": 10614,
+                "recognizedCharacterCount": 10939,
+                "cer": 0.7671942717166007
+              },
+              "degraded150dpi": {
+                "substitutions": 2324,
+                "deletions": 818,
+                "insertions": 1351,
+                "errorCount": 4493,
+                "characterDenominator": 5316,
+                "recognizedCharacterCount": 5849,
+                "cer": 0.8451843491346878
+              },
+              "degraded75dpi": {
+                "substitutions": 2196,
+                "deletions": 2160,
+                "insertions": 914,
+                "errorCount": 5270,
+                "characterDenominator": 5316,
+                "recognizedCharacterCount": 4070,
+                "cer": 0.991346877351392
+              },
+              "skew": {
+                "substitutions": 2008,
+                "deletions": 860,
+                "insertions": 1545,
+                "errorCount": 4413,
+                "characterDenominator": 5316,
+                "recognizedCharacterCount": 6001,
+                "cer": 0.8301354401805869
+              },
+              "shadow": {
+                "substitutions": 766,
+                "deletions": 2814,
+                "insertions": 731,
+                "errorCount": 4311,
+                "characterDenominator": 5316,
+                "recognizedCharacterCount": 3233,
+                "cer": 0.8109480812641083
+              },
+              "noise": {
+                "substitutions": 2447,
+                "deletions": 499,
+                "insertions": 1330,
+                "errorCount": 4276,
+                "characterDenominator": 3553,
+                "recognizedCharacterCount": 4384,
+                "cer": 1.203490008443569
+              }
+            }
+          },
+          "visibleRasterMergedWhitespace": {
+            "substitutions": 13057,
+            "deletions": 9293,
+            "insertions": 6174,
+            "errorCount": 28524,
+            "characterDenominator": 35011,
+            "recognizedCharacterCount": 31892,
+            "cer": 0.8147153751678045,
+            "availableDocuments": 240,
+            "assessedDocuments": 120,
+            "unassessedEvidenceCount": 19,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 116,
+            "qualityStrata": {
+              "good300dpi": {
+                "substitutions": 3555,
+                "deletions": 2092,
+                "insertions": 1878,
+                "errorCount": 7525,
+                "characterDenominator": 10488,
+                "recognizedCharacterCount": 10274,
+                "cer": 0.7174866514111365
+              },
+              "degraded150dpi": {
+                "substitutions": 2256,
+                "deletions": 854,
+                "insertions": 959,
+                "errorCount": 4069,
+                "characterDenominator": 5253,
+                "recognizedCharacterCount": 5358,
+                "cer": 0.7746049876261184
+              },
+              "degraded75dpi": {
+                "substitutions": 2078,
+                "deletions": 2231,
+                "insertions": 638,
+                "errorCount": 4947,
+                "characterDenominator": 5253,
+                "recognizedCharacterCount": 3660,
+                "cer": 0.941747572815534
+              },
+              "skew": {
+                "substitutions": 1980,
+                "deletions": 860,
+                "insertions": 1095,
+                "errorCount": 3935,
+                "characterDenominator": 5253,
+                "recognizedCharacterCount": 5488,
+                "cer": 0.749095754806777
+              },
+              "shadow": {
+                "substitutions": 763,
+                "deletions": 2761,
+                "insertions": 679,
+                "errorCount": 4203,
+                "characterDenominator": 5253,
+                "recognizedCharacterCount": 3171,
+                "cer": 0.8001142204454598
+              },
+              "noise": {
+                "substitutions": 2425,
+                "deletions": 495,
+                "insertions": 925,
+                "errorCount": 3845,
+                "characterDenominator": 3511,
+                "recognizedCharacterCount": 3941,
+                "cer": 1.09512959270863
+              }
+            }
+          },
+          "nativeFullDomain": {
+            "substitutions": 0,
+            "deletions": 779,
+            "insertions": 0,
+            "errorCount": 779,
+            "characterDenominator": 67520,
+            "recognizedCharacterCount": 66741,
+            "cer": 0.011537322274881516,
+            "availableDocuments": 240,
+            "assessedDocuments": 180,
+            "unassessedEvidenceCount": 0,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 0,
+            "qualityStrata": {
+              "native-text": {
+                "substitutions": 0,
+                "deletions": 0,
+                "insertions": 0,
+                "errorCount": 0,
+                "characterDenominator": 61586,
+                "recognizedCharacterCount": 61586,
+                "cer": 0
+              },
+              "good300dpi": {
+                "substitutions": 0,
+                "deletions": 334,
+                "insertions": 0,
+                "errorCount": 334,
+                "characterDenominator": 1778,
+                "recognizedCharacterCount": 1444,
+                "cer": 0.18785151856017998
+              },
+              "degraded150dpi": {
+                "substitutions": 0,
+                "deletions": 158,
+                "insertions": 0,
+                "errorCount": 158,
+                "characterDenominator": 890,
+                "recognizedCharacterCount": 732,
+                "cer": 0.17752808988764046
+              },
+              "degraded75dpi": {
+                "substitutions": 0,
+                "deletions": 0,
+                "insertions": 0,
+                "errorCount": 0,
+                "characterDenominator": 890,
+                "recognizedCharacterCount": 890,
+                "cer": 0
+              },
+              "skew": {
+                "substitutions": 0,
+                "deletions": 106,
+                "insertions": 0,
+                "errorCount": 106,
+                "characterDenominator": 890,
+                "recognizedCharacterCount": 784,
+                "cer": 0.11910112359550562
+              },
+              "shadow": {
+                "substitutions": 0,
+                "deletions": 181,
+                "insertions": 0,
+                "errorCount": 181,
+                "characterDenominator": 890,
+                "recognizedCharacterCount": 709,
+                "cer": 0.20337078651685395
+              },
+              "noise": {
+                "substitutions": 0,
+                "deletions": 0,
+                "insertions": 0,
+                "errorCount": 0,
+                "characterDenominator": 596,
+                "recognizedCharacterCount": 596,
+                "cer": 0
+              }
+            }
+          },
+          "nativeDomain": {
+            "substitutions": 0,
+            "deletions": 779,
+            "insertions": 0,
+            "errorCount": 779,
+            "characterDenominator": 67520,
+            "recognizedCharacterCount": 66741,
+            "cer": 0.011537322274881516,
+            "availableDocuments": 240,
+            "assessedDocuments": 180,
+            "unassessedEvidenceCount": 0,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 0,
+            "qualityStrata": {
+              "native-text": {
+                "substitutions": 0,
+                "deletions": 0,
+                "insertions": 0,
+                "errorCount": 0,
+                "characterDenominator": 61586,
+                "recognizedCharacterCount": 61586,
+                "cer": 0
+              },
+              "good300dpi": {
+                "substitutions": 0,
+                "deletions": 334,
+                "insertions": 0,
+                "errorCount": 334,
+                "characterDenominator": 1778,
+                "recognizedCharacterCount": 1444,
+                "cer": 0.18785151856017998
+              },
+              "degraded150dpi": {
+                "substitutions": 0,
+                "deletions": 158,
+                "insertions": 0,
+                "errorCount": 158,
+                "characterDenominator": 890,
+                "recognizedCharacterCount": 732,
+                "cer": 0.17752808988764046
+              },
+              "degraded75dpi": {
+                "substitutions": 0,
+                "deletions": 0,
+                "insertions": 0,
+                "errorCount": 0,
+                "characterDenominator": 890,
+                "recognizedCharacterCount": 890,
+                "cer": 0
+              },
+              "skew": {
+                "substitutions": 0,
+                "deletions": 106,
+                "insertions": 0,
+                "errorCount": 106,
+                "characterDenominator": 890,
+                "recognizedCharacterCount": 784,
+                "cer": 0.11910112359550562
+              },
+              "shadow": {
+                "substitutions": 0,
+                "deletions": 181,
+                "insertions": 0,
+                "errorCount": 181,
+                "characterDenominator": 890,
+                "recognizedCharacterCount": 709,
+                "cer": 0.20337078651685395
+              },
+              "noise": {
+                "substitutions": 0,
+                "deletions": 0,
+                "insertions": 0,
+                "errorCount": 0,
+                "characterDenominator": 596,
+                "recognizedCharacterCount": 596,
+                "cer": 0
+              }
+            }
+          },
+          "nativeDomainWhitespace": {
+            "substitutions": 0,
+            "deletions": 778,
+            "insertions": 0,
+            "errorCount": 778,
+            "characterDenominator": 66480,
+            "recognizedCharacterCount": 65702,
+            "cer": 0.011702767749699158,
+            "availableDocuments": 240,
+            "assessedDocuments": 180,
+            "unassessedEvidenceCount": 0,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 0,
+            "qualityStrata": {
+              "native-text": {
+                "substitutions": 0,
+                "deletions": 0,
+                "insertions": 0,
+                "errorCount": 0,
+                "characterDenominator": 60566,
+                "recognizedCharacterCount": 60566,
+                "cer": 0
+              },
+              "good300dpi": {
+                "substitutions": 0,
+                "deletions": 333,
+                "insertions": 0,
+                "errorCount": 333,
+                "characterDenominator": 1772,
+                "recognizedCharacterCount": 1439,
+                "cer": 0.1879232505643341
+              },
+              "degraded150dpi": {
+                "substitutions": 0,
+                "deletions": 158,
+                "insertions": 0,
+                "errorCount": 158,
+                "characterDenominator": 887,
+                "recognizedCharacterCount": 729,
+                "cer": 0.17812852311161217
+              },
+              "degraded75dpi": {
+                "substitutions": 0,
+                "deletions": 0,
+                "insertions": 0,
+                "errorCount": 0,
+                "characterDenominator": 887,
+                "recognizedCharacterCount": 887,
+                "cer": 0
+              },
+              "skew": {
+                "substitutions": 0,
+                "deletions": 106,
+                "insertions": 0,
+                "errorCount": 106,
+                "characterDenominator": 887,
+                "recognizedCharacterCount": 781,
+                "cer": 0.11950394588500564
+              },
+              "shadow": {
+                "substitutions": 0,
+                "deletions": 181,
+                "insertions": 0,
+                "errorCount": 181,
+                "characterDenominator": 887,
+                "recognizedCharacterCount": 706,
+                "cer": 0.2040586245772266
+              },
+              "noise": {
+                "substitutions": 0,
+                "deletions": 0,
+                "insertions": 0,
+                "errorCount": 0,
+                "characterDenominator": 594,
+                "recognizedCharacterCount": 594,
+                "cer": 0
+              }
+            }
+          }
+        },
+        "official-public": {
+          "documentCount": 9,
+          "visibleMergedAll": {
+            "substitutions": 0,
+            "deletions": 54,
+            "insertions": 0,
+            "errorCount": 54,
+            "characterDenominator": 302,
+            "recognizedCharacterCount": 248,
+            "cer": 0.17880794701986755,
+            "availableDocuments": 9,
+            "assessedDocuments": 1,
+            "unassessedEvidenceCount": 3875,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 27739,
+            "qualityStrata": {
+              "unknown": {
+                "substitutions": 0,
+                "deletions": 54,
+                "insertions": 0,
+                "errorCount": 54,
+                "characterDenominator": 302,
+                "recognizedCharacterCount": 248,
+                "cer": 0.17880794701986755
+              }
+            }
+          },
+          "visibleRasterMerged": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "errorCount": 0,
+            "characterDenominator": 0,
+            "recognizedCharacterCount": 0,
+            "cer": null,
+            "availableDocuments": 9,
+            "assessedDocuments": 0,
+            "unassessedEvidenceCount": 0,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 0,
+            "qualityStrata": {}
+          },
+          "visibleRasterMergedWhitespace": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "errorCount": 0,
+            "characterDenominator": 0,
+            "recognizedCharacterCount": 0,
+            "cer": null,
+            "availableDocuments": 9,
+            "assessedDocuments": 0,
+            "unassessedEvidenceCount": 0,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 0,
+            "qualityStrata": {}
+          },
+          "nativeFullDomain": {
+            "substitutions": 0,
+            "deletions": 54,
+            "insertions": 0,
+            "errorCount": 54,
+            "characterDenominator": 302,
+            "recognizedCharacterCount": 248,
+            "cer": 0.17880794701986755,
+            "availableDocuments": 9,
+            "assessedDocuments": 1,
+            "unassessedEvidenceCount": 3401,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 24275,
+            "qualityStrata": {
+              "unknown": {
+                "substitutions": 0,
+                "deletions": 54,
+                "insertions": 0,
+                "errorCount": 54,
+                "characterDenominator": 302,
+                "recognizedCharacterCount": 248,
+                "cer": 0.17880794701986755
+              }
+            }
+          },
+          "nativeDomain": {
+            "substitutions": 0,
+            "deletions": 54,
+            "insertions": 0,
+            "errorCount": 54,
+            "characterDenominator": 302,
+            "recognizedCharacterCount": 248,
+            "cer": 0.17880794701986755,
+            "availableDocuments": 9,
+            "assessedDocuments": 1,
+            "unassessedEvidenceCount": 3401,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 24275,
+            "qualityStrata": {
+              "unknown": {
+                "substitutions": 0,
+                "deletions": 54,
+                "insertions": 0,
+                "errorCount": 54,
+                "characterDenominator": 302,
+                "recognizedCharacterCount": 248,
+                "cer": 0.17880794701986755
+              }
+            }
+          },
+          "nativeDomainWhitespace": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "errorCount": 0,
+            "characterDenominator": 248,
+            "recognizedCharacterCount": 248,
+            "cer": 0,
+            "availableDocuments": 9,
+            "assessedDocuments": 1,
+            "unassessedEvidenceCount": 3401,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 23847,
+            "qualityStrata": {
+              "unknown": {
+                "substitutions": 0,
+                "deletions": 0,
+                "insertions": 0,
+                "errorCount": 0,
+                "characterDenominator": 248,
+                "recognizedCharacterCount": 248,
+                "cer": 0
+              }
+            }
+          }
+        }
+      },
+      "externalResultSha256": "824b92833c08ecbdef542721d58150c5824fd81e650c84c184abb7b143f2140f"
+    },
+    "corrected-f53f383f-train-v3": {
+      "sourceBuildHash": "f53f383f2b6a15db771299ccd455c277a71d8a0863d33a3b97813287429f8b85",
+      "domainManifestSha256": "135eb2524b5e45df7ab367d422f6da707e64bd79e6c0b78ada9501dc8e853937",
+      "scorerSha256": "594ad1ff9a92ac427f6d075439b0444cc3f73547f85a974927393e5a23764b3a",
+      "sourceAndRawUnchanged": true,
+      "fieldTruthUnchanged": true,
+      "generatedReservedTruthRead": false,
+      "oldSealedBinaryRead": false,
+      "scope": "Separate source-only nominal text-domain diagnostic, not formal print/glyph qualification. Known text wins; only fully contained unmatched text-bearing AP or source-clipped polygons unassessed. Source original CropBox scopes only fully outside evidence; boundary-crossing predictions retained. Both full native content and within-view native content separately reported against the native-method subset of merged analysis.evidence; these are not raw native-extraction stream metrics. All outside-region insertions retained. Native extraction and visible printing distinct. Original GT/raw/field metrics untouched. Selected raw includes final tile overlap; no raw stream available for old3b baseline.",
+      "reports": {
+        "generated-train": {
+          "documentCount": 240,
+          "visibleMergedAll": {
+            "substitutions": 4364,
+            "deletions": 3313,
+            "insertions": 6825,
+            "errorCount": 14502,
+            "characterDenominator": 96765,
+            "recognizedCharacterCount": 100277,
+            "cer": 0.14986823748256084,
+            "availableDocuments": 240,
+            "assessedDocuments": 240,
+            "unassessedEvidenceCount": 42,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 378,
+            "qualityStrata": {
+              "native-text": {
+                "substitutions": 0,
+                "deletions": 0,
+                "insertions": 0,
+                "errorCount": 0,
+                "characterDenominator": 61334,
+                "recognizedCharacterCount": 61334,
+                "cer": 0
+              },
+              "good300dpi": {
+                "substitutions": 761,
+                "deletions": 269,
+                "insertions": 1967,
+                "errorCount": 2997,
+                "characterDenominator": 10614,
+                "recognizedCharacterCount": 12312,
+                "cer": 0.2823629169022046
+              },
+              "degraded150dpi": {
+                "substitutions": 482,
+                "deletions": 158,
+                "insertions": 897,
+                "errorCount": 1537,
+                "characterDenominator": 5316,
+                "recognizedCharacterCount": 6055,
+                "cer": 0.2891271632806621
+              },
+              "degraded75dpi": {
+                "substitutions": 2340,
+                "deletions": 401,
+                "insertions": 1254,
+                "errorCount": 3995,
+                "characterDenominator": 5316,
+                "recognizedCharacterCount": 6169,
+                "cer": 0.7515048908954101
+              },
+              "skew": {
+                "substitutions": 353,
+                "deletions": 146,
+                "insertions": 1192,
+                "errorCount": 1691,
+                "characterDenominator": 5316,
+                "recognizedCharacterCount": 6362,
+                "cer": 0.31809631301730623
+              },
+              "shadow": {
+                "substitutions": 167,
+                "deletions": 2258,
+                "insertions": 781,
+                "errorCount": 3206,
+                "characterDenominator": 5316,
+                "recognizedCharacterCount": 3839,
+                "cer": 0.6030850263355907
+              },
+              "noise": {
+                "substitutions": 261,
+                "deletions": 81,
+                "insertions": 734,
+                "errorCount": 1076,
+                "characterDenominator": 3553,
+                "recognizedCharacterCount": 4206,
+                "cer": 0.3028426681677456
+              }
+            }
+          },
+          "visibleRasterMerged": {
+            "substitutions": 4364,
+            "deletions": 3313,
+            "insertions": 6825,
+            "errorCount": 14502,
+            "characterDenominator": 35431,
+            "recognizedCharacterCount": 38943,
+            "cer": 0.4093025881290395,
+            "availableDocuments": 240,
+            "assessedDocuments": 120,
+            "unassessedEvidenceCount": 14,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 126,
+            "qualityStrata": {
+              "good300dpi": {
+                "substitutions": 761,
+                "deletions": 269,
+                "insertions": 1967,
+                "errorCount": 2997,
+                "characterDenominator": 10614,
+                "recognizedCharacterCount": 12312,
+                "cer": 0.2823629169022046
+              },
+              "degraded150dpi": {
+                "substitutions": 482,
+                "deletions": 158,
+                "insertions": 897,
+                "errorCount": 1537,
+                "characterDenominator": 5316,
+                "recognizedCharacterCount": 6055,
+                "cer": 0.2891271632806621
+              },
+              "degraded75dpi": {
+                "substitutions": 2340,
+                "deletions": 401,
+                "insertions": 1254,
+                "errorCount": 3995,
+                "characterDenominator": 5316,
+                "recognizedCharacterCount": 6169,
+                "cer": 0.7515048908954101
+              },
+              "skew": {
+                "substitutions": 353,
+                "deletions": 146,
+                "insertions": 1192,
+                "errorCount": 1691,
+                "characterDenominator": 5316,
+                "recognizedCharacterCount": 6362,
+                "cer": 0.31809631301730623
+              },
+              "shadow": {
+                "substitutions": 167,
+                "deletions": 2258,
+                "insertions": 781,
+                "errorCount": 3206,
+                "characterDenominator": 5316,
+                "recognizedCharacterCount": 3839,
+                "cer": 0.6030850263355907
+              },
+              "noise": {
+                "substitutions": 261,
+                "deletions": 81,
+                "insertions": 734,
+                "errorCount": 1076,
+                "characterDenominator": 3553,
+                "recognizedCharacterCount": 4206,
+                "cer": 0.3028426681677456
+              }
+            }
+          },
+          "visibleRasterMergedWhitespace": {
+            "substitutions": 4081,
+            "deletions": 3507,
+            "insertions": 5290,
+            "errorCount": 12878,
+            "characterDenominator": 35011,
+            "recognizedCharacterCount": 36794,
+            "cer": 0.36782725429150837,
+            "availableDocuments": 240,
+            "assessedDocuments": 120,
+            "unassessedEvidenceCount": 14,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 126,
+            "qualityStrata": {
+              "good300dpi": {
+                "substitutions": 736,
+                "deletions": 276,
+                "insertions": 1520,
+                "errorCount": 2532,
+                "characterDenominator": 10488,
+                "recognizedCharacterCount": 11732,
+                "cer": 0.2414187643020595
+              },
+              "degraded150dpi": {
+                "substitutions": 476,
+                "deletions": 161,
+                "insertions": 700,
+                "errorCount": 1337,
+                "characterDenominator": 5253,
+                "recognizedCharacterCount": 5792,
+                "cer": 0.2545212259661146
+              },
+              "degraded75dpi": {
+                "substitutions": 2102,
+                "deletions": 625,
+                "insertions": 880,
+                "errorCount": 3607,
+                "characterDenominator": 5253,
+                "recognizedCharacterCount": 5508,
+                "cer": 0.6866552446221207
+              },
+              "skew": {
+                "substitutions": 347,
+                "deletions": 149,
+                "insertions": 971,
+                "errorCount": 1467,
+                "characterDenominator": 5253,
+                "recognizedCharacterCount": 6075,
+                "cer": 0.2792689891490577
+              },
+              "shadow": {
+                "substitutions": 162,
+                "deletions": 2213,
+                "insertions": 661,
+                "errorCount": 3036,
+                "characterDenominator": 5253,
+                "recognizedCharacterCount": 3701,
+                "cer": 0.5779554540262707
+              },
+              "noise": {
+                "substitutions": 258,
+                "deletions": 83,
+                "insertions": 558,
+                "errorCount": 899,
+                "characterDenominator": 3511,
+                "recognizedCharacterCount": 3986,
+                "cer": 0.2560524067217317
+              }
+            }
+          },
+          "nativeFullDomain": {
+            "substitutions": 0,
+            "deletions": 2912,
+            "insertions": 0,
+            "errorCount": 2912,
+            "characterDenominator": 67520,
+            "recognizedCharacterCount": 64608,
+            "cer": 0.04312796208530806,
+            "availableDocuments": 240,
+            "assessedDocuments": 180,
+            "unassessedEvidenceCount": 0,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 0,
+            "qualityStrata": {
+              "native-text": {
+                "substitutions": 0,
+                "deletions": 0,
+                "insertions": 0,
+                "errorCount": 0,
+                "characterDenominator": 61586,
+                "recognizedCharacterCount": 61586,
+                "cer": 0
+              },
+              "good300dpi": {
+                "substitutions": 0,
+                "deletions": 996,
+                "insertions": 0,
+                "errorCount": 996,
+                "characterDenominator": 1778,
+                "recognizedCharacterCount": 782,
+                "cer": 0.5601799775028121
+              },
+              "degraded150dpi": {
+                "substitutions": 0,
+                "deletions": 464,
+                "insertions": 0,
+                "errorCount": 464,
+                "characterDenominator": 890,
+                "recognizedCharacterCount": 426,
+                "cer": 0.5213483146067416
+              },
+              "degraded75dpi": {
+                "substitutions": 0,
+                "deletions": 312,
+                "insertions": 0,
+                "errorCount": 312,
+                "characterDenominator": 890,
+                "recognizedCharacterCount": 578,
+                "cer": 0.350561797752809
+              },
+              "skew": {
+                "substitutions": 0,
+                "deletions": 311,
+                "insertions": 0,
+                "errorCount": 311,
+                "characterDenominator": 890,
+                "recognizedCharacterCount": 579,
+                "cer": 0.349438202247191
+              },
+              "shadow": {
+                "substitutions": 0,
+                "deletions": 497,
+                "insertions": 0,
+                "errorCount": 497,
+                "characterDenominator": 890,
+                "recognizedCharacterCount": 393,
+                "cer": 0.5584269662921348
+              },
+              "noise": {
+                "substitutions": 0,
+                "deletions": 332,
+                "insertions": 0,
+                "errorCount": 332,
+                "characterDenominator": 596,
+                "recognizedCharacterCount": 264,
+                "cer": 0.5570469798657718
+              }
+            }
+          },
+          "nativeDomain": {
+            "substitutions": 0,
+            "deletions": 2912,
+            "insertions": 0,
+            "errorCount": 2912,
+            "characterDenominator": 67520,
+            "recognizedCharacterCount": 64608,
+            "cer": 0.04312796208530806,
+            "availableDocuments": 240,
+            "assessedDocuments": 180,
+            "unassessedEvidenceCount": 0,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 0,
+            "qualityStrata": {
+              "native-text": {
+                "substitutions": 0,
+                "deletions": 0,
+                "insertions": 0,
+                "errorCount": 0,
+                "characterDenominator": 61586,
+                "recognizedCharacterCount": 61586,
+                "cer": 0
+              },
+              "good300dpi": {
+                "substitutions": 0,
+                "deletions": 996,
+                "insertions": 0,
+                "errorCount": 996,
+                "characterDenominator": 1778,
+                "recognizedCharacterCount": 782,
+                "cer": 0.5601799775028121
+              },
+              "degraded150dpi": {
+                "substitutions": 0,
+                "deletions": 464,
+                "insertions": 0,
+                "errorCount": 464,
+                "characterDenominator": 890,
+                "recognizedCharacterCount": 426,
+                "cer": 0.5213483146067416
+              },
+              "degraded75dpi": {
+                "substitutions": 0,
+                "deletions": 312,
+                "insertions": 0,
+                "errorCount": 312,
+                "characterDenominator": 890,
+                "recognizedCharacterCount": 578,
+                "cer": 0.350561797752809
+              },
+              "skew": {
+                "substitutions": 0,
+                "deletions": 311,
+                "insertions": 0,
+                "errorCount": 311,
+                "characterDenominator": 890,
+                "recognizedCharacterCount": 579,
+                "cer": 0.349438202247191
+              },
+              "shadow": {
+                "substitutions": 0,
+                "deletions": 497,
+                "insertions": 0,
+                "errorCount": 497,
+                "characterDenominator": 890,
+                "recognizedCharacterCount": 393,
+                "cer": 0.5584269662921348
+              },
+              "noise": {
+                "substitutions": 0,
+                "deletions": 332,
+                "insertions": 0,
+                "errorCount": 332,
+                "characterDenominator": 596,
+                "recognizedCharacterCount": 264,
+                "cer": 0.5570469798657718
+              }
+            }
+          },
+          "nativeDomainWhitespace": {
+            "substitutions": 0,
+            "deletions": 2906,
+            "insertions": 0,
+            "errorCount": 2906,
+            "characterDenominator": 66480,
+            "recognizedCharacterCount": 63574,
+            "cer": 0.04371239470517449,
+            "availableDocuments": 240,
+            "assessedDocuments": 180,
+            "unassessedEvidenceCount": 0,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 0,
+            "qualityStrata": {
+              "native-text": {
+                "substitutions": 0,
+                "deletions": 0,
+                "insertions": 0,
+                "errorCount": 0,
+                "characterDenominator": 60566,
+                "recognizedCharacterCount": 60566,
+                "cer": 0
+              },
+              "good300dpi": {
+                "substitutions": 0,
+                "deletions": 993,
+                "insertions": 0,
+                "errorCount": 993,
+                "characterDenominator": 1772,
+                "recognizedCharacterCount": 779,
+                "cer": 0.5603837471783296
+              },
+              "degraded150dpi": {
+                "substitutions": 0,
+                "deletions": 464,
+                "insertions": 0,
+                "errorCount": 464,
+                "characterDenominator": 887,
+                "recognizedCharacterCount": 423,
+                "cer": 0.5231116121758738
+              },
+              "degraded75dpi": {
+                "substitutions": 0,
+                "deletions": 312,
+                "insertions": 0,
+                "errorCount": 312,
+                "characterDenominator": 887,
+                "recognizedCharacterCount": 575,
+                "cer": 0.35174746335963925
+              },
+              "skew": {
+                "substitutions": 0,
+                "deletions": 311,
+                "insertions": 0,
+                "errorCount": 311,
+                "characterDenominator": 887,
+                "recognizedCharacterCount": 576,
+                "cer": 0.3506200676437429
+              },
+              "shadow": {
+                "substitutions": 0,
+                "deletions": 495,
+                "insertions": 0,
+                "errorCount": 495,
+                "characterDenominator": 887,
+                "recognizedCharacterCount": 392,
+                "cer": 0.5580608793686584
+              },
+              "noise": {
+                "substitutions": 0,
+                "deletions": 331,
+                "insertions": 0,
+                "errorCount": 331,
+                "characterDenominator": 594,
+                "recognizedCharacterCount": 263,
+                "cer": 0.5572390572390572
+              }
+            }
+          },
+          "selectedRawRaster": {
+            "substitutions": 5055,
+            "deletions": 3411,
+            "insertions": 4586,
+            "errorCount": 13052,
+            "characterDenominator": 35431,
+            "recognizedCharacterCount": 36606,
+            "cer": 0.3683779740904857,
+            "availableDocuments": 240,
+            "assessedDocuments": 120,
+            "unassessedEvidenceCount": 7,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 63,
+            "qualityStrata": {
+              "good300dpi": {
+                "substitutions": 848,
+                "deletions": 276,
+                "insertions": 1410,
+                "errorCount": 2534,
+                "characterDenominator": 10614,
+                "recognizedCharacterCount": 11748,
+                "cer": 0.23874128509515735
+              },
+              "degraded150dpi": {
+                "substitutions": 539,
+                "deletions": 164,
+                "insertions": 626,
+                "errorCount": 1329,
+                "characterDenominator": 5316,
+                "recognizedCharacterCount": 5778,
+                "cer": 0.25
+              },
+              "degraded75dpi": {
+                "substitutions": 2771,
+                "deletions": 468,
+                "insertions": 810,
+                "errorCount": 4049,
+                "characterDenominator": 5316,
+                "recognizedCharacterCount": 5658,
+                "cer": 0.7616629044394282
+              },
+              "skew": {
+                "substitutions": 404,
+                "deletions": 153,
+                "insertions": 698,
+                "errorCount": 1255,
+                "characterDenominator": 5316,
+                "recognizedCharacterCount": 5861,
+                "cer": 0.23607975921745675
+              },
+              "shadow": {
+                "substitutions": 205,
+                "deletions": 2266,
+                "insertions": 510,
+                "errorCount": 2981,
+                "characterDenominator": 5316,
+                "recognizedCharacterCount": 3560,
+                "cer": 0.5607599699021821
+              },
+              "noise": {
+                "substitutions": 288,
+                "deletions": 84,
+                "insertions": 532,
+                "errorCount": 904,
+                "characterDenominator": 3553,
+                "recognizedCharacterCount": 4001,
+                "cer": 0.25443287362792005
+              }
+            }
+          },
+          "selectedRawRasterWhitespace": {
+            "substitutions": 4721,
+            "deletions": 3654,
+            "insertions": 3114,
+            "errorCount": 11489,
+            "characterDenominator": 35011,
+            "recognizedCharacterCount": 34471,
+            "cer": 0.32815400874011025,
+            "availableDocuments": 240,
+            "assessedDocuments": 120,
+            "unassessedEvidenceCount": 7,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 63,
+            "qualityStrata": {
+              "good300dpi": {
+                "substitutions": 823,
+                "deletions": 283,
+                "insertions": 966,
+                "errorCount": 2072,
+                "characterDenominator": 10488,
+                "recognizedCharacterCount": 11171,
+                "cer": 0.19755911517925248
+              },
+              "degraded150dpi": {
+                "substitutions": 533,
+                "deletions": 167,
+                "insertions": 432,
+                "errorCount": 1132,
+                "characterDenominator": 5253,
+                "recognizedCharacterCount": 5518,
+                "cer": 0.21549590710070435
+              },
+              "degraded75dpi": {
+                "substitutions": 2485,
+                "deletions": 740,
+                "insertions": 487,
+                "errorCount": 3712,
+                "characterDenominator": 5253,
+                "recognizedCharacterCount": 5000,
+                "cer": 0.7066438225775747
+              },
+              "skew": {
+                "substitutions": 397,
+                "deletions": 156,
+                "insertions": 480,
+                "errorCount": 1033,
+                "characterDenominator": 5253,
+                "recognizedCharacterCount": 5577,
+                "cer": 0.19664953359984771
+              },
+              "shadow": {
+                "substitutions": 198,
+                "deletions": 2222,
+                "insertions": 392,
+                "errorCount": 2812,
+                "characterDenominator": 5253,
+                "recognizedCharacterCount": 3423,
+                "cer": 0.5353131543879688
+              },
+              "noise": {
+                "substitutions": 285,
+                "deletions": 86,
+                "insertions": 357,
+                "errorCount": 728,
+                "characterDenominator": 3511,
+                "recognizedCharacterCount": 3782,
+                "cer": 0.2073483338080319
+              }
+            }
+          }
+        },
+        "official-public": {
+          "documentCount": 9,
+          "visibleMergedAll": {
+            "substitutions": 0,
+            "deletions": 54,
+            "insertions": 0,
+            "errorCount": 54,
+            "characterDenominator": 302,
+            "recognizedCharacterCount": 248,
+            "cer": 0.17880794701986755,
+            "availableDocuments": 9,
+            "assessedDocuments": 1,
+            "unassessedEvidenceCount": 3875,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 27739,
+            "qualityStrata": {
+              "unknown": {
+                "substitutions": 0,
+                "deletions": 54,
+                "insertions": 0,
+                "errorCount": 54,
+                "characterDenominator": 302,
+                "recognizedCharacterCount": 248,
+                "cer": 0.17880794701986755
+              }
+            }
+          },
+          "visibleRasterMerged": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "errorCount": 0,
+            "characterDenominator": 0,
+            "recognizedCharacterCount": 0,
+            "cer": null,
+            "availableDocuments": 9,
+            "assessedDocuments": 0,
+            "unassessedEvidenceCount": 0,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 0,
+            "qualityStrata": {}
+          },
+          "visibleRasterMergedWhitespace": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "errorCount": 0,
+            "characterDenominator": 0,
+            "recognizedCharacterCount": 0,
+            "cer": null,
+            "availableDocuments": 9,
+            "assessedDocuments": 0,
+            "unassessedEvidenceCount": 0,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 0,
+            "qualityStrata": {}
+          },
+          "nativeFullDomain": {
+            "substitutions": 0,
+            "deletions": 54,
+            "insertions": 0,
+            "errorCount": 54,
+            "characterDenominator": 302,
+            "recognizedCharacterCount": 248,
+            "cer": 0.17880794701986755,
+            "availableDocuments": 9,
+            "assessedDocuments": 1,
+            "unassessedEvidenceCount": 3401,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 24275,
+            "qualityStrata": {
+              "unknown": {
+                "substitutions": 0,
+                "deletions": 54,
+                "insertions": 0,
+                "errorCount": 54,
+                "characterDenominator": 302,
+                "recognizedCharacterCount": 248,
+                "cer": 0.17880794701986755
+              }
+            }
+          },
+          "nativeDomain": {
+            "substitutions": 0,
+            "deletions": 54,
+            "insertions": 0,
+            "errorCount": 54,
+            "characterDenominator": 302,
+            "recognizedCharacterCount": 248,
+            "cer": 0.17880794701986755,
+            "availableDocuments": 9,
+            "assessedDocuments": 1,
+            "unassessedEvidenceCount": 3401,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 24275,
+            "qualityStrata": {
+              "unknown": {
+                "substitutions": 0,
+                "deletions": 54,
+                "insertions": 0,
+                "errorCount": 54,
+                "characterDenominator": 302,
+                "recognizedCharacterCount": 248,
+                "cer": 0.17880794701986755
+              }
+            }
+          },
+          "nativeDomainWhitespace": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "errorCount": 0,
+            "characterDenominator": 248,
+            "recognizedCharacterCount": 248,
+            "cer": 0,
+            "availableDocuments": 9,
+            "assessedDocuments": 1,
+            "unassessedEvidenceCount": 3401,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 23847,
+            "qualityStrata": {
+              "unknown": {
+                "substitutions": 0,
+                "deletions": 0,
+                "insertions": 0,
+                "errorCount": 0,
+                "characterDenominator": 248,
+                "recognizedCharacterCount": 248,
+                "cer": 0
+              }
+            }
+          },
+          "selectedRawRaster": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "errorCount": 0,
+            "characterDenominator": 0,
+            "recognizedCharacterCount": 0,
+            "cer": null,
+            "availableDocuments": 9,
+            "assessedDocuments": 0,
+            "unassessedEvidenceCount": 0,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 0,
+            "qualityStrata": {}
+          },
+          "selectedRawRasterWhitespace": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "errorCount": 0,
+            "characterDenominator": 0,
+            "recognizedCharacterCount": 0,
+            "cer": null,
+            "availableDocuments": 9,
+            "assessedDocuments": 0,
+            "unassessedEvidenceCount": 0,
+            "outsideViewingBoxCharacters": 0,
+            "unassessedCharacters": 0,
+            "qualityStrata": {}
+          }
+        }
+      },
+      "externalResultSha256": "7c69e53ee394dfb0b27d21023b4c0a1c53ab6c87f7bcaa22ec0e284381b9eb99"
+    }
+  }
+}

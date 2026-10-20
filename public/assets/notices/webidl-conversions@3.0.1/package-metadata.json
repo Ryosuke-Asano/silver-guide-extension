@@ -1,0 +1,7 @@
+{
+  "name": "webidl-conversions",
+  "version": "3.0.1",
+  "license": "BSD-2-Clause",
+  "author": "Domenic Denicola <d@domenic.me> (https://domenic.me/)",
+  "repository": "jsdom/webidl-conversions"
+}

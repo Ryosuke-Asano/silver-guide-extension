@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "scope": "Historical d5 vs b96 recorded synthetic34-condition UI evidence only",
+  "totals": {
+    "before": {
+      "accessibleButtonOccurrences": 602,
+      "disabledOccurrences": 66,
+      "enabledOccurrences": 536,
+      "bucketCounts": {
+        "task": 372,
+        "shared-header-nav": 204,
+        "unclassified": 20,
+        "original-overlay": 6
+      }
+    },
+    "after": {
+      "accessibleButtonOccurrences": 268,
+      "disabledOccurrences": 20,
+      "enabledOccurrences": 248,
+      "bucketCounts": {
+        "task": 162,
+        "shared-header-nav": 84,
+        "unclassified": 16,
+        "original-overlay": 6
+      }
+    }
+  },
+  "afterActualRenderedCommandOccurrences": 258,
+  "afterRenderedSummaryOccurrences": 102,
+  "afterRawRenderedCategories": {
+    "ordinary": 136,
+    "shared": 84,
+    "reader-block-actions": 8,
+    "page-classification": 10,
+    "large-position-list": 6,
+    "original-overlays": 6,
+    "draft-card-actions": 8
+  },
+  "afterPrimary": {
+    "one": 30,
+    "oneButDisabled": 8,
+    "none": 4,
+    "multiple": 0
+  },
+  "sameMethodAccessibleCountOracle": {
+    "path": "E:/others/silverguide-qa/ui-final-design/accessible-count-oracle-review-v2-b96c4733-1791923890717.json",
+    "sha256": "27b04b603bc540f28083b96892357ac5f9d69fb65692c9f9cc90aefb6e55e846",
+    "independentExactButtonTotalsAgree": true
+  },
+  "afterFonts": [
+    [
+      ".reader-article",
+      "20px",
+      "36px",
+      1.8
+    ],
+    [
+      ".reader-block p",
+      "20px",
+      "36px",
+      1.8
+    ],
+    [
+      ".workspace-shell",
+      "20px",
+      "32px",
+      1.6
+    ],
+    [
+      "body",
+      "18px",
+      "28.8px",
+      1.6
+    ]
+  ],
+  "observedPositiveGlyphFaces": [
+    [
+      "Noto Sans JP",
+      false
+    ]
+  ],
+  "fontScope": "Recorded selected Chromium nodes only; isCustomFont=false is not evidence of a bundled webfont; popup has no equivalent glyph probe.",
+  "contrastAggregate": {
+    "activeText": {
+      "computedOccurrences": 334,
+      "minRatio": 6.130899601057421,
+      "below4_5": []
+    },
+    "disabledText": {
+      "computedOccurrences": 20,
+      "below4_5Occurrences": 0
+    },
+    "activePaintedOuterBorders": {
+      "measuredSides": 1048,
+      "minOuterRatio": 6.130899601057421,
+      "below3": []
+    },
+    "unassessed": [
+      {
+        "artifact": "E:/others/silverguide-qa/ui-final-design/after-ui-v2-b96c4733-1791922699844/11-pdf-mapping-320-100.commands.json",
+        "index": 15,
+        "kind": "button",
+        "label": "原書類の「Name」。3ページの位置1。質問へ移動",
+        "reason": "Original PDF pixels/canvas beneath overlay are not captured as a CSS solid surface; not exempt because target is tiny, but contrast is unassessed."
+      },
+      {
+        "artifact": "E:/others/silverguide-qa/ui-final-design/after-ui-v2-b96c4733-1791922699844/11-pdf-mapping-1080-100.commands.json",
+        "index": 15,
+        "kind": "button",
+        "label": "原書類の「Name」。3ページの位置1。質問へ移動",
+        "reason": "Original PDF pixels/canvas beneath overlay are not captured as a CSS solid surface; not exempt because target is tiny, but contrast is unassessed."
+      },
+      {
+        "artifact": "E:/others/silverguide-qa/ui-final-design/after-ui-v2-b96c4733-1791922699844/12-pdf-filling-320-100.commands.json",
+        "index": 17,
+        "kind": "button",
+        "label": "原書類の「Name」。3ページの位置1。質問へ移動",
+        "reason": "Original PDF pixels/canvas beneath overlay are not captured as a CSS solid surface; not exempt because target is tiny, but contrast is unassessed."
+      },
+      {
+        "artifact": "E:/others/silverguide-qa/ui-final-design/after-ui-v2-b96c4733-1791922699844/12-pdf-filling-1080-100.commands.json",
+        "index": 17,
+        "kind": "button",
+        "label": "原書類の「Name」。3ページの位置1。質問へ移動",
+        "reason": "Original PDF pixels/canvas beneath overlay are not captured as a CSS solid surface; not exempt because target is tiny, but contrast is unassessed."
+      },
+      {
+        "artifact": "E:/others/silverguide-qa/ui-final-design/after-ui-v2-b96c4733-1791922699844/13-pdf-review-320-100.commands.json",
+        "index": 15,
+        "kind": "button",
+        "label": "原書類の「Name」。3ページの位置1。質問へ移動",
+        "reason": "Original PDF pixels/canvas beneath overlay are not captured as a CSS solid surface; not exempt because target is tiny, but contrast is unassessed."
+      },
+      {
+        "artifact": "E:/others/silverguide-qa/ui-final-design/after-ui-v2-b96c4733-1791922699844/13-pdf-review-1080-100.commands.json",
+        "index": 15,
+        "kind": "button",
+        "label": "原書類の「Name」。3ページの位置1。質問へ移動",
+        "reason": "Original PDF pixels/canvas beneath overlay are not captured as a CSS solid surface; not exempt because target is tiny, but contrast is unassessed."
+      }
+    ],
+    "assessment": "CSS color observations for recorded displayed controls/summaries only. No whole-page contrast, boundary necessity, hover/focus ring, PDF pixels, filter/blend/mask, forced-colors or WCAG conformance certification."
+  },
+  "sizeScope": "Ordinary44/primary56 raw displayed sizes have no threshold violations in the recorded34. Original overlays excluded only from size threshold; contrast6 PDFpixel backgrounds unassessed and kept in denominator.",
+  "classificationLimits": "Exact accessible-name category matching leaves16 after occurrences unclassified:10 native file-input accessible buttons plus6 large-position names with extra visible selected text. Raw rendered large-position-list count6 is known, but its exact AX line identity is not forced. Before20 similarly retained.",
+  "conditions": {
+    "matched": 34,
+    "logicalStates": 17,
+    "sourceWidths": [
+      320,
+      1080
+    ],
+    "browserZoom": 100,
+    "sourceOriginDifference": "Before .localhost vs after insecure nonlocalhost .test; same synthetic source narrative, different security origin. Not identical execution environment.",
+    "nativePopupDifference": "Before natural455; after normal440/PDF380. Source requested320/1080 does not override native popup width.",
+    "countScope": "Totals sum occurrences over all34 captures, including disabled and repeated controls. They are not unique actions, required steps, or all controls. Summary disclosures/selects/links are not button counts. Closed-details legacy displayed values are never used as before rendered truth."
+  },
+  "inputInvariance": {
+    "fileCount": 138,
+    "allUnchanged": true,
+    "changed": []
+  },
+  "sourceChanges": false,
+  "browserOcrOrTestExecuted": false,
+  "wholePageAccessibilityPass": false,
+  "sourceReport": {
+    "path": "E:\\others\\silverguide-qa\\ui-final-design\\ui-before-after-evidence-v1-20261013T204321891232Z\\before-after-ui-evidence-v1.json",
+    "bytes": 2877816,
+    "sha256": "ce47c5d9b882aa91d8b57c899fc53fc07f6e4a36f23b499238e65646e46e1df0"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "opencollective-postinstall",
+  "version": "2.0.3",
+  "license": "MIT",
+  "author": "Xavier Damman (@xdamman)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opencollective/opencollective-postinstall.git"
+  }
+}

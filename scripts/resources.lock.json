@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "resources": [
+    {
+      "repository": "notofonts/noto-cjk",
+      "source": "Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf",
+      "path": "fonts/NotoSansCJKjp-Regular.otf",
+      "license": "OFL-1.1",
+      "commit": "f8d157532fbfaeda587e826d4cd5b21a49186f7c",
+      "url": "https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf",
+      "bytes": 16467736,
+      "sha256": "68a3fc98800b2a27b371f2fb79991daf3633bd89309d4ffaa6946fd587f375b5"
+    },
+    {
+      "repository": "notofonts/noto-cjk",
+      "source": "Sans/LICENSE",
+      "path": "fonts/LICENSE",
+      "license": "OFL-1.1",
+      "commit": "f8d157532fbfaeda587e826d4cd5b21a49186f7c",
+      "url": "https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Sans/LICENSE",
+      "bytes": 4301,
+      "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2"
+    },
+    {
+      "repository": "tesseract-ocr/tessdata_fast",
+      "source": "jpn.traineddata",
+      "path": "tessdata/jpn.traineddata.gz",
+      "license": "Apache-2.0",
+      "gzip": true,
+      "commit": "87416418657359cb625c412a48b6e1d6d41c29bd",
+      "url": "https://raw.githubusercontent.com/tesseract-ocr/tessdata_fast/87416418657359cb625c412a48b6e1d6d41c29bd/jpn.traineddata",
+      "bytes": 1518264,
+      "sha256": "0f17a5debe8c3a9e4d22df45ed6a1d86332af4fc29ad672de399e95b8aa80843"
+    },
+    {
+      "repository": "tesseract-ocr/tessdata_fast",
+      "source": "eng.traineddata",
+      "path": "tessdata/eng.traineddata.gz",
+      "license": "Apache-2.0",
+      "gzip": true,
+      "commit": "87416418657359cb625c412a48b6e1d6d41c29bd",
+      "url": "https://raw.githubusercontent.com/tesseract-ocr/tessdata_fast/87416418657359cb625c412a48b6e1d6d41c29bd/eng.traineddata",
+      "bytes": 1962155,
+      "sha256": "b130d16b69e3888bc099133991a50a5b50e1da0e3ff6ca31a5496fab0fb386c3"
+    },
+    {
+      "repository": "tesseract-ocr/tessdata_fast",
+      "source": "jpn_vert.traineddata",
+      "path": "tessdata/jpn_vert.traineddata.gz",
+      "license": "Apache-2.0",
+      "gzip": true,
+      "commit": "87416418657359cb625c412a48b6e1d6d41c29bd",
+      "url": "https://raw.githubusercontent.com/tesseract-ocr/tessdata_fast/87416418657359cb625c412a48b6e1d6d41c29bd/jpn_vert.traineddata",
+      "bytes": 2013809,
+      "sha256": "22a7733bc0772d6badc4ce932c62744942013f324cb9fed189e7fb870f6a57a0"
+    },
+    {
+      "repository": "tesseract-ocr/tessdata_fast",
+      "source": "LICENSE",
+      "path": "tessdata/LICENSE",
+      "license": "Apache-2.0",
+      "commit": "87416418657359cb625c412a48b6e1d6d41c29bd",
+      "url": "https://raw.githubusercontent.com/tesseract-ocr/tessdata_fast/87416418657359cb625c412a48b6e1d6d41c29bd/LICENSE",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "repository": "notofonts/noto-cjk",
+      "source": "Sans/Variable/TTF/Subset/NotoSansJP-VF.ttf",
+      "path": "fonts/NotoSansJP-VF.ttf",
+      "license": "OFL-1.1",
+      "commit": "f8d157532fbfaeda587e826d4cd5b21a49186f7c",
+      "url": "https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Sans/Variable/TTF/Subset/NotoSansJP-VF.ttf",
+      "bytes": 9590732,
+      "sha256": "f4b373b226668ee33a6e54b02823dcd2d1209f17159f777421ae8c2275160369"
+    },
+    {
+      "repository": "notofonts/noto-cjk",
+      "source": "Sans/Variable/TTF/Subset/NotoSansJP-VF.ttf",
+      "path": "fonts/NotoSansJP-Regular.ttf",
+      "license": "OFL-1.1",
+      "commit": "f8d157532fbfaeda587e826d4cd5b21a49186f7c",
+      "url": "https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Sans/Variable/TTF/Subset/NotoSansJP-VF.ttf",
+      "bytes": 5794224,
+      "sha256": "c10cd926b33c2c45131e688418a98d88ddddef48f16f3df7fef2d560138e88fa",
+      "derivation": {
+        "sourcePath": "fonts/NotoSansJP-VF.ttf",
+        "tool": "fontTools",
+        "weight": 400,
+        "glyfPadding": 4,
+        "version": "4.63.0"
+      }
+    }
+  ]
+}

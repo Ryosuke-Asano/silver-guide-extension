@@ -1,0 +1,828 @@
+{
+  "run-v2.json": {
+    "scope": "Actual current source through Vite, not frozen compiled release. Independent 9 control PDFs, reserved benchmark and old sealed binaries not read.",
+    "pins": [
+      {
+        "path": "E:/floorp-browser-dev/silver-guide-extension/src/adapters/pdf/structure.ts",
+        "sha256": "682b7f7a00ccc6f891dbe784af1240234d35a9c74a6945ea8c0b643ebe7a2b6f"
+      },
+      {
+        "path": "E:/floorp-browser-dev/silver-guide-extension/src/adapters/pdf/vector.ts",
+        "sha256": "69bc2c0054460fe4316612f3729f06dfb980a0b6a5b463a8dce42a389defccef"
+      },
+      {
+        "path": "E:/floorp-browser-dev/silver-guide-extension/src/adapters/pdf/raster.ts",
+        "sha256": "b714ee51742f2ec0fc9fd54609904574c6c85c62e6e12d1cce8b3703dd18de08"
+      },
+      {
+        "path": "E:/floorp-browser-dev/silver-guide-extension/src/adapters/pdf/index.ts",
+        "sha256": "7c15acc0e88cc03ce97662ab2842ec82667ab472b280757568b28bb1539c8dc3"
+      }
+    ],
+    "results": [
+      {
+        "id": "horizontal-raw0-meta0",
+        "fields": 4,
+        "selectedFinalTileCalls": [
+          2
+        ],
+        "export": {
+          "validated": true,
+          "hash": "2bd24cea91c14957346f425ba7daa6c725bfc22225b8abd506d10d75ba17aa67",
+          "reopenedHash": "2bd24cea91c14957346f425ba7daa6c725bfc22225b8abd506d10d75ba17aa67"
+        },
+        "field": {
+          "id": "2a8d573d-b962-492b-8dcb-b579022bd1c6",
+          "revision": 1,
+          "source": "inferred",
+          "kind": "text",
+          "label": "氏名",
+          "labelOriginal": "氏名",
+          "description": "この欄に記入する人を原書類で確認して、氏名を入力します。",
+          "role": "applicant",
+          "subjectId": "source-control",
+          "required": false,
+          "requiredEvidenceIds": [],
+          "conditionStatus": "unconditional",
+          "condition": null,
+          "native": null,
+          "placements": [
+            {
+              "pageIndex": 0,
+              "quad": [
+                {
+                  "x": 140.64,
+                  "y": 219.2
+                },
+                {
+                  "x": 359.03999999999996,
+                  "y": 219.2
+                },
+                {
+                  "x": 359.03999999999996,
+                  "y": 250.39999999999998
+                },
+                {
+                  "x": 140.64,
+                  "y": 250.39999999999998
+                }
+              ],
+              "widgetRef": null,
+              "writingMode": "horizontal"
+            }
+          ],
+          "options": [],
+          "initialValue": null,
+          "maxGraphemes": null,
+          "readOnly": false,
+          "mappingState": "confirmed",
+          "evidenceIds": [
+            "2740d541-00f8-4079-8757-e710056c197c"
+          ],
+          "confidence": {
+            "text": null,
+            "geometry": null,
+            "labelMapping": null,
+            "calibrationVersion": null
+          },
+          "requiredSource": {
+            "kind": "document",
+            "text": "QA source optional control"
+          }
+        },
+        "complete": true,
+        "issues": []
+      },
+      {
+        "id": "horizontal-raw0-meta90",
+        "fields": 4,
+        "selectedFinalTileCalls": [
+          4
+        ],
+        "export": {
+          "validated": true,
+          "hash": "ef3647a75eef0198d7bfdff47eff9d22279831f2ab36480052d80c7bfc32de13",
+          "reopenedHash": "ef3647a75eef0198d7bfdff47eff9d22279831f2ab36480052d80c7bfc32de13"
+        },
+        "field": {
+          "id": "a42303f0-760c-4678-a85e-f46a4fada139",
+          "revision": 1,
+          "source": "inferred",
+          "kind": "text",
+          "label": "氏名",
+          "labelOriginal": "氏名",
+          "description": "この欄に記入する人を原書類で確認して、氏名を入力します。",
+          "role": "applicant",
+          "subjectId": "source-control",
+          "required": false,
+          "requiredEvidenceIds": [],
+          "conditionStatus": "unconditional",
+          "condition": null,
+          "native": null,
+          "placements": [
+            {
+              "pageIndex": 0,
+              "quad": [
+                {
+                  "x": 140.64,
+                  "y": 219.2
+                },
+                {
+                  "x": 359.03999999999996,
+                  "y": 219.2
+                },
+                {
+                  "x": 359.03999999999996,
+                  "y": 250.39999999999998
+                },
+                {
+                  "x": 140.64,
+                  "y": 250.39999999999998
+                }
+              ],
+              "widgetRef": null,
+              "writingMode": "horizontal"
+            }
+          ],
+          "options": [],
+          "initialValue": null,
+          "maxGraphemes": null,
+          "readOnly": false,
+          "mappingState": "confirmed",
+          "evidenceIds": [
+            "3c12ac6d-351e-4b60-8884-f51b89a46aec"
+          ],
+          "confidence": {
+            "text": null,
+            "geometry": null,
+            "labelMapping": null,
+            "calibrationVersion": null
+          },
+          "requiredSource": {
+            "kind": "document",
+            "text": "QA source optional control"
+          }
+        },
+        "complete": true,
+        "issues": []
+      },
+      {
+        "id": "horizontal-raw0-meta180",
+        "fields": 4,
+        "selectedFinalTileCalls": [
+          2
+        ],
+        "export": {
+          "validated": true,
+          "hash": "934bf686fc4cd443c72a70c67e48f8442e92746ba1d03fffe21ff58875bb2257",
+          "reopenedHash": "934bf686fc4cd443c72a70c67e48f8442e92746ba1d03fffe21ff58875bb2257"
+        },
+        "field": {
+          "id": "160374e2-b117-4c30-996a-7613558bc8ec",
+          "revision": 1,
+          "source": "inferred",
+          "kind": "text",
+          "label": "氏名",
+          "labelOriginal": "氏名",
+          "description": "この欄に記入する人を原書類で確認して、氏名を入力します。",
+          "role": "applicant",
+          "subjectId": "source-control",
+          "required": false,
+          "requiredEvidenceIds": [],
+          "conditionStatus": "unconditional",
+          "condition": null,
+          "native": null,
+          "placements": [
+            {
+              "pageIndex": 0,
+              "quad": [
+                {
+                  "x": 140.64,
+                  "y": 219.2
+                },
+                {
+                  "x": 359.03999999999996,
+                  "y": 219.2
+                },
+                {
+                  "x": 359.03999999999996,
+                  "y": 250.39999999999998
+                },
+                {
+                  "x": 140.64,
+                  "y": 250.39999999999998
+                }
+              ],
+              "widgetRef": null,
+              "writingMode": "horizontal"
+            }
+          ],
+          "options": [],
+          "initialValue": null,
+          "maxGraphemes": null,
+          "readOnly": false,
+          "mappingState": "confirmed",
+          "evidenceIds": [
+            "e7270e3b-5af9-49d0-846e-ddddfe83b356"
+          ],
+          "confidence": {
+            "text": null,
+            "geometry": null,
+            "labelMapping": null,
+            "calibrationVersion": null
+          },
+          "requiredSource": {
+            "kind": "document",
+            "text": "QA source optional control"
+          }
+        },
+        "complete": true,
+        "issues": []
+      },
+      {
+        "id": "horizontal-raw0-meta270",
+        "fields": 4,
+        "selectedFinalTileCalls": [
+          4
+        ],
+        "export": {
+          "validated": true,
+          "hash": "fc7d524bb6f819845681427b5f350626010287400443bd3ce10cd690c8bffb36",
+          "reopenedHash": "fc7d524bb6f819845681427b5f350626010287400443bd3ce10cd690c8bffb36"
+        },
+        "field": {
+          "id": "bb9aaf92-84e2-40b7-84a7-0094d5f7fb7a",
+          "revision": 1,
+          "source": "inferred",
+          "kind": "text",
+          "label": "氏名",
+          "labelOriginal": "氏名",
+          "description": "この欄に記入する人を原書類で確認して、氏名を入力します。",
+          "role": "applicant",
+          "subjectId": "source-control",
+          "required": false,
+          "requiredEvidenceIds": [],
+          "conditionStatus": "unconditional",
+          "condition": null,
+          "native": null,
+          "placements": [
+            {
+              "pageIndex": 0,
+              "quad": [
+                {
+                  "x": 140.64,
+                  "y": 219.2
+                },
+                {
+                  "x": 359.03999999999996,
+                  "y": 219.2
+                },
+                {
+                  "x": 359.03999999999996,
+                  "y": 250.39999999999998
+                },
+                {
+                  "x": 140.64,
+                  "y": 250.39999999999998
+                }
+              ],
+              "widgetRef": null,
+              "writingMode": "horizontal"
+            }
+          ],
+          "options": [],
+          "initialValue": null,
+          "maxGraphemes": null,
+          "readOnly": false,
+          "mappingState": "confirmed",
+          "evidenceIds": [
+            "c0d56ed4-255b-4a73-a168-1b8a83e6ff67"
+          ],
+          "confidence": {
+            "text": null,
+            "geometry": null,
+            "labelMapping": null,
+            "calibrationVersion": null
+          },
+          "requiredSource": {
+            "kind": "document",
+            "text": "QA source optional control"
+          }
+        },
+        "complete": true,
+        "issues": []
+      },
+      {
+        "id": "horizontal-raw90-meta90",
+        "fields": 4,
+        "selectedFinalTileCalls": [
+          4
+        ],
+        "export": {
+          "validated": true,
+          "hash": "021855298796e29136efa21aad2836af45af8dad2e9eee0b5b29d8b62a580908",
+          "reopenedHash": "021855298796e29136efa21aad2836af45af8dad2e9eee0b5b29d8b62a580908"
+        },
+        "field": {
+          "id": "55fc1d6e-f742-41cd-8070-0d08f9849b8d",
+          "revision": 1,
+          "source": "inferred",
+          "kind": "text",
+          "label": "氏名",
+          "labelOriginal": "氏名",
+          "description": "この欄に記入する人を原書類で確認して、氏名を入力します。",
+          "role": "applicant",
+          "subjectId": "source-control",
+          "required": false,
+          "requiredEvidenceIds": [],
+          "conditionStatus": "unconditional",
+          "condition": null,
+          "native": null,
+          "placements": [
+            {
+              "pageIndex": 0,
+              "quad": [
+                {
+                  "x": 280.79999999999995,
+                  "y": 140.64
+                },
+                {
+                  "x": 280.79999999999995,
+                  "y": 359.03999999999996
+                },
+                {
+                  "x": 249.59999999999997,
+                  "y": 359.03999999999996
+                },
+                {
+                  "x": 249.59999999999997,
+                  "y": 140.64
+                }
+              ],
+              "widgetRef": null,
+              "writingMode": "horizontal"
+            }
+          ],
+          "options": [],
+          "initialValue": null,
+          "maxGraphemes": null,
+          "readOnly": false,
+          "mappingState": "confirmed",
+          "evidenceIds": [
+            "220acb85-b3f4-4deb-8aa9-880291d09604"
+          ],
+          "confidence": {
+            "text": null,
+            "geometry": null,
+            "labelMapping": null,
+            "calibrationVersion": null
+          },
+          "requiredSource": {
+            "kind": "document",
+            "text": "QA source optional control"
+          }
+        },
+        "complete": true,
+        "issues": []
+      },
+      {
+        "id": "horizontal-raw180-meta180",
+        "fields": 4,
+        "selectedFinalTileCalls": [
+          2
+        ],
+        "export": {
+          "validated": true,
+          "hash": "808afd4082d18a2a4faf8e12b1dd31235027ccf040c80581e46dcea574611fb4",
+          "reopenedHash": "808afd4082d18a2a4faf8e12b1dd31235027ccf040c80581e46dcea574611fb4"
+        },
+        "field": {
+          "id": "e97d1fb1-c98f-4fe8-87c2-37c2085f7fae",
+          "revision": 1,
+          "source": "inferred",
+          "kind": "text",
+          "label": "氏名",
+          "labelOriginal": "氏名",
+          "description": "この欄に記入する人を原書類で確認して、氏名を入力します。",
+          "role": "applicant",
+          "subjectId": "source-control",
+          "required": false,
+          "requiredEvidenceIds": [],
+          "conditionStatus": "unconditional",
+          "condition": null,
+          "native": null,
+          "placements": [
+            {
+              "pageIndex": 0,
+              "quad": [
+                {
+                  "x": 259.36,
+                  "y": 280.79999999999995
+                },
+                {
+                  "x": 40.960000000000036,
+                  "y": 280.79999999999995
+                },
+                {
+                  "x": 40.960000000000036,
+                  "y": 249.59999999999997
+                },
+                {
+                  "x": 259.36,
+                  "y": 249.59999999999997
+                }
+              ],
+              "widgetRef": null,
+              "writingMode": "horizontal"
+            }
+          ],
+          "options": [],
+          "initialValue": null,
+          "maxGraphemes": null,
+          "readOnly": false,
+          "mappingState": "confirmed",
+          "evidenceIds": [
+            "743f7b6a-fc13-4be4-87c8-c046530cfaeb"
+          ],
+          "confidence": {
+            "text": null,
+            "geometry": null,
+            "labelMapping": null,
+            "calibrationVersion": null
+          },
+          "requiredSource": {
+            "kind": "document",
+            "text": "QA source optional control"
+          }
+        },
+        "complete": true,
+        "issues": []
+      },
+      {
+        "id": "horizontal-raw270-meta270",
+        "fields": 4,
+        "selectedFinalTileCalls": [
+          4
+        ],
+        "export": {
+          "validated": true,
+          "hash": "c4915db06db39172d436f48ded68e94e5678e6e74a99d51e7a18e5f14b5cf0a3",
+          "reopenedHash": "c4915db06db39172d436f48ded68e94e5678e6e74a99d51e7a18e5f14b5cf0a3"
+        },
+        "field": {
+          "id": "78b09940-d441-4398-b9b8-33c5048d33ae",
+          "revision": 1,
+          "source": "inferred",
+          "kind": "text",
+          "label": "氏名",
+          "labelOriginal": "氏名",
+          "description": "この欄に記入する人を原書類で確認して、氏名を入力します。",
+          "role": "applicant",
+          "subjectId": "source-control",
+          "required": false,
+          "requiredEvidenceIds": [],
+          "conditionStatus": "unconditional",
+          "condition": null,
+          "native": null,
+          "placements": [
+            {
+              "pageIndex": 0,
+              "quad": [
+                {
+                  "x": 219.2,
+                  "y": 259.36
+                },
+                {
+                  "x": 219.2,
+                  "y": 40.960000000000036
+                },
+                {
+                  "x": 250.39999999999998,
+                  "y": 40.960000000000036
+                },
+                {
+                  "x": 250.39999999999998,
+                  "y": 259.36
+                }
+              ],
+              "widgetRef": null,
+              "writingMode": "horizontal"
+            }
+          ],
+          "options": [],
+          "initialValue": null,
+          "maxGraphemes": null,
+          "readOnly": false,
+          "mappingState": "confirmed",
+          "evidenceIds": [
+            "218e3b39-f9c0-47ac-9bbc-5890b1c682ee"
+          ],
+          "confidence": {
+            "text": null,
+            "geometry": null,
+            "labelMapping": null,
+            "calibrationVersion": null
+          },
+          "requiredSource": {
+            "kind": "document",
+            "text": "QA source optional control"
+          }
+        },
+        "complete": true,
+        "issues": []
+      },
+      {
+        "id": "vertical-raw0-meta90",
+        "fields": 4,
+        "selectedFinalTileCalls": [
+          4
+        ],
+        "export": {
+          "validated": true,
+          "hash": "345a69265ae5824f1fee1a5b12a472233d82c568be98e2f382fd15f743eb593b",
+          "reopenedHash": "345a69265ae5824f1fee1a5b12a472233d82c568be98e2f382fd15f743eb593b"
+        },
+        "field": {
+          "id": "7a2c18b4-a7b8-4145-8040-d3e7b4f8457c",
+          "revision": 1,
+          "source": "inferred",
+          "kind": "text",
+          "label": "氏名",
+          "labelOriginal": "氏名",
+          "description": "この欄に記入する人を原書類で確認して、氏名を入力します。",
+          "role": "applicant",
+          "subjectId": "source-control",
+          "required": false,
+          "requiredEvidenceIds": [],
+          "conditionStatus": "unconditional",
+          "condition": null,
+          "native": null,
+          "placements": [
+            {
+              "pageIndex": 0,
+              "quad": [
+                {
+                  "x": 140.64,
+                  "y": 219.2
+                },
+                {
+                  "x": 359.03999999999996,
+                  "y": 219.2
+                },
+                {
+                  "x": 359.03999999999996,
+                  "y": 250.39999999999998
+                },
+                {
+                  "x": 140.64,
+                  "y": 250.39999999999998
+                }
+              ],
+              "widgetRef": null,
+              "writingMode": "horizontal"
+            }
+          ],
+          "options": [],
+          "initialValue": null,
+          "maxGraphemes": null,
+          "readOnly": false,
+          "mappingState": "confirmed",
+          "evidenceIds": [
+            "a91a371d-2e20-4290-b27b-bd9084c20c2b"
+          ],
+          "confidence": {
+            "text": null,
+            "geometry": null,
+            "labelMapping": null,
+            "calibrationVersion": null
+          },
+          "requiredSource": {
+            "kind": "document",
+            "text": "QA source optional control"
+          }
+        },
+        "complete": true,
+        "issues": []
+      },
+      {
+        "id": "vertical-raw0-meta270",
+        "fields": 4,
+        "selectedFinalTileCalls": [
+          4
+        ],
+        "export": {
+          "validated": true,
+          "hash": "991e2576ee2bc1bae27967eeea3255d084b3ab85831d7fd42e975b3fb2ff1d7a",
+          "reopenedHash": "991e2576ee2bc1bae27967eeea3255d084b3ab85831d7fd42e975b3fb2ff1d7a"
+        },
+        "field": {
+          "id": "547cbee0-6be2-4088-8f2e-9a0264a0625f",
+          "revision": 1,
+          "source": "inferred",
+          "kind": "text",
+          "label": "氏名",
+          "labelOriginal": "氏名",
+          "description": "この欄に記入する人を原書類で確認して、氏名を入力します。",
+          "role": "applicant",
+          "subjectId": "source-control",
+          "required": false,
+          "requiredEvidenceIds": [],
+          "conditionStatus": "unconditional",
+          "condition": null,
+          "native": null,
+          "placements": [
+            {
+              "pageIndex": 0,
+              "quad": [
+                {
+                  "x": 140.64,
+                  "y": 219.2
+                },
+                {
+                  "x": 359.03999999999996,
+                  "y": 219.2
+                },
+                {
+                  "x": 359.03999999999996,
+                  "y": 250.39999999999998
+                },
+                {
+                  "x": 140.64,
+                  "y": 250.39999999999998
+                }
+              ],
+              "widgetRef": null,
+              "writingMode": "horizontal"
+            }
+          ],
+          "options": [],
+          "initialValue": null,
+          "maxGraphemes": null,
+          "readOnly": false,
+          "mappingState": "confirmed",
+          "evidenceIds": [
+            "d55b95c4-a9fd-4b03-a7d3-98dfde7d7984"
+          ],
+          "confidence": {
+            "text": null,
+            "geometry": null,
+            "labelMapping": null,
+            "calibrationVersion": null
+          },
+          "requiredSource": {
+            "kind": "document",
+            "text": "QA source optional control"
+          }
+        },
+        "complete": true,
+        "issues": []
+      }
+    ],
+    "remoteRequests": [],
+    "fatal": null,
+    "sourceDrift": [],
+    "ownedMarkerProcesses": [],
+    "endedAt": "2026-10-13T10:57:32.155Z"
+  },
+  "independent-inspection-v2.json": {
+    "scope": "9 independently authored source controls, actual source engine (Vite), not held-out accuracy or public qualification",
+    "records": [
+      {
+        "id": "horizontal-raw0-meta0",
+        "geometryInvariant": true,
+        "rawBoxIoU": 0.9437884434068162,
+        "sourceAngle": 0,
+        "actualOrderedQuadAngle": 0.0,
+        "writerAngleCorrect": true,
+        "japaneseExtracted": true,
+        "unexpectedPixelsOutsideSourceROI": 0,
+        "finalTileCalls": 1,
+        "directionTrialCalls": 2,
+        "originalPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\orientation-controls-v1\\horizontal-raw0-meta0-original-v2-poppler.png",
+        "exportPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\orientation-controls-v1\\horizontal-raw0-meta0-export-v2-poppler.png",
+        "exportSha256": "2bd24cea91c14957346f425ba7daa6c725bfc22225b8abd506d10d75ba17aa67"
+      },
+      {
+        "id": "horizontal-raw0-meta90",
+        "geometryInvariant": true,
+        "rawBoxIoU": 0.9437884434068162,
+        "sourceAngle": 0,
+        "actualOrderedQuadAngle": 0.0,
+        "writerAngleCorrect": true,
+        "japaneseExtracted": true,
+        "unexpectedPixelsOutsideSourceROI": 0,
+        "finalTileCalls": 1,
+        "directionTrialCalls": 4,
+        "originalPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\orientation-controls-v1\\horizontal-raw0-meta90-original-v2-poppler.png",
+        "exportPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\orientation-controls-v1\\horizontal-raw0-meta90-export-v2-poppler.png",
+        "exportSha256": "ef3647a75eef0198d7bfdff47eff9d22279831f2ab36480052d80c7bfc32de13"
+      },
+      {
+        "id": "horizontal-raw0-meta180",
+        "geometryInvariant": true,
+        "rawBoxIoU": 0.9437884434068162,
+        "sourceAngle": 0,
+        "actualOrderedQuadAngle": 0.0,
+        "writerAngleCorrect": true,
+        "japaneseExtracted": true,
+        "unexpectedPixelsOutsideSourceROI": 0,
+        "finalTileCalls": 1,
+        "directionTrialCalls": 2,
+        "originalPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\orientation-controls-v1\\horizontal-raw0-meta180-original-v2-poppler.png",
+        "exportPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\orientation-controls-v1\\horizontal-raw0-meta180-export-v2-poppler.png",
+        "exportSha256": "934bf686fc4cd443c72a70c67e48f8442e92746ba1d03fffe21ff58875bb2257"
+      },
+      {
+        "id": "horizontal-raw0-meta270",
+        "geometryInvariant": true,
+        "rawBoxIoU": 0.9437884434068162,
+        "sourceAngle": 0,
+        "actualOrderedQuadAngle": 0.0,
+        "writerAngleCorrect": true,
+        "japaneseExtracted": true,
+        "unexpectedPixelsOutsideSourceROI": 0,
+        "finalTileCalls": 1,
+        "directionTrialCalls": 4,
+        "originalPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\orientation-controls-v1\\horizontal-raw0-meta270-original-v2-poppler.png",
+        "exportPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\orientation-controls-v1\\horizontal-raw0-meta270-export-v2-poppler.png",
+        "exportSha256": "fc7d524bb6f819845681427b5f350626010287400443bd3ce10cd690c8bffb36"
+      },
+      {
+        "id": "horizontal-raw90-meta90",
+        "geometryInvariant": true,
+        "rawBoxIoU": 0.9437884434068128,
+        "sourceAngle": 90,
+        "actualOrderedQuadAngle": 90.0,
+        "writerAngleCorrect": true,
+        "japaneseExtracted": true,
+        "unexpectedPixelsOutsideSourceROI": 0,
+        "finalTileCalls": 1,
+        "directionTrialCalls": 4,
+        "originalPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\orientation-controls-v1\\horizontal-raw90-meta90-original-v2-poppler.png",
+        "exportPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\orientation-controls-v1\\horizontal-raw90-meta90-export-v2-poppler.png",
+        "exportSha256": "021855298796e29136efa21aad2836af45af8dad2e9eee0b5b29d8b62a580908"
+      },
+      {
+        "id": "horizontal-raw180-meta180",
+        "geometryInvariant": true,
+        "rawBoxIoU": 0.9437884434068128,
+        "sourceAngle": 180,
+        "actualOrderedQuadAngle": 180.0,
+        "writerAngleCorrect": true,
+        "japaneseExtracted": true,
+        "unexpectedPixelsOutsideSourceROI": 0,
+        "finalTileCalls": 1,
+        "directionTrialCalls": 2,
+        "originalPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\orientation-controls-v1\\horizontal-raw180-meta180-original-v2-poppler.png",
+        "exportPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\orientation-controls-v1\\horizontal-raw180-meta180-export-v2-poppler.png",
+        "exportSha256": "808afd4082d18a2a4faf8e12b1dd31235027ccf040c80581e46dcea574611fb4"
+      },
+      {
+        "id": "horizontal-raw270-meta270",
+        "geometryInvariant": true,
+        "rawBoxIoU": 0.9437884434068162,
+        "sourceAngle": 270,
+        "actualOrderedQuadAngle": 270.0,
+        "writerAngleCorrect": true,
+        "japaneseExtracted": true,
+        "unexpectedPixelsOutsideSourceROI": 0,
+        "finalTileCalls": 1,
+        "directionTrialCalls": 4,
+        "originalPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\orientation-controls-v1\\horizontal-raw270-meta270-original-v2-poppler.png",
+        "exportPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\orientation-controls-v1\\horizontal-raw270-meta270-export-v2-poppler.png",
+        "exportSha256": "c4915db06db39172d436f48ded68e94e5678e6e74a99d51e7a18e5f14b5cf0a3"
+      },
+      {
+        "id": "vertical-raw0-meta90",
+        "geometryInvariant": true,
+        "rawBoxIoU": 0.9437884434068162,
+        "sourceAngle": 0,
+        "actualOrderedQuadAngle": 0.0,
+        "writerAngleCorrect": true,
+        "japaneseExtracted": true,
+        "unexpectedPixelsOutsideSourceROI": 0,
+        "finalTileCalls": 1,
+        "directionTrialCalls": 4,
+        "originalPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\orientation-controls-v1\\vertical-raw0-meta90-original-v2-poppler.png",
+        "exportPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\orientation-controls-v1\\vertical-raw0-meta90-export-v2-poppler.png",
+        "exportSha256": "345a69265ae5824f1fee1a5b12a472233d82c568be98e2f382fd15f743eb593b"
+      },
+      {
+        "id": "vertical-raw0-meta270",
+        "geometryInvariant": true,
+        "rawBoxIoU": 0.9437884434068162,
+        "sourceAngle": 0,
+        "actualOrderedQuadAngle": 0.0,
+        "writerAngleCorrect": true,
+        "japaneseExtracted": true,
+        "unexpectedPixelsOutsideSourceROI": 0,
+        "finalTileCalls": 1,
+        "directionTrialCalls": 4,
+        "originalPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\orientation-controls-v1\\vertical-raw0-meta270-original-v2-poppler.png",
+        "exportPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\orientation-controls-v1\\vertical-raw0-meta270-export-v2-poppler.png",
+        "exportSha256": "991e2576ee2bc1bae27967eeea3255d084b3ab85831d7fd42e975b3fb2ff1d7a"
+      }
+    ],
+    "allTechnicalControlsPassed": true
+  }
+}

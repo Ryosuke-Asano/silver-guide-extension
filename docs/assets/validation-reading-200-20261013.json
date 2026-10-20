@@ -1,0 +1,766 @@
+{
+  "recordedAt": "2026-10-13T07:10:52.904Z",
+  "reports": [
+    {
+      "label": "baseline-3b67",
+      "corpusHash": "48b887a5e68c9605e6731494aa83d52157247e1ae21dee71b70b63ddf7f8ddc8",
+      "cases": 200,
+      "families": 20,
+      "allOrganizationCoverage": {
+        "numerator": 170,
+        "denominator": 200
+      },
+      "instructionOrganizationCoverage": {
+        "numerator": 160,
+        "denominator": 170
+      },
+      "simpleInstructionOrganizationCoverage": {
+        "numerator": 150,
+        "denominator": 150
+      },
+      "unexpectedOrganizationCases": 10,
+      "forbiddenClassificationCases": 10,
+      "missingScopeCases": 30,
+      "missingScopeSpans": 30,
+      "brokenSourceCases": 0,
+      "scopeAssessment": "Required authored semantic span must be wholly covered by a sourceSpan of the same kind. Whole-parent conservative classifications are allowed; clause segmentation precision is not certified.",
+      "limits": [
+        "200 fictional authored paragraphs from20 grammar clusters;10 lexical variants per cluster",
+        "Fixed audit split shares grammar families with development; no independent publisher or family-disjoint holdout",
+        "No human semantic adjudication; source-scope regression evidence only"
+      ],
+      "failures": [
+        {
+          "id": "membership-eligibility-1",
+          "family": "membership-eligibility",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "condition",
+              "start": 15,
+              "end": 27,
+              "text": "架空1区の住民であれば、"
+            }
+          ],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "membership-eligibility-2",
+          "family": "membership-eligibility",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "condition",
+              "start": 15,
+              "end": 27,
+              "text": "架空2区の住民であれば、"
+            }
+          ],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "membership-eligibility-3",
+          "family": "membership-eligibility",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "condition",
+              "start": 15,
+              "end": 27,
+              "text": "架空3区の住民であれば、"
+            }
+          ],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "membership-eligibility-4",
+          "family": "membership-eligibility",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "condition",
+              "start": 15,
+              "end": 27,
+              "text": "架空4区の住民であれば、"
+            }
+          ],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "membership-eligibility-5",
+          "family": "membership-eligibility",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "condition",
+              "start": 15,
+              "end": 27,
+              "text": "架空5区の住民であれば、"
+            }
+          ],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "membership-eligibility-6",
+          "family": "membership-eligibility",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "condition",
+              "start": 15,
+              "end": 27,
+              "text": "架空6区の住民であれば、"
+            }
+          ],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "membership-eligibility-7",
+          "family": "membership-eligibility",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "condition",
+              "start": 15,
+              "end": 27,
+              "text": "架空7区の住民であれば、"
+            }
+          ],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "membership-eligibility-8",
+          "family": "membership-eligibility",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "condition",
+              "start": 15,
+              "end": 27,
+              "text": "架空8区の住民であれば、"
+            }
+          ],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "membership-eligibility-9",
+          "family": "membership-eligibility",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "condition",
+              "start": 15,
+              "end": 27,
+              "text": "架空9区の住民であれば、"
+            }
+          ],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "membership-eligibility-10",
+          "family": "membership-eligibility",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "condition",
+              "start": 16,
+              "end": 29,
+              "text": "架空10区の住民であれば、"
+            }
+          ],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "only-after-1",
+          "family": "only-after",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "condition",
+              "start": 15,
+              "end": 28,
+              "text": "本人確認が完了した方のみ、"
+            }
+          ],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "only-after-2",
+          "family": "only-after",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "condition",
+              "start": 15,
+              "end": 28,
+              "text": "本人確認が完了した方のみ、"
+            }
+          ],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "only-after-3",
+          "family": "only-after",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "condition",
+              "start": 15,
+              "end": 28,
+              "text": "本人確認が完了した方のみ、"
+            }
+          ],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "only-after-4",
+          "family": "only-after",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "condition",
+              "start": 15,
+              "end": 28,
+              "text": "本人確認が完了した方のみ、"
+            }
+          ],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "only-after-5",
+          "family": "only-after",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "condition",
+              "start": 15,
+              "end": 28,
+              "text": "本人確認が完了した方のみ、"
+            }
+          ],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "only-after-6",
+          "family": "only-after",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "condition",
+              "start": 15,
+              "end": 28,
+              "text": "本人確認が完了した方のみ、"
+            }
+          ],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "only-after-7",
+          "family": "only-after",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "condition",
+              "start": 15,
+              "end": 28,
+              "text": "本人確認が完了した方のみ、"
+            }
+          ],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "only-after-8",
+          "family": "only-after",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "condition",
+              "start": 15,
+              "end": 28,
+              "text": "本人確認が完了した方のみ、"
+            }
+          ],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "only-after-9",
+          "family": "only-after",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "condition",
+              "start": 15,
+              "end": 28,
+              "text": "本人確認が完了した方のみ、"
+            }
+          ],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "only-after-10",
+          "family": "only-after",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "condition",
+              "start": 16,
+              "end": 29,
+              "text": "本人確認が完了した方のみ、"
+            }
+          ],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "quoted-deadline-not-instruction-1",
+          "family": "quoted-deadline-not-instruction",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "action",
+              "start": 15,
+              "end": 49,
+              "text": "自由記入欄に「7日以内に提出」のような説明文を記入しないでください。"
+            }
+          ],
+          "forbidden": [
+            {
+              "kind": "deadline",
+              "text": "自由記入欄に「7日以内に"
+            }
+          ],
+          "brokenSource": false
+        },
+        {
+          "id": "quoted-deadline-not-instruction-2",
+          "family": "quoted-deadline-not-instruction",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "action",
+              "start": 15,
+              "end": 49,
+              "text": "自由記入欄に「8日以内に提出」のような説明文を記入しないでください。"
+            }
+          ],
+          "forbidden": [
+            {
+              "kind": "deadline",
+              "text": "自由記入欄に「8日以内に"
+            }
+          ],
+          "brokenSource": false
+        },
+        {
+          "id": "quoted-deadline-not-instruction-3",
+          "family": "quoted-deadline-not-instruction",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "action",
+              "start": 15,
+              "end": 49,
+              "text": "自由記入欄に「9日以内に提出」のような説明文を記入しないでください。"
+            }
+          ],
+          "forbidden": [
+            {
+              "kind": "deadline",
+              "text": "自由記入欄に「9日以内に"
+            }
+          ],
+          "brokenSource": false
+        },
+        {
+          "id": "quoted-deadline-not-instruction-4",
+          "family": "quoted-deadline-not-instruction",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "action",
+              "start": 15,
+              "end": 50,
+              "text": "自由記入欄に「10日以内に提出」のような説明文を記入しないでください。"
+            }
+          ],
+          "forbidden": [
+            {
+              "kind": "deadline",
+              "text": "自由記入欄に「10日以内に"
+            }
+          ],
+          "brokenSource": false
+        },
+        {
+          "id": "quoted-deadline-not-instruction-5",
+          "family": "quoted-deadline-not-instruction",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "action",
+              "start": 15,
+              "end": 50,
+              "text": "自由記入欄に「11日以内に提出」のような説明文を記入しないでください。"
+            }
+          ],
+          "forbidden": [
+            {
+              "kind": "deadline",
+              "text": "自由記入欄に「11日以内に"
+            }
+          ],
+          "brokenSource": false
+        },
+        {
+          "id": "quoted-deadline-not-instruction-6",
+          "family": "quoted-deadline-not-instruction",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "action",
+              "start": 15,
+              "end": 50,
+              "text": "自由記入欄に「12日以内に提出」のような説明文を記入しないでください。"
+            }
+          ],
+          "forbidden": [
+            {
+              "kind": "deadline",
+              "text": "自由記入欄に「12日以内に"
+            }
+          ],
+          "brokenSource": false
+        },
+        {
+          "id": "quoted-deadline-not-instruction-7",
+          "family": "quoted-deadline-not-instruction",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "action",
+              "start": 15,
+              "end": 50,
+              "text": "自由記入欄に「13日以内に提出」のような説明文を記入しないでください。"
+            }
+          ],
+          "forbidden": [
+            {
+              "kind": "deadline",
+              "text": "自由記入欄に「13日以内に"
+            }
+          ],
+          "brokenSource": false
+        },
+        {
+          "id": "quoted-deadline-not-instruction-8",
+          "family": "quoted-deadline-not-instruction",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "action",
+              "start": 15,
+              "end": 50,
+              "text": "自由記入欄に「14日以内に提出」のような説明文を記入しないでください。"
+            }
+          ],
+          "forbidden": [
+            {
+              "kind": "deadline",
+              "text": "自由記入欄に「14日以内に"
+            }
+          ],
+          "brokenSource": false
+        },
+        {
+          "id": "quoted-deadline-not-instruction-9",
+          "family": "quoted-deadline-not-instruction",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "action",
+              "start": 15,
+              "end": 50,
+              "text": "自由記入欄に「15日以内に提出」のような説明文を記入しないでください。"
+            }
+          ],
+          "forbidden": [
+            {
+              "kind": "deadline",
+              "text": "自由記入欄に「15日以内に"
+            }
+          ],
+          "brokenSource": false
+        },
+        {
+          "id": "quoted-deadline-not-instruction-10",
+          "family": "quoted-deadline-not-instruction",
+          "complex": false,
+          "expectedOrganized": true,
+          "organized": true,
+          "unexpectedOrganized": false,
+          "missingScope": [
+            {
+              "kind": "action",
+              "start": 16,
+              "end": 51,
+              "text": "自由記入欄に「16日以内に提出」のような説明文を記入しないでください。"
+            }
+          ],
+          "forbidden": [
+            {
+              "kind": "deadline",
+              "text": "自由記入欄に「16日以内に"
+            }
+          ],
+          "brokenSource": false
+        },
+        {
+          "id": "context-sentence-1",
+          "family": "context-sentence",
+          "complex": false,
+          "expectedOrganized": false,
+          "organized": true,
+          "unexpectedOrganized": true,
+          "missingScope": [],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "context-sentence-2",
+          "family": "context-sentence",
+          "complex": false,
+          "expectedOrganized": false,
+          "organized": true,
+          "unexpectedOrganized": true,
+          "missingScope": [],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "context-sentence-3",
+          "family": "context-sentence",
+          "complex": false,
+          "expectedOrganized": false,
+          "organized": true,
+          "unexpectedOrganized": true,
+          "missingScope": [],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "context-sentence-4",
+          "family": "context-sentence",
+          "complex": false,
+          "expectedOrganized": false,
+          "organized": true,
+          "unexpectedOrganized": true,
+          "missingScope": [],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "context-sentence-5",
+          "family": "context-sentence",
+          "complex": false,
+          "expectedOrganized": false,
+          "organized": true,
+          "unexpectedOrganized": true,
+          "missingScope": [],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "context-sentence-6",
+          "family": "context-sentence",
+          "complex": false,
+          "expectedOrganized": false,
+          "organized": true,
+          "unexpectedOrganized": true,
+          "missingScope": [],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "context-sentence-7",
+          "family": "context-sentence",
+          "complex": false,
+          "expectedOrganized": false,
+          "organized": true,
+          "unexpectedOrganized": true,
+          "missingScope": [],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "context-sentence-8",
+          "family": "context-sentence",
+          "complex": false,
+          "expectedOrganized": false,
+          "organized": true,
+          "unexpectedOrganized": true,
+          "missingScope": [],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "context-sentence-9",
+          "family": "context-sentence",
+          "complex": false,
+          "expectedOrganized": false,
+          "organized": true,
+          "unexpectedOrganized": true,
+          "missingScope": [],
+          "forbidden": [],
+          "brokenSource": false
+        },
+        {
+          "id": "context-sentence-10",
+          "family": "context-sentence",
+          "complex": false,
+          "expectedOrganized": false,
+          "organized": true,
+          "unexpectedOrganized": true,
+          "missingScope": [],
+          "forbidden": [],
+          "brokenSource": false
+        }
+      ]
+    },
+    {
+      "label": "corrected-source-20261013",
+      "corpusHash": "48b887a5e68c9605e6731494aa83d52157247e1ae21dee71b70b63ddf7f8ddc8",
+      "cases": 200,
+      "families": 20,
+      "allOrganizationCoverage": {
+        "numerator": 160,
+        "denominator": 200
+      },
+      "instructionOrganizationCoverage": {
+        "numerator": 160,
+        "denominator": 170
+      },
+      "simpleInstructionOrganizationCoverage": {
+        "numerator": 150,
+        "denominator": 150
+      },
+      "unexpectedOrganizationCases": 0,
+      "forbiddenClassificationCases": 0,
+      "missingScopeCases": 0,
+      "missingScopeSpans": 0,
+      "brokenSourceCases": 0,
+      "scopeAssessment": "Required authored semantic span must be wholly covered by a sourceSpan of the same kind. Whole-parent conservative classifications are allowed; clause segmentation precision is not certified.",
+      "limits": [
+        "200 fictional authored paragraphs from20 grammar clusters;10 lexical variants per cluster",
+        "Fixed audit split shares grammar families with development; no independent publisher or family-disjoint holdout",
+        "No human semantic adjudication; source-scope regression evidence only"
+      ],
+      "failures": []
+    }
+  ]
+}

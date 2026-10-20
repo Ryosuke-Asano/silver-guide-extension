@@ -1,36 +1,36 @@
 {
   "name": "silver-guide-extension",
-  "version": "0.1.0",
+  "version": "3.0.0",
   "private": true,
   "type": "module",
   "packageManager": "pnpm@10.13.1",
   "scripts": {
-    "build": "pnpm run check && vite build",
-    "build:chromium": "pnpm run check && vite build --outDir dist-chromium && node scripts/prepare-chromium.mjs",
+    "build": "pnpm run assets:prepare && pnpm run check && node scripts/build-extension.mjs",
+    "build:chromium": "pnpm run assets:prepare && pnpm run check && node scripts/build-extension.mjs --chromium",
+    "assets:prepare": "node scripts/prepare-runtime-assets.mjs",
+    "assets:download": "node scripts/prepare-runtime-assets.mjs --download",
     "check": "tsc --noEmit",
-    "lint": "eslint src vite.config.ts vitest.config.ts playwright.config.ts --max-warnings 0",
+    "verify:package": "node scripts/verify-package.mjs",
     "dev": "vite --host 127.0.0.1 --port 4173",
-    "test": "vitest run",
-    "test:e2e": "pnpm run build:chromium && playwright test",
-    "test:firefox": "pnpm run build && node tests/firefox/smoke.mjs",
-    "record:demo": "node scripts/record-demo.mjs"
+    "test": "vitest run --no-file-parallelism --maxWorkers=1"
   },
   "dependencies": {
+    "@pdf-lib/fontkit": "1.1.1",
+    "pdf-lib": "1.17.1",
+    "pdfjs-dist": "6.4.299",
     "react": "^19.2.0",
-    "react-aria-components": "^1.12.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "tesseract.js": "7.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
     "@types/firefox-webext-browser": "^120.0.0",
+    "@types/node": "26.6.5",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react-swc": "^4.2.2",
-    "eslint": "^10.12.0",
-    "jsdom": "^26.1.0",
+    "jsdom": "30.1.2",
     "playwright": "1.58.2",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.71.1",
     "vite": "^7.3.0",
     "vitest": "^4.0.7"
   }

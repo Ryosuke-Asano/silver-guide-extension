@@ -1,0 +1,10 @@
+{
+  "name": "idb-keyval",
+  "version": "6.3.0",
+  "license": "Apache-2.0",
+  "author": "Jake Archibald",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakearchibald/idb-keyval.git"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "sourceHash": "d4c795847fbcb405ab070ac9354be3b69cf2e30c66064f3d635ed3e08b13b7d2",
+  "fullSuite": true,
+  "fileCount": 47,
+  "tests": 536,
+  "passed": 536,
+  "failed": 0,
+  "durationMs": 93976.82421875,
+  "typecheckPassed": true,
+  "builds": [
+    {
+      "version": "2.0.0",
+      "browserTarget": "gecko",
+      "contentScriptFormat": "iife",
+      "sourceHash": "d4c795847fbcb405ab070ac9354be3b69cf2e30c66064f3d635ed3e08b13b7d2",
+      "builtAt": "2026-10-13T10:53:29.441Z"
+    },
+    {
+      "version": "2.0.0",
+      "browserTarget": "chromium",
+      "contentScriptFormat": "iife",
+      "sourceHash": "d4c795847fbcb405ab070ac9354be3b69cf2e30c66064f3d635ed3e08b13b7d2",
+      "builtAt": "2026-10-13T10:53:48.461Z"
+    }
+  ],
+  "runtimeAssetsPerPackage": 298,
+  "filesPerPackage": 323,
+  "all646FrozenBytesAndShaMatch": true,
+  "originalReport": "E:/others/silverguide-qa/all-tests-fine-skew-20261013.json",
+  "finalRuntimeAccuracyUiPerformancePending": true
+}

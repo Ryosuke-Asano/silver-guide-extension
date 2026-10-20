@@ -1,0 +1,69 @@
+{
+  "atUtc": "2026-10-13T12:06:52.339895+00:00",
+  "rootReleasedBuildHash": "d5ce15ec4eae721b0c7cb51a05584c09c7c009cb0fc47a15b9d6047a551b4175",
+  "sourceOnly": true,
+  "firstReservedPayloadAccessBeforePrediction": true,
+  "originalManifestSha256": "82e5df6e9bba7e6087bc6589fa6105d59172a9bed6ff4c07b5a4bb77e5b4cc7b",
+  "derivationHelperSha256": "3e2cc1add65aa4eb0b318ee964c60253110a8ff93b49cfd2b7355665d42b63e6",
+  "reservedDocumentCount": 100,
+  "reservedFamilyCount": 4,
+  "oldSealed2BinaryRead": false,
+  "predictionReads": 0,
+  "browserOcrOrRenderingStarted": false,
+  "schemaVersion": 2,
+  "createdAt": "2026-10-13T12:06:54.977808+00:00",
+  "candidateDerivedTruth": false,
+  "catalogFieldCount": 2400,
+  "eligibleInputFieldCount": 2000,
+  "nestedCellsDiagnosticCount": 0,
+  "derivationHelperPath": "E:\\others\\silverguide-qa\\accuracy\\derive-held-source-domains-v1.py",
+  "frozenDerivationAlgorithms": {
+    "sourceLayerHelperPath": "E:\\others\\silverguide-qa\\accuracy_review\\derive_train_text_domains.py",
+    "sourceLayerHelperSha256": "1df75e3140c1e53ba5405c55b4ead079352bf65f2e66562b87a749888da0a22f",
+    "cropBoxHelperPath": "E:\\others\\silverguide-qa\\accuracy_review\\derive_train_text_domains_v2.py",
+    "cropBoxHelperSha256": "4095cca22c9e49e11fd0038df45676d6728b6e55fed1d56ddcb6f0f8ba9056eb"
+  },
+  "originalSourcesAndTruthUnchanged": true,
+  "originalManifestSha256Before": "82e5df6e9bba7e6087bc6589fa6105d59172a9bed6ff4c07b5a4bb77e5b4cc7b",
+  "originalManifestSha256After": "82e5df6e9bba7e6087bc6589fa6105d59172a9bed6ff4c07b5a4bb77e5b4cc7b",
+  "generatorSha256Before": "4aa3c77a05534fdce2ad8373997b8a83b0c2b75ef2db0da3efdff4c4f24ac38f",
+  "generatorSha256After": "4aa3c77a05534fdce2ad8373997b8a83b0c2b75ef2db0da3efdff4c4f24ac38f",
+  "fieldsUnchanged": true,
+  "printedCompletenessDeclared": false,
+  "geometryQualification": {
+    "boundsConvention": "source-nominal-advance-box",
+    "widthBasis": "frozen-source-font-advance",
+    "inkBoundsVerified": false,
+    "renderVerified": false,
+    "strictGlyphInkGeometryQualified": false
+  },
+  "assessmentContract": {
+    "matchedKnownSourceTextFirst": true,
+    "matchedGtSuppressionAllowed": false,
+    "onlyUnmatchedPredictions": true,
+    "unmatchedOutsideUnresolvedRemainsInsertion": true,
+    "containmentPolicy": "fully-contained-no-output-derived-padding",
+    "regionIntersectionOrCentroidAloneMaySuppressInsertion": false,
+    "pageOrDocumentIncompleteMayDropOutsideDomainDenominator": false
+  },
+  "counts": {
+    "visiblePrinted": {
+      "knownRows": 4952,
+      "knownChars": 51908,
+      "fullyOutsideRows": 0,
+      "fullyOutsideChars": 0,
+      "partiallyClippedRows": 0,
+      "partiallyClippedChars": 0,
+      "unresolvedRegions": 34
+    },
+    "nativeExtractionWithinViewingBox": {
+      "knownRows": 2643,
+      "knownChars": 29790,
+      "fullyOutsideRows": 0,
+      "fullyOutsideChars": 0,
+      "partiallyClippedRows": 0,
+      "partiallyClippedChars": 0,
+      "unresolvedRegions": 0
+    }
+  }
+}

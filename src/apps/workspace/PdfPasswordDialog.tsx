@@ -1,0 +1,8 @@
+import {useEffect,useRef,useState} from "react";
+import type {PdfPasswordRequest} from "./usePdfWorkspace";
+export function PdfPasswordDialog({request,onResolve}:{request:PdfPasswordRequest;onResolve:(value:string|null)=>void}){
+  const dialog=useRef<HTMLDialogElement>(null);const [value,setValue]=useState("");const [visible,setVisible]=useState(false);const [edited,setEdited]=useState(false);
+  useEffect(()=>{const previous=document.activeElement as HTMLElement|null;dialog.current?.showModal();return()=>previous?.focus();},[]);
+  const incorrect=request.reason==="incorrect"&&!edited;
+  return <dialog ref={dialog} className="pdf-password-dialog" aria-labelledby="pdf-password-title" onCancel={event=>{event.preventDefault();setValue("");onResolve(null);}}><h2 id="pdf-password-title">PDFのパスワード</h2><p id="pdf-password-message" role={incorrect?"alert":"status"}>{request.message}</p><p>パスワードは、このPDFを端末内で開くためだけに使います。記録しません。</p><form onSubmit={event=>{event.preventDefault();const password=value;setValue("");onResolve(password);}}><label htmlFor="pdf-password-input">このPDFのパスワード</label><input id="pdf-password-input" type={visible?"text":"password"} autoFocus autoComplete="off" value={value} onChange={event=>{setValue(event.target.value);setEdited(true);}} aria-invalid={incorrect?true:undefined} aria-describedby="pdf-password-message" required/><label className="check-row"><input type="checkbox" checked={visible} onChange={event=>setVisible(event.target.checked)}/>入力した文字を表示</label><div className="dialog-actions"><button type="button" onClick={()=>{setValue("");onResolve(null);}}>開くのを中止する</button><button type="submit" className="primary">このパスワードで開く</button></div></form></dialog>;
+}

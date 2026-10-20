@@ -1,0 +1,162 @@
+{
+  "scope": "Read-only old sampler/ownership metadata diagnosis; no raw changed, process termination, metric reclassification or performance qualification",
+  "oldFormalStatus": "Closed incomplete3/120 with contaminated ownership possible; original raw and failure evidence retained",
+  "profiles": [
+    {
+      "run": "calibration-d5ce15ec-1791896595004-bd3323c3",
+      "profileId": "calibration-d5ce15ec-1791896595004-bd3323c3-chromium-pair1-off",
+      "target": "chromium",
+      "sampler": false,
+      "rawUnchanged": true,
+      "nativeForeignBirthPrecedesRoot": "sampler-disabled; no native memory evidence"
+    },
+    {
+      "run": "calibration-d5ce15ec-1791896595004-bd3323c3",
+      "profileId": "calibration-d5ce15ec-1791896595004-bd3323c3-chromium-pair1-on",
+      "target": "chromium",
+      "sampler": true,
+      "rawUnchanged": true,
+      "samplerVersion": 5,
+      "nativeForeignBirthPrecedesRoot": false,
+      "affectedSamples": 0,
+      "foreign": [],
+      "rootBirthFound": true
+    },
+    {
+      "run": "calibration-d5ce15ec-1791896595004-bd3323c3",
+      "profileId": "calibration-d5ce15ec-1791896595004-bd3323c3-chromium-pair2-off",
+      "target": "chromium",
+      "sampler": false,
+      "rawUnchanged": true,
+      "nativeForeignBirthPrecedesRoot": "sampler-disabled; no native memory evidence"
+    },
+    {
+      "run": "calibration-d5ce15ec-1791896595004-bd3323c3",
+      "profileId": "calibration-d5ce15ec-1791896595004-bd3323c3-chromium-pair2-on",
+      "target": "chromium",
+      "sampler": true,
+      "rawUnchanged": true,
+      "samplerVersion": 5,
+      "nativeForeignBirthPrecedesRoot": false,
+      "affectedSamples": 0,
+      "foreign": [],
+      "rootBirthFound": true
+    },
+    {
+      "run": "calibration-d5ce15ec-1791896595004-bd3323c3",
+      "profileId": "calibration-d5ce15ec-1791896595004-bd3323c3-chromium-pair3-off",
+      "target": "chromium",
+      "sampler": false,
+      "rawUnchanged": true,
+      "nativeForeignBirthPrecedesRoot": "sampler-disabled; no native memory evidence"
+    },
+    {
+      "run": "calibration-d5ce15ec-1791896595004-bd3323c3",
+      "profileId": "calibration-d5ce15ec-1791896595004-bd3323c3-chromium-pair3-on",
+      "target": "chromium",
+      "sampler": true,
+      "rawUnchanged": true,
+      "samplerVersion": 5,
+      "nativeForeignBirthPrecedesRoot": false,
+      "affectedSamples": 0,
+      "foreign": [],
+      "rootBirthFound": true
+    },
+    {
+      "run": "calibration-d5ce15ec-1791896595004-bd3323c3",
+      "profileId": "calibration-d5ce15ec-1791896595004-bd3323c3-gecko-floorp-pair1-off",
+      "target": "gecko-floorp",
+      "sampler": false,
+      "rawUnchanged": true,
+      "nativeForeignBirthPrecedesRoot": "sampler-disabled; no native memory evidence"
+    },
+    {
+      "run": "calibration-d5ce15ec-1791896595004-bd3323c3",
+      "profileId": "calibration-d5ce15ec-1791896595004-bd3323c3-gecko-floorp-pair1-on",
+      "target": "gecko-floorp",
+      "sampler": true,
+      "rawUnchanged": true,
+      "samplerVersion": 5,
+      "nativeForeignBirthPrecedesRoot": false,
+      "affectedSamples": 0,
+      "foreign": [],
+      "rootBirthFound": true
+    },
+    {
+      "run": "calibration-d5ce15ec-1791896595004-bd3323c3",
+      "profileId": "calibration-d5ce15ec-1791896595004-bd3323c3-gecko-floorp-pair2-off",
+      "target": "gecko-floorp",
+      "sampler": false,
+      "rawUnchanged": true,
+      "nativeForeignBirthPrecedesRoot": "sampler-disabled; no native memory evidence"
+    },
+    {
+      "run": "calibration-d5ce15ec-1791896595004-bd3323c3",
+      "profileId": "calibration-d5ce15ec-1791896595004-bd3323c3-gecko-floorp-pair2-on",
+      "target": "gecko-floorp",
+      "sampler": true,
+      "rawUnchanged": true,
+      "samplerVersion": 5,
+      "nativeForeignBirthPrecedesRoot": false,
+      "affectedSamples": 0,
+      "foreign": [],
+      "rootBirthFound": true
+    },
+    {
+      "run": "calibration-d5ce15ec-1791896595004-bd3323c3",
+      "profileId": "calibration-d5ce15ec-1791896595004-bd3323c3-gecko-floorp-pair3-off",
+      "target": "gecko-floorp",
+      "sampler": false,
+      "rawUnchanged": true,
+      "nativeForeignBirthPrecedesRoot": "sampler-disabled; no native memory evidence"
+    },
+    {
+      "run": "calibration-d5ce15ec-1791896595004-bd3323c3",
+      "profileId": "calibration-d5ce15ec-1791896595004-bd3323c3-gecko-floorp-pair3-on",
+      "target": "gecko-floorp",
+      "sampler": true,
+      "rawUnchanged": true,
+      "samplerVersion": 5,
+      "nativeForeignBirthPrecedesRoot": false,
+      "affectedSamples": 0,
+      "foreign": [],
+      "rootBirthFound": true
+    },
+    {
+      "run": "formal-d5ce15ec-1791896979469-b57f8abe",
+      "profileId": "formal-d5ce15ec-1791896979469-b57f8abe-chromium-01",
+      "target": "chromium",
+      "sampler": true,
+      "rawUnchanged": true,
+      "samplerVersion": 5,
+      "nativeForeignBirthPrecedesRoot": false,
+      "affectedSamples": 0,
+      "foreign": [],
+      "rootBirthFound": true
+    },
+    {
+      "run": "formal-d5ce15ec-1791896979469-b57f8abe",
+      "profileId": "formal-d5ce15ec-1791896979469-b57f8abe-gecko-floorp-01",
+      "target": "gecko-floorp",
+      "sampler": true,
+      "rawUnchanged": true,
+      "samplerVersion": 5,
+      "nativeForeignBirthPrecedesRoot": false,
+      "affectedSamples": 0,
+      "foreign": [],
+      "rootBirthFound": true
+    },
+    {
+      "run": "formal-d5ce15ec-1791896979469-b57f8abe",
+      "profileId": "formal-d5ce15ec-1791896979469-b57f8abe-gecko-floorp-02",
+      "target": "gecko-floorp",
+      "sampler": true,
+      "rawUnchanged": true,
+      "samplerVersion": 5,
+      "nativeForeignBirthPrecedesRoot": false,
+      "affectedSamples": 0,
+      "foreign": [],
+      "rootBirthFound": true
+    }
+  ]
+}

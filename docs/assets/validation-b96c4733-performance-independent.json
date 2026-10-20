@@ -1,0 +1,1992 @@
+{
+  "version": 1,
+  "checkedAtUtc": "2026-10-13T23:11:19.282Z",
+  "sourceHash": "b96c473355a5a9a81bba5874c0b463a8e7aabec4131d98630b87bfbea807a11f",
+  "runRoot": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a",
+  "complete": true,
+  "issues": [],
+  "formalProfiles": 120,
+  "metricSlots": 1320,
+  "uniqueProfileIds": 120,
+  "uniqueNormalizedProfilePaths": 120,
+  "perProfileOwnershipVerified": true,
+  "profilesRemaining": 0,
+  "samples": [
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-01",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c01",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-01",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f01",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-02",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f02",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-02",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c02",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-03",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c03",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-03",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f03",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-04",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f04",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-04",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c04",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-05",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c05",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-05",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f05",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-06",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f06",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-06",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c06",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-07",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c07",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-07",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f07",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-08",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f08",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-08",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c08",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-09",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c09",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-09",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f09",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-10",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f10",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-10",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c10",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-11",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c11",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-11",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f11",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-12",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f12",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-12",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c12",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-13",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c13",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-13",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f13",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-14",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f14",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-14",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c14",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-15",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c15",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-15",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f15",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-16",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f16",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-16",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c16",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-17",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c17",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-17",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f17",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-18",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f18",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-18",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c18",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-19",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c19",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-19",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f19",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-20",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f20",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-20",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c20",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-21",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c21",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-21",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f21",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-22",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f22",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-22",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c22",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-23",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c23",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-23",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f23",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-24",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f24",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-24",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c24",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-25",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c25",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-25",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f25",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-26",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f26",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-26",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c26",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-27",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c27",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-27",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f27",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-28",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f28",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-28",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c28",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-29",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c29",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-29",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f29",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-30",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f30",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-30",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c30",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-31",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c31",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-31",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f31",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-32",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f32",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-32",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c32",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-33",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c33",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-33",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f33",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-34",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f34",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-34",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c34",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-35",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c35",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-35",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f35",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-36",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f36",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-36",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c36",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-37",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c37",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-37",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f37",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-38",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f38",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-38",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c38",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-39",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c39",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-39",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f39",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-40",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f40",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-40",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c40",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-41",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c41",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-41",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f41",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-42",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f42",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-42",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c42",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-43",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c43",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-43",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f43",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-44",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f44",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-44",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c44",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-45",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c45",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-45",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f45",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-46",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f46",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-46",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c46",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-47",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c47",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-47",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f47",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-48",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f48",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-48",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c48",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-49",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c49",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-49",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f49",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-50",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f50",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-50",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c50",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-51",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c51",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-51",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f51",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-52",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f52",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-52",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c52",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-53",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c53",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-53",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f53",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-54",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f54",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-54",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c54",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-55",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c55",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-55",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f55",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-56",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f56",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-56",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c56",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-57",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c57",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-57",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f57",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-58",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f58",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-58",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c58",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-59",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c59",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-59",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f59",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-gecko-floorp-60",
+      "target": "gecko-floorp",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\f60",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    },
+    {
+      "profileId": "formal-v7-b96c4733-1791924829305-927dc07a-chromium-60",
+      "target": "chromium",
+      "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-performance-scratch\\r-927dc07a\\c60",
+      "errors": 0,
+      "cleanupErrors": 0,
+      "ownershipComplete": true,
+      "profileAbsent": true
+    }
+  ],
+  "statistics": [
+    {
+      "target": "chromium",
+      "metric": "actual_popup_first_operable",
+      "n": 60,
+      "sameProfileSet": true,
+      "p95": 359.42509999964386,
+      "oneSided95Upper": 375.60069999995176,
+      "central95Upper": "+Infinity",
+      "failedOrCensored": 0,
+      "budget": 1000,
+      "p95WithinBudget": true,
+      "observedMaximumWithinBudget": true
+    },
+    {
+      "target": "chromium",
+      "metric": "question_first_input_feedback",
+      "n": 60,
+      "sameProfileSet": true,
+      "p95": 20.700000047683716,
+      "oneSided95Upper": 30.19999998807907,
+      "central95Upper": "+Infinity",
+      "failedOrCensored": 0,
+      "budget": 100,
+      "p95WithinBudget": true,
+      "observedMaximumWithinBudget": true
+    },
+    {
+      "target": "chromium",
+      "metric": "question_first_next_feedback",
+      "n": 60,
+      "sameProfileSet": true,
+      "p95": 31.399999976158142,
+      "oneSided95Upper": 31.400000035762787,
+      "central95Upper": "+Infinity",
+      "failedOrCensored": 0,
+      "budget": 100,
+      "p95WithinBudget": true,
+      "observedMaximumWithinBudget": true
+    },
+    {
+      "target": "chromium",
+      "metric": "opted_autosave_last_input_to_IDB_commit",
+      "n": 60,
+      "sameProfileSet": true,
+      "p95": 1006.1000000238419,
+      "oneSided95Upper": 1006.6000000238419,
+      "central95Upper": "+Infinity",
+      "failedOrCensored": 0,
+      "budget": 5000,
+      "p95WithinBudget": true,
+      "observedMaximumWithinBudget": true
+    },
+    {
+      "target": "chromium",
+      "metric": "text5_first_UI_ready",
+      "n": 60,
+      "sameProfileSet": true,
+      "p95": 138.60000002384186,
+      "oneSided95Upper": 140.19999998807907,
+      "central95Upper": "+Infinity",
+      "failedOrCensored": 0,
+      "budget": 5000,
+      "p95WithinBudget": true,
+      "observedMaximumWithinBudget": true
+    },
+    {
+      "target": "chromium",
+      "metric": "scan1_new_worker_first_OCR_in_profile_UI_ready",
+      "n": 60,
+      "sameProfileSet": true,
+      "p95": 3112.899999976158,
+      "oneSided95Upper": 3273.199999988079,
+      "central95Upper": "+Infinity",
+      "failedOrCensored": 0,
+      "budget": 12000,
+      "p95WithinBudget": true,
+      "observedMaximumWithinBudget": true
+    },
+    {
+      "target": "chromium",
+      "metric": "initial_OCR_cancel_UI_feedback_and_worker_cleanup",
+      "n": 60,
+      "sameProfileSet": true,
+      "p95": 31.099999964237213,
+      "oneSided95Upper": 31.19999998807907,
+      "central95Upper": "+Infinity",
+      "failedOrCensored": 0,
+      "budget": 1000,
+      "p95WithinBudget": true,
+      "observedMaximumWithinBudget": true
+    },
+    {
+      "target": "chromium",
+      "metric": "scan10_new_worker_UI_ready",
+      "n": 60,
+      "sameProfileSet": true,
+      "p95": 20086.80000001192,
+      "oneSided95Upper": 20607.399999976158,
+      "central95Upper": "+Infinity",
+      "failedOrCensored": 0,
+      "budget": 120000,
+      "p95WithinBudget": true,
+      "observedMaximumWithinBudget": true
+    },
+    {
+      "target": "chromium",
+      "metric": "scan10_same_live_model_warm_analysis",
+      "n": 60,
+      "sameProfileSet": true,
+      "p95": 19445.299999952316,
+      "oneSided95Upper": 19625.5,
+      "central95Upper": "+Infinity",
+      "failedOrCensored": 0,
+      "budget": 120000,
+      "p95WithinBudget": true,
+      "observedMaximumWithinBudget": true
+    },
+    {
+      "target": "chromium",
+      "metric": "output10_from_scan10_with_independent_validation_and_trusted_preview",
+      "n": 60,
+      "sameProfileSet": true,
+      "p95": 6909.800000011921,
+      "oneSided95Upper": 8117.100000023842,
+      "central95Upper": "+Infinity",
+      "failedOrCensored": 0,
+      "budget": 15000,
+      "p95WithinBudget": true,
+      "observedMaximumWithinBudget": true
+    },
+    {
+      "target": "chromium",
+      "metric": "standard10_privateCommit_increment_bytes",
+      "n": 60,
+      "sameProfileSet": true,
+      "p95": 712933376,
+      "oneSided95Upper": 756023296,
+      "central95Upper": "+Infinity",
+      "failedOrCensored": 0,
+      "budget": 805306368,
+      "p95WithinBudget": true,
+      "observedMaximumWithinBudget": true
+    },
+    {
+      "target": "gecko-floorp",
+      "metric": "actual_popup_first_operable",
+      "n": 60,
+      "sameProfileSet": true,
+      "p95": 67.00469999946654,
+      "oneSided95Upper": 73.0301000000909,
+      "central95Upper": "+Infinity",
+      "failedOrCensored": 0,
+      "budget": 1000,
+      "p95WithinBudget": true,
+      "observedMaximumWithinBudget": true
+    },
+    {
+      "target": "gecko-floorp",
+      "metric": "question_first_input_feedback",
+      "n": 60,
+      "sameProfileSet": true,
+      "p95": 21,
+      "oneSided95Upper": 22,
+      "central95Upper": "+Infinity",
+      "failedOrCensored": 0,
+      "budget": 100,
+      "p95WithinBudget": true,
+      "observedMaximumWithinBudget": true
+    },
+    {
+      "target": "gecko-floorp",
+      "metric": "question_first_next_feedback",
+      "n": 60,
+      "sameProfileSet": true,
+      "p95": 31,
+      "oneSided95Upper": 32,
+      "central95Upper": "+Infinity",
+      "failedOrCensored": 0,
+      "budget": 100,
+      "p95WithinBudget": true,
+      "observedMaximumWithinBudget": true
+    },
+    {
+      "target": "gecko-floorp",
+      "metric": "opted_autosave_last_input_to_IDB_commit",
+      "n": 60,
+      "sameProfileSet": true,
+      "p95": 1053,
+      "oneSided95Upper": 1061,
+      "central95Upper": "+Infinity",
+      "failedOrCensored": 0,
+      "budget": 5000,
+      "p95WithinBudget": true,
+      "observedMaximumWithinBudget": true
+    },
+    {
+      "target": "gecko-floorp",
+      "metric": "text5_first_UI_ready",
+      "n": 60,
+      "sameProfileSet": true,
+      "p95": 153,
+      "oneSided95Upper": 166,
+      "central95Upper": "+Infinity",
+      "failedOrCensored": 0,
+      "budget": 5000,
+      "p95WithinBudget": true,
+      "observedMaximumWithinBudget": true
+    },
+    {
+      "target": "gecko-floorp",
+      "metric": "scan1_new_worker_first_OCR_in_profile_UI_ready",
+      "n": 60,
+      "sameProfileSet": true,
+      "p95": 2132,
+      "oneSided95Upper": 3662,
+      "central95Upper": "+Infinity",
+      "failedOrCensored": 0,
+      "budget": 12000,
+      "p95WithinBudget": true,
+      "observedMaximumWithinBudget": true
+    },
+    {
+      "target": "gecko-floorp",
+      "metric": "initial_OCR_cancel_UI_feedback_and_worker_cleanup",
+      "n": 60,
+      "sameProfileSet": true,
+      "p95": 13,
+      "oneSided95Upper": 17,
+      "central95Upper": "+Infinity",
+      "failedOrCensored": 0,
+      "budget": 1000,
+      "p95WithinBudget": true,
+      "observedMaximumWithinBudget": true
+    },
+    {
+      "target": "gecko-floorp",
+      "metric": "scan10_new_worker_UI_ready",
+      "n": 60,
+      "sameProfileSet": true,
+      "p95": 16182,
+      "oneSided95Upper": 17111,
+      "central95Upper": "+Infinity",
+      "failedOrCensored": 0,
+      "budget": 120000,
+      "p95WithinBudget": true,
+      "observedMaximumWithinBudget": true
+    },
+    {
+      "target": "gecko-floorp",
+      "metric": "scan10_same_live_model_warm_analysis",
+      "n": 60,
+      "sameProfileSet": true,
+      "p95": 15001,
+      "oneSided95Upper": 15618,
+      "central95Upper": "+Infinity",
+      "failedOrCensored": 0,
+      "budget": 120000,
+      "p95WithinBudget": true,
+      "observedMaximumWithinBudget": true
+    },
+    {
+      "target": "gecko-floorp",
+      "metric": "output10_from_scan10_with_independent_validation_and_trusted_preview",
+      "n": 60,
+      "sameProfileSet": true,
+      "p95": 2183,
+      "oneSided95Upper": 2268,
+      "central95Upper": "+Infinity",
+      "failedOrCensored": 0,
+      "budget": 15000,
+      "p95WithinBudget": true,
+      "observedMaximumWithinBudget": true
+    },
+    {
+      "target": "gecko-floorp",
+      "metric": "standard10_privateCommit_increment_bytes",
+      "n": 60,
+      "sameProfileSet": true,
+      "p95": 323362816,
+      "oneSided95Upper": 526114816,
+      "central95Upper": "+Infinity",
+      "failedOrCensored": 0,
+      "budget": 805306368,
+      "p95WithinBudget": true,
+      "observedMaximumWithinBudget": true
+    }
+  ],
+  "inputs": [
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/summary.json",
+      "bytes": 104684,
+      "sha256": "cae24c365366b0c6b6ca624c32f5141ae20f25a6650245e85b4367d18066fe66"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-01/sample.json",
+      "bytes": 44796,
+      "sha256": "19a2e39c560a673925d8a7e58b165474f0562dc9508b42ad0f450018d001d727"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-01/sample.json",
+      "bytes": 704914,
+      "sha256": "b629a053efeef8eb330db137883ad0ca65d2f0aef6522e07b65d7321b81496c9"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-02/sample.json",
+      "bytes": 704797,
+      "sha256": "2f0999906f0011960e4bff7e7448ca27a0e789b8eb6d7ba1658781096f7ebe4d"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-02/sample.json",
+      "bytes": 44865,
+      "sha256": "ab62369652062bf7295dd35c4062e4aab933120b3bb07585a83acd4ba84d5a02"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-03/sample.json",
+      "bytes": 44791,
+      "sha256": "b1fd36a9d9d388d7d3441b58467cb16f140f00c4921e3b95add0fba079adee3a"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-03/sample.json",
+      "bytes": 704207,
+      "sha256": "9cc6071fa082dcf649f10ed8815346c6248709efcae6a21041361e878520d206"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-04/sample.json",
+      "bytes": 704588,
+      "sha256": "818c7e894201ddcbf57a4de17e6d97556aa3741741939ded0438f8cd6584ca2a"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-04/sample.json",
+      "bytes": 44931,
+      "sha256": "a051afdef5a43a16fadbd9bd28eec9ef647f882730dc14e722f2ef0693635a49"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-05/sample.json",
+      "bytes": 44771,
+      "sha256": "82af3e4dccae2a4c23e20d29e8676f9282edef68abf5ff35f8f8ab80046aac96"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-05/sample.json",
+      "bytes": 704525,
+      "sha256": "5573de045a7685f50bceda663c7c38a951ed3b245d15d20d8d0424a93f82e386"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-06/sample.json",
+      "bytes": 704900,
+      "sha256": "f890f64f74e6bed40f51488d3179e1492c4c70810e1cab03e5f325fdfce6bfc3"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-06/sample.json",
+      "bytes": 44736,
+      "sha256": "3c91282718ed51f2abd4d34da3bd0edb3ec3342f306f8f5ef7377c65b910b3e4"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-07/sample.json",
+      "bytes": 44751,
+      "sha256": "eb38388ca44935efa1fdaf9bb1cb5c669e7ec29c45f21dea1fc760f5e1c0db7c"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-07/sample.json",
+      "bytes": 704921,
+      "sha256": "16de7108959f8dcb7b3a99f8be5466d97d08ce80ed22bc07845df3910f34eee6"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-08/sample.json",
+      "bytes": 704658,
+      "sha256": "0de1a82c028883c6ee3890e16d418f7ebdd3a9df8d77d9c4d92606a17af311e8"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-08/sample.json",
+      "bytes": 44742,
+      "sha256": "5a6e8c1f04b5ee60aec5ce8337ca73fecd0d492fb3d6312aa799591a8173dc90"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-09/sample.json",
+      "bytes": 44781,
+      "sha256": "8644d42068d219e5c7ba581b2d0c0ca01a0ce73d0fd2aec3a2fe9ea07ca43d59"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-09/sample.json",
+      "bytes": 705533,
+      "sha256": "78ed92b44cce716612809ab043e8543c6faa4fbdfacb622ddf1074a6abacc58c"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-10/sample.json",
+      "bytes": 704647,
+      "sha256": "7a77e6a0b55d0fda9e49b6044bcef4b0d8adbfc7f7ed8bebb2c079f92133c9a1"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-10/sample.json",
+      "bytes": 44657,
+      "sha256": "9dd39210854fc4b44e2cb4007598e0eb0032021c50b12d485ff81a63dd2fdc8a"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-11/sample.json",
+      "bytes": 44871,
+      "sha256": "2c68df06b3b309b0f6fe7df3376939e3b5ad0598a3295de85e2ec38716bcace6"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-11/sample.json",
+      "bytes": 704732,
+      "sha256": "49705433003fbd62af91c4c04993c15b06b94335afe549c031d0c1e7e9c59770"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-12/sample.json",
+      "bytes": 704531,
+      "sha256": "1081bd6468670faaea151f86e4a4b5b8c0f31228c07065df646fcc621b95f2b9"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-12/sample.json",
+      "bytes": 44864,
+      "sha256": "bb21ea60a7de5cf42d211cbebf6b9d9f92e92568092b879e1b0157cd069c9f43"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-13/sample.json",
+      "bytes": 44764,
+      "sha256": "fb572637bc5fa1af41976024769a6399c39ba9ae46aeb224988fa8aada6d703d"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-13/sample.json",
+      "bytes": 704638,
+      "sha256": "f11390f8f7a1e5adc28af12ef3ee0573da7efa9e84759aed6a5666ae71a23393"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-14/sample.json",
+      "bytes": 704441,
+      "sha256": "615f19668bf413edc11f262d850448465c9b01f5825399c508c2a00f12cb9302"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-14/sample.json",
+      "bytes": 44774,
+      "sha256": "95c6c82fe9afb6669e939048092c433d8596abbab93dca015b0234b03f3b6276"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-15/sample.json",
+      "bytes": 44689,
+      "sha256": "e70d6059eb7cc652ad1f9ed449b7cfb832133cff492ec8fdaa2f2bd2e71a15d4"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-15/sample.json",
+      "bytes": 704242,
+      "sha256": "308a5022c4b2292e5b1a68d76448cad42f42e7b6555e141eb417e87632de4c3d"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-16/sample.json",
+      "bytes": 704826,
+      "sha256": "3b86e18fb195b364493646cb54b6dbc90ff727f44666ae5c97cef8959926aea0"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-16/sample.json",
+      "bytes": 44833,
+      "sha256": "e4e0df46b38ccaae5af79ce55b4c6659eaa1e8fe778a9c643a8f8542ea99a2f0"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-17/sample.json",
+      "bytes": 44764,
+      "sha256": "93241432c2040577e7962431d6cbf891d0fd0ad0070f76977672339114c53a12"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-17/sample.json",
+      "bytes": 704680,
+      "sha256": "347334ad66aff208faede5a599895bad3bf227387b280b1b5b2cebc39b6192ce"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-18/sample.json",
+      "bytes": 704557,
+      "sha256": "37fd94535e53bec46e15be2efae68a0a7a65606d5405b8e1c236529293d5ce5e"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-18/sample.json",
+      "bytes": 44954,
+      "sha256": "067a32f270831444ecb65e26be9ae0f40bf0967ca83cf285e8acbdbd62e52955"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-19/sample.json",
+      "bytes": 44596,
+      "sha256": "14d9df47cc2790848b0eb23f7a1343fd1cb5f8c9f25179d7fcbe3c28c051434a"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-19/sample.json",
+      "bytes": 704984,
+      "sha256": "ceb66f2a3b8fb5ca29aadbf316c0ddb2a84db860f1d3eeeaec414bc2f9de1340"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-20/sample.json",
+      "bytes": 704236,
+      "sha256": "116a877b11f2125491c36eb4e951369b06bdf0351eb15bae51b2d45ce43a4f08"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-20/sample.json",
+      "bytes": 44804,
+      "sha256": "5c520d6b2be02f5bbd624d0a5b449eae3199182e5e31aefd40cd0ae797893919"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-21/sample.json",
+      "bytes": 44770,
+      "sha256": "9c34ac7b6b697d08d409d90f1f19c63b4cb64c84203cf558ca5dfae88176491f"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-21/sample.json",
+      "bytes": 704613,
+      "sha256": "4ddbfffb8f79e49ea3406c5f4d6a735e81de6d7ac6730c50d8bdea90100636d5"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-22/sample.json",
+      "bytes": 704524,
+      "sha256": "832f4f6b1078f92f58dcdebb67e749325e1d7655674b0026733c5381fdd850d8"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-22/sample.json",
+      "bytes": 44703,
+      "sha256": "525252dd7556061da5b06ba49a01204d72518fed2d761936bbcae11554b1c22c"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-23/sample.json",
+      "bytes": 44852,
+      "sha256": "0bf58ffc503b308e6c079717dfb917f1c05c85635140b57a2effc4cfb343e5cc"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-23/sample.json",
+      "bytes": 704237,
+      "sha256": "8d845cb162dae361104075242d0d3d280f8528b2e3af953d807825a67b8f5f74"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-24/sample.json",
+      "bytes": 704449,
+      "sha256": "b92aad7b2151f57c66e6d4dd4f45d440f56e800ef8f8aa72dd4b9ed7ba53dc3f"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-24/sample.json",
+      "bytes": 44796,
+      "sha256": "c12b834e0e0009c424d711c958512632229ecd57ca778fe8002621e929a7476a"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-25/sample.json",
+      "bytes": 44855,
+      "sha256": "af14914b875e8077491944bb6684686ce70c469a158e954bd66e64b69d7d8d5f"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-25/sample.json",
+      "bytes": 704655,
+      "sha256": "dcd5d7d2a214b7741b063409272f8199f220889528b41ede34152a0a94f7fca4"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-26/sample.json",
+      "bytes": 704664,
+      "sha256": "d3653b696063efd34aee5b62dcfbf366b56713aa2194588228086bd1ed2bd7b5"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-26/sample.json",
+      "bytes": 44758,
+      "sha256": "70c93c3cc867711256132ee846aa84d795d6903fb76ffb60c60b16b03469bfbe"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-27/sample.json",
+      "bytes": 44810,
+      "sha256": "9722dec5908733ea233533ccd020bc434c81e30c037c2bae143307332654d092"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-27/sample.json",
+      "bytes": 704546,
+      "sha256": "8c1764c189102286adc1b7e3b80326d75b43fe80836bba491180eed2eff99bd4"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-28/sample.json",
+      "bytes": 705155,
+      "sha256": "e2d68945520b9aa55fc8063697688622b3e4df64c45c2611f5e92890a2a58604"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-28/sample.json",
+      "bytes": 44876,
+      "sha256": "b3a797f0171c95b13a9145c9dbd06c71f6cfa15b864192cbaa2bb5904de345e0"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-29/sample.json",
+      "bytes": 44832,
+      "sha256": "f489a2a36a85363c645afd021f2ed312c33b224de3c19e817cfd5bd939dd48c4"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-29/sample.json",
+      "bytes": 704367,
+      "sha256": "f6b42a15b2e43b8b21686064dd973aa8ad14ca17db5f3212d7ae5658a8e9f40c"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-30/sample.json",
+      "bytes": 705462,
+      "sha256": "8281dae67de357f78fd1d5d1c907384ea59e0664c40944fb389a69ad610f3898"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-30/sample.json",
+      "bytes": 44838,
+      "sha256": "fd87d5c6cf5dd149d64d51bd76873b0d35067c54699527f63832595f144018eb"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-31/sample.json",
+      "bytes": 44966,
+      "sha256": "0da9290290486d347e66efe6a4e95c84f04d547e36f411fd8b7b2600667e4f92"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-31/sample.json",
+      "bytes": 704732,
+      "sha256": "311528023dec5762f308bd2a750381ec338826abea3bcbc02fde301b6a3f393f"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-32/sample.json",
+      "bytes": 704373,
+      "sha256": "11536d440d3ba97cc4b8d3a279caaa3acd39817126ed0d8e8c5564754c597eda"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-32/sample.json",
+      "bytes": 44832,
+      "sha256": "7bdd429778a9f9852069376bdc0a88f5830dca8c41261cddc6f8c2754111aed4"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-33/sample.json",
+      "bytes": 44714,
+      "sha256": "059df9aa3131374da10dd578943ec9c0153428dff21fde68fc1bf8873d174735"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-33/sample.json",
+      "bytes": 704375,
+      "sha256": "d4067174dcde499ae89d0bdbd252a56593306af02b49e12a15300065f886ec5e"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-34/sample.json",
+      "bytes": 704488,
+      "sha256": "cef2fe448dd616eff1b0db98e1346f97b8b6ae7c6a5b2b44d1979eee0d63503a"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-34/sample.json",
+      "bytes": 44786,
+      "sha256": "8f42cb3a803ab048cf8b3a0a30dc45adeed3a4ebfc0875e287b26884b58c5c23"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-35/sample.json",
+      "bytes": 44657,
+      "sha256": "93018773329e7cf634b36a02ce5cd26268c0a0979074ad6f7e1477c3a742a94c"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-35/sample.json",
+      "bytes": 704817,
+      "sha256": "4acdf1a5ccb6b5830fc2fa105d07db9985db15fefefa36415e222672ece4a2b8"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-36/sample.json",
+      "bytes": 704231,
+      "sha256": "e2725f98840d26a1a476bfe62366e6553fbc23ab1dbbe1013cd973a9a0db826b"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-36/sample.json",
+      "bytes": 44762,
+      "sha256": "10c53fdb02248047da00baf6bc9d9ec86a00399d395060da9482f2ac75762d27"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-37/sample.json",
+      "bytes": 44862,
+      "sha256": "900720b38177879d58d590c6f2228f332d244ff387d23b469043874c0515246a"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-37/sample.json",
+      "bytes": 704792,
+      "sha256": "6ecc8d51a9dd982cbab015950d435c26222fb5819abff33e35ef2ecacea43ef0"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-38/sample.json",
+      "bytes": 704621,
+      "sha256": "a0449a853ee5513c9c056b1bd25862e067b9b590548b2c1b6861c2991b4bc4f5"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-38/sample.json",
+      "bytes": 44895,
+      "sha256": "6c741007bc6b4706ec4f8802f475166fbd993b1f0283a396af04c4c61399653b"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-39/sample.json",
+      "bytes": 45171,
+      "sha256": "1b5744b14fec4fb5030ee7c3cc955fe18a3d6d10e15518b882a62dff9d237c61"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-39/sample.json",
+      "bytes": 705358,
+      "sha256": "0a1b184a8b34da337cd5cb5968ba342ce87d94ef5f41b52e1660bfa772a55a68"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-40/sample.json",
+      "bytes": 704657,
+      "sha256": "ee833d559d82107b33ce364439c598f369b162eeb6d930437efa06c3ecdbc8e9"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-40/sample.json",
+      "bytes": 44669,
+      "sha256": "c023a71e0964fe21d4d9345d0ac6eba1820f685f747990dcbc09ce1a3c81c467"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-41/sample.json",
+      "bytes": 44790,
+      "sha256": "9c39638c96dd924343f7683a3fb7d0d4bca425e6ede198c4b440b1c247b4919e"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-41/sample.json",
+      "bytes": 705033,
+      "sha256": "62e55aa30d46775fd97ea75ba71490c533b5115d13f25a53dc9c6e106603627d"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-42/sample.json",
+      "bytes": 704326,
+      "sha256": "9065d761298f5e0dbb9f9bed2ad0b84ab0a3f45a4de4eaf3ae2d097140864368"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-42/sample.json",
+      "bytes": 44871,
+      "sha256": "afaac6a8864315cd4ed837a0aa9230933cd3cd971d2b425e81c240cd709803a2"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-43/sample.json",
+      "bytes": 44658,
+      "sha256": "f554e6f84853426df513e41bc3ec4bd5df4ac4f515405929bf2fef290fc9f300"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-43/sample.json",
+      "bytes": 704366,
+      "sha256": "acd5aa73eb95a020a039a5294ed647540482070adf054368f932a51dcd28295e"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-44/sample.json",
+      "bytes": 704216,
+      "sha256": "e29d7db9f45f856a02fd8df21aa36f405ef6be0f23c37e5726a25a45a99a4474"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-44/sample.json",
+      "bytes": 44713,
+      "sha256": "ecb266e2408a1d2b96a188e434ba4d880091d900498ae49f32c0f49b950af88e"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-45/sample.json",
+      "bytes": 44648,
+      "sha256": "43a5e46545c24798892c2c6fd79524dba67345802b729833f3e41153a00b3a2b"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-45/sample.json",
+      "bytes": 704479,
+      "sha256": "f4aca181d15f78e61a44ae6728dc9337abf4b4d1f53eafd71e45d39959a8ada6"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-46/sample.json",
+      "bytes": 704535,
+      "sha256": "5730e7bd72e2efcb7192a96b8dd9e23b7b0095826754eacd18ced7ecd188f1ac"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-46/sample.json",
+      "bytes": 44768,
+      "sha256": "920a6c099b3354d47c0dcd449317aad790b542bae302a73bb86d345ef3c719de"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-47/sample.json",
+      "bytes": 44694,
+      "sha256": "7a515790e91e74393cc05ea8dcc1f614224b7307fd1a9a3be26a8bcf2025f484"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-47/sample.json",
+      "bytes": 704919,
+      "sha256": "dec8dc4ccd5e9bc9b04bdbd4627b4b0637e57d7898f2ce2948af4e16f2b216c1"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-48/sample.json",
+      "bytes": 704516,
+      "sha256": "2339bd93969876562bac67271acd629485024e64224a9bccd9d8eb2418fb98b0"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-48/sample.json",
+      "bytes": 44587,
+      "sha256": "e4a9d23e6d9f460e1876db23a053940f889dd895c7a6925b379c9e65d8d1ccce"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-49/sample.json",
+      "bytes": 44942,
+      "sha256": "2f444e2a0cb83dd535fe7c724950314903b44df8c07a7a848a37f2a7a877e6e5"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-49/sample.json",
+      "bytes": 704905,
+      "sha256": "643340d0ec6cfb6d38162939c69c2125d6ea41097dc16666d2e9fc1ac221d591"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-50/sample.json",
+      "bytes": 704671,
+      "sha256": "ecc609017f9d147c8bf2fa45d84f984e0d71b7cb3b9de6bfe72823c0a772f6cf"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-50/sample.json",
+      "bytes": 44766,
+      "sha256": "354dc9aba210d9d616a06e3c37ca845d16952e5395147f8ad73928b05a9faef1"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-51/sample.json",
+      "bytes": 44754,
+      "sha256": "ff5a5447f2c1c89859290d25087f4849825cdde5d94023f2630d755983f873ac"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-51/sample.json",
+      "bytes": 704524,
+      "sha256": "7510fa137a7129e9bd5aff30274108b9f00fcc023a1607266e7239c2aeeb3643"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-52/sample.json",
+      "bytes": 704759,
+      "sha256": "0251154009ec2d5ea66badad06567f3171fb18efe6569b6e313c535a47abcf26"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-52/sample.json",
+      "bytes": 44898,
+      "sha256": "d634e11dc3db6f5a12bc2fdd785148a776cc39a97b1783d1f4673490cbf0ffe7"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-53/sample.json",
+      "bytes": 44926,
+      "sha256": "1d1b3cee0de59131632e4df6c3df9b3bdf4e5dc86d1568617ff5f77417281d49"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-53/sample.json",
+      "bytes": 705065,
+      "sha256": "7e0168e5e622bd44a996a170be10b4ada92cfffe9482441ae094cc42e1504341"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-54/sample.json",
+      "bytes": 704513,
+      "sha256": "6ac6ae9cbe2795aa13ff4622f5d9137aed99da52c4dba9a1c697a92b68f07d28"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-54/sample.json",
+      "bytes": 44763,
+      "sha256": "ccf5e46657715d69855e5fc400d4d51181f17b35ed6f9b85f766a066bc5c492d"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-55/sample.json",
+      "bytes": 44839,
+      "sha256": "4cfdaa78f09d6a317fae41e52ac7d68f5a315ffb5be1a07d5c80e48ada6c091e"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-55/sample.json",
+      "bytes": 704235,
+      "sha256": "c482db6b4e83136b7ea98b8ff8c55e74f2dde30631af2ec8cacccd04a249e99c"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-56/sample.json",
+      "bytes": 705006,
+      "sha256": "37dff7ae4cc7db9a9a8a3bc03d601f7aaa5c4f7d6ef45cc4a61046c4ec8f9599"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-56/sample.json",
+      "bytes": 44861,
+      "sha256": "d140ccc0b649370a019e3603d422c7bf30f980f9c245ad21482c9e27ca5748a8"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-57/sample.json",
+      "bytes": 44718,
+      "sha256": "ae567b85de208d59caf87d327efd87653b9544b2ed9beb8b1e0230bf656c1956"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-57/sample.json",
+      "bytes": 704971,
+      "sha256": "ecaeb1285d246a5dc61731181c4cc2bf89adab92ab7341d03935655000795055"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-58/sample.json",
+      "bytes": 704219,
+      "sha256": "09c12dec7f1c7b7b459093647d1b2150547d3190d371c56ba1295e099dd9ff00"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-58/sample.json",
+      "bytes": 44866,
+      "sha256": "83e73c1b7e4c76a65a64ce2ddaa04a88639fd12664eff73bcbc7ea5722615a0f"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-59/sample.json",
+      "bytes": 44845,
+      "sha256": "42a427b5cd78604cc3afda9f279709338b9554c4525fd13cbcfc60e3f35e6712"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-59/sample.json",
+      "bytes": 704634,
+      "sha256": "575b190d494ab1d5aaeaed72145465c2cc733338f451b52de169b41050229d57"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/gecko-floorp-60/sample.json",
+      "bytes": 704724,
+      "sha256": "cd9a299d6c165c9265676a671f75fbea4376f9551a54e68f883c62b1669eb2c3"
+    },
+    {
+      "path": "E:/others/silverguide-qa/performance/runs/formal-v7-b96c4733-1791924829305-927dc07a/chromium-60/sample.json",
+      "bytes": 44787,
+      "sha256": "8f9b74364fd3d6446c2093b34a0d9dbb6e7d991a1691a4ab2d651ab4a9508a03"
+    }
+  ],
+  "scope": "Independent root verifier without importing the production evaluator or aggregate guard. Verifies the120/1320 identities, immutable11budgets, per-profile birth ownership/identity/timestamp, current filesystem profile absence and order statistics. Runner actual exit, current whole-plan ownership, source/build/fixture SHA, raw interval coverage and protocol binding require their separate completion evidence. Completeness does not certify physical4core8GiB RAM, an atomic peak, public precision, or human usability."
+}

@@ -1,6 +1,12 @@
 declare const chrome: typeof browser;
 
-export type WebExtensionApi = typeof browser;
+export type WebExtensionApi = typeof browser & {
+  sidePanel?: {
+    setPanelBehavior(options: { openPanelOnActionClick: boolean }): Promise<void>;
+    open(options: { windowId?: number; tabId?: number }): Promise<void>;
+    setOptions(options: { tabId?: number; path?: string; enabled?: boolean }): Promise<void>;
+  };
+};
 
 function isWebExtensionApi(candidate: unknown): candidate is WebExtensionApi {
   if (candidate === null || typeof candidate !== "object") {
@@ -9,9 +15,8 @@ function isWebExtensionApi(candidate: unknown): candidate is WebExtensionApi {
 
   const api = candidate as {
     runtime?: { sendMessage?: unknown };
-    storage?: { local?: unknown };
   };
-  return typeof api.runtime?.sendMessage === "function" && api.storage?.local !== undefined;
+  return typeof api.runtime?.sendMessage === "function";
 }
 
 export function getWebExtensionApi(): WebExtensionApi | undefined {

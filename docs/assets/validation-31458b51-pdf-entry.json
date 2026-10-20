@@ -1,0 +1,41 @@
+{
+  "sourceHash": "31458b518fd08e08773edf055314f76af372252990dd9573bfc6df3b68840621",
+  "recordedAt": "2026-10-14T06:23:17.575Z",
+  "tests": {
+    "total": 649,
+    "passed": 649,
+    "testFiles": 53,
+    "failed": 0,
+    "processExitCode": 0,
+    "report": "E:/others/silverguide-qa/pdf-simple-20261014/final-tests.json"
+  },
+  "typecheckAndBothBuilds": "passed",
+  "chromium": {
+    "status": "passed",
+    "checks": [
+      "PDF immediately editable, two visible input actions, left/right split, original rendered",
+      "Next and Back preserve Japanese answer without confirmation",
+      "320px page has no horizontal overflow",
+      "Original viewer follows selected field through all eight entries",
+      "Final Save triggers actual download; reopened PDF contains Japanese answer and native required flags"
+    ],
+    "report": "E:/others/silverguide-qa/pdf-simple-20261014/native-ui.json",
+    "downloadVerified": true
+  },
+  "floorp": {
+    "status": "passed",
+    "checks": [
+      "Native Floorp zip installation, original rendered, editable left field, two visible actions, Next/Back answer persistence"
+    ],
+    "report": "E:/others/silverguide-qa/pdf-simple-20261014/native-floorp.json",
+    "downloadVerified": false
+  },
+  "archives": "Both targets: all 323 entries each compared byte-for-byte with original compiled files",
+  "limitations": [
+    "macOS runtime not tested",
+    "No claim of improved OCR accuracy or formal performance qualification",
+    "No actual user study performed",
+    "Legacy detailed editor is optional; its regression tests are separate from the new ordinary-entry tests"
+  ],
+  "screenshot": "E:/others/silverguide-qa/pdf-simple-20261014/desktop-filled.png"
+}

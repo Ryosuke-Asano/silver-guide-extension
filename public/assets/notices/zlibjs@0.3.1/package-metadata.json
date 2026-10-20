@@ -1,0 +1,13 @@
+{
+  "name": "zlibjs",
+  "version": "0.3.1",
+  "license": "MIT",
+  "author": {
+    "name": "Yuta Imaya",
+    "email": "imaya.devel@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/imaya/zlib.js.git"
+  }
+}

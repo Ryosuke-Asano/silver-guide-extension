@@ -1,0 +1,2 @@
+# Vendored runtime files are verified by exact byte length and SHA-256.
+public/assets/** -text

@@ -1,0 +1,707 @@
+{
+  "scope": "Pre-build actual-source technical controls. Explicitly confirmed one field per document; not automatic semantic accuracy. Source polygon comparison permits2 renderer pixels margin. Old v1 false ROI result preserved externally. Final compiled build evaluation pending.",
+  "records": {
+    "source-run-v3.json": {
+      "scope": "Actual current source through Vite, not frozen compiled release. Independent 9 control PDFs, reserved benchmark and old sealed binaries not read.",
+      "pins": [
+        {
+          "path": "E:/floorp-browser-dev/silver-guide-extension/src/adapters/pdf/structure.ts",
+          "sha256": "682b7f7a00ccc6f891dbe784af1240234d35a9c74a6945ea8c0b643ebe7a2b6f"
+        },
+        {
+          "path": "E:/floorp-browser-dev/silver-guide-extension/src/adapters/pdf/vector.ts",
+          "sha256": "69bc2c0054460fe4316612f3729f06dfb980a0b6a5b463a8dce42a389defccef"
+        },
+        {
+          "path": "E:/floorp-browser-dev/silver-guide-extension/src/adapters/pdf/raster.ts",
+          "sha256": "b714ee51742f2ec0fc9fd54609904574c6c85c62e6e12d1cce8b3703dd18de08"
+        },
+        {
+          "path": "E:/floorp-browser-dev/silver-guide-extension/src/adapters/pdf/index.ts",
+          "sha256": "7c15acc0e88cc03ce97662ab2842ec82667ab472b280757568b28bb1539c8dc3"
+        }
+      ],
+      "results": [
+        {
+          "id": "scan-bracket-register-00",
+          "fields": 25,
+          "selectedFinalTileCalls": [
+            2,
+            3,
+            6
+          ],
+          "export": {
+            "validated": true,
+            "hash": "56614d1609c0c45c93aeb3ca7f0ae51a883234c385a8e27589687ecc2c2d3e73",
+            "reopenedHash": "56614d1609c0c45c93aeb3ca7f0ae51a883234c385a8e27589687ecc2c2d3e73"
+          },
+          "field": {
+            "id": "4fa267f0-6838-414e-8de5-1b7dde122d71",
+            "revision": 1,
+            "source": "inferred",
+            "kind": "text",
+            "label": "本人氏名",
+            "labelOriginal": "本人氏名",
+            "description": "この欄に記入する人を原書類で確認して、氏名を入力します。",
+            "role": "applicant",
+            "subjectId": "source-control",
+            "required": false,
+            "requiredEvidenceIds": [],
+            "conditionStatus": "unconditional",
+            "condition": null,
+            "native": null,
+            "placements": [
+              {
+                "pageIndex": 0,
+                "quad": [
+                  {
+                    "x": 194.87999999999997,
+                    "y": 756.48
+                  },
+                  {
+                    "x": 542.3999999999999,
+                    "y": 756.48
+                  },
+                  {
+                    "x": 542.3999999999999,
+                    "y": 776.64
+                  },
+                  {
+                    "x": 194.87999999999997,
+                    "y": 776.64
+                  }
+                ],
+                "widgetRef": null,
+                "writingMode": "horizontal"
+              }
+            ],
+            "options": [],
+            "initialValue": null,
+            "maxGraphemes": null,
+            "readOnly": false,
+            "mappingState": "confirmed",
+            "evidenceIds": [
+              "6242c0aa-ec37-4317-9878-a6d10ee7e763"
+            ],
+            "confidence": {
+              "text": null,
+              "geometry": null,
+              "labelMapping": null,
+              "calibrationVersion": null
+            },
+            "requiredSource": {
+              "kind": "document",
+              "text": "QA source optional control"
+            }
+          },
+          "complete": true,
+          "issues": []
+        },
+        {
+          "id": "scan-bracket-register-04",
+          "fields": 25,
+          "selectedFinalTileCalls": [
+            2,
+            3,
+            6
+          ],
+          "export": {
+            "validated": true,
+            "hash": "bc3993248a738d5ec3a92c48ab152c5c4af1cecc0b6c7540a0484fdc0d021dc1",
+            "reopenedHash": "bc3993248a738d5ec3a92c48ab152c5c4af1cecc0b6c7540a0484fdc0d021dc1"
+          },
+          "field": {
+            "id": "e5306f26-0415-4e4b-a35c-175f956f79f2",
+            "revision": 1,
+            "source": "inferred",
+            "kind": "text",
+            "label": "本人氏名",
+            "labelOriginal": "本人氏名",
+            "description": "この欄に記入する人を原書類で確認して、氏名を入力します。",
+            "role": "applicant",
+            "subjectId": "source-control",
+            "required": false,
+            "requiredEvidenceIds": [],
+            "conditionStatus": "unconditional",
+            "condition": null,
+            "native": null,
+            "placements": [
+              {
+                "pageIndex": 0,
+                "quad": [
+                  {
+                    "x": 110.95172033263006,
+                    "y": 366.0760181208294
+                  },
+                  {
+                    "x": 284.430323772428,
+                    "y": 369.86607729943387
+                  },
+                  {
+                    "x": 284.210154359563,
+                    "y": 379.943672520003
+                  },
+                  {
+                    "x": 110.73155091976507,
+                    "y": 376.15361334139857
+                  }
+                ],
+                "widgetRef": null,
+                "writingMode": "horizontal"
+              }
+            ],
+            "options": [],
+            "initialValue": null,
+            "maxGraphemes": null,
+            "readOnly": false,
+            "mappingState": "confirmed",
+            "evidenceIds": [
+              "9e957edc-8413-4d79-8cb5-549c9af5af39"
+            ],
+            "confidence": {
+              "text": null,
+              "geometry": null,
+              "labelMapping": null,
+              "calibrationVersion": null
+            },
+            "requiredSource": {
+              "kind": "document",
+              "text": "QA source optional control"
+            }
+          },
+          "complete": true,
+          "issues": []
+        },
+        {
+          "id": "scan-vertical-rail-04",
+          "fields": 25,
+          "selectedFinalTileCalls": [
+            2,
+            3,
+            6
+          ],
+          "export": {
+            "validated": true,
+            "hash": "fed1fb586959410027805df8604fa1385f9e5ee328cb67c678ea668cbc18eafa",
+            "reopenedHash": "fed1fb586959410027805df8604fa1385f9e5ee328cb67c678ea668cbc18eafa"
+          },
+          "field": {
+            "id": "c78d78b9-f078-42a2-8138-094072a43cd7",
+            "revision": 1,
+            "source": "inferred",
+            "kind": "text",
+            "label": "記入欄（項目名を確認）",
+            "labelOriginal": "記入欄（項目名を確認）",
+            "description": "原書類の項目名と記入場所を確認してください。",
+            "role": "applicant",
+            "subjectId": "source-control",
+            "required": false,
+            "requiredEvidenceIds": [],
+            "conditionStatus": "unconditional",
+            "condition": null,
+            "native": null,
+            "placements": [
+              {
+                "pageIndex": 0,
+                "quad": [
+                  {
+                    "x": 47.34457101111149,
+                    "y": 298.6355321741339
+                  },
+                  {
+                    "x": 89.09433233926006,
+                    "y": 299.5602099789015
+                  },
+                  {
+                    "x": 88.67450735893455,
+                    "y": 318.5155613865092
+                  },
+                  {
+                    "x": 46.924746030785975,
+                    "y": 317.5908835817416
+                  }
+                ],
+                "widgetRef": null,
+                "writingMode": "horizontal"
+              }
+            ],
+            "options": [],
+            "initialValue": null,
+            "maxGraphemes": null,
+            "readOnly": false,
+            "mappingState": "confirmed",
+            "evidenceIds": [],
+            "confidence": {
+              "text": null,
+              "geometry": null,
+              "labelMapping": null,
+              "calibrationVersion": null
+            },
+            "requiredSource": {
+              "kind": "document",
+              "text": "QA source optional control"
+            }
+          },
+          "complete": true,
+          "issues": []
+        },
+        {
+          "id": "mixed-raster-widget-panels-04",
+          "fields": 25,
+          "selectedFinalTileCalls": [
+            2,
+            3,
+            6
+          ],
+          "export": {
+            "validated": true,
+            "hash": "98f0e6009f12d25d8b371d8f6b7e906e6442a983d286f061e93bf64709b847cf",
+            "reopenedHash": "98f0e6009f12d25d8b371d8f6b7e906e6442a983d286f061e93bf64709b847cf"
+          },
+          "field": {
+            "id": "be6619a9-0436-43f5-a840-e39250fb7cc3",
+            "revision": 1,
+            "source": "inferred",
+            "kind": "text",
+            "label": "法人名",
+            "labelOriginal": "法人名",
+            "description": "原書類の項目名と記入場所を確認してください。",
+            "role": "applicant",
+            "subjectId": "source-control",
+            "required": false,
+            "requiredEvidenceIds": [],
+            "conditionStatus": "unconditional",
+            "condition": null,
+            "native": null,
+            "placements": [
+              {
+                "pageIndex": 0,
+                "quad": [
+                  {
+                    "x": 173.43304998615605,
+                    "y": 342.47256528522405
+                  },
+                  {
+                    "x": 287.1665238690107,
+                    "y": 344.9290909899616
+                  },
+                  {
+                    "x": 286.90739668496667,
+                    "y": 356.9262928763386
+                  },
+                  {
+                    "x": 173.173922802112,
+                    "y": 354.46976717160106
+                  }
+                ],
+                "widgetRef": null,
+                "writingMode": "horizontal"
+              }
+            ],
+            "options": [],
+            "initialValue": null,
+            "maxGraphemes": null,
+            "readOnly": false,
+            "mappingState": "confirmed",
+            "evidenceIds": [
+              "3e4a5efd-bc48-4287-aaea-c56d015c9049"
+            ],
+            "confidence": {
+              "text": null,
+              "geometry": null,
+              "labelMapping": null,
+              "calibrationVersion": null
+            },
+            "requiredSource": {
+              "kind": "document",
+              "text": "QA source optional control"
+            }
+          },
+          "complete": true,
+          "issues": []
+        }
+      ],
+      "remoteRequests": [],
+      "fatal": null,
+      "sourceDrift": [],
+      "ownedMarkerProcesses": [],
+      "endedAt": "2026-10-13T10:40:52.586Z"
+    },
+    "writer-v3-independent-inspection-v2.json": {
+      "version": 2,
+      "previousRevision": "writer-v3-independent-inspection.json",
+      "reason": "v1 incorrectly applied UserUnit twice: Poppler original renderer uses raw MediaBox/CropBox points for -r. Scale is fixed from original dimensions, never output pixels.",
+      "scope": "Independent original source polygon ROI, actual current-source proposed field manually confirmed by source reference; technical writer proof only, not semantic autodetection quality",
+      "records": [
+        {
+          "id": "scan-bracket-register-00",
+          "geometryInvariant": true,
+          "sourceAngle": 0,
+          "detectorOrderedRawQuadAngle": 0.0,
+          "actualGlyphs": [
+            {
+              "text": "山田花子\n",
+              "angle": 0.0,
+              "rawFontSize": 14.0,
+              "physicalFontSize": 14.0,
+              "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                1.0,
+                196.08959999999996,
+                763.6704
+              ]
+            }
+          ],
+          "angleToleranceDegrees": 0.1,
+          "glyphAnglesMatchDeclared": true,
+          "japaneseExtracted": true,
+          "pixelsOutsideIndependentSourcePolygon": 0,
+          "polygonMarginPixels": 2,
+          "originalPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\scan-bracket-register-00-original-v3-poppler.png",
+          "exportPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\scan-bracket-register-00-export-v3-poppler.png",
+          "exportSha256": "56614d1609c0c45c93aeb3ca7f0ae51a883234c385a8e27589687ecc2c2d3e73",
+          "originalDimensions": [
+            1240,
+            1754
+          ],
+          "expectedFromOriginalRawCropBox": [
+            1240,
+            1754
+          ],
+          "renderCoordinates": "raw PDF coordinates at 150/72 px; Poppler does not apply UserUnit to requested DPI",
+          "effectivePhysicalDpi": 150.0,
+          "sourcePolygonPixels": [
+            [
+              406.25000000000006,
+              178.99999999999991
+            ],
+            [
+              1131.25,
+              178.99999999999991
+            ],
+            [
+              1131.25,
+              137.33333333333326
+            ],
+            [
+              406.25000000000006,
+              137.33333333333326
+            ]
+          ],
+          "sourcePolygonOverlayPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\scan-bracket-register-00-original-source-polygon-v2-poppler.png"
+        },
+        {
+          "id": "scan-bracket-register-04",
+          "geometryInvariant": true,
+          "sourceAngle": 1.25,
+          "detectorOrderedRawQuadAngle": 1.2515656148224186,
+          "actualGlyphs": [
+            {
+              "text": "山田花子\n",
+              "angle": 1.2515656148224186,
+              "rawFontSize": 7.0,
+              "physicalFontSize": 14.0,
+              "matrix": [
+                0.9997614306120214,
+                0.021842203657240964,
+                -0.021842203657240964,
+                0.9997614306120214,
+                111.4778489552757,
+                369.68357058093767
+              ]
+            }
+          ],
+          "angleToleranceDegrees": 0.1,
+          "glyphAnglesMatchDeclared": true,
+          "japaneseExtracted": true,
+          "pixelsOutsideIndependentSourcePolygon": 0,
+          "polygonMarginPixels": 2,
+          "originalPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\scan-bracket-register-04-original-v3-poppler.png",
+          "exportPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\scan-bracket-register-04-export-v3-poppler.png",
+          "exportSha256": "bc3993248a738d5ec3a92c48ab152c5c4af1cecc0b6c7540a0484fdc0d021dc1",
+          "originalDimensions": [
+            620,
+            877
+          ],
+          "expectedFromOriginalRawCropBox": [
+            620,
+            877
+          ],
+          "renderCoordinates": "raw PDF coordinates at 150/72 px; Poppler does not apply UserUnit to requested DPI",
+          "effectivePhysicalDpi": 75.0,
+          "sourcePolygonPixels": [
+            [
+              195.5370384787729,
+              91.91451838718041
+            ],
+            [
+              557.95077329524,
+              84.00662256215199
+            ],
+            [
+              557.4962965236865,
+              63.17824699798714
+            ],
+            [
+              195.08256170721953,
+              71.08614282301566
+            ]
+          ],
+          "sourcePolygonOverlayPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\scan-bracket-register-04-original-source-polygon-v2-poppler.png"
+        },
+        {
+          "id": "scan-vertical-rail-04",
+          "geometryInvariant": true,
+          "sourceAngle": 1.25,
+          "detectorOrderedRawQuadAngle": 1.2687851034042967,
+          "actualGlyphs": [
+            {
+              "text": "山田花子\n",
+              "angle": 1.2687851034042965,
+              "rawFontSize": 7.0,
+              "physicalFontSize": 14.0,
+              "matrix": [
+                0.9997548210763547,
+                0.022142667738688015,
+                -0.022142667738688015,
+                0.9997548210763547,
+                48.0768424059045,
+                310.734713080475
+              ]
+            }
+          ],
+          "angleToleranceDegrees": 0.1,
+          "glyphAnglesMatchDeclared": true,
+          "japaneseExtracted": true,
+          "pixelsOutsideIndependentSourcePolygon": 0,
+          "polygonMarginPixels": 2,
+          "originalPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\scan-vertical-rail-04-original-v3-poppler.png",
+          "exportPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\scan-vertical-rail-04-export-v3-poppler.png",
+          "exportSha256": "fed1fb586959410027805df8604fa1385f9e5ee328cb67c678ea668cbc18eafa",
+          "originalDimensions": [
+            620,
+            877
+          ],
+          "expectedFromOriginalRawCropBox": [
+            620,
+            877
+          ],
+          "renderCoordinates": "raw PDF coordinates at 150/72 px; Poppler does not apply UserUnit to requested DPI",
+          "effectivePhysicalDpi": 75.0,
+          "sourcePolygonPixels": [
+            [
+              63.152144003953985,
+              232.3358961257648
+            ],
+            [
+              150.63132137344607,
+              230.42709368524058
+            ],
+            [
+              149.7678155074947,
+              190.85318011332754
+            ],
+            [
+              62.288638138002625,
+              192.76198255385165
+            ]
+          ],
+          "sourcePolygonOverlayPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\scan-vertical-rail-04-original-source-polygon-v2-poppler.png"
+        },
+        {
+          "id": "mixed-raster-widget-panels-04",
+          "geometryInvariant": true,
+          "sourceAngle": 1.25,
+          "detectorOrderedRawQuadAngle": 1.2373373409109312,
+          "actualGlyphs": [
+            {
+              "text": "山田花子\n",
+              "angle": 1.2373373409109312,
+              "rawFontSize": 7.0,
+              "physicalFontSize": 14.0,
+              "matrix": [
+                0.9997668238647555,
+                0.02159393200367038,
+                -0.02159393200367038,
+                0.9997668238647555,
+                174.03627486651885,
+                347.8868537651363
+              ]
+            }
+          ],
+          "angleToleranceDegrees": 0.1,
+          "glyphAnglesMatchDeclared": true,
+          "japaneseExtracted": true,
+          "pixelsOutsideIndependentSourcePolygon": 0,
+          "polygonMarginPixels": 2,
+          "originalPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\mixed-raster-widget-panels-04-original-v3-poppler.png",
+          "exportPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\mixed-raster-widget-panels-04-export-v3-poppler.png",
+          "exportSha256": "98f0e6009f12d25d8b371d8f6b7e906e6442a983d286f061e93bf64709b847cf",
+          "originalDimensions": [
+            620,
+            877
+          ],
+          "expectedFromOriginalRawCropBox": [
+            620,
+            877
+          ],
+          "renderCoordinates": "raw PDF coordinates at 150/72 px; Poppler does not apply UserUnit to requested DPI",
+          "effectivePhysicalDpi": 75.0,
+          "sourcePolygonPixels": [
+            [
+              325.8091589054779,
+              141.16770131396154
+            ],
+            [
+              563.2526403369563,
+              135.9866661182533
+            ],
+            [
+              562.7072682110924,
+              110.99261544125555
+            ],
+            [
+              325.26378677961384,
+              116.17365063696379
+            ]
+          ],
+          "sourcePolygonOverlayPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\mixed-raster-widget-panels-04-original-source-polygon-v2-poppler.png"
+        }
+      ],
+      "allTechnicalControlsPassed": true
+    },
+    "writer-v3-independent-mupdf-inspection-v1.json": {
+      "version": 1,
+      "scope": "Independent source polygon physical150dpi MuPDF check; manual technical writing controls, not automatic semantic quality",
+      "records": [
+        {
+          "id": "scan-bracket-register-00",
+          "dimensions": [
+            1240,
+            1754
+          ],
+          "renderer": "MuPDF physical /UserUnit aware150dpi",
+          "sourcePolygonPixels": [
+            [
+              406.25000000000006,
+              178.99999999999991
+            ],
+            [
+              1131.25,
+              178.99999999999991
+            ],
+            [
+              1131.25,
+              137.33333333333326
+            ],
+            [
+              406.25000000000006,
+              137.33333333333326
+            ]
+          ],
+          "pixelsOutsideIndependentSourcePolygon": 0,
+          "polygonMarginPixels": 2,
+          "originalPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\scan-bracket-register-00-original-v3-mupdf.png",
+          "exportPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\scan-bracket-register-00-export-v3-mupdf.png",
+          "sourcePolygonOverlayPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\scan-bracket-register-00-original-source-polygon-v1-mupdf.png"
+        },
+        {
+          "id": "scan-bracket-register-04",
+          "dimensions": [
+            1240,
+            1754
+          ],
+          "renderer": "MuPDF physical /UserUnit aware150dpi",
+          "sourcePolygonPixels": [
+            [
+              391.0740769575458,
+              183.82903677436082
+            ],
+            [
+              1115.90154659048,
+              168.01324512430398
+            ],
+            [
+              1114.992593047373,
+              126.35649399597428
+            ],
+            [
+              390.16512341443905,
+              142.17228564603133
+            ]
+          ],
+          "pixelsOutsideIndependentSourcePolygon": 0,
+          "polygonMarginPixels": 2,
+          "originalPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\scan-bracket-register-04-original-v3-mupdf.png",
+          "exportPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\scan-bracket-register-04-export-v3-mupdf.png",
+          "sourcePolygonOverlayPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\scan-bracket-register-04-original-source-polygon-v1-mupdf.png"
+        },
+        {
+          "id": "scan-vertical-rail-04",
+          "dimensions": [
+            1240,
+            1754
+          ],
+          "renderer": "MuPDF physical /UserUnit aware150dpi",
+          "sourcePolygonPixels": [
+            [
+              126.30428800790797,
+              464.6717922515296
+            ],
+            [
+              301.26264274689214,
+              460.85418737048116
+            ],
+            [
+              299.5356310149894,
+              381.7063602266551
+            ],
+            [
+              124.57727627600525,
+              385.5239651077033
+            ]
+          ],
+          "pixelsOutsideIndependentSourcePolygon": 0,
+          "polygonMarginPixels": 2,
+          "originalPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\scan-vertical-rail-04-original-v3-mupdf.png",
+          "exportPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\scan-vertical-rail-04-export-v3-mupdf.png",
+          "sourcePolygonOverlayPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\scan-vertical-rail-04-original-source-polygon-v1-mupdf.png"
+        },
+        {
+          "id": "mixed-raster-widget-panels-04",
+          "dimensions": [
+            1240,
+            1754
+          ],
+          "renderer": "MuPDF physical /UserUnit aware150dpi",
+          "sourcePolygonPixels": [
+            [
+              651.6183178109558,
+              282.3354026279231
+            ],
+            [
+              1126.5052806739127,
+              271.9733322365066
+            ],
+            [
+              1125.4145364221847,
+              221.9852308825111
+            ],
+            [
+              650.5275735592277,
+              232.34730127392757
+            ]
+          ],
+          "pixelsOutsideIndependentSourcePolygon": 0,
+          "polygonMarginPixels": 2,
+          "originalPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\mixed-raster-widget-panels-04-original-v3-mupdf.png",
+          "exportPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\mixed-raster-widget-panels-04-export-v3-mupdf.png",
+          "sourcePolygonOverlayPng": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\skew-diagnostic-v1\\mixed-raster-widget-panels-04-original-source-polygon-v1-mupdf.png"
+        }
+      ],
+      "allSourcePolygonChecksPassed": true
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "whatwg-url",
+  "version": "5.0.0",
+  "license": "MIT",
+  "author": "Sebastian Mayr <github@smayr.name>",
+  "repository": "jsdom/whatwg-url"
+}

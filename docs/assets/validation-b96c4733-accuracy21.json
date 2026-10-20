@@ -1,0 +1,2089 @@
+{
+  "schemaVersion": 1,
+  "kind": "targeted-final-regression-compact-summary",
+  "createdAt": "2026-10-13T20:45:22.997Z",
+  "sourceHash": "b96c473355a5a9a81bba5874c0b463a8e7aabec4131d98630b87bfbea807a11f",
+  "actualRunnerExitCode": 0,
+  "runPath": "E:\\others\\silverguide-qa\\accuracy\\runs\\targeted-final-targeted-b96c4733-final21-v1\\run.json",
+  "runSha256": "1f479b9f43a11cec2e594600aed1f7890b3cd378373c1f9c08f0721c62676edc",
+  "frozenRoot": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-quality-builds\\final-ui-b96c4733-20261013T201815469Z",
+  "rootBundleBaseline": "E:\\others\\silverguide-qa\\b96c4733-bundle-baseline.json",
+  "freezePath": "E:\\others\\silverguide-qa\\accuracy\\runs\\targeted-final-targeted-b96c4733-final21-v1\\before-first-targeted-prediction-freeze-v1.json",
+  "freezeSha256": "d4597e817b5d6bd132091b95675d5a0149d8790c8a9218871cf23e3554cb5a86",
+  "completed": 21,
+  "trainCount": 12,
+  "publicCount": 9,
+  "caseErrors": 0,
+  "incomplete": 0,
+  "provenanceValid": true,
+  "evidenceValid": true,
+  "beforeAfter": {
+    "at": "2026-10-13T20:43:09.493Z",
+    "pinnedCount": 715,
+    "bundleFiles": 646,
+    "drift": [],
+    "unchanged": true
+  },
+  "closure": {
+    "ownershipGraphVersion": 6,
+    "id": "targeted-final-targeted-b96c4733-final21-v1",
+    "profilePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1",
+    "complete": true,
+    "uncertain": [],
+    "rejectedParentBirthEdges": [],
+    "checkedAtUtc": "2026-10-13T20:43:09.2405003Z",
+    "processes": [],
+    "knownAliveCount": 0,
+    "scope": "Task marker + exact current seed birth + child birth not earlier than current parent; unknown birth is not promoted. No user process termination.",
+    "sourceHash": "b96c473355a5a9a81bba5874c0b463a8e7aabec4131d98630b87bfbea807a11f",
+    "retainedTupleCount": 8,
+    "limits": "Previously observed exact birth tuples only; no exhaustive unobserved-lifetime claim. Independently await runner exit. No user process is terminated."
+  },
+  "ownedProcessesRemaining": 0,
+  "remoteRequestCount": 0,
+  "consoleMessageCount": 8,
+  "pageErrorCount": 0,
+  "consoleMessages": [
+    {
+      "type": "error",
+      "text": "Detected 160 diacritics"
+    },
+    {
+      "type": "error",
+      "text": "Detected 208 diacritics"
+    },
+    {
+      "type": "warning",
+      "text": "Warning: XFA - an error occurred during parsing of rich text: TypeError: Cannot read properties of undefined (reading 'Symbol(nodeName)')"
+    },
+    {
+      "type": "warning",
+      "text": "Warning: XFA - an error occurred during parsing of rich text: TypeError: Cannot read properties of undefined (reading 'Symbol(nodeName)')"
+    },
+    {
+      "type": "error",
+      "text": "Detected 214 diacritics"
+    },
+    {
+      "type": "warning",
+      "text": "Warning: TT: undefined function: 3"
+    },
+    {
+      "type": "warning",
+      "text": "Warning: TT: undefined function: 32"
+    },
+    {
+      "type": "warning",
+      "text": "Warning: TT: undefined function: 32"
+    }
+  ],
+  "rawDirectory": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1",
+  "rawFiles": [
+    {
+      "id": "native-long-register-00",
+      "sourceSha256": "c7c0520c5cf37646697eec591e80c63ee47e690ae5bed623ae4312ca89eeea1c",
+      "truthSha256": "f3ea94186e7ed2929a45471b8ca4e352d54549211c5eb93fa6692636d9ca7bb6",
+      "textDomainSha256": "c2313d9f29bddb787ebaaf573588682b7174315bc2f35d28ff87dc4680552399",
+      "rawPath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\native-long-register-00.json",
+      "ocrTracePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\native-long-register-00.ocr-trace.json"
+    },
+    {
+      "id": "native-person-cards-00",
+      "sourceSha256": "0eac3b141cd13f439163a2c6f8f2cf6df44a3ff7e98afe81cf682f9ba13a747e",
+      "truthSha256": "b00b2cff3726ad497e0195e3ffcf30683e3a57ad74ae1efaef7563f7e595fd57",
+      "textDomainSha256": "c07d388797a7a4c1367fb5ff549190697b8fbc4d2785fce438a4aedb61e20806",
+      "rawPath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\native-person-cards-00.json",
+      "ocrTracePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\native-person-cards-00.ocr-trace.json"
+    },
+    {
+      "id": "native-cross-ledger-00",
+      "sourceSha256": "35158c0be9dcf09352275ef7e103c70b10964c9086f75d66a5589ab35b08f5a3",
+      "truthSha256": "8435b13000490d360e5f84d5e49451f3d8fd524d586c9bfea67bcf8721ed8b75",
+      "textDomainSha256": "9571a72e9f9d796442a431d57d05b9eecc29691834c5f1b019dabea7f20e62ad",
+      "rawPath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\native-cross-ledger-00.json",
+      "ocrTracePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\native-cross-ledger-00.ocr-trace.json"
+    },
+    {
+      "id": "text-label-above-00",
+      "sourceSha256": "c80aba9ec963cfa3d5c26c7cbaa2d7c3aa66cb0a81edbba4f1684014ed2a9738",
+      "truthSha256": "2ad5ea37336fbbf20fda5097ee6f60817b17ba1fb0bfe60b9792ee3058831bb0",
+      "textDomainSha256": "6c8acc92c36e8e786ed7e91ccd20e6d63e0b8d7bd97798998852767d50e766c2",
+      "rawPath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\text-label-above-00.json",
+      "ocrTracePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\text-label-above-00.ocr-trace.json"
+    },
+    {
+      "id": "text-underlined-list-00",
+      "sourceSha256": "220924a3accf817aba1fe6171e9a1a2d3920d6cfb5ef9536879554003caeda6c",
+      "truthSha256": "1de2f7c571f06ad3e9c725804715247c64408121dd64595f66fd471af31aa81d",
+      "textDomainSha256": "43cdc038ce98e125b930cbcc28ae70d484c1436ee2e8ebf5fd90deb37d406d1a",
+      "rawPath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\text-underlined-list-00.json",
+      "ocrTracePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\text-underlined-list-00.ocr-trace.json"
+    },
+    {
+      "id": "text-character-matrix-00",
+      "sourceSha256": "363baf07bae8d37d789c38fbab5d3e2f9e33a5e30eade41332717e84f0ab6fb1",
+      "truthSha256": "160cec107012a1394dab0fbcea147c5bed7068298f58b6b7a72f0c0391ecd895",
+      "textDomainSha256": "b75fd359a8b1323d180b1fe76ffb73244724b3a332b79e8ffb91edd9848e7690",
+      "rawPath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\text-character-matrix-00.json",
+      "ocrTracePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\text-character-matrix-00.ocr-trace.json"
+    },
+    {
+      "id": "scan-bracket-register-00",
+      "sourceSha256": "bc706f4ad8f5cfb9b1aec5484c0ce16da011534ac46ad1503a375d8836f03828",
+      "truthSha256": "6a7cc2c168be500b2416dc836a9262dd78fa9abafe502911e827889f7773249a",
+      "textDomainSha256": "17c64ce8ef19c0cbf4f56c2a7aff40811d436fd283acdb522bfc4703b2793dda",
+      "rawPath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\scan-bracket-register-00.json",
+      "ocrTracePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\scan-bracket-register-00.ocr-trace.json"
+    },
+    {
+      "id": "scan-four-column-lattice-00",
+      "sourceSha256": "a65d8720783bd95cffc6148c626301503b6a86e5c32f36de605950f06a049c16",
+      "truthSha256": "681d291434f4a43dfe850873e7bee8c065baae6cae571f38e358986b1360dba7",
+      "textDomainSha256": "ef516d17fb78ed2eb8ab0502b354e3016fc649c223a61f152a31b05028722170",
+      "rawPath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\scan-four-column-lattice-00.json",
+      "ocrTracePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\scan-four-column-lattice-00.ocr-trace.json"
+    },
+    {
+      "id": "scan-vertical-rail-00",
+      "sourceSha256": "617895d9a66ad8c6545ac026617ccfd75640717f9af84fba0223aa29a9bac433",
+      "truthSha256": "6505e3479fb23770d99a7b6e97f2477ae16d81d93089e029c888b46cd7bbb5b7",
+      "textDomainSha256": "b3036cd83789ed8fba622e2656fb126bd1dce1bdaac414e9a70423af9f5ba562",
+      "rawPath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\scan-vertical-rail-00.json",
+      "ocrTracePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\scan-vertical-rail-00.ocr-trace.json"
+    },
+    {
+      "id": "mixed-split-booklet-00",
+      "sourceSha256": "86fad5aef5466d872e8515ba75ad46a9ff27f09349f150f0b83c5c5146504f10",
+      "truthSha256": "109c84e181dadbcdcb53b18933ba17bd2a6e93b520d4f27dc9b29da481a59a74",
+      "textDomainSha256": "2cd7221fdefe84cad8371a79ea0b13e5243d3823d5a431296a77f521fa08c51f",
+      "rawPath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\mixed-split-booklet-00.json",
+      "ocrTracePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\mixed-split-booklet-00.ocr-trace.json"
+    },
+    {
+      "id": "mixed-raster-widget-panels-00",
+      "sourceSha256": "dd71052e0b918762a0e843da2a6ffb8194bc3c717f5d53619c8d45f912b85740",
+      "truthSha256": "a4f85d47a8a77e637cf80018ec0e4f08bc5a42697dd9aaaeefb9a8da35f08108",
+      "textDomainSha256": "1ae714eda5e654451d1f05ba977a996c0c5522bd51820c2422287ab4d21cfe41",
+      "rawPath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\mixed-raster-widget-panels-00.json",
+      "ocrTracePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\mixed-raster-widget-panels-00.ocr-trace.json"
+    },
+    {
+      "id": "mixed-existing-ocr-table-00",
+      "sourceSha256": "a13d666a8a9080a32e22b714005e2c0b4f1f7476ac05b0b664bf4dc2b7224994",
+      "truthSha256": "4fb93f1a653ca1d3a6ae652cb1be92bf6acbadab9be7d0a077975fc754540f86",
+      "textDomainSha256": "52917be2e747908b34801aae171761a359ed6bba568acd114f39eebd828074d3",
+      "rawPath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\mixed-existing-ocr-table-00.json",
+      "ocrTracePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\mixed-existing-ocr-table-00.ocr-trace.json"
+    },
+    {
+      "id": "nta-dependent-2026",
+      "sourceSha256": "4c0dd45c47a95c0f231bd2d082f23f043ae6c9691e89f92f8abbd0b0873f2370",
+      "truthSha256": "2e1c398d34131dd62170fe7b678d7f1b4b4ca293d086d90909f02db44684ae14",
+      "textDomainSha256": null,
+      "rawPath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\nta-dependent-2026.json",
+      "ocrTracePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\nta-dependent-2026.ocr-trace.json"
+    },
+    {
+      "id": "mhlw-cv-a4",
+      "sourceSha256": "5944d4af98964ba5eee3119369bcfd6589d3864f033f7aabafc5803554da5e0d",
+      "truthSha256": "b3408af7994798166666157351e835bb4b888a6ad0a4b55849a0f0752b436892",
+      "textDomainSha256": null,
+      "rawPath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\mhlw-cv-a4.json",
+      "ocrTracePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\mhlw-cv-a4.ocr-trace.json"
+    },
+    {
+      "id": "cfa-employment",
+      "sourceSha256": "d2ee22b407d2923820d5443fb222352d910c445b89fc77dbbb1120687c7f6bf4",
+      "truthSha256": "984d11b6d61f539cb994a1cc9428c5784a23957681a47aa61415463943a6f63e",
+      "textDomainSha256": null,
+      "rawPath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\cfa-employment.json",
+      "ocrTracePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\cfa-employment.ocr-trace.json"
+    },
+    {
+      "id": "setagaya-residence",
+      "sourceSha256": "67ccfbf6a10cfed2052a4e1fda10b4065555fd0efbf620a5678af13483b27181",
+      "truthSha256": "efa8ba96f78aeaa51d99519869d51da70b9668c2566120842aa50f5ee03f1bb4",
+      "textDomainSha256": null,
+      "rawPath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\setagaya-residence.json",
+      "ocrTracePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\setagaya-residence.ocr-trace.json"
+    },
+    {
+      "id": "yokohama-childbenefit",
+      "sourceSha256": "37a52fa512a790105dbd528246c2d5f61e0185c2238a677e8e9cdb8d6e0ea3df",
+      "truthSha256": "10cd48d987d65913cfb3067f1565860fa583f8cc8445da8c2c6ae315d7d4f60e",
+      "textDomainSha256": null,
+      "rawPath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\yokohama-childbenefit.json",
+      "ocrTracePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\yokohama-childbenefit.ocr-trace.json"
+    },
+    {
+      "id": "sapporo-insurance",
+      "sourceSha256": "e87e0fd4464263d107b69327453c02d5afd7e9c892a7f3097eb7c6b465de678a",
+      "truthSha256": "391117f7457de1c445ceda398075b0f5991c4432d4c4c9f13202c943ca91c819",
+      "textDomainSha256": null,
+      "rawPath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\sapporo-insurance.json",
+      "ocrTracePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\sapporo-insurance.ocr-trace.json"
+    },
+    {
+      "id": "kyoto-care",
+      "sourceSha256": "a26c3d6c52673742a1dbf6851138774db1e3e7df7c1a13a949635747d02e12ef",
+      "truthSha256": "39fbc87f7ac9999c2b9cb4790f68488479ecad05ca8218019f66b2211d2fd11d",
+      "textDomainSha256": null,
+      "rawPath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\kyoto-care.json",
+      "ocrTracePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\kyoto-care.ocr-trace.json"
+    },
+    {
+      "id": "nagoya-moving",
+      "sourceSha256": "cb66f408d6b094d19916e3f326401c08776a96a906bbea9ed63bbbebf8f68176",
+      "truthSha256": "87dd46bb3d2d72411592ab2d61fa230fcd8e50c903b2659256c622746b7edc07",
+      "textDomainSha256": null,
+      "rawPath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\nagoya-moving.json",
+      "ocrTracePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\nagoya-moving.ocr-trace.json"
+    },
+    {
+      "id": "fukuoka-park-activity",
+      "sourceSha256": "8763641f1e5ea2ef9f2a11e88e4b05ed61ada48755f290ecd24669b4bf833add",
+      "truthSha256": "04577c261b07b0ab74e33dacd27ecdeefd8b39e2229423dd77745eb5a739a569",
+      "textDomainSha256": null,
+      "rawPath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\fukuoka-park-activity.json",
+      "ocrTracePath": "C:\\Users\\user\\.codex\\visualizations\\2026\\10\\12\\01a1301b-4d98-7713-94d5-b23dcbdfbb34\\silverguide-accuracy-scratch\\runs\\targeted-final-targeted-b96c4733-final21-v1\\fukuoka-park-activity.ocr-trace.json"
+    }
+  ],
+  "rootAfterSourceProof": {
+    "path": "E:\\others\\silverguide-qa\\ui-final-design\\source-ledger-b96c4733-v1.json",
+    "sha256": "df73434c67f02e44a8d07f25df54b5cb89372d14fc5e2863302945d85874f41d",
+    "sourceHash": "b96c473355a5a9a81bba5874c0b463a8e7aabec4131d98630b87bfbea807a11f",
+    "fileCount": 103,
+    "capturedAt": "2026-10-13T20:43:02.372Z",
+    "scope": "Per-file source ledger captured now using the exact build digest algorithm. Not described as a pre-prediction per-file source freeze; matching source digests and immutable compiled bundles were already verified before native UI and targeted runs.",
+    "prePredictionPerFileFreeze": false
+  },
+  "train": {
+    "documentCount": 12,
+    "rawCandidateCount": 292,
+    "scorableCandidateCount": 292,
+    "unassessedUnknownRegionCandidateCount": 0,
+    "unassessedSemanticCandidateCount": 0,
+    "fields": {
+      "catalogGeometry": {
+        "tp": 283,
+        "fp": 9,
+        "fn": 5,
+        "truthCount": 288,
+        "predictionCount": 292,
+        "precision": 0.9691780821917808,
+        "recall": 0.9826388888888888
+      },
+      "catalogNativeIdentityGeometry": {
+        "tp": 96,
+        "fp": 0,
+        "fn": 0,
+        "truthCount": 96,
+        "predictionCount": 96,
+        "precision": 1,
+        "recall": 1
+      },
+      "catalogSemanticGeometry": {
+        "tp": 209,
+        "fp": 83,
+        "fn": 79,
+        "truthCount": 288,
+        "predictionCount": 292,
+        "precision": 0.7157534246575342,
+        "recall": 0.7256944444444444
+      },
+      "eligibleQuestions": {
+        "tp": 167,
+        "fp": 83,
+        "fn": 73,
+        "truthCount": 240,
+        "predictionCount": 250,
+        "precision": 0.668,
+        "recall": 0.6958333333333333
+      }
+    },
+    "attributes": {
+      "labels": {
+        "correct": 230,
+        "wrong": 53,
+        "unknown": 0,
+        "knownTruthDenominator": 288,
+        "matchedKnownTruthCount": 283,
+        "unassessedMissingDetection": 5,
+        "truthUnknownCount": 0
+      },
+      "kinds": {
+        "correct": 230,
+        "wrong": 53,
+        "unknown": 0,
+        "knownTruthDenominator": 288,
+        "matchedKnownTruthCount": 283,
+        "unassessedMissingDetection": 5,
+        "truthUnknownCount": 0
+      },
+      "roles": {
+        "correct": 84,
+        "wrong": 0,
+        "unknown": 199,
+        "knownTruthDenominator": 288,
+        "matchedKnownTruthCount": 283,
+        "unassessedMissingDetection": 5,
+        "truthUnknownCount": 0
+      },
+      "required": {
+        "correct": 96,
+        "wrong": 0,
+        "unknown": 187,
+        "knownTruthDenominator": 288,
+        "matchedKnownTruthCount": 283,
+        "unassessedMissingDetection": 5,
+        "truthUnknownCount": 0
+      },
+      "conditions": {
+        "correct": 247,
+        "wrong": 35,
+        "unknown": 1,
+        "knownTruthDenominator": 288,
+        "matchedKnownTruthCount": 283,
+        "unassessedMissingDetection": 5,
+        "truthUnknownCount": 0
+      }
+    },
+    "nativeWidgets": {
+      "covered": 99,
+      "denominator": 99,
+      "uncovered": 0,
+      "coverage": 1
+    },
+    "nonNativePlacements": {
+      "covered": 187,
+      "denominator": 201,
+      "uncovered": 14,
+      "coverage": 0.9303482587064676
+    },
+    "excludedRegionQuestionErrors": 6,
+    "noInputPages": {
+      "denominator": 12,
+      "falseCandidates": 0
+    },
+    "highConfidence": {
+      "proposalCount": 0,
+      "eligibleTruthDenominator": 240,
+      "errorRate": null,
+      "errorRateReason": "No qualified proposals; zero denominator is not100% accuracy",
+      "acceptedCalibrationVersions": []
+    },
+    "text": {
+      "effectiveMergedText": {
+        "substitutions": 110,
+        "deletions": 38,
+        "insertions": 274,
+        "errorCount": 422,
+        "characterDenominator": 4866,
+        "recognizedCharacterCount": 5102,
+        "lineDenominator": 372,
+        "sourceFragmentDenominator": 534,
+        "recognizedEvidenceCount": 611,
+        "assessedEvidenceCount": 605,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 6,
+        "unassessedRecognizedCharacterCount": 54,
+        "unmatchedEvidenceCount": 8,
+        "unmatchedInsertionCount": 27,
+        "missingLineCount": 0,
+        "cer": 0.08672420879572544,
+        "documentsWithZeroCharacterDenominator": 0
+      },
+      "effectiveRasterPageText": {
+        "substitutions": 110,
+        "deletions": 38,
+        "insertions": 274,
+        "errorCount": 422,
+        "characterDenominator": 1790,
+        "recognizedCharacterCount": 2026,
+        "lineDenominator": 146,
+        "sourceFragmentDenominator": 225,
+        "recognizedEvidenceCount": 298,
+        "assessedEvidenceCount": 296,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 2,
+        "unassessedRecognizedCharacterCount": 18,
+        "unmatchedEvidenceCount": 8,
+        "unmatchedInsertionCount": 27,
+        "missingLineCount": 0,
+        "cer": 0.23575418994413408,
+        "documentsWithZeroCharacterDenominator": 6
+      },
+      "effectiveRasterPageTextWhitespaceIgnored": {
+        "substitutions": 107,
+        "deletions": 38,
+        "insertions": 211,
+        "errorCount": 356,
+        "characterDenominator": 1769,
+        "recognizedCharacterCount": 1942,
+        "lineDenominator": 146,
+        "sourceFragmentDenominator": 225,
+        "recognizedEvidenceCount": 298,
+        "assessedEvidenceCount": 296,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 2,
+        "unassessedRecognizedCharacterCount": 18,
+        "unmatchedEvidenceCount": 8,
+        "unmatchedInsertionCount": 27,
+        "missingLineCount": 0,
+        "cer": 0.20124364047484455,
+        "documentsWithZeroCharacterDenominator": 6
+      },
+      "selectedRawOcr": {
+        "substitutions": 120,
+        "deletions": 40,
+        "insertions": 202,
+        "errorCount": 362,
+        "characterDenominator": 1790,
+        "recognizedCharacterCount": 1952,
+        "lineDenominator": 146,
+        "sourceFragmentDenominator": 225,
+        "recognizedEvidenceCount": 295,
+        "assessedEvidenceCount": 294,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 1,
+        "unassessedRecognizedCharacterCount": 9,
+        "unmatchedEvidenceCount": 8,
+        "unmatchedInsertionCount": 27,
+        "missingLineCount": 0,
+        "cer": 0.2022346368715084,
+        "documentsWithZeroCharacterDenominator": 6
+      },
+      "selectedRawOcrWhitespaceIgnored": {
+        "substitutions": 117,
+        "deletions": 40,
+        "insertions": 140,
+        "errorCount": 297,
+        "characterDenominator": 1769,
+        "recognizedCharacterCount": 1869,
+        "lineDenominator": 146,
+        "sourceFragmentDenominator": 225,
+        "recognizedEvidenceCount": 295,
+        "assessedEvidenceCount": 294,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 1,
+        "unassessedRecognizedCharacterCount": 9,
+        "unmatchedEvidenceCount": 8,
+        "unmatchedInsertionCount": 27,
+        "missingLineCount": 0,
+        "cer": 0.16789146410401357,
+        "documentsWithZeroCharacterDenominator": 6
+      },
+      "mergedNativeMethodFullDomain": {
+        "substitutions": 0,
+        "deletions": 179,
+        "insertions": 0,
+        "errorCount": 179,
+        "characterDenominator": 3414,
+        "recognizedCharacterCount": 3235,
+        "lineDenominator": 263,
+        "sourceFragmentDenominator": 362,
+        "recognizedEvidenceCount": 327,
+        "assessedEvidenceCount": 327,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 0,
+        "unassessedRecognizedCharacterCount": 0,
+        "unmatchedEvidenceCount": 0,
+        "unmatchedInsertionCount": 0,
+        "missingLineCount": 22,
+        "cer": 0.05243116578793205,
+        "documentsWithZeroCharacterDenominator": 3
+      },
+      "mergedNativeMethodWithinView": {
+        "substitutions": 0,
+        "deletions": 179,
+        "insertions": 0,
+        "errorCount": 179,
+        "characterDenominator": 3414,
+        "recognizedCharacterCount": 3235,
+        "lineDenominator": 263,
+        "sourceFragmentDenominator": 362,
+        "recognizedEvidenceCount": 327,
+        "assessedEvidenceCount": 327,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 0,
+        "unassessedRecognizedCharacterCount": 0,
+        "unmatchedEvidenceCount": 0,
+        "unmatchedInsertionCount": 0,
+        "missingLineCount": 22,
+        "cer": 0.05243116578793205,
+        "documentsWithZeroCharacterDenominator": 3
+      },
+      "mergedNativeMethodWithinViewWhitespaceIgnored": {
+        "substitutions": 0,
+        "deletions": 179,
+        "insertions": 0,
+        "errorCount": 179,
+        "characterDenominator": 3362,
+        "recognizedCharacterCount": 3183,
+        "lineDenominator": 263,
+        "sourceFragmentDenominator": 362,
+        "recognizedEvidenceCount": 327,
+        "assessedEvidenceCount": 327,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 0,
+        "unassessedRecognizedCharacterCount": 0,
+        "unmatchedEvidenceCount": 0,
+        "unmatchedInsertionCount": 0,
+        "missingLineCount": 22,
+        "cer": 0.05324211778703153,
+        "documentsWithZeroCharacterDenominator": 3
+      }
+    }
+  },
+  "publicDeclaredKnownScope": {
+    "documentCount": 9,
+    "rawCandidateCount": 1602,
+    "scorableCandidateCount": 475,
+    "unassessedUnknownRegionCandidateCount": 1127,
+    "unassessedSemanticCandidateCount": 249,
+    "fields": {
+      "catalogGeometry": {
+        "tp": 266,
+        "fp": 209,
+        "fn": 7,
+        "truthCount": 273,
+        "predictionCount": 475,
+        "precision": 0.56,
+        "recall": 0.9743589743589743
+      },
+      "catalogNativeIdentityGeometry": {
+        "tp": 193,
+        "fp": 0,
+        "fn": 0,
+        "truthCount": 193,
+        "predictionCount": 193,
+        "precision": 1,
+        "recall": 1
+      },
+      "catalogSemanticGeometry": {
+        "tp": 0,
+        "fp": 226,
+        "fn": 24,
+        "truthCount": 24,
+        "predictionCount": 226,
+        "precision": 0,
+        "recall": 0
+      },
+      "eligibleQuestions": {
+        "tp": 0,
+        "fp": 226,
+        "fn": 24,
+        "truthCount": 24,
+        "predictionCount": 226,
+        "precision": 0,
+        "recall": 0
+      }
+    },
+    "attributes": {
+      "labels": {
+        "correct": 1,
+        "wrong": 16,
+        "unknown": 0,
+        "knownTruthDenominator": 24,
+        "matchedKnownTruthCount": 17,
+        "unassessedMissingDetection": 7,
+        "truthUnknownCount": 249
+      },
+      "kinds": {
+        "correct": 233,
+        "wrong": 33,
+        "unknown": 0,
+        "knownTruthDenominator": 273,
+        "matchedKnownTruthCount": 266,
+        "unassessedMissingDetection": 7,
+        "truthUnknownCount": 0
+      },
+      "roles": {
+        "correct": 0,
+        "wrong": 0,
+        "unknown": 70,
+        "knownTruthDenominator": 76,
+        "matchedKnownTruthCount": 70,
+        "unassessedMissingDetection": 6,
+        "truthUnknownCount": 197
+      },
+      "required": {
+        "correct": 193,
+        "wrong": 0,
+        "unknown": 4,
+        "knownTruthDenominator": 198,
+        "matchedKnownTruthCount": 197,
+        "unassessedMissingDetection": 1,
+        "truthUnknownCount": 75
+      },
+      "conditions": {
+        "correct": 64,
+        "wrong": 0,
+        "unknown": 0,
+        "knownTruthDenominator": 66,
+        "matchedKnownTruthCount": 64,
+        "unassessedMissingDetection": 2,
+        "truthUnknownCount": 207
+      }
+    },
+    "nativeWidgets": {
+      "covered": 193,
+      "denominator": 193,
+      "uncovered": 0,
+      "coverage": 1
+    },
+    "nonNativePlacements": {
+      "covered": 73,
+      "denominator": 80,
+      "uncovered": 7,
+      "coverage": 0.9125
+    },
+    "excludedRegionQuestionErrors": 11,
+    "noInputPages": {
+      "denominator": 7,
+      "falseCandidates": 166
+    },
+    "highConfidence": {
+      "proposalCount": 0,
+      "eligibleTruthDenominator": 80,
+      "errorRate": null,
+      "errorRateReason": "No qualified proposals; zero denominator is not100% accuracy",
+      "acceptedCalibrationVersions": []
+    },
+    "text": {
+      "effectiveMergedText": {
+        "substitutions": 0,
+        "deletions": 54,
+        "insertions": 0,
+        "errorCount": 54,
+        "characterDenominator": 302,
+        "recognizedCharacterCount": 248,
+        "lineDenominator": 20,
+        "sourceFragmentDenominator": 32,
+        "recognizedEvidenceCount": 3928,
+        "assessedEvidenceCount": 53,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 3875,
+        "unassessedRecognizedCharacterCount": 27699,
+        "unmatchedEvidenceCount": 0,
+        "unmatchedInsertionCount": 0,
+        "missingLineCount": 0,
+        "cer": 0.17880794701986755,
+        "documentsWithZeroCharacterDenominator": 8
+      },
+      "effectiveRasterPageText": {
+        "substitutions": 0,
+        "deletions": 0,
+        "insertions": 0,
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "recognizedCharacterCount": 0,
+        "lineDenominator": 0,
+        "sourceFragmentDenominator": 0,
+        "recognizedEvidenceCount": 0,
+        "assessedEvidenceCount": 0,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 0,
+        "unassessedRecognizedCharacterCount": 0,
+        "unmatchedEvidenceCount": 0,
+        "unmatchedInsertionCount": 0,
+        "missingLineCount": 0,
+        "cer": null,
+        "documentsWithZeroCharacterDenominator": 9
+      },
+      "effectiveRasterPageTextWhitespaceIgnored": {
+        "substitutions": 0,
+        "deletions": 0,
+        "insertions": 0,
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "recognizedCharacterCount": 0,
+        "lineDenominator": 0,
+        "sourceFragmentDenominator": 0,
+        "recognizedEvidenceCount": 0,
+        "assessedEvidenceCount": 0,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 0,
+        "unassessedRecognizedCharacterCount": 0,
+        "unmatchedEvidenceCount": 0,
+        "unmatchedInsertionCount": 0,
+        "missingLineCount": 0,
+        "cer": null,
+        "documentsWithZeroCharacterDenominator": 9
+      },
+      "selectedRawOcr": {
+        "substitutions": 0,
+        "deletions": 0,
+        "insertions": 0,
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "recognizedCharacterCount": 0,
+        "lineDenominator": 0,
+        "sourceFragmentDenominator": 0,
+        "recognizedEvidenceCount": 0,
+        "assessedEvidenceCount": 0,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 0,
+        "unassessedRecognizedCharacterCount": 0,
+        "unmatchedEvidenceCount": 0,
+        "unmatchedInsertionCount": 0,
+        "missingLineCount": 0,
+        "cer": null,
+        "documentsWithZeroCharacterDenominator": 9
+      },
+      "selectedRawOcrWhitespaceIgnored": {
+        "substitutions": 0,
+        "deletions": 0,
+        "insertions": 0,
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "recognizedCharacterCount": 0,
+        "lineDenominator": 0,
+        "sourceFragmentDenominator": 0,
+        "recognizedEvidenceCount": 0,
+        "assessedEvidenceCount": 0,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 0,
+        "unassessedRecognizedCharacterCount": 0,
+        "unmatchedEvidenceCount": 0,
+        "unmatchedInsertionCount": 0,
+        "missingLineCount": 0,
+        "cer": null,
+        "documentsWithZeroCharacterDenominator": 9
+      },
+      "mergedNativeMethodFullDomain": {
+        "substitutions": 0,
+        "deletions": 54,
+        "insertions": 0,
+        "errorCount": 54,
+        "characterDenominator": 302,
+        "recognizedCharacterCount": 248,
+        "lineDenominator": 20,
+        "sourceFragmentDenominator": 32,
+        "recognizedEvidenceCount": 3454,
+        "assessedEvidenceCount": 53,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 3401,
+        "unassessedRecognizedCharacterCount": 24275,
+        "unmatchedEvidenceCount": 0,
+        "unmatchedInsertionCount": 0,
+        "missingLineCount": 0,
+        "cer": 0.17880794701986755,
+        "documentsWithZeroCharacterDenominator": 8
+      },
+      "mergedNativeMethodWithinView": {
+        "substitutions": 0,
+        "deletions": 54,
+        "insertions": 0,
+        "errorCount": 54,
+        "characterDenominator": 302,
+        "recognizedCharacterCount": 248,
+        "lineDenominator": 20,
+        "sourceFragmentDenominator": 32,
+        "recognizedEvidenceCount": 3454,
+        "assessedEvidenceCount": 53,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 3401,
+        "unassessedRecognizedCharacterCount": 24275,
+        "unmatchedEvidenceCount": 0,
+        "unmatchedInsertionCount": 0,
+        "missingLineCount": 0,
+        "cer": 0.17880794701986755,
+        "documentsWithZeroCharacterDenominator": 8
+      },
+      "mergedNativeMethodWithinViewWhitespaceIgnored": {
+        "substitutions": 0,
+        "deletions": 0,
+        "insertions": 0,
+        "errorCount": 0,
+        "characterDenominator": 248,
+        "recognizedCharacterCount": 248,
+        "lineDenominator": 20,
+        "sourceFragmentDenominator": 32,
+        "recognizedEvidenceCount": 3454,
+        "assessedEvidenceCount": 53,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 3401,
+        "unassessedRecognizedCharacterCount": 23847,
+        "unmatchedEvidenceCount": 0,
+        "unmatchedInsertionCount": 0,
+        "missingLineCount": 0,
+        "cer": 0,
+        "documentsWithZeroCharacterDenominator": 8
+      }
+    }
+  },
+  "pooledScorableScope": {
+    "documentCount": 21,
+    "rawCandidateCount": 1894,
+    "scorableCandidateCount": 767,
+    "unassessedUnknownRegionCandidateCount": 1127,
+    "unassessedSemanticCandidateCount": 249,
+    "fields": {
+      "catalogGeometry": {
+        "tp": 549,
+        "fp": 218,
+        "fn": 12,
+        "truthCount": 561,
+        "predictionCount": 767,
+        "precision": 0.7157757496740548,
+        "recall": 0.9786096256684492
+      },
+      "catalogNativeIdentityGeometry": {
+        "tp": 289,
+        "fp": 0,
+        "fn": 0,
+        "truthCount": 289,
+        "predictionCount": 289,
+        "precision": 1,
+        "recall": 1
+      },
+      "catalogSemanticGeometry": {
+        "tp": 209,
+        "fp": 309,
+        "fn": 103,
+        "truthCount": 312,
+        "predictionCount": 518,
+        "precision": 0.4034749034749035,
+        "recall": 0.6698717948717948
+      },
+      "eligibleQuestions": {
+        "tp": 167,
+        "fp": 309,
+        "fn": 97,
+        "truthCount": 264,
+        "predictionCount": 476,
+        "precision": 0.35084033613445376,
+        "recall": 0.6325757575757576
+      }
+    },
+    "attributes": {
+      "labels": {
+        "correct": 231,
+        "wrong": 69,
+        "unknown": 0,
+        "knownTruthDenominator": 312,
+        "matchedKnownTruthCount": 300,
+        "unassessedMissingDetection": 12,
+        "truthUnknownCount": 249
+      },
+      "kinds": {
+        "correct": 463,
+        "wrong": 86,
+        "unknown": 0,
+        "knownTruthDenominator": 561,
+        "matchedKnownTruthCount": 549,
+        "unassessedMissingDetection": 12,
+        "truthUnknownCount": 0
+      },
+      "roles": {
+        "correct": 84,
+        "wrong": 0,
+        "unknown": 269,
+        "knownTruthDenominator": 364,
+        "matchedKnownTruthCount": 353,
+        "unassessedMissingDetection": 11,
+        "truthUnknownCount": 197
+      },
+      "required": {
+        "correct": 289,
+        "wrong": 0,
+        "unknown": 191,
+        "knownTruthDenominator": 486,
+        "matchedKnownTruthCount": 480,
+        "unassessedMissingDetection": 6,
+        "truthUnknownCount": 75
+      },
+      "conditions": {
+        "correct": 311,
+        "wrong": 35,
+        "unknown": 1,
+        "knownTruthDenominator": 354,
+        "matchedKnownTruthCount": 347,
+        "unassessedMissingDetection": 7,
+        "truthUnknownCount": 207
+      }
+    },
+    "nativeWidgets": {
+      "covered": 292,
+      "denominator": 292,
+      "uncovered": 0,
+      "coverage": 1
+    },
+    "nonNativePlacements": {
+      "covered": 260,
+      "denominator": 281,
+      "uncovered": 21,
+      "coverage": 0.9252669039145908
+    },
+    "excludedRegionQuestionErrors": 17,
+    "noInputPages": {
+      "denominator": 19,
+      "falseCandidates": 166
+    },
+    "highConfidence": {
+      "proposalCount": 0,
+      "eligibleTruthDenominator": 320,
+      "errorRate": null,
+      "errorRateReason": "No qualified proposals; zero denominator is not100% accuracy",
+      "acceptedCalibrationVersions": []
+    },
+    "text": {
+      "effectiveMergedText": {
+        "substitutions": 110,
+        "deletions": 92,
+        "insertions": 274,
+        "errorCount": 476,
+        "characterDenominator": 5168,
+        "recognizedCharacterCount": 5350,
+        "lineDenominator": 392,
+        "sourceFragmentDenominator": 566,
+        "recognizedEvidenceCount": 4539,
+        "assessedEvidenceCount": 658,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 3881,
+        "unassessedRecognizedCharacterCount": 27753,
+        "unmatchedEvidenceCount": 8,
+        "unmatchedInsertionCount": 27,
+        "missingLineCount": 0,
+        "cer": 0.09210526315789473,
+        "documentsWithZeroCharacterDenominator": 8
+      },
+      "effectiveRasterPageText": {
+        "substitutions": 110,
+        "deletions": 38,
+        "insertions": 274,
+        "errorCount": 422,
+        "characterDenominator": 1790,
+        "recognizedCharacterCount": 2026,
+        "lineDenominator": 146,
+        "sourceFragmentDenominator": 225,
+        "recognizedEvidenceCount": 298,
+        "assessedEvidenceCount": 296,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 2,
+        "unassessedRecognizedCharacterCount": 18,
+        "unmatchedEvidenceCount": 8,
+        "unmatchedInsertionCount": 27,
+        "missingLineCount": 0,
+        "cer": 0.23575418994413408,
+        "documentsWithZeroCharacterDenominator": 15
+      },
+      "effectiveRasterPageTextWhitespaceIgnored": {
+        "substitutions": 107,
+        "deletions": 38,
+        "insertions": 211,
+        "errorCount": 356,
+        "characterDenominator": 1769,
+        "recognizedCharacterCount": 1942,
+        "lineDenominator": 146,
+        "sourceFragmentDenominator": 225,
+        "recognizedEvidenceCount": 298,
+        "assessedEvidenceCount": 296,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 2,
+        "unassessedRecognizedCharacterCount": 18,
+        "unmatchedEvidenceCount": 8,
+        "unmatchedInsertionCount": 27,
+        "missingLineCount": 0,
+        "cer": 0.20124364047484455,
+        "documentsWithZeroCharacterDenominator": 15
+      },
+      "selectedRawOcr": {
+        "substitutions": 120,
+        "deletions": 40,
+        "insertions": 202,
+        "errorCount": 362,
+        "characterDenominator": 1790,
+        "recognizedCharacterCount": 1952,
+        "lineDenominator": 146,
+        "sourceFragmentDenominator": 225,
+        "recognizedEvidenceCount": 295,
+        "assessedEvidenceCount": 294,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 1,
+        "unassessedRecognizedCharacterCount": 9,
+        "unmatchedEvidenceCount": 8,
+        "unmatchedInsertionCount": 27,
+        "missingLineCount": 0,
+        "cer": 0.2022346368715084,
+        "documentsWithZeroCharacterDenominator": 15
+      },
+      "selectedRawOcrWhitespaceIgnored": {
+        "substitutions": 117,
+        "deletions": 40,
+        "insertions": 140,
+        "errorCount": 297,
+        "characterDenominator": 1769,
+        "recognizedCharacterCount": 1869,
+        "lineDenominator": 146,
+        "sourceFragmentDenominator": 225,
+        "recognizedEvidenceCount": 295,
+        "assessedEvidenceCount": 294,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 1,
+        "unassessedRecognizedCharacterCount": 9,
+        "unmatchedEvidenceCount": 8,
+        "unmatchedInsertionCount": 27,
+        "missingLineCount": 0,
+        "cer": 0.16789146410401357,
+        "documentsWithZeroCharacterDenominator": 15
+      },
+      "mergedNativeMethodFullDomain": {
+        "substitutions": 0,
+        "deletions": 233,
+        "insertions": 0,
+        "errorCount": 233,
+        "characterDenominator": 3716,
+        "recognizedCharacterCount": 3483,
+        "lineDenominator": 283,
+        "sourceFragmentDenominator": 394,
+        "recognizedEvidenceCount": 3781,
+        "assessedEvidenceCount": 380,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 3401,
+        "unassessedRecognizedCharacterCount": 24275,
+        "unmatchedEvidenceCount": 0,
+        "unmatchedInsertionCount": 0,
+        "missingLineCount": 22,
+        "cer": 0.06270182992465016,
+        "documentsWithZeroCharacterDenominator": 11
+      },
+      "mergedNativeMethodWithinView": {
+        "substitutions": 0,
+        "deletions": 233,
+        "insertions": 0,
+        "errorCount": 233,
+        "characterDenominator": 3716,
+        "recognizedCharacterCount": 3483,
+        "lineDenominator": 283,
+        "sourceFragmentDenominator": 394,
+        "recognizedEvidenceCount": 3781,
+        "assessedEvidenceCount": 380,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 3401,
+        "unassessedRecognizedCharacterCount": 24275,
+        "unmatchedEvidenceCount": 0,
+        "unmatchedInsertionCount": 0,
+        "missingLineCount": 22,
+        "cer": 0.06270182992465016,
+        "documentsWithZeroCharacterDenominator": 11
+      },
+      "mergedNativeMethodWithinViewWhitespaceIgnored": {
+        "substitutions": 0,
+        "deletions": 179,
+        "insertions": 0,
+        "errorCount": 179,
+        "characterDenominator": 3610,
+        "recognizedCharacterCount": 3431,
+        "lineDenominator": 283,
+        "sourceFragmentDenominator": 394,
+        "recognizedEvidenceCount": 3781,
+        "assessedEvidenceCount": 380,
+        "outsideViewingBoxEvidenceCount": 0,
+        "outsideViewingBoxCharacterCount": 0,
+        "unassessedEvidenceCount": 3401,
+        "unassessedRecognizedCharacterCount": 23847,
+        "unmatchedEvidenceCount": 0,
+        "unmatchedInsertionCount": 0,
+        "missingLineCount": 22,
+        "cer": 0.04958448753462604,
+        "documentsWithZeroCharacterDenominator": 11
+      }
+    }
+  },
+  "perCase": [
+    {
+      "id": "native-long-register-00",
+      "split": "train",
+      "candidates": 24,
+      "unassessedUnknownCandidates": 0,
+      "geometry": {
+        "tp": 24,
+        "fp": 0,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 24,
+        "precision": 1,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "semantic": {
+        "tp": 24,
+        "fp": 0,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 24,
+        "precision": 1,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "nativeWidgets": {
+        "covered": 25,
+        "denominator": 25,
+        "coverage": 1,
+        "uncovered": 0
+      },
+      "mergedText": {
+        "errorCount": 0,
+        "characterDenominator": 402,
+        "cer": 0
+      },
+      "rawOCR": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "elapsedMs": 112.89999997615814
+    },
+    {
+      "id": "native-person-cards-00",
+      "split": "train",
+      "candidates": 24,
+      "unassessedUnknownCandidates": 0,
+      "geometry": {
+        "tp": 24,
+        "fp": 0,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 24,
+        "precision": 1,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "semantic": {
+        "tp": 24,
+        "fp": 0,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 24,
+        "precision": 1,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "nativeWidgets": {
+        "covered": 25,
+        "denominator": 25,
+        "coverage": 1,
+        "uncovered": 0
+      },
+      "mergedText": {
+        "errorCount": 0,
+        "characterDenominator": 402,
+        "cer": 0
+      },
+      "rawOCR": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "elapsedMs": 82.59999996423721
+    },
+    {
+      "id": "native-cross-ledger-00",
+      "split": "train",
+      "candidates": 24,
+      "unassessedUnknownCandidates": 0,
+      "geometry": {
+        "tp": 24,
+        "fp": 0,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 24,
+        "precision": 1,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "semantic": {
+        "tp": 24,
+        "fp": 0,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 24,
+        "precision": 1,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "nativeWidgets": {
+        "covered": 25,
+        "denominator": 25,
+        "coverage": 1,
+        "uncovered": 0
+      },
+      "mergedText": {
+        "errorCount": 0,
+        "characterDenominator": 402,
+        "cer": 0
+      },
+      "rawOCR": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "elapsedMs": 84.20000004768372
+    },
+    {
+      "id": "text-label-above-00",
+      "split": "train",
+      "candidates": 25,
+      "unassessedUnknownCandidates": 0,
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "semantic": {
+        "tp": 19,
+        "fp": 6,
+        "fn": 5,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.76,
+        "recall": 0.7916666666666666,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "nativeWidgets": {
+        "covered": 0,
+        "denominator": 0,
+        "coverage": null,
+        "uncovered": 0
+      },
+      "mergedText": {
+        "errorCount": 0,
+        "characterDenominator": 411,
+        "cer": 0
+      },
+      "rawOCR": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "elapsedMs": 79.29999995231628
+    },
+    {
+      "id": "text-underlined-list-00",
+      "split": "train",
+      "candidates": 25,
+      "unassessedUnknownCandidates": 0,
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "semantic": {
+        "tp": 19,
+        "fp": 6,
+        "fn": 5,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.76,
+        "recall": 0.7916666666666666,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "nativeWidgets": {
+        "covered": 0,
+        "denominator": 0,
+        "coverage": null,
+        "uncovered": 0
+      },
+      "mergedText": {
+        "errorCount": 0,
+        "characterDenominator": 411,
+        "cer": 0
+      },
+      "rawOCR": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "elapsedMs": 72.60000002384186
+    },
+    {
+      "id": "text-character-matrix-00",
+      "split": "train",
+      "candidates": 25,
+      "unassessedUnknownCandidates": 0,
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "semantic": {
+        "tp": 19,
+        "fp": 6,
+        "fn": 5,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.76,
+        "recall": 0.7916666666666666,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "nativeWidgets": {
+        "covered": 0,
+        "denominator": 0,
+        "coverage": null,
+        "uncovered": 0
+      },
+      "mergedText": {
+        "errorCount": 0,
+        "characterDenominator": 411,
+        "cer": 0
+      },
+      "rawOCR": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "elapsedMs": 85.69999998807907
+    },
+    {
+      "id": "scan-bracket-register-00",
+      "split": "train",
+      "candidates": 25,
+      "unassessedUnknownCandidates": 0,
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "semantic": {
+        "tp": 17,
+        "fp": 8,
+        "fn": 7,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.68,
+        "recall": 0.7083333333333334,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "nativeWidgets": {
+        "covered": 0,
+        "denominator": 0,
+        "coverage": null,
+        "uncovered": 0
+      },
+      "mergedText": {
+        "errorCount": 53,
+        "characterDenominator": 411,
+        "cer": 0.12895377128953772
+      },
+      "rawOCR": {
+        "errorCount": 65,
+        "characterDenominator": 411,
+        "cer": 0.15815085158150852
+      },
+      "elapsedMs": 7082.099999964237
+    },
+    {
+      "id": "scan-four-column-lattice-00",
+      "split": "train",
+      "candidates": 23,
+      "unassessedUnknownCandidates": 0,
+      "geometry": {
+        "tp": 22,
+        "fp": 1,
+        "fn": 2,
+        "truthCount": 24,
+        "predictionCount": 23,
+        "precision": 0.9565217391304348,
+        "recall": 0.9166666666666666,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "semantic": {
+        "tp": 12,
+        "fp": 11,
+        "fn": 12,
+        "truthCount": 24,
+        "predictionCount": 23,
+        "precision": 0.5217391304347826,
+        "recall": 0.5,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "nativeWidgets": {
+        "covered": 0,
+        "denominator": 0,
+        "coverage": null,
+        "uncovered": 0
+      },
+      "mergedText": {
+        "errorCount": 61,
+        "characterDenominator": 411,
+        "cer": 0.14841849148418493
+      },
+      "rawOCR": {
+        "errorCount": 68,
+        "characterDenominator": 411,
+        "cer": 0.1654501216545012
+      },
+      "elapsedMs": 6705
+    },
+    {
+      "id": "scan-vertical-rail-00",
+      "split": "train",
+      "candidates": 25,
+      "unassessedUnknownCandidates": 0,
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "semantic": {
+        "tp": 3,
+        "fp": 22,
+        "fn": 21,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.12,
+        "recall": 0.125,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "nativeWidgets": {
+        "covered": 0,
+        "denominator": 0,
+        "coverage": null,
+        "uncovered": 0
+      },
+      "mergedText": {
+        "errorCount": 116,
+        "characterDenominator": 390,
+        "cer": 0.29743589743589743
+      },
+      "rawOCR": {
+        "errorCount": 123,
+        "characterDenominator": 390,
+        "cer": 0.3153846153846154
+      },
+      "elapsedMs": 6340.199999988079
+    },
+    {
+      "id": "mixed-split-booklet-00",
+      "split": "train",
+      "candidates": 25,
+      "unassessedUnknownCandidates": 0,
+      "geometry": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 0,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.96,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "semantic": {
+        "tp": 21,
+        "fp": 4,
+        "fn": 3,
+        "truthCount": 24,
+        "predictionCount": 25,
+        "precision": 0.84,
+        "recall": 0.875,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "nativeWidgets": {
+        "covered": 14,
+        "denominator": 14,
+        "coverage": 1,
+        "uncovered": 0
+      },
+      "mergedText": {
+        "errorCount": 17,
+        "characterDenominator": 464,
+        "cer": 0.036637931034482756
+      },
+      "rawOCR": {
+        "errorCount": 17,
+        "characterDenominator": 129,
+        "cer": 0.13178294573643412
+      },
+      "elapsedMs": 2517.800000011921
+    },
+    {
+      "id": "mixed-raster-widget-panels-00",
+      "split": "train",
+      "candidates": 24,
+      "unassessedUnknownCandidates": 0,
+      "geometry": {
+        "tp": 23,
+        "fp": 1,
+        "fn": 1,
+        "truthCount": 24,
+        "predictionCount": 24,
+        "precision": 0.9583333333333334,
+        "recall": 0.9583333333333334,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "semantic": {
+        "tp": 18,
+        "fp": 6,
+        "fn": 6,
+        "truthCount": 24,
+        "predictionCount": 24,
+        "precision": 0.75,
+        "recall": 0.75,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "nativeWidgets": {
+        "covered": 10,
+        "denominator": 10,
+        "coverage": 1,
+        "uncovered": 0
+      },
+      "mergedText": {
+        "errorCount": 40,
+        "characterDenominator": 340,
+        "cer": 0.11764705882352941
+      },
+      "rawOCR": {
+        "errorCount": 44,
+        "characterDenominator": 220,
+        "cer": 0.2
+      },
+      "elapsedMs": 3605.400000035763
+    },
+    {
+      "id": "mixed-existing-ocr-table-00",
+      "split": "train",
+      "candidates": 23,
+      "unassessedUnknownCandidates": 0,
+      "geometry": {
+        "tp": 22,
+        "fp": 1,
+        "fn": 2,
+        "truthCount": 24,
+        "predictionCount": 23,
+        "precision": 0.9565217391304348,
+        "recall": 0.9166666666666666,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "semantic": {
+        "tp": 9,
+        "fp": 14,
+        "fn": 15,
+        "truthCount": 24,
+        "predictionCount": 23,
+        "precision": 0.391304347826087,
+        "recall": 0.375,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "nativeWidgets": {
+        "covered": 0,
+        "denominator": 0,
+        "coverage": null,
+        "uncovered": 0
+      },
+      "mergedText": {
+        "errorCount": 135,
+        "characterDenominator": 411,
+        "cer": 0.3284671532846715
+      },
+      "rawOCR": {
+        "errorCount": 45,
+        "characterDenominator": 229,
+        "cer": 0.1965065502183406
+      },
+      "elapsedMs": 3969
+    },
+    {
+      "id": "nta-dependent-2026",
+      "split": "public-exploratory",
+      "candidates": 243,
+      "unassessedUnknownCandidates": 50,
+      "geometry": {
+        "tp": 193,
+        "fp": 0,
+        "fn": 0,
+        "truthCount": 193,
+        "predictionCount": 193,
+        "precision": 1,
+        "recall": 1,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "semantic": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "truthCount": 0,
+        "predictionCount": 0,
+        "precision": null,
+        "recall": null,
+        "precisionUndefinedReason": "zero-prediction-denominator",
+        "recallUndefinedReason": "zero-truth-denominator"
+      },
+      "nativeWidgets": {
+        "covered": 193,
+        "denominator": 193,
+        "coverage": 1,
+        "uncovered": 0
+      },
+      "mergedText": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "rawOCR": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "elapsedMs": 21519.099999964237
+    },
+    {
+      "id": "mhlw-cv-a4",
+      "split": "public-exploratory",
+      "candidates": 109,
+      "unassessedUnknownCandidates": 0,
+      "geometry": {
+        "tp": 67,
+        "fp": 42,
+        "fn": 3,
+        "truthCount": 70,
+        "predictionCount": 109,
+        "precision": 0.6146788990825688,
+        "recall": 0.9571428571428572,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "semantic": {
+        "tp": 0,
+        "fp": 53,
+        "fn": 14,
+        "truthCount": 14,
+        "predictionCount": 53,
+        "precision": 0,
+        "recall": 0,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "nativeWidgets": {
+        "covered": 0,
+        "denominator": 0,
+        "coverage": null,
+        "uncovered": 0
+      },
+      "mergedText": {
+        "errorCount": 54,
+        "characterDenominator": 302,
+        "cer": 0.17880794701986755
+      },
+      "rawOCR": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "elapsedMs": 108.39999997615814
+    },
+    {
+      "id": "cfa-employment",
+      "split": "public-exploratory",
+      "candidates": 782,
+      "unassessedUnknownCandidates": 734,
+      "geometry": {
+        "tp": 0,
+        "fp": 48,
+        "fn": 0,
+        "truthCount": 0,
+        "predictionCount": 48,
+        "precision": 0,
+        "recall": null,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": "zero-truth-denominator"
+      },
+      "semantic": {
+        "tp": 0,
+        "fp": 48,
+        "fn": 0,
+        "truthCount": 0,
+        "predictionCount": 48,
+        "precision": 0,
+        "recall": null,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": "zero-truth-denominator"
+      },
+      "nativeWidgets": {
+        "covered": 0,
+        "denominator": 0,
+        "coverage": null,
+        "uncovered": 0
+      },
+      "mergedText": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "rawOCR": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "elapsedMs": 3512.699999988079
+    },
+    {
+      "id": "setagaya-residence",
+      "split": "public-exploratory",
+      "candidates": 16,
+      "unassessedUnknownCandidates": 16,
+      "geometry": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "truthCount": 0,
+        "predictionCount": 0,
+        "precision": null,
+        "recall": null,
+        "precisionUndefinedReason": "zero-prediction-denominator",
+        "recallUndefinedReason": "zero-truth-denominator"
+      },
+      "semantic": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "truthCount": 0,
+        "predictionCount": 0,
+        "precision": null,
+        "recall": null,
+        "precisionUndefinedReason": "zero-prediction-denominator",
+        "recallUndefinedReason": "zero-truth-denominator"
+      },
+      "nativeWidgets": {
+        "covered": 0,
+        "denominator": 0,
+        "coverage": null,
+        "uncovered": 0
+      },
+      "mergedText": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "rawOCR": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "elapsedMs": 20860
+    },
+    {
+      "id": "yokohama-childbenefit",
+      "split": "public-exploratory",
+      "candidates": 184,
+      "unassessedUnknownCandidates": 66,
+      "geometry": {
+        "tp": 0,
+        "fp": 118,
+        "fn": 0,
+        "truthCount": 0,
+        "predictionCount": 118,
+        "precision": 0,
+        "recall": null,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": "zero-truth-denominator"
+      },
+      "semantic": {
+        "tp": 0,
+        "fp": 118,
+        "fn": 0,
+        "truthCount": 0,
+        "predictionCount": 118,
+        "precision": 0,
+        "recall": null,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": "zero-truth-denominator"
+      },
+      "nativeWidgets": {
+        "covered": 0,
+        "denominator": 0,
+        "coverage": null,
+        "uncovered": 0
+      },
+      "mergedText": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "rawOCR": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "elapsedMs": 810.5999999642372
+    },
+    {
+      "id": "sapporo-insurance",
+      "split": "public-exploratory",
+      "candidates": 98,
+      "unassessedUnknownCandidates": 98,
+      "geometry": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "truthCount": 0,
+        "predictionCount": 0,
+        "precision": null,
+        "recall": null,
+        "precisionUndefinedReason": "zero-prediction-denominator",
+        "recallUndefinedReason": "zero-truth-denominator"
+      },
+      "semantic": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "truthCount": 0,
+        "predictionCount": 0,
+        "precision": null,
+        "recall": null,
+        "precisionUndefinedReason": "zero-prediction-denominator",
+        "recallUndefinedReason": "zero-truth-denominator"
+      },
+      "nativeWidgets": {
+        "covered": 0,
+        "denominator": 0,
+        "coverage": null,
+        "uncovered": 0
+      },
+      "mergedText": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "rawOCR": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "elapsedMs": 206.69999998807907
+    },
+    {
+      "id": "kyoto-care",
+      "split": "public-exploratory",
+      "candidates": 97,
+      "unassessedUnknownCandidates": 97,
+      "geometry": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "truthCount": 0,
+        "predictionCount": 0,
+        "precision": null,
+        "recall": null,
+        "precisionUndefinedReason": "zero-prediction-denominator",
+        "recallUndefinedReason": "zero-truth-denominator"
+      },
+      "semantic": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "truthCount": 0,
+        "predictionCount": 0,
+        "precision": null,
+        "recall": null,
+        "precisionUndefinedReason": "zero-prediction-denominator",
+        "recallUndefinedReason": "zero-truth-denominator"
+      },
+      "nativeWidgets": {
+        "covered": 0,
+        "denominator": 0,
+        "coverage": null,
+        "uncovered": 0
+      },
+      "mergedText": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "rawOCR": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "elapsedMs": 162.60000002384186
+    },
+    {
+      "id": "nagoya-moving",
+      "split": "public-exploratory",
+      "candidates": 61,
+      "unassessedUnknownCandidates": 61,
+      "geometry": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "truthCount": 0,
+        "predictionCount": 0,
+        "precision": null,
+        "recall": null,
+        "precisionUndefinedReason": "zero-prediction-denominator",
+        "recallUndefinedReason": "zero-truth-denominator"
+      },
+      "semantic": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "truthCount": 0,
+        "predictionCount": 0,
+        "precision": null,
+        "recall": null,
+        "precisionUndefinedReason": "zero-prediction-denominator",
+        "recallUndefinedReason": "zero-truth-denominator"
+      },
+      "nativeWidgets": {
+        "covered": 0,
+        "denominator": 0,
+        "coverage": null,
+        "uncovered": 0
+      },
+      "mergedText": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "rawOCR": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "elapsedMs": 170.80000001192093
+    },
+    {
+      "id": "fukuoka-park-activity",
+      "split": "public-exploratory",
+      "candidates": 12,
+      "unassessedUnknownCandidates": 5,
+      "geometry": {
+        "tp": 6,
+        "fp": 1,
+        "fn": 4,
+        "truthCount": 10,
+        "predictionCount": 7,
+        "precision": 0.8571428571428571,
+        "recall": 0.6,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "semantic": {
+        "tp": 0,
+        "fp": 7,
+        "fn": 10,
+        "truthCount": 10,
+        "predictionCount": 7,
+        "precision": 0,
+        "recall": 0,
+        "precisionUndefinedReason": null,
+        "recallUndefinedReason": null
+      },
+      "nativeWidgets": {
+        "covered": 0,
+        "denominator": 0,
+        "coverage": null,
+        "uncovered": 0
+      },
+      "mergedText": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "rawOCR": {
+        "errorCount": 0,
+        "characterDenominator": 0,
+        "cer": null
+      },
+      "elapsedMs": 87.09999996423721
+    }
+  ],
+  "qualifiedProposalCount": 0,
+  "automaticCalibrationPerformed": false,
+  "formalPublicQualification": false,
+  "regressionSubsetOnly": true,
+  "held100": {
+    "priorConsumed": true,
+    "currentRunPdfRead": false,
+    "currentRunTruthRead": false
+  },
+  "oldSealed2": {
+    "binaryRead": false,
+    "truthRead": false
+  },
+  "prior349RawRead": false,
+  "limits": [
+    "Twelve previously consumed TRAIN index00 cases plus nine previously explored public originals. This is a regression subset, not a renewed holdout or formal public qualification.",
+    "Public GT is partial. Unknown geometry/semantics/text is unassessed, not automatically correct. Scorable pooled ratios are not whole-public-document accuracy.",
+    "Text-domain-v2 uses source-only nominal font-advance regions; no formal glyph-ink benchmark or human adjudication.",
+    "Native-method CER filters MERGED DTO; no raw native extraction metric. Raw OCR is selected final300dpi output, separated from orientation probes.",
+    "All qualified proposals0: coverage0 and error-rate undefined. No calibration was introduced.",
+    "Only observed exact-birth tuples are rechecked; no exhaustive unobserved-lifetime ownership claim.",
+    "Root per-file source ledger was captured midprediction and is an after/source-provenance reference, not the new preprediction per-file freeze.",
+    "Prior349/raw/consumedheld100 and oldsealed2 payloads were not opened. The new freeze pins646compiled files and selected21 source/truth/domain payloads before prediction."
+  ]
+}

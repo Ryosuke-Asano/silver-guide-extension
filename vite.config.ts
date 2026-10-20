@@ -1,33 +1,46 @@
 import react from "@vitejs/plugin-react-swc";
-import { defineConfig } from "vite";
+import { createReadStream } from "node:fs";
+import { stat } from "node:fs/promises";
+import { defineConfig, type Plugin, type ViteDevServer } from "vite";
 
-const extensionEntries = new Set(["background", "content"]);
+const extensionEntries = new Set(["background"]);
+
+// The packaged extension serves these files as opaque gzip bytes. Vite's
+// default .gz response sets Content-Encoding, which makes fetch decompress
+// them before the integrity check. Preserve the packaged contract in dev.
+function bundledOcrModels(): Plugin {
+  const attach = (server: Pick<ViteDevServer, "middlewares">) => {
+    server.middlewares.use((request, response, next) => {
+      const path = request.url?.split("?", 1)[0];
+      const match = path?.match(/^\/assets\/tessdata\/(jpn|eng|jpn_vert)\.traineddata\.gz$/);
+      if (!match || !["GET", "HEAD"].includes(request.method ?? "")) { next(); return; }
+      const source = new URL(`./public/assets/tessdata/${match[1]}.traineddata.gz`, import.meta.url);
+      void stat(source).then(info => {
+        if (response.destroyed) return;
+        response.setHeader("Content-Type", "application/octet-stream");
+        response.setHeader("Content-Length", info.size);
+        response.setHeader("Cache-Control", "no-cache");
+        if (request.method === "HEAD") { response.end(); return; }
+        const stream = createReadStream(source);
+        response.once("close", () => stream.destroy());
+        stream.once("error", () => response.destroy());
+        stream.pipe(response);
+      }, () => { if (!response.destroyed) { response.statusCode = 500; response.end(); } });
+    });
+  };
+  return { name: "bundled-ocr-models", configureServer: attach, configurePreviewServer: attach };
+}
 
 export default defineConfig({
-  plugins: [
-    react(),
-    {
-      name: "isolate-content-script",
-      generateBundle(_options, bundle) {
-        const content = bundle["content.js"];
-        if (content?.type !== "chunk") return;
-        if (content.imports.length > 0 || content.dynamicImports.length > 0) {
-          this.error("Injected content.js must be self-contained; it cannot import shared chunks.");
-        }
-        // executeScript injects a classic script. Isolate lexical declarations
-        // so stopping and starting on the same page never redeclares globals.
-        content.code = `(() => {\n${content.code}\n})();\n`;
-      }
-    }
-  ],
+  plugins: [bundledOcrModels(), react()],
   build: {
     emptyOutDir: true,
     outDir: "dist",
     rollupOptions: {
       input: {
-        popup: "popup.html",
-        background: "src/background.ts",
-        content: "src/content.ts"
+        sidebar: "sidebar.html",
+        workspace: "workspace.html",
+        background: "src/background.ts"
       },
       output: {
         entryFileNames: (chunk) =>

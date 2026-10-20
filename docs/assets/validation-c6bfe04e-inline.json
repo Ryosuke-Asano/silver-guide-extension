@@ -1,0 +1,515 @@
+{
+  "version": 1,
+  "sourceHash": "c6bfe04e2b137479207d1d06eb580161292880ee1307e03e2d3a4ecaedf660a5",
+  "complete": true,
+  "heavyReleased": true,
+  "recordedAtUtc": "2026-10-14T03:35:12.612Z",
+  "testsPassed": 631,
+  "actualTestsExitCode": 0,
+  "tests": {
+    "actualSession": 85879,
+    "file": "E:/others/silverguide-qa/page-inline-restore-20261014/full-tests-v5-viewport-bounds.json",
+    "sha256": "576a8a42d5c9b0717bb77f9dc5d81e626ccbbc5e7a6fc0de18f9108aee4d1a71",
+    "files": 51
+  },
+  "builds": {
+    "geckoSession": 32538,
+    "chromiumSession": 80803,
+    "bothActualExitCode": 0,
+    "eachFiles": 323,
+    "eachRuntimeAssets": 298,
+    "all646FrozenMatched": true
+  },
+  "baseline": {
+    "path": "E:/others/silverguide-qa/page-inline-restore-20261014/bundle-baseline-c6bfe04e-v1.json",
+    "sha256": "38e2598a9eecbfbfc4d228ca045813b46f95d8397a021720d9f1cedb2fa9e8ff"
+  },
+  "sourceLedger": {
+    "path": "E:/others/silverguide-qa/page-inline-restore-20261014/source-ledger-c6bfe04e-v1.json",
+    "sha256": "b9c1f23be578d1db9fa07e0ec290127a1a58cecdfccd4e25f4d19886463b58aa"
+  },
+  "browserRuns": [
+    {
+      "target": "chromium",
+      "actualSession": 79446,
+      "actualExitCode": 0,
+      "complete": true,
+      "ownedAlive": 0,
+      "ownedUnknown": 0,
+      "result": {
+        "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/result.json",
+        "sha256": "de91e54558e84d33a4738ff4946eca87e60dd83024d16743fbc9977514fee797"
+      },
+      "actualClosure": {
+        "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/closure-observed-v1.json",
+        "sha256": "e61b51232bb24827dd20bc64850e4dd3aed28251e154324d4d0b48915a87b811"
+      },
+      "checks": [
+        {
+          "name": "Inline enable preserves source and opens no workspace tab",
+          "pass": true
+        },
+        {
+          "name": "Next native popup observes the same-source active stop action",
+          "pass": true
+        },
+        {
+          "name": "Glossary click -> explanation -> Escape restores source term focus",
+          "pass": true
+        },
+        {
+          "name": "Glossary Enter -> explanation -> Escape",
+          "pass": true
+        },
+        {
+          "name": "Native field hint and previous/next preserve original controls",
+          "pass": true
+        },
+        {
+          "name": "Native aria-invalid hint displays the original error without validation",
+          "pass": true
+        },
+        {
+          "name": "Dynamic original DOM receives terms and native field hints",
+          "pass": true
+        },
+        {
+          "name": "Actual viewport and focused-input avoidance requested1080",
+          "pass": true
+        },
+        {
+          "name": "Actual viewport and focused-input avoidance requested320",
+          "pass": true
+        },
+        {
+          "name": "Real native browser full-page zoom200 focus avoidance",
+          "pass": true
+        },
+        {
+          "name": "Public dock move has an observable coordinate change",
+          "pass": true
+        },
+        {
+          "name": "Stop removes owned wrappers and preserves current original source",
+          "pass": true
+        },
+        {
+          "name": "Actual user-moved dock position is restored after native restart",
+          "pass": true
+        },
+        {
+          "name": "Native optional reading route",
+          "pass": true
+        },
+        {
+          "name": "Optional separate Reader remains public",
+          "pass": true
+        },
+        {
+          "name": "Native optional pdf route",
+          "pass": true
+        },
+        {
+          "name": "General PDF entry remains public",
+          "pass": true
+        }
+      ],
+      "screenshots": [
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/01-inline-enabled-1080.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/02-term-pointer-explanation.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/03-term-keyboard-explanation.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/04-field-hint-navigation.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/04b-source-error-hint.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/05-dynamic-field-and-text.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/06-focus-avoidance-requested1080.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/06-focus-avoidance-requested320.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/07a-zoom200-arrival-before-click.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/07b-zoom200-stable-before-click.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/07-native-browser-zoom200.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/07b-dock-moved-public-keyboard.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/08-inline-stopped-current-source.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/08b-dock-position-restored.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/workspace-reading.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-chromium-c6bfe04e-1791948568363-549e3570/workspace-pdf.png"
+      ],
+      "limitations": [
+        "Prepared external isolated synthetic integration only; no real-user, WCAG/AT/IME, accuracy or performance certification.",
+        "Browser plugin not available; existing authorized Playwright/CDP and official geckodriver fallback.",
+        "Native popup is opened through the real toolbar action. Gecko remote-frame public DOM clicks are labeled and are not pointer latency measurements.",
+        "Closed shadow observations use browser-native privileged read-only DOM transport. No product message, controller, API result, crypto or state shim is injected.",
+        "No source form submit. Ordinary browser background network traffic outside source/extension observation scope is not a global offline certification.",
+        "Requested window width is not an achieved content viewport. Actual widths and real native full-page zoom are retained.",
+        "Profiles are retained for evidence; this runner closes its owned browser and verifies exact process births but performs no recursive deletion."
+      ],
+      "sourceAndAll646Unchanged": true,
+      "zoomEvidence": {
+        "trace": [
+          {
+            "fullPageZoom": 1,
+            "method": "Actual native tabs.getZoom read-only",
+            "sourceTabId": 2105253366
+          },
+          {
+            "sourceTabId": 2105253366,
+            "fullPageZoom": 2,
+            "method": "Actual native chrome.tabs.setZoom/getZoom in the isolated browser; no CSS or Emulation substitution and no product-state change"
+          }
+        ],
+        "actualViewport": 540,
+        "covering": [],
+        "active": {
+          "id": "source-name",
+          "tag": "INPUT",
+          "term": null,
+          "rect": {
+            "x": 34,
+            "y": 310.59375,
+            "width": 472,
+            "height": 56,
+            "right": 506,
+            "bottom": 366.59375
+          }
+        },
+        "sourceWheelCount": 2,
+        "diagnostic": "Public native wheel reveals input, stable in-viewport rectangle/hit precedes one explicit native pointer; active source-name and nonoverlap are strictly checked."
+      },
+      "viewportObservations": [
+        {
+          "name": "01-inline-enabled-1080",
+          "width": 1080,
+          "height": 900
+        },
+        {
+          "name": "02-term-pointer-explanation",
+          "width": 1080,
+          "height": 900
+        },
+        {
+          "name": "03-term-keyboard-explanation",
+          "width": 1080,
+          "height": 900
+        },
+        {
+          "name": "04-field-hint-navigation",
+          "width": 1080,
+          "height": 900
+        },
+        {
+          "name": "04b-source-error-hint",
+          "width": 1080,
+          "height": 900
+        },
+        {
+          "name": "05-dynamic-field-and-text",
+          "width": 1080,
+          "height": 900
+        },
+        {
+          "name": "06-focus-avoidance-requested1080",
+          "width": 1080,
+          "height": 900
+        },
+        {
+          "name": "06-focus-avoidance-requested320",
+          "width": 320,
+          "height": 900
+        },
+        {
+          "name": "07a-zoom200-arrival-before-click",
+          "width": 1080,
+          "height": 900
+        },
+        {
+          "name": "07b-zoom200-stable-before-click",
+          "width": 540,
+          "height": 450
+        },
+        {
+          "name": "07-native-browser-zoom200",
+          "width": 540,
+          "height": 450
+        },
+        {
+          "name": "07b-dock-moved-public-keyboard",
+          "width": 1080,
+          "height": 900
+        },
+        {
+          "name": "08-inline-stopped-current-source",
+          "width": 1080,
+          "height": 900
+        },
+        {
+          "name": "08b-dock-position-restored",
+          "width": 1080,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "target": "gecko-floorp",
+      "actualSession": 90294,
+      "actualExitCode": 0,
+      "complete": true,
+      "ownedAlive": 0,
+      "ownedUnknown": 0,
+      "result": {
+        "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/result.json",
+        "sha256": "d6cd3a7adcf20bb79ece6a225e521eda231bcf947752176158df4794d9892ded"
+      },
+      "actualClosure": {
+        "path": "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/closure-observed-v1.json",
+        "sha256": "d6805aa8fba31b838ae58ab7b5b1c243dd8784ccae4ecc432c03a8db6842fa08"
+      },
+      "checks": [
+        {
+          "name": "Inline enable preserves source and opens no workspace tab",
+          "pass": true
+        },
+        {
+          "name": "Next native popup observes the same-source active stop action",
+          "pass": true
+        },
+        {
+          "name": "Glossary click -> explanation -> Escape restores source term focus",
+          "pass": true
+        },
+        {
+          "name": "Glossary Enter -> explanation -> Escape",
+          "pass": true
+        },
+        {
+          "name": "Native field hint and previous/next preserve original controls",
+          "pass": true
+        },
+        {
+          "name": "Native aria-invalid hint displays the original error without validation",
+          "pass": true
+        },
+        {
+          "name": "Dynamic original DOM receives terms and native field hints",
+          "pass": true
+        },
+        {
+          "name": "Actual viewport and focused-input avoidance requested1080",
+          "pass": true
+        },
+        {
+          "name": "Actual viewport and focused-input avoidance requested320",
+          "pass": true
+        },
+        {
+          "name": "Real native browser full-page zoom200 focus avoidance",
+          "pass": true
+        },
+        {
+          "name": "Public dock move has an observable coordinate change",
+          "pass": true
+        },
+        {
+          "name": "Stop removes owned wrappers and preserves current original source",
+          "pass": true
+        },
+        {
+          "name": "Actual user-moved dock position is restored after native restart",
+          "pass": true
+        },
+        {
+          "name": "Native optional reading route",
+          "pass": true
+        },
+        {
+          "name": "Optional separate Reader remains public",
+          "pass": true
+        },
+        {
+          "name": "Native optional pdf route",
+          "pass": true
+        },
+        {
+          "name": "General PDF entry remains public",
+          "pass": true
+        }
+      ],
+      "screenshots": [
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/01-inline-enabled-1080.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/02-term-pointer-explanation.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/03-term-keyboard-explanation.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/04-field-hint-navigation.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/04b-source-error-hint.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/05-dynamic-field-and-text.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/06-focus-avoidance-requested1080.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/06-focus-avoidance-requested320.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/07a-zoom200-arrival-before-click.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/07b-zoom200-stable-before-click.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/07-native-browser-zoom200.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/07b-dock-moved-public-keyboard.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/08-inline-stopped-current-source.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/08b-dock-position-restored.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/workspace-reading.png",
+        "E:/others/silverguide-qa/page-inline-restore-20261014/runs/inline-gecko-floorp-c6bfe04e-1791948602247-b2f01926/workspace-pdf.png"
+      ],
+      "limitations": [
+        "Prepared external isolated synthetic integration only; no real-user, WCAG/AT/IME, accuracy or performance certification.",
+        "Browser plugin not available; existing authorized Playwright/CDP and official geckodriver fallback.",
+        "Native popup is opened through the real toolbar action. Gecko remote-frame public DOM clicks are labeled and are not pointer latency measurements.",
+        "Closed shadow observations use browser-native privileged read-only DOM transport. No product message, controller, API result, crypto or state shim is injected.",
+        "No source form submit. Ordinary browser background network traffic outside source/extension observation scope is not a global offline certification.",
+        "Requested window width is not an achieved content viewport. Actual widths and real native full-page zoom are retained.",
+        "Profiles are retained for evidence; this runner closes its owned browser and verifies exact process births but performs no recursive deletion.",
+        "Requested320 on gecko-floorp observed458; this is not 320px certification"
+      ],
+      "sourceAndAll646Unchanged": true,
+      "zoomEvidence": {
+        "trace": [
+          {
+            "fullPageZoom": 1,
+            "method": "Actual native selectedBrowser fullZoom/textZoom read-only",
+            "textZoom": 1
+          },
+          {
+            "fullPageZoom": 1.100000023841858,
+            "method": "Actual native selectedBrowser fullZoom/textZoom read-only",
+            "textZoom": 1
+          },
+          {
+            "fullPageZoom": 1.2000000476837158,
+            "method": "Actual native selectedBrowser fullZoom/textZoom read-only",
+            "textZoom": 1
+          },
+          {
+            "fullPageZoom": 1.2999999523162842,
+            "method": "Actual native selectedBrowser fullZoom/textZoom read-only",
+            "textZoom": 1
+          },
+          {
+            "fullPageZoom": 1.399999976158142,
+            "method": "Actual native selectedBrowser fullZoom/textZoom read-only",
+            "textZoom": 1
+          },
+          {
+            "fullPageZoom": 1.5,
+            "method": "Actual native selectedBrowser fullZoom/textZoom read-only",
+            "textZoom": 1
+          },
+          {
+            "fullPageZoom": 1.600000023841858,
+            "method": "Actual native selectedBrowser fullZoom/textZoom read-only",
+            "textZoom": 1
+          },
+          {
+            "fullPageZoom": 1.7000000476837158,
+            "method": "Actual native selectedBrowser fullZoom/textZoom read-only",
+            "textZoom": 1
+          },
+          {
+            "fullPageZoom": 1.7999999523162842,
+            "method": "Actual native selectedBrowser fullZoom/textZoom read-only",
+            "textZoom": 1
+          },
+          {
+            "fullPageZoom": 1.899999976158142,
+            "method": "Actual native selectedBrowser fullZoom/textZoom read-only",
+            "textZoom": 1
+          },
+          {
+            "fullPageZoom": 2,
+            "method": "Actual native selectedBrowser fullZoom/textZoom read-only",
+            "textZoom": 1
+          }
+        ],
+        "actualViewport": 519,
+        "covering": [],
+        "active": {
+          "id": "source-name",
+          "rect": {
+            "bottom": 319.6000061035156,
+            "height": 56,
+            "right": 485,
+            "width": 451,
+            "x": 34,
+            "y": 263.6000061035156
+          },
+          "tag": "INPUT",
+          "term": null
+        },
+        "sourceWheelCount": 2,
+        "diagnostic": "Public native wheel reveals input, stable in-viewport rectangle/hit precedes one explicit native pointer; active source-name and nonoverlap are strictly checked."
+      },
+      "viewportObservations": [
+        {
+          "name": "01-inline-enabled-1080",
+          "width": 1878,
+          "height": 1006
+        },
+        {
+          "name": "02-term-pointer-explanation",
+          "width": 1878,
+          "height": 1006
+        },
+        {
+          "name": "03-term-keyboard-explanation",
+          "width": 1878,
+          "height": 1006
+        },
+        {
+          "name": "04-field-hint-navigation",
+          "width": 1878,
+          "height": 1006
+        },
+        {
+          "name": "04b-source-error-hint",
+          "width": 1878,
+          "height": 1006
+        },
+        {
+          "name": "05-dynamic-field-and-text",
+          "width": 1878,
+          "height": 1006
+        },
+        {
+          "name": "06-focus-avoidance-requested1080",
+          "width": 1038,
+          "height": 1006
+        },
+        {
+          "name": "06-focus-avoidance-requested320",
+          "width": 458,
+          "height": 1006
+        },
+        {
+          "name": "07a-zoom200-arrival-before-click",
+          "width": 519,
+          "height": 503
+        },
+        {
+          "name": "07b-zoom200-stable-before-click",
+          "width": 519,
+          "height": 503
+        },
+        {
+          "name": "07-native-browser-zoom200",
+          "width": 519,
+          "height": 503
+        },
+        {
+          "name": "07b-dock-moved-public-keyboard",
+          "width": 1038,
+          "height": 1006
+        },
+        {
+          "name": "08-inline-stopped-current-source",
+          "width": 1038,
+          "height": 1006
+        },
+        {
+          "name": "08b-dock-position-restored",
+          "width": 1038,
+          "height": 1006
+        }
+      ]
+    }
+  ],
+  "failureHistoryRetained": true,
+  "scope": "Bounded native same-page assistance, public optional Reader/PDF routes, focus/position/stop/zoom regression only. Fresh OCR accuracy, formal120 performance, human/AT/full-WCAG qualification are not included."
+}

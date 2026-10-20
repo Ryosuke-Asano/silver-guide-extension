@@ -1,0 +1,22 @@
+{
+  "complete": true,
+  "all646MatchFrozenBaselineAndCurrentBuild": true,
+  "sourceHash": "c6bfe04e2b137479207d1d06eb580161292880ee1307e03e2d3a4ecaedf660a5",
+  "verifiedEntries": 646,
+  "archives": [
+    {
+      "bytes": 30077866,
+      "builtAt": "2026-10-14T03:28:07.657Z",
+      "verifiedEntries": 323,
+      "file": "silverguide-2.0.0-gecko-development.zip",
+      "sha256": "f38051d144d42c6358937f458447d4c60f1bb58ead685b82ccbd0bf0a62a91ac"
+    },
+    {
+      "bytes": 30077790,
+      "builtAt": "2026-10-14T03:28:38.335Z",
+      "verifiedEntries": 323,
+      "file": "silverguide-2.0.0-chromium-development.zip",
+      "sha256": "0cf40c4217b23bc663046b427bf3426c8b01b58b10ae20c97e86e0e1d1e36722"
+    }
+  ]
+}

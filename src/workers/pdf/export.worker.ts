@@ -1,0 +1,4 @@
+import { buildPdfExport, type BuildExportInput } from "../../adapters/pdf/export";
+import { PdfEngineError } from "../../domain/pdf";
+const scope=self as unknown as {onmessage:((event:MessageEvent<{id:string;input:BuildExportInput}>)=>void)|null;postMessage:(message:unknown,transfer?:Transferable[])=>void};
+scope.onmessage=event=>{const {id,input}=event.data;void buildPdfExport(input,undefined,(completed,total,detail)=>scope.postMessage({id,kind:"progress",completed,total,detail})).then(result=>scope.postMessage({id,ok:true,result},[result.bytes.buffer as ArrayBuffer])).catch(error=>scope.postMessage({id,ok:false,error:{code:error instanceof PdfEngineError?error.code:"EXPORT_FAILED",message:error instanceof PdfEngineError?error.message:"PDF の書き出しに失敗しました。",issues:error instanceof PdfEngineError?error.issues:[]}}));};

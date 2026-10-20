@@ -1,89 +1,47 @@
-# Silver Guide
+# Silver Guide 3.0.0
 
-実在するウェブページを、利用者自身の操作を保ったまま「理解する・入力する・進む」ために支援する Firefox・Chrome 向け拡張機能です。
+元のページの入力欄には小さな Tooltip、下線の単語にはページ内の解説ポップアップ、PDF の記入には専用タブを使う拡張機能です。長い文章を範囲選択する解説は、ブラウザーのサイドパネルにも残しています。機能を三つに絞り、独自のパスワード・保管庫・下書き管理・別入力画面を廃止しました。
 
-## 再設計の結論
+| 機能 | 操作 |
+| --- | --- |
+| フォーム補助 | 許可済みページの欄にフォーカスすると、上側に短い案内。元の欄へ直接入力します。追加ボタンはありません |
+| 文章の解説 | 本文の下線語をクリックすると、その場に短い解説ポップアップを表示します。閉じる・Escape・外側クリックで畳めます。長い文章はアイコンからサイドパネルを開いて範囲選択できます |
+| PDF | パネル下の「PDFを開く」から専用タブへ。左で回答すると右の記入プレビューへ自動反映。戻る／次へ、最後は「PDFを保存」で保存します |
 
-- **対象はすべてのウェブページ**です。利用者がそのページで明示的に支援を開始すると、用語のやさしい解説を利用できます。
-- **行政関連ページを最優先**にします。確認済みの行政サイトには、用語解説に加えて、手続きへの導線と申請フォームの項目別ヒントを提供します。
-- 既存の「やさしく読む」の色、文字、余白、角丸、罫線、フォーカス、操作部品を**変更せずにそのまま使います**。ただし、実装・名称・データ・権限は独立した **Silver Guide** とします。
-- 実在の申請を代行するものではありません。入力値の取得・保存・送信、ログイン操作、代筆、自動入力、自動送信は行いません。
+3.0.0 は開発版です。[採用 Spec](docs/specs/3.0.0/spec.md)、[画面とモック](docs/specs/3.0.0/screen-design.md)、[実装順](docs/specs/3.0.0/implementation-plan.md)、[実装状況](docs/specs/3.0.0/implementation-status.md)を参照してください。署名済みの一般配布物、実際の対象利用者による初見評価は別の公開条件です。
 
-## 3 つの支援
+下線語ポップアップ追加前の3.0.0では、WindowsのFloorp 12.20.2／Gecko 158.0.1の通常ウィンドウで、Microsoft IMEによるフォーム・PDFへの日本語入力、標準のPDF保存先ダイアログでの保存・取消・再試行、保存PDFの再表示と再保存を確認しました。今回の追加を含む版の結果は、その履歴と分けて[実装状況](docs/specs/3.0.0/implementation-status.md)に記録しています。他OSと対象利用者の初見評価は未実施です。
 
-| 支援 | 利用場面 | 内容 |
-| --- | --- | --- |
-| 読む | すべてのページ | 難しい語句のツールチップ、簡潔な言い換え |
-| 入力する | フォームのあるページ | 項目名・必須表示・入力形式・説明文の整理、フォーム内の前後移動、表示されたエラー項目への戻り。確認済み行政申請ページでは項目別ヒントを追加 |
-| 進む | 確認済みの行政ページ | 手続きの順序、関連する公式ページへの導線 |
+書類・回答・選択文は端末内で処理し、タブを閉じた後の復元や自動保存は行いません。PDF の入力を残すには、再読み込み・終了前に PDF を保存してください。元サイトの保存・送信はそのサイトの操作に従います。旧版の保存済みデータを自動削除・平文変換する処理はありません。
 
-詳細は [docs/product-requirements.md](docs/product-requirements.md)、技術構成は [docs/architecture.md](docs/architecture.md)、画面規約は [docs/design-system.md](docs/design-system.md) に記録します。
+## ビルド
 
-最初の確認済み行政ガイドとして、横浜市の住民票オンライン申請案内と横浜市電子申請・届出システムに対応しています。対象 URL・表示内容・非対応操作は [docs/yokohama-guide-pack.md](docs/yokohama-guide-pack.md) を参照してください。
+Node.js 24 と pnpm 10.13.1 を使います。
 
-## 現在の状態
-
-共通基盤と汎用フォーム支援を実装済みです。`dist/` は Floorp へ読み込めるビルド出力で、ポップアップ、ローカル用語ツールチップ、入力値を読まないフォーム補助、確認済みページだけの公式導線、停止処理を含みます。
-
-通常のラベルに加え、ARIA の項目名、表の行見出し、定義リストに対応します。動的に現れる欄や同じページ内の手順切り替えも再解析します。制度ごとの条件や記入方法を追加する場合は、公開ページを確認して「ガイドパック」に登録します。汎用機能の詳細と制約は [docs/form-support.md](docs/form-support.md)、検証結果は [docs/qa.md](docs/qa.md) に記録しています。
-
-検索などの共通欄を最初の申請項目と区別し、画像のラベル、可視の項目名、関連見出しの必須表示も補足します。実際の公開ページで観察した問題と、架空フォームでの操作確認は [docs/usability-review.md](docs/usability-review.md) にまとめています。認証後の画面や任意サイトでの完全動作を検証したものではありません。
-
-## 使い始める流れ
-
-1. ブラウザーツールバーの Silver Guide を開く。
-2. **「このページを支援する」** を一度だけ選ぶ。支援は現在のタブだけで始まる。
-3. ポップアップには、そのページで実際に使える **「読む」「入力する」「進む」** だけが表示される。
-4. ページ左上の Silver Guide で **「最初の説明を読む」** を選ぶか、本文の下線の言葉を選ぶ。
-5. **「最初の入力項目へ」** またはページの入力欄を選ぶと、項目名・必須表示・形式・ページの説明をもとにしたヒントを表示する。
-6. **「前の項目へ」「次の項目へ」** で同じフォーム内を移動する。ラジオの選択肢は一つの項目として数え、選択状態は変更しない。
-7. ページが入力エラーを通知した場合は **「最初のエラー項目へ」** で戻る。エラーが直ったかどうかや入力済みの判定はしない。
-
-ページの閲覧、入力、送信、移動は利用者自身が行います。Silver Guide は自動入力・自動送信・自動遷移をしません。
-
-## Floorp で試す
-
-1. このディレクトリで `corepack pnpm@10.13.1 run build` を実行する。
-2. Floorp で `about:debugging#/runtime/this-firefox` を開く。
-3. 「一時的なアドオンを読み込む」から `dist/manifest.json` を選ぶ。
-4. 任意の公開ページで Silver Guide のボタンを押し、「このページを支援する」を選ぶ。
-
-一時的なアドオンは Floorp を再起動すると読み込み直しが必要です。
-
-## 開発時の確認
-
-Node.js 22.13 以降の LTS または 24 と、`pnpm@10.13.1` を使います。
-
-```sh
-pnpm install --frozen-lockfile
-pnpm run check
-pnpm run lint
-pnpm test
-pnpm run build
-pnpm run build:chromium
-pnpm exec playwright install chromium
-pnpm run test:e2e
-```
-
-E2E は架空データのローカルフォームだけを使い、隔離したプロファイルでビルド済みの拡張を読み込みます。製品のホスト権限は増やしません。テスト用コピーにだけ localhost へのアクセスを付けます。実行方法と未検証範囲は [tests/e2e/README.md](tests/e2e/README.md) を参照してください。
-
-Firefox と geckodriver が利用可能な環境では `pnpm run test:firefox` で実際のツールバー・popup から開始する smoke も実行できます。必要な環境変数と一時プロファイルの扱いは [tests/firefox/README.md](tests/firefox/README.md) を参照してください。
-
-## Chromium / Microsoft Edge で試す
-
-1. `corepack pnpm@10.13.1 run build:chromium` を実行する。
-2. Edge で `edge://extensions` を開き、「開発者モード」を有効にする。
-3. 「展開して読み込み」を選び、`dist-chromium/` フォルダを選ぶ。
-
-Chrome でも同じ `dist-chromium/` を「パッケージ化されていない拡張機能を読み込む」から読み込めます。
-
-## デモ動画を再生成する
-
-`ffmpeg` を利用可能にしたうえで、別の端末から `corepack pnpm@10.13.1 exec vite --host 127.0.0.1 --port 4174 --strictPort` を起動し、次を実行します。
-
-```sh
+```powershell
+corepack pnpm@10.13.1 install --frozen-lockfile
+corepack pnpm@10.13.1 run check
+corepack pnpm@10.13.1 run test
+corepack pnpm@10.13.1 run build
 corepack pnpm@10.13.1 run build:chromium
-corepack pnpm@10.13.1 run record:demo
 ```
 
-`demo/silver-guide-demo.mp4` に、Edge 風のタブ・アドレスバー枠を含む約 14 秒のデモ動画を出力します。内容は隔離した Chromium 実行で確認し、実在サイトや利用者のブラウザ状態は使用しません。
+`dist/` は Floorp・Firefox 向け、`dist-chromium/` は Chromium 向けです。実行時の OCR モデル・日本語フォント・実行コードは同梱します。[資材とライセンス](docs/runtime-assets.md)に再生成手順があります。ブラウザーを使う PDF 試験には Playwright の対応ブラウザーが必要です。
+
+## 開発版を読み込む
+
+Floorp・Firefox では `about:debugging#/runtime/this-firefox` の「一時的なアドオンを読み込む」から `dist/manifest.json` を選びます。Chromium では `chrome://extensions` の開発者モードで `dist-chromium/` を「展開して読み込み」ます。
+
+ブラウザーのサイトアクセスが許可された HTTP(S) ページで、フォーム補助と本文の下線語解説が動作します。アクセスの許可・拒否はブラウザー標準の操作を使います。単語ポップアップにアイコンの操作は不要です。拡張アイコンは補助の解説サイドパネルを直接開きます。独自の設定・パスワード登録はありません。
+
+manifest の最低版は Gecko 140、Chromium 122 です。実測した OS・ブラウザーと限界は[実装状況](docs/specs/3.0.0/implementation-status.md)に記録し、最低版の記載だけで未試験環境の動作を保証しません。Gecko ID `silver-guide@example.invalid` は開発用です。
+
+## 資料
+
+- [使い方](docs/user-guide.md)
+- [プライバシー・権限・問い合わせ](docs/privacy-and-support.md)
+- [3.0.0 の Spec と作業順](docs/specs/3.0.0/README.md)
+- [過去の失敗と今回の方針](docs/specs/3.0.0/retrospective.md)
+- [資料一覧と 2.0 の検証履歴](docs/README.md)
+
+[2.0 の README](docs/history/readme-2.0.md)や旧検証資料は履歴です。旧版のテスト数・精度・性能を 3.0.0 の合格結果として扱いません。

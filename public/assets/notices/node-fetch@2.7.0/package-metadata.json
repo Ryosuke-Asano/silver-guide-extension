@@ -1,0 +1,10 @@
+{
+  "name": "node-fetch",
+  "version": "2.7.0",
+  "license": "MIT",
+  "author": "David Frank",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bitinn/node-fetch.git"
+  }
+}

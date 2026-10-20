@@ -1,0 +1,32 @@
+{
+  "atUtc": "2026-10-13T20:10:01.1049427Z",
+  "issue": "Cancel during native host-permission pending left PDF file/URL choices disabled",
+  "before": {
+    "path": "E:/others/silverguide-qa/ui-final-design/pdf-permission-cancel-before-fix.json",
+    "sha256": "b62b78df6b3d2a19ecec19516744c014792e3dd405d7508e6eab101f0f07a119",
+    "failed": true
+  },
+  "after": {
+    "path": "E:/others/silverguide-qa/ui-final-design/pdf-permission-cancel-after-fix.json",
+    "passed": 11,
+    "sha256": "6aa4d4bdab096e53cf749a083494825e304b9bd71b7fd9cb7a32ac01bf48e618"
+  },
+  "nativeFailure": {
+    "scope": "URL permission remained pending; successful plain HTTP reader/web. Closed-details counts overstated and preserved for instrument diagnosis; not final action totals.",
+    "exit": 1,
+    "ownedBirthPidZero": "2026-10-13T17:49:35.8745992Z",
+    "directory": "E:/others/silverguide-qa/ui-final-design/after-ui-76685b27-1791913635417",
+    "sourceUnchanged": true,
+    "terminalSession": 72373
+  },
+  "fix": "Abort races consent; late approval cannot fetch; stale owner cannot clear newer busy/error; original PDF/answers unaffected; consent waiting state explained. Native browser permission still needs a genuine browser decision; no approval shim.",
+  "regressions": [
+    "Pending-cancel resumes file chooser and late approval does not fetch",
+    "Earlier canceled approval cannot stop/clear later pending request; refusal does not fetch"
+  ],
+  "currentFull": {
+    "path": "E:/others/silverguide-qa/ui-final-design/final-ui-full-tests-v4-permission-cancel.json",
+    "passed": 574
+  },
+  "subsequentUxFinding": "Floorp reader term input/current-block select80px overflow at actual1038; CSS now corrected; final v5 suite running/native rerun required"
+}

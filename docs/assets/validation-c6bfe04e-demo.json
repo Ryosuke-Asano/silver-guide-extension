@@ -1,0 +1,122 @@
+{
+  "version": 1,
+  "sourceHash": "c6bfe04e2b137479207d1d06eb580161292880ee1307e03e2d3a4ecaedf660a5",
+  "complete": true,
+  "actualExitCode": 0,
+  "actualSession": 63453,
+  "ownedAlive": 0,
+  "ownedUnknown": 0,
+  "heavyReleased": true,
+  "recordedAtUtc": "2026-10-14T03:35:13.570Z",
+  "raw": {
+    "file": "E:/others/silverguide-qa/demo-public-20261014/runs/demo-public-c6bfe04e-1791948703755-cbfb9611/result.json",
+    "sha256": "bde05b1a40b149341d2981fb57ca097652d8f7d3a77fd28fee9c0515cf7e61d9"
+  },
+  "actualClosure": {
+    "file": "E:/others/silverguide-qa/demo-public-20261014/runs/demo-public-c6bfe04e-1791948703755-cbfb9611/closure-observed-v1.json",
+    "sha256": "d339ce8945431e2571a9a2399c05f5696e102390a2d6f7d9d9ef02837f18ae40"
+  },
+  "observations": [
+    {
+      "name": "Native popup -> same-tab inline support on actual demonstration",
+      "state": "observed"
+    },
+    {
+      "name": "Actual resident-record term explanation and anchor focus",
+      "state": "observed"
+    },
+    {
+      "name": "Native name hint and genuine dynamic field addition",
+      "state": "observed"
+    },
+    {
+      "name": "Public stop preserves the actual current source values and wording",
+      "state": "observed"
+    },
+    {
+      "name": "Actual native PDF public import -> original and item-confirmation screen",
+      "state": "observed"
+    },
+    {
+      "name": "Fresh scan PDF public import -> actual completed OCR and item screen",
+      "state": "observed"
+    }
+  ],
+  "actualCandidates": {
+    "nativeExpectedNamesPresent": 7,
+    "nativeCandidateCount": 8,
+    "nativeVisibleItemLabels": [
+      "1. 氏名",
+      "2. 住所",
+      "3. 電話番号",
+      "4. メールアドレス",
+      "5. 希望講座",
+      "6. 希望時間帯",
+      "7. 連絡メモ",
+      "8. 記入欄（項目名を確認）"
+    ],
+    "scanCandidateCount": 7,
+    "scanFirstSelectedLabel": "必須",
+    "scanRemainingSixLabels": "Not observed: public outline was not opened for scan, and names are not inferred from the source document",
+    "nativeMeta": "sample-application.pdf0 / 8 項目を記入項目一覧",
+    "scanMeta": "sample-scan.pdf0 / 7 項目を記入項目一覧"
+  },
+  "presentationScreenshots": [
+    {
+      "name": "page-explanation.png",
+      "file": "E:/others/silverguide-qa/demo-public-20261014/runs/demo-public-c6bfe04e-1791948703755-cbfb9611/03-demo-term-explanation.png",
+      "bytes": 136579,
+      "sha256": "5f6cebb5c76168bf456efcf1b17ceb4444b70b51ec6bd04e0033914245f3fc02",
+      "visuallyInspectedByRoot": true
+    },
+    {
+      "name": "pdf-fields.png",
+      "file": "E:/others/silverguide-qa/demo-public-20261014/runs/demo-public-c6bfe04e-1791948703755-cbfb9611/07-demo-native-pdf-items.png",
+      "bytes": 139413,
+      "sha256": "94131125464c2db1c4667da75d82cd41437830158fff72ce58924cfd5d4c42b3",
+      "visuallyInspectedByRoot": true
+    },
+    {
+      "name": "scan-ocr.png",
+      "file": "E:/others/silverguide-qa/demo-public-20261014/runs/demo-public-c6bfe04e-1791948703755-cbfb9611/08-demo-scan-pdf-actual-ocr.png",
+      "bytes": 140487,
+      "sha256": "ce4e33e2fd11e920705986b8702d14c9cd6a43c22fcbaa94a878e414b943601b",
+      "visuallyInspectedByRoot": true
+    }
+  ],
+  "duringRunInvariance": {
+    "sourceFileCount": 105,
+    "originalBuildFileCount": 646,
+    "sourceAndBothOriginalBundlesUnchanged": true,
+    "allPinnedDemoAndHarnessArtifactsUnchangedDuringRun": true,
+    "originalRawNotRewritten": true
+  },
+  "limits": [
+    "Limited one isolated Chromium demonstration flow only; no new performance or broad accuracy/WCAG qualification",
+    "No answers/model/fields/private state/permission response injected",
+    "No semantic or role confirmation, saved-draft flow, output generation, all-page human output review or download success exercised",
+    "All screenshots are actual live product results; extra and erroneous candidates remain visible",
+    "Root server remains running and is outside this runner process ownership",
+    "Later presenter prose edits are outside the unchanged during-run pins, which remain preserved in raw result.json"
+  ],
+  "postVerificationProse": {
+    "currentProse": [
+      {
+        "file": "README.txt",
+        "bytes": 2843,
+        "sha256": "07549bf0a7f2a2a43764cbefe33869ed085e0e6e9d30c5d57ce2c0a7e14afa84"
+      },
+      {
+        "file": "presenter-notes.txt",
+        "bytes": 12157,
+        "sha256": "b88a8ed02083e584c49fe474fd184053db544316b97feeb35c2970d0748dae34"
+      },
+      {
+        "file": "feature-summary.txt",
+        "bytes": 2089,
+        "sha256": "1abaa9e7ffa428239675a90ffdfc3f01725d47bd92b04c0271cdba17a89c3c83"
+      }
+    ],
+    "scope": "README and presenter notes clarified actual extra/mislabelled candidates after the observed run. The original during-run prose/harness pins and raw result remain unchanged. Demo HTML and both PDF originals were not changed."
+  }
+}

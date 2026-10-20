@@ -1,0 +1,11 @@
+{
+  "name": "@swc/helpers",
+  "version": "0.5.23",
+  "license": "Apache-2.0",
+  "author": "강동윤 <kdy1997.dev@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swc-project/swc.git",
+    "directory": "packages/helpers"
+  }
+}

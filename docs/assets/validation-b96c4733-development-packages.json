@@ -1,0 +1,37 @@
+{
+  "readme": {
+    "file": "README.txt",
+    "sha256": "f6defc5440f5fb6ac643271a7fa61317fee28586d28d1897908f1a390fe7d0cb"
+  },
+  "version": "2.0.0",
+  "sourceLedgerSha256": "df73434c67f02e44a8d07f25df54b5cb89372d14fc5e2863302945d85874f41d",
+  "checkedAtUtc": "2026-10-13T23:18:16.1543001Z",
+  "packages": [
+    {
+      "builtAt": "2026-10-13T20:14:07.082Z",
+      "file": "silverguide-2.0.0-gecko-development.zip",
+      "sha256": "2b609358062d849b9966f3e12e0cecdd98719708f012048d0e93c0ef97745549",
+      "verifiedEntries": 323,
+      "bytes": 30069827
+    },
+    {
+      "builtAt": "2026-10-13T20:15:35.39Z",
+      "file": "silverguide-2.0.0-chromium-development.zip",
+      "sha256": "89c2130b9c334d80502656fd83c10a8557c356bed57d5aab84315f680e3864fb",
+      "verifiedEntries": 323,
+      "bytes": 30069755
+    }
+  ],
+  "entryLedger": {
+    "file": "archive-file-verification.json",
+    "sha256": "1d7747c50e8a95cdac558c75b08688202b3846a49484e0a00ac8adbef58473a3",
+    "verifiedEntries": 646
+  },
+  "releaseProof": {
+    "path": "E:\\others\\silverguide-qa\\final-release-proof-b96-v1.json",
+    "sha256": "9e1276578a0e2e5f56a7f9738de0ae4c9e20545527b41c1340967af5f75ab2eb"
+  },
+  "distribution": "development-only-unsigned",
+  "sourceHash": "b96c473355a5a9a81bba5874c0b463a8e7aabec4131d98630b87bfbea807a11f",
+  "baselineSha256": "bf30f56751fece211fb54e2d036e7af4e8e9516ddf373ebee11ec628a015382c"
+}

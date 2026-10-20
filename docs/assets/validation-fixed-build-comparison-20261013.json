@@ -1,0 +1,2374 @@
+{
+  "version": 1,
+  "at": "2026-10-13T12:03:30.543Z",
+  "scope": "Fixed same249 original source/fieldGT comparison. Synthetic TRAIN and official partial annotated scope reported separately; document bootstrap is not independent family calibration, automatic qualified proposals0/precisionundefined/coverage0. No human adjudication or formal public quality claim.",
+  "fieldScorerVersion": 3,
+  "textScorerVersion": 5,
+  "textDomainVersion": 2,
+  "fieldTruthUnchanged": true,
+  "generatedReservedTruthRead": false,
+  "oldSealedBinaryRead": false,
+  "records": [
+    {
+      "label": "baseline-3b67-train-v2",
+      "sourceBuildHash": "3b67ad1d8f2af335c4dcc433dd2797b9df7bb50008f23acb1419b5dbb93b76b1",
+      "generatedTrain": {
+        "documents": 240,
+        "catalogFields": 5760,
+        "eligibleFields": 4800,
+        "geometry": {
+          "tp": 4567,
+          "fp": 629,
+          "fn": 1193,
+          "truthCount": 5760,
+          "predictionCount": 5196,
+          "precision": 0.8789453425712086,
+          "recall": 0.7928819444444445,
+          "bootstrapPrecision": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 240,
+            "stratumCount": 4,
+            "twoSided95": [
+              0.8642042520171107,
+              0.8911887830947794
+            ],
+            "oneSided95Lower": 0.8670626128843628,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 12
+          },
+          "bootstrapRecall": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 240,
+            "stratumCount": 4,
+            "twoSided95": [
+              0.7585026041666667,
+              0.8253515625
+            ],
+            "oneSided95Lower": 0.7644097222222223,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 12
+          }
+        },
+        "semanticGeometry": {
+          "tp": 3043,
+          "fp": 2153,
+          "fn": 2717,
+          "truthCount": 5760,
+          "predictionCount": 5196,
+          "precision": 0.5856428021555042,
+          "recall": 0.5282986111111111,
+          "bootstrapPrecision": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 240,
+            "stratumCount": 4,
+            "twoSided95": [
+              0.5637395479114855,
+              0.6081931475988117
+            ],
+            "oneSided95Lower": 0.56757727468697,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 12
+          },
+          "bootstrapRecall": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 240,
+            "stratumCount": 4,
+            "twoSided95": [
+              0.5071180555555556,
+              0.5494791666666666
+            ],
+            "oneSided95Lower": 0.5107552083333333,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 12
+          }
+        },
+        "attributes": {
+          "labels": {
+            "correct": 3413,
+            "wrong": 1154,
+            "knownTruthDenominator": 5760,
+            "matchedKnownTruthCount": 4567,
+            "unassessedMissingDetection": 1193,
+            "truthUnknownCount": 0
+          },
+          "roles": {
+            "correct": 1232,
+            "wrong": 40,
+            "unknown": 3295,
+            "knownTruthDenominator": 5760,
+            "matchedKnownTruthCount": 4567,
+            "unassessedMissingDetection": 1193,
+            "truthUnknownCount": 0
+          },
+          "kinds": {
+            "correct": 3628,
+            "wrong": 939,
+            "unknown": 0,
+            "knownTruthDenominator": 5760,
+            "matchedKnownTruthCount": 4567,
+            "unassessedMissingDetection": 1193,
+            "truthUnknownCount": 0
+          },
+          "required": {
+            "correct": 1920,
+            "wrong": 0,
+            "unknown": 2647,
+            "knownTruthDenominator": 5760,
+            "matchedKnownTruthCount": 4567,
+            "unassessedMissingDetection": 1193,
+            "truthUnknownCount": 0
+          },
+          "conditions": {
+            "correct": 3964,
+            "wrong": 568,
+            "unknown": 35,
+            "knownTruthDenominator": 5760,
+            "matchedKnownTruthCount": 4567,
+            "unassessedMissingDetection": 1193,
+            "truthUnknownCount": 0
+          }
+        },
+        "highConfidence": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4800,
+          "truthCount": 4800,
+          "predictionCount": 0,
+          "proposalCount": 0,
+          "scorableProposalCount": 0,
+          "unassessedProposalCount": 0,
+          "errorCount": 0,
+          "allEligibleTruthCount": 4800,
+          "coverage": 0,
+          "precision": null,
+          "precisionUndefinedReason": "zero-scorable-proposal-denominator"
+        },
+        "visibleRasterMergedText": {
+          "substitutions": 13359,
+          "deletions": 9251,
+          "insertions": 8296,
+          "errorCount": 30906,
+          "characterDenominator": 35431,
+          "recognizedCharacterCount": 34476,
+          "cer": 0.8722869803279614,
+          "availableDocuments": 240,
+          "assessedDocuments": 120,
+          "unassessedEvidenceCount": 19,
+          "outsideViewingBoxCharacters": 0,
+          "unassessedCharacters": 116,
+          "qualityStrata": {
+            "good300dpi": {
+              "substitutions": 3618,
+              "deletions": 2100,
+              "insertions": 2425,
+              "errorCount": 8143,
+              "characterDenominator": 10614,
+              "recognizedCharacterCount": 10939,
+              "cer": 0.7671942717166007
+            },
+            "degraded150dpi": {
+              "substitutions": 2324,
+              "deletions": 818,
+              "insertions": 1351,
+              "errorCount": 4493,
+              "characterDenominator": 5316,
+              "recognizedCharacterCount": 5849,
+              "cer": 0.8451843491346878
+            },
+            "degraded75dpi": {
+              "substitutions": 2196,
+              "deletions": 2160,
+              "insertions": 914,
+              "errorCount": 5270,
+              "characterDenominator": 5316,
+              "recognizedCharacterCount": 4070,
+              "cer": 0.991346877351392
+            },
+            "skew": {
+              "substitutions": 2008,
+              "deletions": 860,
+              "insertions": 1545,
+              "errorCount": 4413,
+              "characterDenominator": 5316,
+              "recognizedCharacterCount": 6001,
+              "cer": 0.8301354401805869
+            },
+            "shadow": {
+              "substitutions": 766,
+              "deletions": 2814,
+              "insertions": 731,
+              "errorCount": 4311,
+              "characterDenominator": 5316,
+              "recognizedCharacterCount": 3233,
+              "cer": 0.8109480812641083
+            },
+            "noise": {
+              "substitutions": 2447,
+              "deletions": 499,
+              "insertions": 1330,
+              "errorCount": 4276,
+              "characterDenominator": 3553,
+              "recognizedCharacterCount": 4384,
+              "cer": 1.203490008443569
+            }
+          }
+        },
+        "selectedRawRasterText": null,
+        "nativeMethodMergedWithinView": {
+          "substitutions": 0,
+          "deletions": 779,
+          "insertions": 0,
+          "errorCount": 779,
+          "characterDenominator": 67520,
+          "recognizedCharacterCount": 66741,
+          "cer": 0.011537322274881516,
+          "availableDocuments": 240,
+          "assessedDocuments": 180,
+          "unassessedEvidenceCount": 0,
+          "outsideViewingBoxCharacters": 0,
+          "unassessedCharacters": 0,
+          "qualityStrata": {
+            "native-text": {
+              "substitutions": 0,
+              "deletions": 0,
+              "insertions": 0,
+              "errorCount": 0,
+              "characterDenominator": 61586,
+              "recognizedCharacterCount": 61586,
+              "cer": 0
+            },
+            "good300dpi": {
+              "substitutions": 0,
+              "deletions": 334,
+              "insertions": 0,
+              "errorCount": 334,
+              "characterDenominator": 1778,
+              "recognizedCharacterCount": 1444,
+              "cer": 0.18785151856017998
+            },
+            "degraded150dpi": {
+              "substitutions": 0,
+              "deletions": 158,
+              "insertions": 0,
+              "errorCount": 158,
+              "characterDenominator": 890,
+              "recognizedCharacterCount": 732,
+              "cer": 0.17752808988764046
+            },
+            "degraded75dpi": {
+              "substitutions": 0,
+              "deletions": 0,
+              "insertions": 0,
+              "errorCount": 0,
+              "characterDenominator": 890,
+              "recognizedCharacterCount": 890,
+              "cer": 0
+            },
+            "skew": {
+              "substitutions": 0,
+              "deletions": 106,
+              "insertions": 0,
+              "errorCount": 106,
+              "characterDenominator": 890,
+              "recognizedCharacterCount": 784,
+              "cer": 0.11910112359550562
+            },
+            "shadow": {
+              "substitutions": 0,
+              "deletions": 181,
+              "insertions": 0,
+              "errorCount": 181,
+              "characterDenominator": 890,
+              "recognizedCharacterCount": 709,
+              "cer": 0.20337078651685395
+            },
+            "noise": {
+              "substitutions": 0,
+              "deletions": 0,
+              "insertions": 0,
+              "errorCount": 0,
+              "characterDenominator": 596,
+              "recognizedCharacterCount": 596,
+              "cer": 0
+            }
+          }
+        }
+      },
+      "officialPartial": {
+        "documents": 9,
+        "catalogFields": 273,
+        "geometry": {
+          "tp": 266,
+          "fp": 215,
+          "fn": 7,
+          "truthCount": 273,
+          "predictionCount": 481,
+          "precision": 0.553014553014553,
+          "recall": 0.9743589743589743,
+          "bootstrapPrecision": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 9,
+            "stratumCount": 2,
+            "twoSided95": [
+              0.3269537480063796,
+              0.8609271523178808
+            ],
+            "oneSided95Lower": 0.35940409683426444,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 9
+          },
+          "bootstrapRecall": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 9,
+            "stratumCount": 2,
+            "twoSided95": [
+              0.9461883408071748,
+              1
+            ],
+            "oneSided95Lower": 0.9488054607508533,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 9
+          }
+        },
+        "semanticGeometry": {
+          "tp": 0,
+          "fp": 232,
+          "fn": 24,
+          "truthCount": 24,
+          "predictionCount": 232,
+          "precision": 0,
+          "recall": 0,
+          "bootstrapPrecision": {
+            "iterations": 10000,
+            "validResamples": 9967,
+            "seed": 20261013,
+            "documentCount": 9,
+            "stratumCount": 2,
+            "twoSided95": [
+              0,
+              0
+            ],
+            "oneSided95Lower": 0,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 9
+          },
+          "bootstrapRecall": {
+            "iterations": 10000,
+            "validResamples": 9020,
+            "seed": 20261013,
+            "documentCount": 9,
+            "stratumCount": 2,
+            "twoSided95": [
+              0,
+              0
+            ],
+            "oneSided95Lower": 0,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 9
+          }
+        },
+        "unknownCandidateCount": 1133,
+        "noInputPages": {
+          "denominator": 7,
+          "falseCandidates": 172
+        },
+        "formalWholePublicPrecision": false
+      },
+      "caseErrors": 0,
+      "incomplete": 0,
+      "ownerPid0": true,
+      "provenanceValid": true,
+      "measurementComplete": true
+    },
+    {
+      "label": "corrected-f53f383f-train-v3",
+      "sourceBuildHash": "f53f383f2b6a15db771299ccd455c277a71d8a0863d33a3b97813287429f8b85",
+      "generatedTrain": {
+        "documents": 240,
+        "catalogFields": 5760,
+        "eligibleFields": 4800,
+        "geometry": {
+          "tp": 5434,
+          "fp": 144,
+          "fn": 326,
+          "truthCount": 5760,
+          "predictionCount": 5578,
+          "precision": 0.9741842954463965,
+          "recall": 0.9434027777777778,
+          "bootstrapPrecision": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 240,
+            "stratumCount": 4,
+            "twoSided95": [
+              0.9675742248082307,
+              0.9800534403179777
+            ],
+            "oneSided95Lower": 0.9687887923390672,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 12
+          },
+          "bootstrapRecall": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 240,
+            "stratumCount": 4,
+            "twoSided95": [
+              0.9295138888888889,
+              0.9555555555555556
+            ],
+            "oneSided95Lower": 0.9317708333333333,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 12
+          }
+        },
+        "semanticGeometry": {
+          "tp": 3931,
+          "fp": 1647,
+          "fn": 1829,
+          "truthCount": 5760,
+          "predictionCount": 5578,
+          "precision": 0.7047328791681606,
+          "recall": 0.6824652777777778,
+          "bootstrapPrecision": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 240,
+            "stratumCount": 4,
+            "twoSided95": [
+              0.6840396926808413,
+              0.7256176767572344
+            ],
+            "oneSided95Lower": 0.6874888689919023,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 12
+          },
+          "bootstrapRecall": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 240,
+            "stratumCount": 4,
+            "twoSided95": [
+              0.6621527777777778,
+              0.7026041666666667
+            ],
+            "oneSided95Lower": 0.6654513888888889,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 12
+          }
+        },
+        "attributes": {
+          "labels": {
+            "correct": 4328,
+            "wrong": 1106,
+            "knownTruthDenominator": 5760,
+            "matchedKnownTruthCount": 5434,
+            "unassessedMissingDetection": 326,
+            "truthUnknownCount": 0
+          },
+          "roles": {
+            "correct": 1567,
+            "wrong": 21,
+            "unknown": 3846,
+            "knownTruthDenominator": 5760,
+            "matchedKnownTruthCount": 5434,
+            "unassessedMissingDetection": 326,
+            "truthUnknownCount": 0
+          },
+          "kinds": {
+            "correct": 4432,
+            "wrong": 1002,
+            "unknown": 0,
+            "knownTruthDenominator": 5760,
+            "matchedKnownTruthCount": 5434,
+            "unassessedMissingDetection": 326,
+            "truthUnknownCount": 0
+          },
+          "required": {
+            "correct": 1920,
+            "wrong": 0,
+            "unknown": 3514,
+            "knownTruthDenominator": 5760,
+            "matchedKnownTruthCount": 5434,
+            "unassessedMissingDetection": 326,
+            "truthUnknownCount": 0
+          },
+          "conditions": {
+            "correct": 4726,
+            "wrong": 684,
+            "unknown": 24,
+            "knownTruthDenominator": 5760,
+            "matchedKnownTruthCount": 5434,
+            "unassessedMissingDetection": 326,
+            "truthUnknownCount": 0
+          }
+        },
+        "highConfidence": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4800,
+          "truthCount": 4800,
+          "predictionCount": 0,
+          "proposalCount": 0,
+          "scorableProposalCount": 0,
+          "unassessedProposalCount": 0,
+          "errorCount": 0,
+          "allEligibleTruthCount": 4800,
+          "coverage": 0,
+          "precision": null,
+          "precisionUndefinedReason": "zero-scorable-proposal-denominator"
+        },
+        "visibleRasterMergedText": {
+          "substitutions": 4364,
+          "deletions": 3313,
+          "insertions": 6825,
+          "errorCount": 14502,
+          "characterDenominator": 35431,
+          "recognizedCharacterCount": 38943,
+          "cer": 0.4093025881290395,
+          "availableDocuments": 240,
+          "assessedDocuments": 120,
+          "unassessedEvidenceCount": 14,
+          "outsideViewingBoxCharacters": 0,
+          "unassessedCharacters": 126,
+          "qualityStrata": {
+            "good300dpi": {
+              "substitutions": 761,
+              "deletions": 269,
+              "insertions": 1967,
+              "errorCount": 2997,
+              "characterDenominator": 10614,
+              "recognizedCharacterCount": 12312,
+              "cer": 0.2823629169022046
+            },
+            "degraded150dpi": {
+              "substitutions": 482,
+              "deletions": 158,
+              "insertions": 897,
+              "errorCount": 1537,
+              "characterDenominator": 5316,
+              "recognizedCharacterCount": 6055,
+              "cer": 0.2891271632806621
+            },
+            "degraded75dpi": {
+              "substitutions": 2340,
+              "deletions": 401,
+              "insertions": 1254,
+              "errorCount": 3995,
+              "characterDenominator": 5316,
+              "recognizedCharacterCount": 6169,
+              "cer": 0.7515048908954101
+            },
+            "skew": {
+              "substitutions": 353,
+              "deletions": 146,
+              "insertions": 1192,
+              "errorCount": 1691,
+              "characterDenominator": 5316,
+              "recognizedCharacterCount": 6362,
+              "cer": 0.31809631301730623
+            },
+            "shadow": {
+              "substitutions": 167,
+              "deletions": 2258,
+              "insertions": 781,
+              "errorCount": 3206,
+              "characterDenominator": 5316,
+              "recognizedCharacterCount": 3839,
+              "cer": 0.6030850263355907
+            },
+            "noise": {
+              "substitutions": 261,
+              "deletions": 81,
+              "insertions": 734,
+              "errorCount": 1076,
+              "characterDenominator": 3553,
+              "recognizedCharacterCount": 4206,
+              "cer": 0.3028426681677456
+            }
+          }
+        },
+        "selectedRawRasterText": {
+          "substitutions": 5055,
+          "deletions": 3411,
+          "insertions": 4586,
+          "errorCount": 13052,
+          "characterDenominator": 35431,
+          "recognizedCharacterCount": 36606,
+          "cer": 0.3683779740904857,
+          "availableDocuments": 240,
+          "assessedDocuments": 120,
+          "unassessedEvidenceCount": 7,
+          "outsideViewingBoxCharacters": 0,
+          "unassessedCharacters": 63,
+          "qualityStrata": {
+            "good300dpi": {
+              "substitutions": 848,
+              "deletions": 276,
+              "insertions": 1410,
+              "errorCount": 2534,
+              "characterDenominator": 10614,
+              "recognizedCharacterCount": 11748,
+              "cer": 0.23874128509515735
+            },
+            "degraded150dpi": {
+              "substitutions": 539,
+              "deletions": 164,
+              "insertions": 626,
+              "errorCount": 1329,
+              "characterDenominator": 5316,
+              "recognizedCharacterCount": 5778,
+              "cer": 0.25
+            },
+            "degraded75dpi": {
+              "substitutions": 2771,
+              "deletions": 468,
+              "insertions": 810,
+              "errorCount": 4049,
+              "characterDenominator": 5316,
+              "recognizedCharacterCount": 5658,
+              "cer": 0.7616629044394282
+            },
+            "skew": {
+              "substitutions": 404,
+              "deletions": 153,
+              "insertions": 698,
+              "errorCount": 1255,
+              "characterDenominator": 5316,
+              "recognizedCharacterCount": 5861,
+              "cer": 0.23607975921745675
+            },
+            "shadow": {
+              "substitutions": 205,
+              "deletions": 2266,
+              "insertions": 510,
+              "errorCount": 2981,
+              "characterDenominator": 5316,
+              "recognizedCharacterCount": 3560,
+              "cer": 0.5607599699021821
+            },
+            "noise": {
+              "substitutions": 288,
+              "deletions": 84,
+              "insertions": 532,
+              "errorCount": 904,
+              "characterDenominator": 3553,
+              "recognizedCharacterCount": 4001,
+              "cer": 0.25443287362792005
+            }
+          }
+        },
+        "nativeMethodMergedWithinView": {
+          "substitutions": 0,
+          "deletions": 2912,
+          "insertions": 0,
+          "errorCount": 2912,
+          "characterDenominator": 67520,
+          "recognizedCharacterCount": 64608,
+          "cer": 0.04312796208530806,
+          "availableDocuments": 240,
+          "assessedDocuments": 180,
+          "unassessedEvidenceCount": 0,
+          "outsideViewingBoxCharacters": 0,
+          "unassessedCharacters": 0,
+          "qualityStrata": {
+            "native-text": {
+              "substitutions": 0,
+              "deletions": 0,
+              "insertions": 0,
+              "errorCount": 0,
+              "characterDenominator": 61586,
+              "recognizedCharacterCount": 61586,
+              "cer": 0
+            },
+            "good300dpi": {
+              "substitutions": 0,
+              "deletions": 996,
+              "insertions": 0,
+              "errorCount": 996,
+              "characterDenominator": 1778,
+              "recognizedCharacterCount": 782,
+              "cer": 0.5601799775028121
+            },
+            "degraded150dpi": {
+              "substitutions": 0,
+              "deletions": 464,
+              "insertions": 0,
+              "errorCount": 464,
+              "characterDenominator": 890,
+              "recognizedCharacterCount": 426,
+              "cer": 0.5213483146067416
+            },
+            "degraded75dpi": {
+              "substitutions": 0,
+              "deletions": 312,
+              "insertions": 0,
+              "errorCount": 312,
+              "characterDenominator": 890,
+              "recognizedCharacterCount": 578,
+              "cer": 0.350561797752809
+            },
+            "skew": {
+              "substitutions": 0,
+              "deletions": 311,
+              "insertions": 0,
+              "errorCount": 311,
+              "characterDenominator": 890,
+              "recognizedCharacterCount": 579,
+              "cer": 0.349438202247191
+            },
+            "shadow": {
+              "substitutions": 0,
+              "deletions": 497,
+              "insertions": 0,
+              "errorCount": 497,
+              "characterDenominator": 890,
+              "recognizedCharacterCount": 393,
+              "cer": 0.5584269662921348
+            },
+            "noise": {
+              "substitutions": 0,
+              "deletions": 332,
+              "insertions": 0,
+              "errorCount": 332,
+              "characterDenominator": 596,
+              "recognizedCharacterCount": 264,
+              "cer": 0.5570469798657718
+            }
+          }
+        }
+      },
+      "officialPartial": {
+        "documents": 9,
+        "catalogFields": 273,
+        "geometry": {
+          "tp": 266,
+          "fp": 215,
+          "fn": 7,
+          "truthCount": 273,
+          "predictionCount": 481,
+          "precision": 0.553014553014553,
+          "recall": 0.9743589743589743,
+          "bootstrapPrecision": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 9,
+            "stratumCount": 2,
+            "twoSided95": [
+              0.3269537480063796,
+              0.8609271523178808
+            ],
+            "oneSided95Lower": 0.35940409683426444,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 9
+          },
+          "bootstrapRecall": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 9,
+            "stratumCount": 2,
+            "twoSided95": [
+              0.9461883408071748,
+              1
+            ],
+            "oneSided95Lower": 0.9488054607508533,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 9
+          }
+        },
+        "semanticGeometry": {
+          "tp": 0,
+          "fp": 232,
+          "fn": 24,
+          "truthCount": 24,
+          "predictionCount": 232,
+          "precision": 0,
+          "recall": 0,
+          "bootstrapPrecision": {
+            "iterations": 10000,
+            "validResamples": 9967,
+            "seed": 20261013,
+            "documentCount": 9,
+            "stratumCount": 2,
+            "twoSided95": [
+              0,
+              0
+            ],
+            "oneSided95Lower": 0,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 9
+          },
+          "bootstrapRecall": {
+            "iterations": 10000,
+            "validResamples": 9020,
+            "seed": 20261013,
+            "documentCount": 9,
+            "stratumCount": 2,
+            "twoSided95": [
+              0,
+              0
+            ],
+            "oneSided95Lower": 0,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 9
+          }
+        },
+        "unknownCandidateCount": 1133,
+        "noInputPages": {
+          "denominator": 7,
+          "falseCandidates": 172
+        },
+        "formalWholePublicPrecision": false
+      },
+      "caseErrors": 0,
+      "incomplete": 0,
+      "ownerPid0": true,
+      "provenanceValid": true,
+      "measurementComplete": true
+    },
+    {
+      "label": "corrected-d4c79584-train-v4",
+      "sourceBuildHash": "d4c795847fbcb405ab070ac9354be3b69cf2e30c66064f3d635ed3e08b13b7d2",
+      "generatedTrain": {
+        "documents": 240,
+        "catalogFields": 5760,
+        "eligibleFields": 4800,
+        "geometry": {
+          "tp": 5595,
+          "fp": 165,
+          "fn": 165,
+          "truthCount": 5760,
+          "predictionCount": 5760,
+          "precision": 0.9713541666666666,
+          "recall": 0.9713541666666666,
+          "bootstrapPrecision": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 240,
+            "stratumCount": 4,
+            "twoSided95": [
+              0.9650033133983056,
+              0.976873687716885
+            ],
+            "oneSided95Lower": 0.9661924946855548,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 12
+          },
+          "bootstrapRecall": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 240,
+            "stratumCount": 4,
+            "twoSided95": [
+              0.9654513888888889,
+              0.9767361111111111
+            ],
+            "oneSided95Lower": 0.9664930555555555,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 12
+          }
+        },
+        "semanticGeometry": {
+          "tp": 4054,
+          "fp": 1706,
+          "fn": 1706,
+          "truthCount": 5760,
+          "predictionCount": 5760,
+          "precision": 0.7038194444444444,
+          "recall": 0.7038194444444444,
+          "bootstrapPrecision": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 240,
+            "stratumCount": 4,
+            "twoSided95": [
+              0.6840461686676543,
+              0.72348246812221
+            ],
+            "oneSided95Lower": 0.6875,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 12
+          },
+          "bootstrapRecall": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 240,
+            "stratumCount": 4,
+            "twoSided95": [
+              0.6842013888888889,
+              0.7236111111111111
+            ],
+            "oneSided95Lower": 0.6876736111111111,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 12
+          }
+        },
+        "attributes": {
+          "labels": {
+            "correct": 4467,
+            "wrong": 1128,
+            "knownTruthDenominator": 5760,
+            "matchedKnownTruthCount": 5595,
+            "unassessedMissingDetection": 165,
+            "truthUnknownCount": 0
+          },
+          "roles": {
+            "correct": 1592,
+            "wrong": 12,
+            "unknown": 3991,
+            "knownTruthDenominator": 5760,
+            "matchedKnownTruthCount": 5595,
+            "unassessedMissingDetection": 165,
+            "truthUnknownCount": 0
+          },
+          "kinds": {
+            "correct": 4554,
+            "wrong": 1041,
+            "unknown": 0,
+            "knownTruthDenominator": 5760,
+            "matchedKnownTruthCount": 5595,
+            "unassessedMissingDetection": 165,
+            "truthUnknownCount": 0
+          },
+          "required": {
+            "correct": 1920,
+            "wrong": 0,
+            "unknown": 3675,
+            "knownTruthDenominator": 5760,
+            "matchedKnownTruthCount": 5595,
+            "unassessedMissingDetection": 165,
+            "truthUnknownCount": 0
+          },
+          "conditions": {
+            "correct": 4863,
+            "wrong": 700,
+            "unknown": 32,
+            "knownTruthDenominator": 5760,
+            "matchedKnownTruthCount": 5595,
+            "unassessedMissingDetection": 165,
+            "truthUnknownCount": 0
+          }
+        },
+        "highConfidence": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4800,
+          "truthCount": 4800,
+          "predictionCount": 0,
+          "proposalCount": 0,
+          "scorableProposalCount": 0,
+          "unassessedProposalCount": 0,
+          "errorCount": 0,
+          "allEligibleTruthCount": 4800,
+          "coverage": 0,
+          "precision": null,
+          "precisionUndefinedReason": "zero-scorable-proposal-denominator"
+        },
+        "visibleRasterMergedText": {
+          "substitutions": 4407,
+          "deletions": 3299,
+          "insertions": 6851,
+          "errorCount": 14557,
+          "characterDenominator": 35431,
+          "recognizedCharacterCount": 38983,
+          "cer": 0.4108549010753295,
+          "qualityStrata": {
+            "good300dpi": {
+              "substitutions": 761,
+              "deletions": 269,
+              "insertions": 1967,
+              "errorCount": 2997,
+              "characterDenominator": 10614,
+              "cer": 0.2823629169022046
+            },
+            "degraded150dpi": {
+              "substitutions": 481,
+              "deletions": 158,
+              "insertions": 909,
+              "errorCount": 1548,
+              "characterDenominator": 5316,
+              "cer": 0.291196388261851
+            },
+            "degraded75dpi": {
+              "substitutions": 2340,
+              "deletions": 401,
+              "insertions": 1254,
+              "errorCount": 3995,
+              "characterDenominator": 5316,
+              "cer": 0.7515048908954101
+            },
+            "skew": {
+              "substitutions": 397,
+              "deletions": 132,
+              "insertions": 1206,
+              "errorCount": 1735,
+              "characterDenominator": 5316,
+              "cer": 0.3263732129420617
+            },
+            "shadow": {
+              "substitutions": 167,
+              "deletions": 2258,
+              "insertions": 781,
+              "errorCount": 3206,
+              "characterDenominator": 5316,
+              "cer": 0.6030850263355907
+            },
+            "noise": {
+              "substitutions": 261,
+              "deletions": 81,
+              "insertions": 734,
+              "errorCount": 1076,
+              "characterDenominator": 3553,
+              "cer": 0.3028426681677456
+            }
+          },
+          "categoryStrata": {
+            "general": {
+              "substitutions": 115,
+              "deletions": 128,
+              "insertions": 176,
+              "errorCount": 419,
+              "characterDenominator": 1539,
+              "cer": 0.27225471085120206
+            },
+            "condition": {
+              "substitutions": 1156,
+              "deletions": 970,
+              "insertions": 1566,
+              "errorCount": 3692,
+              "characterDenominator": 12060,
+              "cer": 0.3061359867330017
+            },
+            "name-digit": {
+              "substitutions": 1124,
+              "deletions": 625,
+              "insertions": 1233,
+              "errorCount": 2982,
+              "characterDenominator": 6300,
+              "cer": 0.47333333333333333
+            },
+            "label": {
+              "substitutions": 1256,
+              "deletions": 895,
+              "insertions": 2521,
+              "errorCount": 4672,
+              "characterDenominator": 9552,
+              "cer": 0.48911222780569513
+            },
+            "required": {
+              "substitutions": 152,
+              "deletions": 54,
+              "insertions": 208,
+              "errorCount": 414,
+              "characterDenominator": 880,
+              "cer": 0.47045454545454546
+            },
+            "mixed-source-categories": {
+              "substitutions": 72,
+              "deletions": 2,
+              "insertions": 88,
+              "errorCount": 162,
+              "characterDenominator": 251,
+              "cer": 0.6454183266932271
+            },
+            "instruction": {
+              "substitutions": 60,
+              "deletions": 378,
+              "insertions": 111,
+              "errorCount": 549,
+              "characterDenominator": 2820,
+              "cer": 0.1946808510638298
+            },
+            "condition-digit": {
+              "substitutions": 240,
+              "deletions": 225,
+              "insertions": 60,
+              "errorCount": 525,
+              "characterDenominator": 1440,
+              "cer": 0.3645833333333333
+            },
+            "unmatched-evidence-in-complete-text-page": {
+              "substitutions": 0,
+              "deletions": 0,
+              "insertions": 543,
+              "errorCount": 543,
+              "characterDenominator": 0,
+              "cer": null
+            },
+            "prefilled-digit": {
+              "substitutions": 4,
+              "deletions": 0,
+              "insertions": 0,
+              "errorCount": 4,
+              "characterDenominator": 189,
+              "cer": 0.021164021164021163
+            },
+            "option": {
+              "substitutions": 228,
+              "deletions": 22,
+              "insertions": 345,
+              "errorCount": 595,
+              "characterDenominator": 400,
+              "cer": 1.4875
+            }
+          },
+          "characterUnit": "NFC Unicode code points",
+          "categoryScope": "Pure fixed source categories; mixed-source-categories and unmatched-evidence buckets retained. Source-all-visible character domains; unknown printed scope unassessed. Selected raw OCR distinct from merged analysis fidelity and native-method merged subset.",
+          "bootstrapCer": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 240,
+            "stratumCount": 4,
+            "twoSided95": [
+              0.36458699789809246,
+              0.45788766676630294
+            ],
+            "oneSided95Lower": 0.3722550822848618,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 12
+          },
+          "unassessedEvidenceCount": 14,
+          "unassessedRecognizedCharacterCount": 126
+        },
+        "selectedRawRasterText": {
+          "substitutions": 5083,
+          "deletions": 3399,
+          "insertions": 4598,
+          "errorCount": 13080,
+          "characterDenominator": 35431,
+          "recognizedCharacterCount": 36630,
+          "cer": 0.3691682424995061,
+          "qualityStrata": {
+            "good300dpi": {
+              "substitutions": 848,
+              "deletions": 276,
+              "insertions": 1410,
+              "errorCount": 2534,
+              "characterDenominator": 10614,
+              "cer": 0.23874128509515735
+            },
+            "degraded150dpi": {
+              "substitutions": 538,
+              "deletions": 164,
+              "insertions": 636,
+              "errorCount": 1338,
+              "characterDenominator": 5316,
+              "cer": 0.2516930022573363
+            },
+            "degraded75dpi": {
+              "substitutions": 2771,
+              "deletions": 468,
+              "insertions": 810,
+              "errorCount": 4049,
+              "characterDenominator": 5316,
+              "cer": 0.7616629044394282
+            },
+            "skew": {
+              "substitutions": 433,
+              "deletions": 141,
+              "insertions": 700,
+              "errorCount": 1274,
+              "characterDenominator": 5316,
+              "cer": 0.23965387509405567
+            },
+            "shadow": {
+              "substitutions": 205,
+              "deletions": 2266,
+              "insertions": 510,
+              "errorCount": 2981,
+              "characterDenominator": 5316,
+              "cer": 0.5607599699021821
+            },
+            "noise": {
+              "substitutions": 288,
+              "deletions": 84,
+              "insertions": 532,
+              "errorCount": 904,
+              "characterDenominator": 3553,
+              "cer": 0.25443287362792005
+            }
+          },
+          "categoryStrata": {
+            "general": {
+              "substitutions": 121,
+              "deletions": 128,
+              "insertions": 55,
+              "errorCount": 304,
+              "characterDenominator": 1539,
+              "cer": 0.19753086419753085
+            },
+            "condition": {
+              "substitutions": 1357,
+              "deletions": 1031,
+              "insertions": 82,
+              "errorCount": 2470,
+              "characterDenominator": 12060,
+              "cer": 0.20480928689883915
+            },
+            "name-digit": {
+              "substitutions": 1273,
+              "deletions": 626,
+              "insertions": 694,
+              "errorCount": 2593,
+              "characterDenominator": 6300,
+              "cer": 0.4115873015873016
+            },
+            "label": {
+              "substitutions": 1530,
+              "deletions": 923,
+              "insertions": 2566,
+              "errorCount": 5019,
+              "characterDenominator": 9552,
+              "cer": 0.5254396984924623
+            },
+            "required": {
+              "substitutions": 198,
+              "deletions": 64,
+              "insertions": 64,
+              "errorCount": 326,
+              "characterDenominator": 880,
+              "cer": 0.3704545454545455
+            },
+            "mixed-source-categories": {
+              "substitutions": 72,
+              "deletions": 2,
+              "insertions": 88,
+              "errorCount": 162,
+              "characterDenominator": 251,
+              "cer": 0.6454183266932271
+            },
+            "instruction": {
+              "substitutions": 60,
+              "deletions": 378,
+              "insertions": 111,
+              "errorCount": 549,
+              "characterDenominator": 2820,
+              "cer": 0.1946808510638298
+            },
+            "condition-digit": {
+              "substitutions": 240,
+              "deletions": 225,
+              "insertions": 60,
+              "errorCount": 525,
+              "characterDenominator": 1440,
+              "cer": 0.3645833333333333
+            },
+            "unmatched-evidence-in-complete-text-page": {
+              "substitutions": 0,
+              "deletions": 0,
+              "insertions": 533,
+              "errorCount": 533,
+              "characterDenominator": 0,
+              "cer": null
+            },
+            "prefilled-digit": {
+              "substitutions": 4,
+              "deletions": 0,
+              "insertions": 0,
+              "errorCount": 4,
+              "characterDenominator": 189,
+              "cer": 0.021164021164021163
+            },
+            "option": {
+              "substitutions": 228,
+              "deletions": 22,
+              "insertions": 345,
+              "errorCount": 595,
+              "characterDenominator": 400,
+              "cer": 1.4875
+            }
+          },
+          "characterUnit": "NFC Unicode code points",
+          "categoryScope": "Pure fixed source categories; mixed-source-categories and unmatched-evidence buckets retained. Source-all-visible character domains; unknown printed scope unassessed. Selected raw OCR distinct from merged analysis fidelity and native-method merged subset.",
+          "bootstrapCer": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 240,
+            "stratumCount": 4,
+            "twoSided95": [
+              0.32703684352463464,
+              0.413468176560038
+            ],
+            "oneSided95Lower": 0.3333328671980609,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 12
+          },
+          "unassessedEvidenceCount": 7,
+          "unassessedRecognizedCharacterCount": 63
+        },
+        "nativeMethodMergedWithinView": {
+          "substitutions": 0,
+          "deletions": 2779,
+          "insertions": 0,
+          "errorCount": 2779,
+          "characterDenominator": 67520,
+          "recognizedCharacterCount": 64741,
+          "cer": 0.04115817535545024,
+          "qualityStrata": {
+            "native-text": {
+              "substitutions": 0,
+              "deletions": 0,
+              "insertions": 0,
+              "errorCount": 0,
+              "characterDenominator": 61586,
+              "cer": 0
+            },
+            "good300dpi": {
+              "substitutions": 0,
+              "deletions": 996,
+              "insertions": 0,
+              "errorCount": 996,
+              "characterDenominator": 1778,
+              "cer": 0.5601799775028121
+            },
+            "degraded150dpi": {
+              "substitutions": 0,
+              "deletions": 464,
+              "insertions": 0,
+              "errorCount": 464,
+              "characterDenominator": 890,
+              "cer": 0.5213483146067416
+            },
+            "degraded75dpi": {
+              "substitutions": 0,
+              "deletions": 312,
+              "insertions": 0,
+              "errorCount": 312,
+              "characterDenominator": 890,
+              "cer": 0.350561797752809
+            },
+            "skew": {
+              "substitutions": 0,
+              "deletions": 178,
+              "insertions": 0,
+              "errorCount": 178,
+              "characterDenominator": 890,
+              "cer": 0.2
+            },
+            "shadow": {
+              "substitutions": 0,
+              "deletions": 497,
+              "insertions": 0,
+              "errorCount": 497,
+              "characterDenominator": 890,
+              "cer": 0.5584269662921348
+            },
+            "noise": {
+              "substitutions": 0,
+              "deletions": 332,
+              "insertions": 0,
+              "errorCount": 332,
+              "characterDenominator": 596,
+              "cer": 0.5570469798657718
+            }
+          },
+          "categoryStrata": {
+            "general": {
+              "substitutions": 0,
+              "deletions": 50,
+              "insertions": 0,
+              "errorCount": 50,
+              "characterDenominator": 2736,
+              "cer": 0.01827485380116959
+            },
+            "condition": {
+              "substitutions": 0,
+              "deletions": 747,
+              "insertions": 0,
+              "errorCount": 747,
+              "characterDenominator": 22560,
+              "cer": 0.03311170212765958
+            },
+            "name-digit": {
+              "substitutions": 0,
+              "deletions": 0,
+              "insertions": 0,
+              "errorCount": 0,
+              "characterDenominator": 12960,
+              "cer": 0
+            },
+            "label": {
+              "substitutions": 0,
+              "deletions": 1906,
+              "insertions": 0,
+              "errorCount": 1906,
+              "characterDenominator": 14056,
+              "cer": 0.13560045532157086
+            },
+            "required": {
+              "substitutions": 0,
+              "deletions": 76,
+              "insertions": 0,
+              "errorCount": 76,
+              "characterDenominator": 1280,
+              "cer": 0.059375
+            },
+            "mixed-source-categories": {
+              "substitutions": 0,
+              "deletions": 0,
+              "insertions": 0,
+              "errorCount": 0,
+              "characterDenominator": 433,
+              "cer": 0
+            },
+            "option": {
+              "substitutions": 0,
+              "deletions": 0,
+              "insertions": 0,
+              "errorCount": 0,
+              "characterDenominator": 400,
+              "cer": 0
+            },
+            "instruction": {
+              "substitutions": 0,
+              "deletions": 0,
+              "insertions": 0,
+              "errorCount": 0,
+              "characterDenominator": 8460,
+              "cer": 0
+            },
+            "condition-digit": {
+              "substitutions": 0,
+              "deletions": 0,
+              "insertions": 0,
+              "errorCount": 0,
+              "characterDenominator": 4320,
+              "cer": 0
+            },
+            "prefilled-digit": {
+              "substitutions": 0,
+              "deletions": 0,
+              "insertions": 0,
+              "errorCount": 0,
+              "characterDenominator": 315,
+              "cer": 0
+            }
+          },
+          "characterUnit": "NFC Unicode code points",
+          "categoryScope": "Pure fixed source categories; mixed-source-categories and unmatched-evidence buckets retained. Source-all-visible character domains; unknown printed scope unassessed. Selected raw OCR distinct from merged analysis fidelity and native-method merged subset.",
+          "bootstrapCer": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 240,
+            "stratumCount": 4,
+            "twoSided95": [
+              0.03249584277949591,
+              0.049728596364289716
+            ],
+            "oneSided95Lower": 0.03390838957115603,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 12
+          },
+          "unassessedEvidenceCount": 0,
+          "unassessedRecognizedCharacterCount": 0
+        }
+      },
+      "officialPartial": {
+        "documents": 9,
+        "catalogFields": 273,
+        "geometry": {
+          "tp": 266,
+          "fp": 223,
+          "fn": 7,
+          "truthCount": 273,
+          "predictionCount": 489,
+          "precision": 0.5439672801635992,
+          "recall": 0.9743589743589743,
+          "bootstrapPrecision": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 9,
+            "stratumCount": 2,
+            "twoSided95": [
+              0.3159159821011154,
+              0.8609271523178808
+            ],
+            "oneSided95Lower": 0.34900542495479203,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 9
+          },
+          "bootstrapRecall": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 9,
+            "stratumCount": 2,
+            "twoSided95": [
+              0.9461883408071748,
+              1
+            ],
+            "oneSided95Lower": 0.9488054607508533,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 9
+          }
+        },
+        "semanticGeometry": {
+          "tp": 0,
+          "fp": 240,
+          "fn": 24,
+          "truthCount": 24,
+          "predictionCount": 240,
+          "precision": 0,
+          "recall": 0,
+          "bootstrapPrecision": {
+            "iterations": 10000,
+            "validResamples": 9967,
+            "seed": 20261013,
+            "documentCount": 9,
+            "stratumCount": 2,
+            "twoSided95": [
+              0,
+              0
+            ],
+            "oneSided95Lower": 0,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 9
+          },
+          "bootstrapRecall": {
+            "iterations": 10000,
+            "validResamples": 9020,
+            "seed": 20261013,
+            "documentCount": 9,
+            "stratumCount": 2,
+            "twoSided95": [
+              0,
+              0
+            ],
+            "oneSided95Lower": 0,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 9
+          }
+        },
+        "unknownCandidateCount": 1156,
+        "noInputPages": {
+          "denominator": 7,
+          "falseCandidates": 180
+        },
+        "formalWholePublicPrecision": false
+      },
+      "caseErrors": 0,
+      "incomplete": 0,
+      "ownerPid0": true,
+      "provenanceValid": true,
+      "measurementComplete": true
+    },
+    {
+      "label": "corrected-d5ce15ec-train-v5",
+      "sourceBuildHash": "d5ce15ec4eae721b0c7cb51a05584c09c7c009cb0fc47a15b9d6047a551b4175",
+      "generatedTrain": {
+        "documents": 240,
+        "catalogFields": 5760,
+        "eligibleFields": 4800,
+        "geometry": {
+          "tp": 5595,
+          "fp": 165,
+          "fn": 165,
+          "truthCount": 5760,
+          "predictionCount": 5760,
+          "precision": 0.9713541666666666,
+          "recall": 0.9713541666666666,
+          "bootstrapPrecision": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 240,
+            "stratumCount": 4,
+            "twoSided95": [
+              0.9650033133983056,
+              0.976873687716885
+            ],
+            "oneSided95Lower": 0.9661924946855548,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 12
+          },
+          "bootstrapRecall": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 240,
+            "stratumCount": 4,
+            "twoSided95": [
+              0.9654513888888889,
+              0.9767361111111111
+            ],
+            "oneSided95Lower": 0.9664930555555555,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 12
+          }
+        },
+        "semanticGeometry": {
+          "tp": 4054,
+          "fp": 1706,
+          "fn": 1706,
+          "truthCount": 5760,
+          "predictionCount": 5760,
+          "precision": 0.7038194444444444,
+          "recall": 0.7038194444444444,
+          "bootstrapPrecision": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 240,
+            "stratumCount": 4,
+            "twoSided95": [
+              0.6840461686676543,
+              0.72348246812221
+            ],
+            "oneSided95Lower": 0.6875,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 12
+          },
+          "bootstrapRecall": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 240,
+            "stratumCount": 4,
+            "twoSided95": [
+              0.6842013888888889,
+              0.7236111111111111
+            ],
+            "oneSided95Lower": 0.6876736111111111,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 12
+          }
+        },
+        "attributes": {
+          "labels": {
+            "correct": 4467,
+            "wrong": 1128,
+            "knownTruthDenominator": 5760,
+            "matchedKnownTruthCount": 5595,
+            "unassessedMissingDetection": 165,
+            "truthUnknownCount": 0
+          },
+          "roles": {
+            "correct": 1592,
+            "wrong": 12,
+            "unknown": 3991,
+            "knownTruthDenominator": 5760,
+            "matchedKnownTruthCount": 5595,
+            "unassessedMissingDetection": 165,
+            "truthUnknownCount": 0
+          },
+          "kinds": {
+            "correct": 4554,
+            "wrong": 1041,
+            "unknown": 0,
+            "knownTruthDenominator": 5760,
+            "matchedKnownTruthCount": 5595,
+            "unassessedMissingDetection": 165,
+            "truthUnknownCount": 0
+          },
+          "required": {
+            "correct": 1920,
+            "wrong": 0,
+            "unknown": 3675,
+            "knownTruthDenominator": 5760,
+            "matchedKnownTruthCount": 5595,
+            "unassessedMissingDetection": 165,
+            "truthUnknownCount": 0
+          },
+          "conditions": {
+            "correct": 4863,
+            "wrong": 700,
+            "unknown": 32,
+            "knownTruthDenominator": 5760,
+            "matchedKnownTruthCount": 5595,
+            "unassessedMissingDetection": 165,
+            "truthUnknownCount": 0
+          }
+        },
+        "highConfidence": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4800,
+          "truthCount": 4800,
+          "predictionCount": 0,
+          "proposalCount": 0,
+          "scorableProposalCount": 0,
+          "unassessedProposalCount": 0,
+          "errorCount": 0,
+          "allEligibleTruthCount": 4800,
+          "coverage": 0,
+          "precision": null,
+          "precisionUndefinedReason": "zero-scorable-proposal-denominator"
+        },
+        "visibleRasterMergedText": {
+          "substitutions": 4407,
+          "deletions": 3299,
+          "insertions": 6851,
+          "errorCount": 14557,
+          "characterDenominator": 35431,
+          "recognizedCharacterCount": 38983,
+          "cer": 0.4108549010753295,
+          "qualityStrata": {
+            "good300dpi": {
+              "substitutions": 761,
+              "deletions": 269,
+              "insertions": 1967,
+              "errorCount": 2997,
+              "characterDenominator": 10614,
+              "cer": 0.2823629169022046
+            },
+            "degraded150dpi": {
+              "substitutions": 481,
+              "deletions": 158,
+              "insertions": 909,
+              "errorCount": 1548,
+              "characterDenominator": 5316,
+              "cer": 0.291196388261851
+            },
+            "degraded75dpi": {
+              "substitutions": 2340,
+              "deletions": 401,
+              "insertions": 1254,
+              "errorCount": 3995,
+              "characterDenominator": 5316,
+              "cer": 0.7515048908954101
+            },
+            "skew": {
+              "substitutions": 397,
+              "deletions": 132,
+              "insertions": 1206,
+              "errorCount": 1735,
+              "characterDenominator": 5316,
+              "cer": 0.3263732129420617
+            },
+            "shadow": {
+              "substitutions": 167,
+              "deletions": 2258,
+              "insertions": 781,
+              "errorCount": 3206,
+              "characterDenominator": 5316,
+              "cer": 0.6030850263355907
+            },
+            "noise": {
+              "substitutions": 261,
+              "deletions": 81,
+              "insertions": 734,
+              "errorCount": 1076,
+              "characterDenominator": 3553,
+              "cer": 0.3028426681677456
+            }
+          },
+          "categoryStrata": {
+            "general": {
+              "substitutions": 115,
+              "deletions": 128,
+              "insertions": 176,
+              "errorCount": 419,
+              "characterDenominator": 1539,
+              "cer": 0.27225471085120206
+            },
+            "condition": {
+              "substitutions": 1156,
+              "deletions": 970,
+              "insertions": 1566,
+              "errorCount": 3692,
+              "characterDenominator": 12060,
+              "cer": 0.3061359867330017
+            },
+            "name-digit": {
+              "substitutions": 1124,
+              "deletions": 625,
+              "insertions": 1233,
+              "errorCount": 2982,
+              "characterDenominator": 6300,
+              "cer": 0.47333333333333333
+            },
+            "label": {
+              "substitutions": 1256,
+              "deletions": 895,
+              "insertions": 2521,
+              "errorCount": 4672,
+              "characterDenominator": 9552,
+              "cer": 0.48911222780569513
+            },
+            "required": {
+              "substitutions": 152,
+              "deletions": 54,
+              "insertions": 208,
+              "errorCount": 414,
+              "characterDenominator": 880,
+              "cer": 0.47045454545454546
+            },
+            "mixed-source-categories": {
+              "substitutions": 72,
+              "deletions": 2,
+              "insertions": 88,
+              "errorCount": 162,
+              "characterDenominator": 251,
+              "cer": 0.6454183266932271
+            },
+            "instruction": {
+              "substitutions": 60,
+              "deletions": 378,
+              "insertions": 111,
+              "errorCount": 549,
+              "characterDenominator": 2820,
+              "cer": 0.1946808510638298
+            },
+            "condition-digit": {
+              "substitutions": 240,
+              "deletions": 225,
+              "insertions": 60,
+              "errorCount": 525,
+              "characterDenominator": 1440,
+              "cer": 0.3645833333333333
+            },
+            "unmatched-evidence-in-complete-text-page": {
+              "substitutions": 0,
+              "deletions": 0,
+              "insertions": 543,
+              "errorCount": 543,
+              "characterDenominator": 0,
+              "cer": null
+            },
+            "prefilled-digit": {
+              "substitutions": 4,
+              "deletions": 0,
+              "insertions": 0,
+              "errorCount": 4,
+              "characterDenominator": 189,
+              "cer": 0.021164021164021163
+            },
+            "option": {
+              "substitutions": 228,
+              "deletions": 22,
+              "insertions": 345,
+              "errorCount": 595,
+              "characterDenominator": 400,
+              "cer": 1.4875
+            }
+          },
+          "characterUnit": "NFC Unicode code points",
+          "categoryScope": "Pure fixed source categories; mixed-source-categories and unmatched-evidence buckets retained. Source-all-visible character domains; unknown printed scope unassessed. Selected raw OCR distinct from merged analysis fidelity and native-method merged subset.",
+          "bootstrapCer": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 240,
+            "stratumCount": 4,
+            "twoSided95": [
+              0.36458699789809246,
+              0.45788766676630294
+            ],
+            "oneSided95Lower": 0.3722550822848618,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 12
+          },
+          "unassessedEvidenceCount": 14,
+          "unassessedRecognizedCharacterCount": 126
+        },
+        "selectedRawRasterText": {
+          "substitutions": 5083,
+          "deletions": 3399,
+          "insertions": 4598,
+          "errorCount": 13080,
+          "characterDenominator": 35431,
+          "recognizedCharacterCount": 36630,
+          "cer": 0.3691682424995061,
+          "qualityStrata": {
+            "good300dpi": {
+              "substitutions": 848,
+              "deletions": 276,
+              "insertions": 1410,
+              "errorCount": 2534,
+              "characterDenominator": 10614,
+              "cer": 0.23874128509515735
+            },
+            "degraded150dpi": {
+              "substitutions": 538,
+              "deletions": 164,
+              "insertions": 636,
+              "errorCount": 1338,
+              "characterDenominator": 5316,
+              "cer": 0.2516930022573363
+            },
+            "degraded75dpi": {
+              "substitutions": 2771,
+              "deletions": 468,
+              "insertions": 810,
+              "errorCount": 4049,
+              "characterDenominator": 5316,
+              "cer": 0.7616629044394282
+            },
+            "skew": {
+              "substitutions": 433,
+              "deletions": 141,
+              "insertions": 700,
+              "errorCount": 1274,
+              "characterDenominator": 5316,
+              "cer": 0.23965387509405567
+            },
+            "shadow": {
+              "substitutions": 205,
+              "deletions": 2266,
+              "insertions": 510,
+              "errorCount": 2981,
+              "characterDenominator": 5316,
+              "cer": 0.5607599699021821
+            },
+            "noise": {
+              "substitutions": 288,
+              "deletions": 84,
+              "insertions": 532,
+              "errorCount": 904,
+              "characterDenominator": 3553,
+              "cer": 0.25443287362792005
+            }
+          },
+          "categoryStrata": {
+            "general": {
+              "substitutions": 121,
+              "deletions": 128,
+              "insertions": 55,
+              "errorCount": 304,
+              "characterDenominator": 1539,
+              "cer": 0.19753086419753085
+            },
+            "condition": {
+              "substitutions": 1357,
+              "deletions": 1031,
+              "insertions": 82,
+              "errorCount": 2470,
+              "characterDenominator": 12060,
+              "cer": 0.20480928689883915
+            },
+            "name-digit": {
+              "substitutions": 1273,
+              "deletions": 626,
+              "insertions": 694,
+              "errorCount": 2593,
+              "characterDenominator": 6300,
+              "cer": 0.4115873015873016
+            },
+            "label": {
+              "substitutions": 1530,
+              "deletions": 923,
+              "insertions": 2566,
+              "errorCount": 5019,
+              "characterDenominator": 9552,
+              "cer": 0.5254396984924623
+            },
+            "required": {
+              "substitutions": 198,
+              "deletions": 64,
+              "insertions": 64,
+              "errorCount": 326,
+              "characterDenominator": 880,
+              "cer": 0.3704545454545455
+            },
+            "mixed-source-categories": {
+              "substitutions": 72,
+              "deletions": 2,
+              "insertions": 88,
+              "errorCount": 162,
+              "characterDenominator": 251,
+              "cer": 0.6454183266932271
+            },
+            "instruction": {
+              "substitutions": 60,
+              "deletions": 378,
+              "insertions": 111,
+              "errorCount": 549,
+              "characterDenominator": 2820,
+              "cer": 0.1946808510638298
+            },
+            "condition-digit": {
+              "substitutions": 240,
+              "deletions": 225,
+              "insertions": 60,
+              "errorCount": 525,
+              "characterDenominator": 1440,
+              "cer": 0.3645833333333333
+            },
+            "unmatched-evidence-in-complete-text-page": {
+              "substitutions": 0,
+              "deletions": 0,
+              "insertions": 533,
+              "errorCount": 533,
+              "characterDenominator": 0,
+              "cer": null
+            },
+            "prefilled-digit": {
+              "substitutions": 4,
+              "deletions": 0,
+              "insertions": 0,
+              "errorCount": 4,
+              "characterDenominator": 189,
+              "cer": 0.021164021164021163
+            },
+            "option": {
+              "substitutions": 228,
+              "deletions": 22,
+              "insertions": 345,
+              "errorCount": 595,
+              "characterDenominator": 400,
+              "cer": 1.4875
+            }
+          },
+          "characterUnit": "NFC Unicode code points",
+          "categoryScope": "Pure fixed source categories; mixed-source-categories and unmatched-evidence buckets retained. Source-all-visible character domains; unknown printed scope unassessed. Selected raw OCR distinct from merged analysis fidelity and native-method merged subset.",
+          "bootstrapCer": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 240,
+            "stratumCount": 4,
+            "twoSided95": [
+              0.32703684352463464,
+              0.413468176560038
+            ],
+            "oneSided95Lower": 0.3333328671980609,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 12
+          },
+          "unassessedEvidenceCount": 7,
+          "unassessedRecognizedCharacterCount": 63
+        },
+        "nativeMethodMergedWithinView": {
+          "substitutions": 0,
+          "deletions": 2779,
+          "insertions": 0,
+          "errorCount": 2779,
+          "characterDenominator": 67520,
+          "recognizedCharacterCount": 64741,
+          "cer": 0.04115817535545024,
+          "qualityStrata": {
+            "native-text": {
+              "substitutions": 0,
+              "deletions": 0,
+              "insertions": 0,
+              "errorCount": 0,
+              "characterDenominator": 61586,
+              "cer": 0
+            },
+            "good300dpi": {
+              "substitutions": 0,
+              "deletions": 996,
+              "insertions": 0,
+              "errorCount": 996,
+              "characterDenominator": 1778,
+              "cer": 0.5601799775028121
+            },
+            "degraded150dpi": {
+              "substitutions": 0,
+              "deletions": 464,
+              "insertions": 0,
+              "errorCount": 464,
+              "characterDenominator": 890,
+              "cer": 0.5213483146067416
+            },
+            "degraded75dpi": {
+              "substitutions": 0,
+              "deletions": 312,
+              "insertions": 0,
+              "errorCount": 312,
+              "characterDenominator": 890,
+              "cer": 0.350561797752809
+            },
+            "skew": {
+              "substitutions": 0,
+              "deletions": 178,
+              "insertions": 0,
+              "errorCount": 178,
+              "characterDenominator": 890,
+              "cer": 0.2
+            },
+            "shadow": {
+              "substitutions": 0,
+              "deletions": 497,
+              "insertions": 0,
+              "errorCount": 497,
+              "characterDenominator": 890,
+              "cer": 0.5584269662921348
+            },
+            "noise": {
+              "substitutions": 0,
+              "deletions": 332,
+              "insertions": 0,
+              "errorCount": 332,
+              "characterDenominator": 596,
+              "cer": 0.5570469798657718
+            }
+          },
+          "categoryStrata": {
+            "general": {
+              "substitutions": 0,
+              "deletions": 50,
+              "insertions": 0,
+              "errorCount": 50,
+              "characterDenominator": 2736,
+              "cer": 0.01827485380116959
+            },
+            "condition": {
+              "substitutions": 0,
+              "deletions": 747,
+              "insertions": 0,
+              "errorCount": 747,
+              "characterDenominator": 22560,
+              "cer": 0.03311170212765958
+            },
+            "name-digit": {
+              "substitutions": 0,
+              "deletions": 0,
+              "insertions": 0,
+              "errorCount": 0,
+              "characterDenominator": 12960,
+              "cer": 0
+            },
+            "label": {
+              "substitutions": 0,
+              "deletions": 1906,
+              "insertions": 0,
+              "errorCount": 1906,
+              "characterDenominator": 14056,
+              "cer": 0.13560045532157086
+            },
+            "required": {
+              "substitutions": 0,
+              "deletions": 76,
+              "insertions": 0,
+              "errorCount": 76,
+              "characterDenominator": 1280,
+              "cer": 0.059375
+            },
+            "mixed-source-categories": {
+              "substitutions": 0,
+              "deletions": 0,
+              "insertions": 0,
+              "errorCount": 0,
+              "characterDenominator": 433,
+              "cer": 0
+            },
+            "option": {
+              "substitutions": 0,
+              "deletions": 0,
+              "insertions": 0,
+              "errorCount": 0,
+              "characterDenominator": 400,
+              "cer": 0
+            },
+            "instruction": {
+              "substitutions": 0,
+              "deletions": 0,
+              "insertions": 0,
+              "errorCount": 0,
+              "characterDenominator": 8460,
+              "cer": 0
+            },
+            "condition-digit": {
+              "substitutions": 0,
+              "deletions": 0,
+              "insertions": 0,
+              "errorCount": 0,
+              "characterDenominator": 4320,
+              "cer": 0
+            },
+            "prefilled-digit": {
+              "substitutions": 0,
+              "deletions": 0,
+              "insertions": 0,
+              "errorCount": 0,
+              "characterDenominator": 315,
+              "cer": 0
+            }
+          },
+          "characterUnit": "NFC Unicode code points",
+          "categoryScope": "Pure fixed source categories; mixed-source-categories and unmatched-evidence buckets retained. Source-all-visible character domains; unknown printed scope unassessed. Selected raw OCR distinct from merged analysis fidelity and native-method merged subset.",
+          "bootstrapCer": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 240,
+            "stratumCount": 4,
+            "twoSided95": [
+              0.03249584277949591,
+              0.049728596364289716
+            ],
+            "oneSided95Lower": 0.03390838957115603,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 12
+          },
+          "unassessedEvidenceCount": 0,
+          "unassessedRecognizedCharacterCount": 0
+        }
+      },
+      "officialPartial": {
+        "documents": 9,
+        "catalogFields": 273,
+        "geometry": {
+          "tp": 266,
+          "fp": 209,
+          "fn": 7,
+          "truthCount": 273,
+          "predictionCount": 475,
+          "precision": 0.56,
+          "recall": 0.9743589743589743,
+          "bootstrapPrecision": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 9,
+            "stratumCount": 2,
+            "twoSided95": [
+              0.3366174055829228,
+              0.8609271523178808
+            ],
+            "oneSided95Lower": 0.3676190476190476,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 9
+          },
+          "bootstrapRecall": {
+            "iterations": 10000,
+            "validResamples": 10000,
+            "seed": 20261013,
+            "documentCount": 9,
+            "stratumCount": 2,
+            "twoSided95": [
+              0.9461883408071748,
+              1
+            ],
+            "oneSided95Lower": 0.9488054607508533,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 9
+          }
+        },
+        "semanticGeometry": {
+          "tp": 0,
+          "fp": 226,
+          "fn": 24,
+          "truthCount": 24,
+          "predictionCount": 226,
+          "precision": 0,
+          "recall": 0,
+          "bootstrapPrecision": {
+            "iterations": 10000,
+            "validResamples": 9967,
+            "seed": 20261013,
+            "documentCount": 9,
+            "stratumCount": 2,
+            "twoSided95": [
+              0,
+              0
+            ],
+            "oneSided95Lower": 0,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 9
+          },
+          "bootstrapRecall": {
+            "iterations": 10000,
+            "validResamples": 9020,
+            "seed": 20261013,
+            "documentCount": 9,
+            "stratumCount": 2,
+            "twoSided95": [
+              0,
+              0
+            ],
+            "oneSided95Lower": 0,
+            "samplingUnit": "whole-document-stratified",
+            "familyCount": 9
+          }
+        },
+        "unknownCandidateCount": 1127,
+        "noInputPages": {
+          "denominator": 7,
+          "falseCandidates": 166
+        },
+        "formalWholePublicPrecision": false
+      },
+      "caseErrors": 0,
+      "incomplete": 0,
+      "ownerPid0": true,
+      "provenanceValid": true,
+      "measurementComplete": true
+    }
+  ],
+  "pins": [
+    {
+      "path": "E:\\others\\silverguide-qa\\accuracy/runs/baseline-3b67-train-v2/run.json",
+      "sha256": "85f3a6c96785a3fe82d01cd3cfa5106423d3ffe75fbd179deec06c2d1571f5fa"
+    },
+    {
+      "path": "E:\\others\\silverguide-qa\\accuracy/runs/baseline-3b67-train-v2/inputs.json",
+      "sha256": "eb0a3a202f86e258d7dd15cd830ff60d6554070be05db232647c49a414cfd668"
+    },
+    {
+      "path": "E:\\others\\silverguide-qa\\accuracy/runs/baseline-3b67-train-v2/metrics.json",
+      "sha256": "5c00dcd983a31206e9c3c790d1ec9fe133cff1dfba5718f1857a632e85552e9d"
+    },
+    {
+      "path": "E:\\others\\silverguide-qa\\accuracy/runs/baseline-3b67-train-v2/text-domains-v5.json",
+      "sha256": "824b92833c08ecbdef542721d58150c5824fd81e650c84c184abb7b143f2140f"
+    },
+    {
+      "path": "E:\\others\\silverguide-qa\\accuracy/runs/corrected-f53f383f-train-v3/run.json",
+      "sha256": "6b804f82e96425ec16d7dbbe0f03abe6ad9cea5b37d758c287453b5af0d7ca89"
+    },
+    {
+      "path": "E:\\others\\silverguide-qa\\accuracy/runs/corrected-f53f383f-train-v3/inputs.json",
+      "sha256": "a563e3a356ef0439bd5a4d541118bb7a63ecb4ebedb172685ea33872a0cf3822"
+    },
+    {
+      "path": "E:\\others\\silverguide-qa\\accuracy/runs/corrected-f53f383f-train-v3/metrics.json",
+      "sha256": "2cb9b25df2e5b5b51f733f1a84d9efe047442f738672368b16cff037e0bc7904"
+    },
+    {
+      "path": "E:\\others\\silverguide-qa\\accuracy/runs/corrected-f53f383f-train-v3/text-domains-v5.json",
+      "sha256": "7c69e53ee394dfb0b27d21023b4c0a1c53ab6c87f7bcaa22ec0e284381b9eb99"
+    },
+    {
+      "path": "E:\\others\\silverguide-qa\\accuracy/runs/corrected-d4c79584-train-v4/run.json",
+      "sha256": "f16850b7043eae864c1a1cd92a41961effcd399637e4ba0a0536fe062613715c"
+    },
+    {
+      "path": "E:\\others\\silverguide-qa\\accuracy/runs/corrected-d4c79584-train-v4/inputs.json",
+      "sha256": "c086cd2b98b530a66e6bc330484971427d77ab0fdec2d6bbaa7277b7240665c0"
+    },
+    {
+      "path": "E:\\others\\silverguide-qa\\accuracy/runs/corrected-d4c79584-train-v4/metrics.json",
+      "sha256": "504689721de21753df0e7d6fddf97e2c22b0a60aab692608273cb552eac4ad85"
+    },
+    {
+      "path": "E:\\others\\silverguide-qa\\accuracy/runs/corrected-d5ce15ec-train-v5/run.json",
+      "sha256": "6048925473655a5b86e61937b8be51a290dd542fe0b9934e9afa6c7774729c0d"
+    },
+    {
+      "path": "E:\\others\\silverguide-qa\\accuracy/runs/corrected-d5ce15ec-train-v5/inputs.json",
+      "sha256": "e4606e365d4ae02db3d43c976f9c71a3499d637cc7a69af2bc51b6e4463a3e2a"
+    },
+    {
+      "path": "E:\\others\\silverguide-qa\\accuracy/runs/corrected-d5ce15ec-train-v5/metrics.json",
+      "sha256": "eb3d386f549c29a7dc0feb045d691290b586fa80e4c3b981d549d959c206e668"
+    }
+  ]
+}

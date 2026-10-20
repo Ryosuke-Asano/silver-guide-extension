@@ -1,0 +1,448 @@
+{
+  "state": "functional-flow-and-reader-width-regression-pass",
+  "createdAtUtc": "2026-10-13T20:30:42.5757242Z",
+  "sourceHash": "b96c473355a5a9a81bba5874c0b463a8e7aabec4131d98630b87bfbea807a11f",
+  "build": {
+    "version": "2.0.0",
+    "browserTarget": "gecko",
+    "contentScriptFormat": "iife",
+    "sourceHash": "b96c473355a5a9a81bba5874c0b463a8e7aabec4131d98630b87bfbea807a11f",
+    "builtAt": "2026-10-13T20:14:07.082Z"
+  },
+  "browserVersion": "157.0.1",
+  "successRun": "E:\\others\\silverguide-qa\\performance\\http-runs\\floorp-http-v7-b96c4733-1791923334483-ea247fde",
+  "retainedPriorEvidence": [
+    {
+      "run": "floorp-http-v7-16f02cb2-1791919974533-e0c575c8",
+      "classification": "Old hash; narrow stale message harness timeout, native guard rejection worked; raw preserved"
+    },
+    {
+      "run": "floorp-http-v7-16f02cb2-1791920085641-ba916ae2",
+      "classification": "Old hash; HTTP functional pass with actual80px Reader overflow; raw preserved"
+    },
+    {
+      "run": "floorp-http-v7-b96c4733-1791923275372-e7f5a224",
+      "classification": "Same newhash; functional and normal width PASS; first optional zoom bound8 reached180%, not200. Raw preserved; external limit12 allowed actual200 after10 steps in fresh retry"
+    }
+  ],
+  "actualExec": [
+    {
+      "handle": 22769,
+      "terminal": true,
+      "exitCode": 0
+    },
+    {
+      "handle": 50147,
+      "terminal": true,
+      "exitCode": 0
+    }
+  ],
+  "readerGeometry": {
+    "normal": {
+      "bodyScrollWidth": 1038,
+      "documentScrollWidth": 1038,
+      "elements": [
+        {
+          "computed": {
+            "boxSizing": "border-box",
+            "fontSize": "20px",
+            "maxWidth": "840px",
+            "minWidth": "0px",
+            "overflowWrap": "anywhere",
+            "width": "736px"
+          },
+          "rect": {
+            "height": 723.5999755859375,
+            "left": 278,
+            "right": 1014,
+            "top": 606,
+            "width": 736
+          },
+          "selector": ".reader-article",
+          "withinHorizontalViewport": true
+        },
+        {
+          "computed": {
+            "boxSizing": "border-box",
+            "fontSize": "20px",
+            "maxWidth": "none",
+            "minWidth": "0px",
+            "overflowWrap": "anywhere",
+            "width": "736px"
+          },
+          "rect": {
+            "height": 60,
+            "left": 278,
+            "right": 1014,
+            "top": 705.2000122070312,
+            "width": 736
+          },
+          "selector": ".reader-article > label > input",
+          "withinHorizontalViewport": true
+        },
+        {
+          "computed": {
+            "boxSizing": "border-box",
+            "fontSize": "20px",
+            "maxWidth": "100%",
+            "minWidth": "44px",
+            "overflowWrap": "normal",
+            "width": "696px"
+          },
+          "rect": {
+            "height": 52,
+            "left": 298,
+            "right": 994,
+            "top": 907.2000122070312,
+            "width": 696
+          },
+          "selector": ".reader-block-tools select",
+          "withinHorizontalViewport": true
+        },
+        {
+          "computed": {
+            "boxSizing": "border-box",
+            "fontSize": "20px",
+            "maxWidth": "none",
+            "minWidth": "0px",
+            "overflowWrap": "anywhere",
+            "width": "230px"
+          },
+          "rect": {
+            "height": 128,
+            "left": 24,
+            "right": 254,
+            "top": 606,
+            "width": 230
+          },
+          "selector": ".reader-outline",
+          "withinHorizontalViewport": true
+        }
+      ],
+      "viewport": {
+        "devicePixelRatio": 1,
+        "height": 1006,
+        "visualViewportScale": 1,
+        "width": 1038
+      }
+    },
+    "fullPage200": {
+      "bodyScrollWidth": 519,
+      "documentScrollWidth": 519,
+      "elements": [
+        {
+          "computed": {
+            "boxSizing": "border-box",
+            "fontSize": "20px",
+            "maxWidth": "840px",
+            "minWidth": "0px",
+            "overflowWrap": "anywhere",
+            "width": "487px"
+          },
+          "rect": {
+            "height": 759.5999755859375,
+            "left": 16,
+            "right": 503,
+            "top": 1038.0999755859375,
+            "width": 487
+          },
+          "selector": ".reader-article",
+          "withinHorizontalViewport": true
+        },
+        {
+          "computed": {
+            "boxSizing": "border-box",
+            "fontSize": "20px",
+            "maxWidth": "none",
+            "minWidth": "0px",
+            "overflowWrap": "anywhere",
+            "width": "487px"
+          },
+          "rect": {
+            "height": 60,
+            "left": 16,
+            "right": 503,
+            "top": 1137.300048828125,
+            "width": 487
+          },
+          "selector": ".reader-article > label > input",
+          "withinHorizontalViewport": true
+        },
+        {
+          "computed": {
+            "boxSizing": "border-box",
+            "fontSize": "20px",
+            "maxWidth": "100%",
+            "minWidth": "44px",
+            "overflowWrap": "normal",
+            "width": "447px"
+          },
+          "rect": {
+            "height": 52,
+            "left": 36,
+            "right": 483,
+            "top": 1339.300048828125,
+            "width": 447
+          },
+          "selector": ".reader-block-tools select",
+          "withinHorizontalViewport": true
+        },
+        {
+          "computed": {
+            "boxSizing": "border-box",
+            "fontSize": "20px",
+            "maxWidth": "none",
+            "minWidth": "0px",
+            "overflowWrap": "anywhere",
+            "width": "487px"
+          },
+          "rect": {
+            "height": 150,
+            "left": 16,
+            "right": 503,
+            "top": 864.0999755859375,
+            "width": 487
+          },
+          "selector": ".reader-outline",
+          "withinHorizontalViewport": true
+        }
+      ],
+      "viewport": {
+        "devicePixelRatio": 2,
+        "height": 503,
+        "visualViewportScale": 1,
+        "width": 519
+      }
+    }
+  },
+  "browserZoom200": {
+    "scope": "Real native browser full-page zoom shortcuts. This is neither text-only zoom nor PDF canvas zoom. Read-only native fullZoom/textZoom and document metrics attest the scale.",
+    "trace": [
+      {
+        "stage": "initial",
+        "fullPageZoom": 1,
+        "textZoom": 1
+      },
+      {
+        "stage": "zoom-in",
+        "fullPageZoom": 1.100000023841858,
+        "textZoom": 1
+      },
+      {
+        "stage": "zoom-in",
+        "fullPageZoom": 1.2000000476837158,
+        "textZoom": 1
+      },
+      {
+        "stage": "zoom-in",
+        "fullPageZoom": 1.2999999523162842,
+        "textZoom": 1
+      },
+      {
+        "stage": "zoom-in",
+        "fullPageZoom": 1.399999976158142,
+        "textZoom": 1
+      },
+      {
+        "stage": "zoom-in",
+        "fullPageZoom": 1.5,
+        "textZoom": 1
+      },
+      {
+        "stage": "zoom-in",
+        "fullPageZoom": 1.600000023841858,
+        "textZoom": 1
+      },
+      {
+        "stage": "zoom-in",
+        "fullPageZoom": 1.7000000476837158,
+        "textZoom": 1
+      },
+      {
+        "stage": "zoom-in",
+        "fullPageZoom": 1.7999999523162842,
+        "textZoom": 1
+      },
+      {
+        "stage": "zoom-in",
+        "fullPageZoom": 1.899999976158142,
+        "textZoom": 1
+      },
+      {
+        "stage": "zoom-in",
+        "fullPageZoom": 2,
+        "textZoom": 1
+      },
+      {
+        "stage": "reset",
+        "fullPageZoom": 1,
+        "textZoom": 1
+      }
+    ],
+    "state": "actual200-confirmed"
+  },
+  "sourceBefore": {
+    "counters": {
+      "change": 0,
+      "input": 0,
+      "submit": 0
+    },
+    "hostname": "silverguide-http.test",
+    "isSecureContext": false,
+    "origin": "http://silverguide-http.test:55805",
+    "protocol": "http:",
+    "values": {
+      "address": "元の住所",
+      "name": "元の氏名"
+    }
+  },
+  "sourceApplied": {
+    "counters": {
+      "change": 2,
+      "input": 2,
+      "submit": 0
+    },
+    "hostname": "silverguide-http.test",
+    "isSecureContext": false,
+    "origin": "http://silverguide-http.test:55805",
+    "protocol": "http:",
+    "values": {
+      "address": "架空HTTP 一丁目",
+      "name": "架空HTTP 花子"
+    }
+  },
+  "sourceUndo": {
+    "counters": {
+      "change": 5,
+      "input": 12,
+      "submit": 0
+    },
+    "hostname": "silverguide-http.test",
+    "isSecureContext": false,
+    "origin": "http://silverguide-http.test:55805",
+    "protocol": "http:",
+    "values": {
+      "address": "元の住所",
+      "name": "本人が変更した氏名"
+    }
+  },
+  "staleRejection": {
+    "compareCreated": false,
+    "message": "元のページが移動しました。現在のページで新しい作業を開いてください。"
+  },
+  "staleSourceAssociationObservation": {
+    "scope": "Read-only actual extension tabs.get for its own synthetic source, no permission grant or page bridge invocation",
+    "sourceTabId": 3,
+    "status": "complete",
+    "url": null
+  },
+  "sourceAfterStaleAttempt": {
+    "counters": {
+      "change": 0,
+      "input": 0,
+      "submit": 0
+    },
+    "hostname": "silverguide-http.test",
+    "isSecureContext": false,
+    "origin": "http://silverguide-http.test:55805",
+    "protocol": "http:",
+    "values": {
+      "address": "元の住所",
+      "name": "元の氏名"
+    }
+  },
+  "answerSave": {
+    "publicSuccess": true,
+    "scope": "Public synthetic Web answer draft save/status; no direct vault API or independent revision decryption in this HTTP case"
+  },
+  "actionCount": 32,
+  "actionScope": "32 named public actions: same21 core HTTP actions plus10 realnative browser Ctrl+= and1 Ctrl+0 reset; not a full physical event count",
+  "errors": [],
+  "cleanupErrors": [],
+  "ownedPidProof": {
+    "checkedAtUtc": "2026-10-13T20:29:47.56597Z",
+    "runs": [
+      "floorp-http-v7-b96c4733-1791923275372-e7f5a224",
+      "floorp-http-v7-b96c4733-1791923334483-ea247fde"
+    ],
+    "distinctExactBirths": 24,
+    "matchingAlive": [],
+    "unknownBirth": [],
+    "complete": true
+  },
+  "bundleClosure": {
+    "checkedAtUtc": "2026-10-13T20:29:47.8325757Z",
+    "baselinePath": "E:/others/silverguide-qa/b96c4733-bundle-baseline.json",
+    "baselineSha256": "bf30f56751fece211fb54e2d036e7af4e8e9516ddf373ebee11ec628a015382c",
+    "bundles": [
+      {
+        "target": "dist",
+        "expectedCount": 323,
+        "actualCount": 323,
+        "differences": [],
+        "allFilesMatched": true,
+        "build": {
+          "version": "2.0.0",
+          "browserTarget": "gecko",
+          "contentScriptFormat": "iife",
+          "sourceHash": "b96c473355a5a9a81bba5874c0b463a8e7aabec4131d98630b87bfbea807a11f",
+          "builtAt": "2026-10-13T20:14:07.082Z"
+        }
+      },
+      {
+        "target": "dist-chromium",
+        "expectedCount": 323,
+        "actualCount": 323,
+        "differences": [],
+        "allFilesMatched": true,
+        "build": {
+          "version": "2.0.0",
+          "browserTarget": "chromium",
+          "contentScriptFormat": "iife",
+          "sourceHash": "b96c473355a5a9a81bba5874c0b463a8e7aabec4131d98630b87bfbea807a11f",
+          "builtAt": "2026-10-13T20:15:35.39Z"
+        }
+      }
+    ],
+    "complete": true
+  },
+  "allSourceRequestsWereGET": true,
+  "fixtureHtmlSha256": "1cb9b53a60493f0c7ac023a8fdbd2d7c4911c482d8812260eec26537423e4f09",
+  "screenshots": [
+    "E:/others/silverguide-qa/performance/http-runs/floorp-http-v7-b96c4733-1791923334483-ea247fde/reader-1080.png",
+    "E:/others/silverguide-qa/performance/http-runs/floorp-http-v7-b96c4733-1791923334483-ea247fde/reader-full-page-200percent.png",
+    "E:/others/silverguide-qa/performance/http-runs/floorp-http-v7-b96c4733-1791923334483-ea247fde/compare-1080.png",
+    "E:/others/silverguide-qa/performance/http-runs/floorp-http-v7-b96c4733-1791923334483-ea247fde/conditional-undo-1080.png",
+    "E:/others/silverguide-qa/performance/http-runs/floorp-http-v7-b96c4733-1791923334483-ea247fde/stale-rejected-1080.png",
+    "E:/others/silverguide-qa/performance/http-runs/floorp-http-v7-b96c4733-1791923334483-ea247fde/requested320-actual-viewport-recorded.png",
+    "E:/others/silverguide-qa/performance/http-runs/floorp-http-v7-b96c4733-1791923334483-ea247fde/requested1080-actual-viewport-recorded.png"
+  ],
+  "productSourceChanged": false,
+  "productRuntimeChanged": false,
+  "originalNativePackageUsed": true,
+  "qaBundleCopyUsed": false,
+  "formalPerformanceStarted": false,
+  "samplerStarted": false,
+  "limits": [
+    "Native outer320 window request produced inner458, so320px acceptance remains unverified.",
+    "Normal native outer1080x1080 yielded inner1038x1006. Actual full-page browser zoom200% yielded CSS viewport519x503 and DPR2; textZoom1/font20CSSpx unchanged. This is full-page browser zoom, not text-only zoom or PDF canvas zoom.",
+    "Reader term and current-block select horizontal rectangles were measured at200%; these controls are below the first viewport vertically and require ordinary scrolling. The200% first-viewport screenshot is not a photograph of those offscreen controls.",
+    "Backup export/download not exercised; native SaveAs completion transport remains unverified.",
+    "Answer save uses the real public create-vault/save flow and success status; this case does not independently decrypt the stored revision or prove backup roundtrip.",
+    "Native trace/UI alerts recorded; no independent Gecko console/pageerror stream captured.",
+    "No PDF/OCR/TTS, optional-host native permission approval, performance qualification or whole-product acceptance implied.",
+    "Temporary profile-only DNS preference; no OS hosts/registry/trustlist/network changes. Native popup frame transport reads/clicks only the real public enabled Reader button; no content/page-bridge or permission grant shim."
+  ],
+  "harnessFiles": [
+    {
+      "path": "E:\\others\\silverguide-qa\\performance\\run-floorp-http-regression-v7.mjs",
+      "bytes": 19852,
+      "sha256": "e34645b4dc8fecfad14dc877af755f77daaa1a71e0cdba2b6f562dfc22902da3"
+    },
+    {
+      "path": "E:\\others\\silverguide-qa\\performance\\browser-transports-floorp-http-v7.mjs",
+      "bytes": 20602,
+      "sha256": "7c6d38c89c184c06baec0f63f9498885a02627a84a95817d815f0a1d7495e152"
+    }
+  ]
+}
