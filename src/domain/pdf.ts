@@ -38,6 +38,8 @@ export type PdfField = {
   conditionSource?: { text: string; pageIndex: number };
   native: { name: string; fieldRef: string; referenceKind?:"field"|"read-only-widget"; widgetRefs: string[]; maxLength: number | null; lengthUnit: "utf16-code-unit"; multiSelect: boolean; editableSelect: boolean; originalRequired?:boolean; originalReadOnly?:boolean; unsupported?:boolean } | null;
   placements: PdfPlacement[]; options: PdfOption[];
+  /** Multiple overlay choices; native PDF flags remain authoritative. */
+  multiple?: boolean;
   initialValue: PdfAnswer; maxGraphemes: number | null;
   readOnly: boolean; mappingState: "proposed" | "needs-review" | "confirmed" | "rejected" | "manual";
   evidenceIds: string[];
@@ -79,10 +81,14 @@ export function pdfFieldReadOnly(field:PdfField):boolean{
 }
 
 /** Cleared legacy values are compatible; retained answers are never silently coerced. */
-export function pdfAnswerTypeCompatible(field: Pick<PdfField, "kind" | "native">, value: unknown): value is PdfAnswer | undefined {
+export function pdfFieldAllowsMultiple(field: Pick<PdfField, "kind" | "native" | "multiple">): boolean {
+  return field.kind === "select" && (field.native ? field.native.multiSelect : field.multiple === true);
+}
+
+export function pdfAnswerTypeCompatible(field: Pick<PdfField, "kind" | "native" | "multiple">, value: unknown): value is PdfAnswer | undefined {
   if (value === undefined || value === null || value === "") return true;
   if (field.kind === "checkbox") return typeof value === "boolean";
-  if (field.kind === "select" && field.native?.multiSelect) {
+  if (pdfFieldAllowsMultiple(field)) {
     if (!Array.isArray(value)) return false;
     for (const item of value) if (typeof item !== "string") return false;
     return true;

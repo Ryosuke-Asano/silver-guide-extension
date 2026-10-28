@@ -52,13 +52,55 @@ async function renderView(value: PanelContext) {
 }
 
 describe("simple, source-preserving explanation panel", () => {
+  it("shows the instruction before word definitions and retains an expandable, exact original", async () => {
+    const original = "PDFをダウンロードし、氏名・フリガナ・電話番号などを記入してください。";
+    await renderView(context({ selection: original }));
+    const organization = container.querySelector(".sidebar-organization")!, words = container.querySelector<HTMLDetailsElement>(".sidebar-terms")!;
+    expect(organization.compareDocumentPosition(words) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(words.open).toBe(false);
+    expect(container.querySelector(".sidebar-term-original")!.textContent).toBe("PDF");
+    expect(container.querySelector(".sidebar-term p")!.textContent).toContain("画面や印刷で書類の形を保ちやすいファイル形式");
+    expect(container.querySelector("blockquote")!.textContent).toBe(original);
+    expect(container.querySelector<HTMLDetailsElement>(".sidebar-original-details")!.open).toBe(false);
+  });
+  it("resets expanded details when the selected text changes", async () => {
+    await renderView(context({ selection: "氏名を記入してください。" }));
+    container.querySelector<HTMLDetailsElement>(".sidebar-terms")!.open = true;
+    await renderView(context({ generation: 2, selection: "PDFを保存してください。" }));
+    expect(container.querySelector<HTMLDetailsElement>(".sidebar-terms")!.open).toBe(false);
+    expect(container.querySelector("blockquote")!.textContent).toBe("PDFを保存してください。");
+    expect(container.querySelector(".sidebar-term-original")!.textContent).toBe("PDF");
+  });
   it("explains a known term without an input, start button or close button", async () => {
     await renderView(context());
     expect(container.querySelector("blockquote")!.textContent).toBe("支給要件");
-    expect(container.textContent).toContain("受け取るための条件");
-    expect(container.textContent).toContain("同梱辞書");
-    expect(container.querySelectorAll("button,input,textarea,select,details")).toHaveLength(0);
+    expect(container.querySelector("h1")!.textContent).toBe("支給要件");
+    expect(container.textContent).toContain("給付金などを受け取るために、満たす必要がある条件です。");
+    expect(container.querySelector<HTMLDetailsElement>(".sidebar-original-details")!.open).toBe(false);
+    expect(container.querySelectorAll("button,input,textarea,select")).toHaveLength(0);
+    const tools = container.querySelector<HTMLDetailsElement>(".sidebar-tools")!;
+    expect(tools.open).toBe(false);
+    await act(async () => tools.querySelector("summary")!.click());
+    expect(tools.open).toBe(true);
     expect([...container.querySelectorAll("a")].map(link => link.textContent)).toEqual(["PDFを開く↗"]);
+  });
+
+  it("shows a term and its full definition without repeated headings or the page title", async () => {
+    const original = "在住：横浜市に住んでいる方";
+    const definition = "その地域に住んでいることです。勤務先や学校の所在地とは区別します。";
+    await renderView(context({ selection: original, title: "利用者情報仮登録｜横浜市立図書館・検証用モック" }));
+    expect([...container.querySelectorAll("h1,h2,h3")].map(heading => heading.textContent)).toEqual(["在住"]);
+    expect(container.querySelector(".sidebar-explanation")!.textContent).toBe(`在住${definition}`);
+    expect(container.textContent).not.toContain("Silver Guide");
+    expect(container.textContent).not.toContain("検証用モック");
+    expect(container.textContent).not.toContain("別の言葉や文章を選ぶと");
+    expect(container.querySelector("blockquote")!.textContent).toBe(original);
+    const source = container.querySelector<HTMLDetailsElement>(".sidebar-original-details")!;
+    expect(source.open).toBe(false);
+    await act(async () => source.querySelector("summary")!.click());
+    expect(source.open).toBe(true);
+    await renderView(context({ generation: 2, selection: "フリガナ" }));
+    expect(container.querySelector<HTMLDetailsElement>(".sidebar-original-details")!.open).toBe(false);
   });
 
   it("explains furigana without imposing a character format on the original form", async () => {

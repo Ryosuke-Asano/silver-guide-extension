@@ -68,11 +68,11 @@ function fixture(stage: PdfTask["stage"] = "filling"): PdfTask {
 
 
 const savePdf = vi.fn(async () => {});
-async function mount(task: PdfTask) {
+async function mount(task: PdfTask, completion?: { onComplete(): void; busy: boolean }) {
   savePdf.mockClear();
   function Harness() {
     controller = usePdfWorkspace();
-    return <PdfWorkspace controller={{ ...controller, savePdfDirect: savePdf }} />;
+    return <PdfWorkspace controller={{ ...controller, savePdfDirect: savePdf }} completion={completion} />;
   }
   await act(async () => root!.render(<Harness />));
   await act(async () => controller.setTask(task));
@@ -88,6 +88,57 @@ function uncertainTask() { const task=fixture("mapping"), field=task.fields[0];f
 function twoFields() { const task=uncertainTask();const field=makeManualPdfField(0,[80,500,360,545],"住所");task.fields.push(field);task.answers[field.id]=null;task.answerStatus[field.id]="empty";return task; }
 
 describe("ordinary PDF entry: input at left, original at right, back and next", () => {
+  it("retains independent overlay check choices across Next and Back and allows clearing them", async () => {
+    const task=twoFields(),field=task.fields[0];field.kind="select";field.multiple=true;field.label="手続の内容";
+    field.options=[{id:"new",label:"新規登録",exportValue:"new",placements:field.placements},{id:"renew",label:"登録更新",exportValue:"renew",placements:field.placements}];
+    await mount(task);
+    const boxes=()=>[...container.querySelectorAll<HTMLInputElement>('.pdf-entry-options input[type="checkbox"]')];
+    await act(async()=>{boxes()[0].click();});await act(async()=>{boxes()[1].click();});
+    expect(controller.task!.answers[field.id]).toEqual(["new","renew"]);
+    await click("次へ");await click("戻る");expect(boxes().every(box=>box.checked)).toBe(true);
+    await act(async()=>{boxes()[0].click();});expect(controller.task!.answers[field.id]).toEqual(["renew"]);
+    await act(async()=>{boxes()[1].click();});expect(controller.task!.answers[field.id]).toEqual([]);
+    expect(getDirectPdfTaskIssues(controller.task!)).toEqual([]);
+  });
+  it("finishes a bound PDF without starting a local download", async () => {
+    const onComplete = vi.fn(); await mount(uncertainTask(), { onComplete, busy: false });
+    await enter("桜木 町子"); await click("入力を完了");
+    expect(onComplete).toHaveBeenCalledTimes(1); expect(savePdf).not.toHaveBeenCalled();
+    expect(container.textContent).toContain("選んだ添付欄に記入済みPDFを戻します");
+  });
+  it("blocks completion for invalid answers and disables edits during delivery", async () => {
+    const onComplete = vi.fn(), task = fixture(); task.fields[0].maxGraphemes = 1;
+    await mount(task, { onComplete, busy: false }); await enter("長い名前"); await click("入力を完了");
+    expect(onComplete).not.toHaveBeenCalled(); expect(container.querySelector('[role="alert"]')).not.toBeNull();
+    await mount(twoFields(), { onComplete, busy: true });
+    expect(answer().disabled).toBe(true); expect(buttons().every(button => button.disabled)).toBe(true);
+    expect(container.querySelector(".pdf-save-here")).toBeNull();
+  });
+  it("clears an old save notice and marks the PDF unsaved after editing again", async () => {
+    await mount(twoFields());
+    await act(async () => { controller.update(() => ({ stage: "saved" })); controller.setNotice("記入済みPDFを保存しました。"); });
+    await enter("もう一度編集");
+    expect(controller.notice).toBeNull();
+    expect(container.querySelector(".pdf-save-state")!.textContent).toBe("未保存の入力があります");
+  });
+  it("saves entered answers before the last entry without moving away", async () => {
+    const task = twoFields(); await mount(task); await enter("桜木 町子");
+    const first = controller.task!.selectedFieldId;
+    expect(savePdf).not.toHaveBeenCalled();
+    await click("ここまでの入力を保存");
+    expect(savePdf).toHaveBeenCalledTimes(1);
+    expect(controller.task!.selectedFieldId).toBe(first);
+    expect(answer().value).toBe("桜木 町子");
+    expect(controller.task!.answers[task.fields[1].id]).toBeNull();
+  });
+  it("checks the other entries before an early save and moves to the invalid answer", async () => {
+    const task = twoFields(); task.fields[1].maxGraphemes = 2; task.answers[task.fields[1].id] = "長すぎる住所";
+    await mount(task); await click("ここまでの入力を保存");
+    expect(savePdf).not.toHaveBeenCalled();
+    expect(container.querySelector("h2")!.textContent).toBe("住所");
+    expect(container.querySelector('[role="alert"]')).not.toBeNull();
+    expect(answer().value).toBe("長すぎる住所");
+  });
   it("passes all current answers into the preview on every edit and clear without a preview button or navigation", async()=>{
     const task=twoFields(),first=task.fields[0].id,second=task.fields[1].id;await mount(task);
     await enter("山田 花子");expect(previewAnswers()[first]).toBe("山田 花子");expect(document.activeElement).toBe(answer());

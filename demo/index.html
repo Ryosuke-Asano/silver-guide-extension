@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="横浜市立図書館の公開フォームを参考にした、端末内だけで動く入力検証用モックです。">
+  <title>利用者情報仮登録｜横浜市立図書館・検証用モック</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="mock.css">
+  <script type="module" src="mock.js"></script>
+</head>
+<body class="yk-page">
+  <a class="yk-skip" href="#main">本文へ移動</a>
+  <header class="yk-header">
+    <div class="yk-container">
+      <p class="yk-site-title">横浜市立図書館蔵書検索ページ</p>
+      <nav class="yk-nav" aria-label="検証ページ">
+        <a href="./" aria-current="page">利用者情報仮登録</a>
+        <a href="#pdf-fields">申込書・アップロード</a>
+        <a href="guide.html">検証の進め方</a>
+      </nav>
+    </div>
+  </header>
+  <div class="yk-container">
+    <p class="yk-mock-notice"><strong>検証用モックです。</strong> 横浜市の公式サイトではありません。入力内容は送信されません。</p>
+    <main id="main" class="yk-main">
+      <div class="yk-page-heading"><h1>利用者情報仮登録</h1><a href="guide.html#sources">再現元・変更点</a></div>
+      <ol id="steps" class="yk-steps" aria-label="入力の進み具合">
+        <li class="is-current" data-step="entry" aria-current="step"><span>1</span>入力</li>
+        <li data-step="review"><span>2</span>内容確認</li>
+        <li data-step="complete"><span>3</span>完了（模擬）</li>
+      </ol>
+      <div class="yk-main-inner">
+        <p class="yk-intro">利用者情報を入力してください。申込書のダウンロードと記入済みPDFのアップロードは、E-mail欄の下から試せます。</p>
+        <form id="registration-form" novalidate>
+        <section id="form-errors" class="yk-errors" tabindex="-1" role="alert" hidden><h2>入力内容を確認してください</h2><ul id="errors-list"></ul></section>
+        <section id="input-stage" aria-label="登録内容の入力">
+            <fieldset id="registration-type" class="yk-registration-type">
+              <legend>当てはまる登録条件を選択してください。</legend>
+              <label><input type="radio" name="registrationType" value="resident" checked>在住：横浜市に住んでいる方</label>
+              <label><input type="radio" name="registrationType" value="work">在勤：横浜市に通勤している方</label>
+              <label><input type="radio" name="registrationType" value="student">在学：横浜市に通学している方</label>
+              <label><input type="radio" name="registrationType" value="regional">広域利用：鎌倉市・川崎市・逗子市・藤沢市・大和市・横須賀市・町田市にお住まいの方</label>
+            </fieldset>
+            <table class="yk-form-table"><caption class="yk-visually-hidden">利用者情報</caption><colgroup><col class="yk-label-column"><col></colgroup>
+              <tbody>
+                <tr><th scope="row"><label for="full-name"><span class="yk-required">【必須】</span>名前</label></th><td class="yk-cell"><input class="yk-name-input" type="text" id="full-name" name="fullName" maxlength="512" required autocomplete="off"><span class="yk-example">【例】桜木　町子</span><p class="yk-format-note">※姓と名の間は１文字あける</p></td></tr>
+                <tr><th scope="row"><label for="name-kana"><span class="yk-required">【必須】</span>名前カタカナ</label></th><td class="yk-cell"><input class="yk-name-input" type="text" id="name-kana" name="kana" maxlength="512" required autocomplete="off"><span class="yk-example">【例】サクラギ　マチコ</span></td></tr>
+                <tr><th scope="row"><label for="birth-year"><span class="yk-required">【必須】</span>生年月日（半角）</label></th><td class="yk-cell"><div class="yk-inline-fields"><input class="yk-year" type="text" id="birth-year" name="birthYear" maxlength="4" inputmode="numeric" aria-label="生年（西暦・半角4桁）" required><span>年</span><select id="birth-month" name="birthMonth" aria-label="生月"><option value="1">1月</option><option value="2">2月</option><option value="3">3月</option><option value="4">4月</option><option value="5">5月</option><option value="6">6月</option><option value="7">7月</option><option value="8">8月</option><option value="9">9月</option><option value="10">10月</option><option value="11">11月</option><option value="12">12月</option></select><select id="birth-day" name="birthDay" aria-label="生日"><option value="1">1日</option><option value="2">2日</option><option value="3">3日</option><option value="4">4日</option><option value="5">5日</option><option value="6">6日</option><option value="7">7日</option><option value="8">8日</option><option value="9">9日</option><option value="10">10日</option><option value="11">11日</option><option value="12">12日</option><option value="13">13日</option><option value="14">14日</option><option value="15">15日</option><option value="16">16日</option><option value="17">17日</option><option value="18">18日</option><option value="19">19日</option><option value="20">20日</option><option value="21">21日</option><option value="22">22日</option><option value="23">23日</option><option value="24">24日</option><option value="25">25日</option><option value="26">26日</option><option value="27">27日</option><option value="28">28日</option><option value="29">29日</option><option value="30">30日</option><option value="31">31日</option></select></div><p class="yk-format-note">※西暦で入力</p></td></tr>
+                <tr><th scope="row"><label for="zip-first"><span class="yk-required">【必須】</span>郵便番号（半角）</label></th><td class="yk-cell"><div class="yk-inline-fields"><input class="yk-digits" type="text" id="zip-first" name="zipFirst" inputmode="numeric" maxlength="3" aria-label="郵便番号・前3桁" required><span>－</span><input class="yk-digits" type="text" id="zip-last" name="zipLast" inputmode="numeric" maxlength="4" aria-label="郵便番号・後4桁" required><button class="yk-button yk-button-small" id="lookup-address" type="button">住所検索</button></div><span class="yk-example">【例】220－0032</span></td></tr>
+                <tr><th scope="row"><label for="address"><span class="yk-required">【必須】</span>住所</label></th><td class="yk-cell"><input class="yk-wide-input" type="text" id="address" name="address" maxlength="512" required autocomplete="off"><p class="yk-format-note">※横浜市内は区名から入力</p></td></tr>
+                <tr><th scope="row"><label for="phone-first"><span class="yk-required">【必須】</span>電話番号（半角）</label></th><td class="yk-cell"><div class="yk-inline-fields"><input class="yk-digits" type="text" id="phone-first" name="phoneFirst" inputmode="numeric" maxlength="4" aria-label="電話番号・市外局番（045は省略可）" autocomplete="off"><span>－</span><input class="yk-digits" type="text" id="phone-middle" name="phoneMiddle" inputmode="numeric" maxlength="4" aria-label="電話番号・中央の番号" required autocomplete="off"><span>－</span><input class="yk-digits" type="text" id="phone-last" name="phoneLast" inputmode="numeric" maxlength="4" aria-label="電話番号・最後の番号" required autocomplete="off"></div><p class="yk-format-note">※市外局番「045」は不要</p></td></tr>
+              </tbody>
+              <tbody id="work-fields" hidden>
+                <tr><th scope="row"><label for="work-name"><span class="yk-required">【必須】</span>在勤・在学先名称</label></th><td class="yk-cell"><input class="yk-wide-input" type="text" id="work-name" name="workName" maxlength="512" disabled></td></tr>
+                <tr><th scope="row"><label for="work-zip-first"><span class="yk-required">【必須】</span>在勤・在学先郵便番号</label></th><td class="yk-cell"><div class="yk-inline-fields"><input class="yk-digits" type="text" id="work-zip-first" name="workZipFirst" maxlength="3" inputmode="numeric" aria-label="在勤・在学先郵便番号・前3桁" disabled><span>－</span><input class="yk-digits" type="text" id="work-zip-last" name="workZipLast" maxlength="4" inputmode="numeric" aria-label="在勤・在学先郵便番号・後4桁" disabled><button class="yk-button yk-button-small" id="lookup-work-address" type="button" disabled>住所検索</button></div></td></tr>
+                <tr><th scope="row"><label for="work-address"><span class="yk-required">【必須】</span>在勤・在学先住所</label></th><td class="yk-cell"><input class="yk-wide-input" type="text" id="work-address" name="workAddress" maxlength="512" disabled><p class="yk-format-note">※横浜市内は区名から入力</p></td></tr>
+                <tr><th scope="row"><label for="work-phone-first"><span class="yk-required">【必須】</span>在勤・在学先電話番号</label></th><td class="yk-cell"><div class="yk-inline-fields"><input class="yk-digits" type="text" id="work-phone-first" name="workPhoneFirst" maxlength="4" inputmode="numeric" aria-label="在勤・在学先電話番号・市外局番（045は省略可）" disabled><span>－</span><input class="yk-digits" type="text" id="work-phone-middle" name="workPhoneMiddle" maxlength="4" inputmode="numeric" aria-label="在勤・在学先電話番号・中央の番号" disabled><span>－</span><input class="yk-digits" type="text" id="work-phone-last" name="workPhoneLast" maxlength="4" inputmode="numeric" aria-label="在勤・在学先電話番号・最後の番号" disabled></div><p class="yk-format-note">※市外局番「045」は不要</p></td></tr>
+              </tbody>
+              <tbody>
+                <tr class="reservation-row"><th scope="row"><label for="branch">予約受取館</label></th><td class="yk-cell"><select id="branch" name="branch"><option>中央図書館</option><option>鶴見図書館</option><option>神奈川図書館</option><option>中図書館</option><option>南図書館</option><option>港南図書館</option><option>保土ケ谷図書館</option><option>旭図書館</option><option>磯子図書館</option><option>金沢図書館</option><option>港北図書館</option><option>緑図書館</option><option>山内図書館</option><option>都筑図書館</option><option>戸塚図書館</option><option>栄図書館</option><option>泉図書館</option><option>瀬谷図書館</option></select></td></tr>
+                <tr class="reservation-row"><th scope="row"><label for="contact-method">予約連絡方法</label></th><td class="yk-cell"><select id="contact-method" name="contactMethod"><option value="none">連絡不要</option><option value="email">メール</option></select></td></tr>
+                <tr><th scope="row"><label for="email">E-mail（半角）</label></th><td class="yk-cell"><input class="yk-name-input" type="text" id="email" name="email" maxlength="256" inputmode="email" autocomplete="off"><p class="yk-format-note">※予約連絡方法で「メール」選択の場合、必須</p></td></tr>
+                <tr id="pdf-fields"><th scope="row">申込書（PDF）</th><td class="yk-cell"><a id="pdf-download" class="yk-pdf-download" href="assets/library-application-original.pdf?download=1" download="library-application-original.pdf">図書館利用申込書.pdf をダウンロード</a><p class="yk-scope-note">PDFをダウンロードし、氏名・フリガナ・電話番号などを記入してください。</p></td></tr>
+                <tr><th scope="row"><label for="pdf-upload">記入済み申込書のアップロード</label></th><td class="yk-cell"><input id="pdf-upload" name="applicationPdf" type="file" accept=".pdf,application/pdf" aria-describedby="pdf-upload-help pdf-upload-status"><p id="pdf-upload-help" class="yk-scope-note">PDF形式・20MB以内。このモックではファイルを送信しません。</p><p id="pdf-upload-status" class="yk-attachment-status" role="status" aria-live="polite">ファイルは選択されていません。</p><button id="pdf-upload-clear" class="yk-button yk-button-small" type="button" hidden disabled>選択を解除</button></td></tr>
+              </tbody>
+            </table>
+            <p class="yk-scope-note">このモックは基本情報の入力と内容確認を対象にしています。パスワード・本人確認書類は扱いません。</p>
+            <div class="yk-actions"><button class="yk-button" id="reset-button" type="reset">リセット</button><button class="yk-button yk-button-primary" id="review-button" type="submit">入力内容を確認する</button></div>
+        </section>
+        <section id="review-stage" class="yk-result" hidden><h2 tabindex="-1">入力内容の確認</h2><p>名前の表記・読み方と電話番号を確認してください。</p><dl id="review-values" class="yk-review-values"></dl><p class="yk-scope-note">この画面の内容は、このタブの中だけで扱います。</p><div class="yk-actions"><button class="yk-button" id="edit-button" type="button">入力画面に戻る</button><button class="yk-button yk-button-primary" id="complete-button" type="button">この内容で完了（模擬）</button></div></section>
+        <section id="complete-stage" class="yk-result" hidden><h2 tabindex="-1">入力の検証が完了しました</h2><p>ここまでがモックの登録操作です。入力内容・添付ファイルは送信していません。</p><div class="yk-actions"><button class="yk-button" id="start-again" type="button">最初から試す</button></div></section>
+        <p id="mock-status" class="yk-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </main>
+    <footer class="yk-footer"><p>横浜市立図書館の公開画面を参考にした非公式の入力検証用モックです。</p><p><a href="guide.html">架空の入力例・検証項目・出典</a></p></footer>
+  </div>
+</body>
+</html>

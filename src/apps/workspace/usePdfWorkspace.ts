@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState, type SetStateAction } from "r
 import type { PdfSession } from "../../adapters/pdf";
 import { PdfEngineError,pdfFieldPageIndices,pdfFieldReadOnly,quadToBox, type PdfAnalysis, type PdfExportResult, type PdfField, type PdfProgress,type PdfNativeConstraints,type PdfDocumentInfo } from "../../domain/pdf";
 import { getWebExtensionApi } from "../../shared/webextension";
+import { applyDemoPdfLayout } from "../../data/demo-pdf-layout";
 import { createPdfTask, getPdfTaskIssues,getDirectPdfTaskIssues,hydratePdfFieldsNativeConstraints,snapshotPdfMapping, updatePdfTask, type PdfTask } from "./task-model";
 
 export type PdfWorkspaceState = "empty" | "loading" | "analyzing" | "ready" | "exporting" | "validating" | "downloading" | "cancelled" | "failed";
@@ -117,7 +118,7 @@ export function usePdfWorkspace() {
   const update=useCallback((mutate:(current:PdfTask)=>Partial<PdfTask>)=>{
     const current=taskRef.current;if(!current)return;
     const next=updatePdfTask(current,mutate(current));
-    if(next.id!==current.id||next.revision!==current.revision){invalidateJob();clearOutput();setReanalysisDiff(null);setState("ready");}
+    if(next.id!==current.id||next.revision!==current.revision){invalidateJob();clearOutput();setReanalysisDiff(null);setNotice(null);setState("ready");}
     commitTask(next);setError(null);
   },[commitTask,invalidateJob,clearOutput]);
   const providePassword=useCallback((value:string|null)=>{const resolve=passwordResolver.current;passwordResolver.current=null;setPasswordRequest(null);if(value===null){invalidateJob();setState(taskRef.current?"ready":"cancelled");setNotice("パスワードの入力を中止しました。");}resolve?.(value);},[invalidateJob]);
@@ -143,7 +144,7 @@ export function usePdfWorkspace() {
       // Unsupported source restrictions are visible before OCR or editing.
       if(!opened.info.capabilities.export.allowed)setNotice(opened.info.capabilities.export.reason??"このPDFは読み取り専用です。");
       setState("analyzing");
-      const analysis=await opened.analyze({signal:abort.signal,ocr:"auto",onProgress:next=>{if(live())setProgress(next);}});
+      const analysis=applyDemoPdfLayout(await opened.analyze({signal:abort.signal,ocr:"auto",onProgress:next=>{if(live())setProgress(next);}}));
       if(!live())return false;
       const previous=session.current,previousBytes=original.current;
       session.current=opened;original.current=bytes;pending.current=null;
@@ -195,7 +196,7 @@ export function usePdfWorkspace() {
     const requested=pageIndices??[...new Set(current.analysis.issues.flatMap(i=>i.pageIndex===undefined?[]:[i.pageIndex]))],selected=requested.length?requested:current.pages.map(p=>p.index);
     invalidateJob();const abort=new AbortController();controller.current=abort;const token=generation.current;setState("analyzing");setError(null);setReanalysisDiff(null);setNotice(retryOptions.ocrTimeoutMs===180_000?"待ち時間を180秒へ延長し、選んだページを最初から読み取ります。確認済みの項目と回答は、差分を採用するまで保持します。":null);
     const live=()=>mounted.current&&token===generation.current&&!abort.signal.aborted&&taskRef.current?.id===current.id&&taskRef.current.revision===current.revision;
-    try{const analysis=await reading.analyze({pageIndices:selected,signal:abort.signal,ocr:"auto",...(retryOptions.ocrTimeoutMs!==undefined?{ocrTimeoutMs:retryOptions.ocrTimeoutMs}:{}),onProgress:next=>{if(live()){setProgress(next);}}});if(!live())return;setReanalysisDiff(buildPdfReanalysisDiff(current,analysis,selected));setState("ready");setNotice("再解析の差分を確認してください。対応と回答は採用するまで変更しません。");}catch(cause){if(!live())return;setState("ready");setError(cause instanceof Error?cause.message:"ページを再解析できませんでした。");}
+    try{const analysis=applyDemoPdfLayout(await reading.analyze({pageIndices:selected,signal:abort.signal,ocr:"auto",...(retryOptions.ocrTimeoutMs!==undefined?{ocrTimeoutMs:retryOptions.ocrTimeoutMs}:{}),onProgress:next=>{if(live()){setProgress(next);}}}));if(!live())return;setReanalysisDiff(buildPdfReanalysisDiff(current,analysis,selected));setState("ready");setNotice("再解析の差分を確認してください。対応と回答は採用するまで変更しません。");}catch(cause){if(!live())return;setState("ready");setError(cause instanceof Error?cause.message:"ページを再解析できませんでした。");}
   },[invalidateJob]);
   const acceptReanalysis=useCallback((changeIds:string[])=>{
     const current=taskRef.current;if(!current||!reanalysisDiff)return;
@@ -226,6 +227,12 @@ export function usePdfWorkspace() {
   },[commitTask,outputConfirmed]);
   const directSavePending=useRef(false);
   const savePdfDirect=useCallback(async()=>{if(directSavePending.current)return;directSavePending.current=true;try{if(await exportPdf({inputMode:"direct"}))await download({inputMode:"direct"});}finally{directSavePending.current=false;}},[exportPdf,download]);
-  return {task,taskRef,setTask,state,progress,error,setError,notice,setNotice,output,outputConfirmed,setOutputConfirmed,passwordRequest,providePassword,reanalysisDiff,retryPages,reanalyzePages:retryPages,acceptReanalysis,rejectReanalysis,session,outputSession,original,open,update,cancel,exportPdf,download,savePdfDirect,dispose};
+  const preparePdfForHandoff=useCallback(async()=>{
+    if(!await exportPdf({inputMode:"direct"}))return null;
+    const current=taskRef.current,snapshot=outputRef.current;
+    if(!current||!snapshot||snapshot.taskId!==current.id||snapshot.revision!==current.revision||snapshot.inputMode!=="direct"||!snapshot.result.validated)return null;
+    return {bytes:snapshot.result.bytes.slice(),taskId:current.id,revision:current.revision,fileName:current.title.replace(/\.pdf$/iu,"").replace(/[<>:"/\\|?*\u0000-\u001f]/gu,"_")+"-記入済み.pdf"};
+  },[exportPdf]);
+  return {task,taskRef,setTask,state,progress,error,setError,notice,setNotice,output,outputConfirmed,setOutputConfirmed,passwordRequest,providePassword,reanalysisDiff,retryPages,reanalyzePages:retryPages,acceptReanalysis,rejectReanalysis,session,outputSession,original,open,update,cancel,exportPdf,download,savePdfDirect,preparePdfForHandoff,dispose};
 }
 

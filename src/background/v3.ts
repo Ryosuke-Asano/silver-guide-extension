@@ -1,5 +1,6 @@
 import { getWebExtensionApi, type WebExtensionApi } from "../shared/webextension";
 import { publicHttpUrl, trustedExtensionSender } from "../shared/protocol";
+import { isPdfPageUrl, isHandoffId, OPEN_PDF_HANDOFF } from "../shared/pdf-handoff";
 import { GET_SELECTION, PANEL_CONTEXT, SELECTION_CHANGED, isSelectionSnapshot, type PanelContextReply, type PanelContext } from "../shared/v3-protocol";
 
 function unavailable(windowId: number, tab?: browser.tabs.Tab): PanelContext {
@@ -32,6 +33,15 @@ export function startBackground(api: WebExtensionApi): void {
   api.runtime.onMessage.addListener((message: unknown, sender, respond) => {
     if (!message || typeof message !== "object") return;
     const value = message as Record<string, unknown>;
+    if (value.type === OPEN_PDF_HANDOFF && sender.id === api.runtime.id && sender.frameId === 0 && sender.tab?.id !== undefined && isPdfPageUrl(sender.url) && isPdfPageUrl(sender.tab.url) && sender.url === sender.tab.url) {
+      if (!isHandoffId(value.requestId) || typeof value.documentToken !== "string" || !/^[a-f0-9-]{8,100}$/iu.test(value.documentToken)) { respond({ ok: false }); return; }
+      const fragment = new URLSearchParams({ handoff: value.requestId, sourceTab: String(sender.tab.id), document: value.documentToken });
+      void api.tabs.create({ url: api.runtime.getURL("workspace.html") + "#" + fragment, windowId: sender.tab.windowId }).then(tab => {
+        if (api.sidePanel && tab.id !== undefined) void api.sidePanel.setOptions({ tabId: tab.id, enabled: false }).catch(() => {});
+        respond({ ok: true, tabId: tab.id });
+      }, () => respond({ ok: false }));
+      return true;
+    }
     if (value.type === PANEL_CONTEXT && trustedExtensionSender(sender, api.runtime.getURL(""), api.runtime.id, ["sidebar.html"])) {
       if (!Number.isSafeInteger(value.windowId) || Number(value.windowId) < 0) { respond({ ok: false, message: "対象のウィンドウを確認できませんでした。" }); return; }
       void resolvePanelContext(api, Number(value.windowId)).then(respond, () => respond({ ok: false, message: "ページを確認できませんでした。" }));

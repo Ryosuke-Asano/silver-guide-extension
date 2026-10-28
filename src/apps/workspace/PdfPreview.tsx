@@ -3,14 +3,14 @@ import type { PdfSession } from "../../adapters/pdf";
 import type { PdfAnswers, PdfBox,PdfExportOptions,PdfField, PdfPageInfo } from "../../domain/pdf";
 import { quadToScreenBox,screenToPoint } from "./geometry";
 import { derivePdfPreviewLocations, type PdfPreviewLocation } from "./pdf-preview-locations";
-import { pdfFieldReadOnly } from "../../domain/pdf";
+import { pdfFieldAllowsMultiple, pdfFieldReadOnly } from "../../domain/pdf";
 
 const EMPTY_LOCATIONS:PdfPreviewLocation[]=[];
 const LOCATIONS_PER_LIST_PAGE=25;
 const PREVIEW_DELAY_MS=300;
 export type PdfLivePreview = { answers: PdfAnswers; answerStatus?: Record<string,string>; mode?:PdfExportOptions["mode"];actionRemovalConfirmed?:boolean;paused?: boolean };
 
-export function PdfPreview({ session, pages, fields, selectedId, pageIndex, onPageChange, onSelect, onSelectLocation, title = "原本のPDF", drawing=false,onDraw,selectionPurpose="question",showRejected=false,compact=false,preview }: {
+export function PdfPreview({ session, pages, fields, selectedId, pageIndex, onPageChange, onSelect, onSelectLocation, onToggleChoice, choicesDisabled=false, title = "原本のPDF", drawing=false,onDraw,selectionPurpose="question",showRejected=false,compact=false,preview,saveHint }: {
   session: PdfSession | null;
   pages: PdfPageInfo[];
   fields: PdfField[];
@@ -19,6 +19,8 @@ export function PdfPreview({ session, pages, fields, selectedId, pageIndex, onPa
   onPageChange: (index: number) => void;
   onSelect: (id: string) => void;
   onSelectLocation?: (id: string, pageIndex: number) => void;
+  onToggleChoice?: (fieldId: string, optionId?: string) => void;
+  choicesDisabled?: boolean;
   title?: string;
   drawing?:boolean;
   onDraw?:(pageIndex:number,box:PdfBox)=>void;
@@ -26,6 +28,7 @@ export function PdfPreview({ session, pages, fields, selectedId, pageIndex, onPa
   showRejected?:boolean;
   compact?:boolean;
   preview?:PdfLivePreview;
+  saveHint?:string;
 }) {
   const canvas = useRef<HTMLCanvasElement>(null);
   const viewport = useRef<HTMLDivElement>(null);
@@ -101,6 +104,16 @@ export function PdfPreview({ session, pages, fields, selectedId, pageIndex, onPa
   }, [compact, selectedId, pageIndex, zoom, busy]);
 
   const displayedCurrent=displayed?.session===session&&displayed.pageIndex===pageIndex&&displayed.preview===livePreview;
+  const choiceAt = (location: PdfPreviewLocation) => {
+    if (!onToggleChoice || selectionPurpose !== "question" || pdfFieldReadOnly(location.field) || location.field.mappingState === "rejected") return null;
+    const field = location.field;
+    const value = previewAnswers && Object.hasOwn(previewAnswers, field.id) ? previewAnswers[field.id] : field.initialValue;
+    if (field.kind === "checkbox") return { optionId: undefined, label: field.label, checked: value === true };
+    const optionIds = [...new Set(location.aliases.flatMap(alias => alias.kind === "option" ? [alias.optionId] : []))];
+    if (!pdfFieldAllowsMultiple(field) || optionIds.length !== 1) return null;
+    const option = field.options.find(item => item.id === optionIds[0]);
+    return option ? { optionId: option.id, label: option.label, checked: Array.isArray(value) && value.includes(option.exportValue ?? option.id) } : null;
+  };
   return <section className={`pdf-original${compact?" pdf-original-compact":""}${livePreview?" pdf-original-live":""}`} aria-label={title} data-pdf-preview-state={livePreview?(error?"error":busy?"updating":"ready"):"original"}>
     <div className="pdf-toolbar">
       <h2>{title}</h2>
@@ -114,7 +127,7 @@ export function PdfPreview({ session, pages, fields, selectedId, pageIndex, onPa
       </div>
     </div>
     <p id={pageStatusId} className={compact?"visually-hidden":"pdf-page-status"}>{pages.length===1?"この書類は1ページです。":pageIndex===0?"先頭のページです。":pageIndex===pages.length-1?"最後のページです。":`${pageIndex+1}ページを表示しています。`}</p>
-    {livePreview&&<p className="pdf-live-preview-note">{previewPaused?"日本語の変換を確定すると反映します。":busy?"入力を反映しています…":error?"プレビューを更新できていません。回答は残っています。":"入力した内容を表示しています。"}<span>ファイルへの保存は、最後の「PDFを保存」で行います。</span></p>}
+    {livePreview&&<p className="pdf-live-preview-note">{previewPaused?"日本語の変換を確定すると反映します。":busy?"入力を反映しています…":error?"プレビューを更新できていません。回答は残っています。":"入力した内容を表示しています。"}<span>{saveHint ?? "「ここまでの入力を保存」または最後の「PDFを保存」でファイルに保存します。"}</span></p>}
     {error && <p className="error-message" role="alert">{error}</p>}
     {!compact&&locations.length>0&&<section className="pdf-position-picker" aria-label={`${pageIndex+1}ページの候補の位置を選ぶ`}>
       <h3 ref={positionHeading} id={positionListId} tabIndex={-1}>このページの位置を番号から選ぶ</h3>
@@ -128,8 +141,10 @@ export function PdfPreview({ session, pages, fields, selectedId, pageIndex, onPa
       <div className={`pdf-page ${drawing?"drawing":""}`} style={{ width: `${zoom}%` }} onPointerDown={event=>{if(!drawing||!page)return;event.preventDefault();const rect=event.currentTarget.getBoundingClientRect();const x=(event.clientX-rect.left)/rect.width,y=(event.clientY-rect.top)/rect.height;const next={x0:x,y0:y,x1:x,y1:y};dragRef.current=next;setDrag(next);event.currentTarget.setPointerCapture(event.pointerId);}} onPointerMove={event=>{if(!drawing||!dragRef.current)return;const rect=event.currentTarget.getBoundingClientRect();const next={...dragRef.current,x1:Math.max(0,Math.min(1,(event.clientX-rect.left)/rect.width)),y1:Math.max(0,Math.min(1,(event.clientY-rect.top)/rect.height))};dragRef.current=next;setDrag(next);}} onPointerUp={()=>{if(!drawing||!dragRef.current||!page)return;const value=dragRef.current;dragRef.current=null;setDrag(null);const p=screenToPoint({x:value.x0,y:value.y0},page),q=screenToPoint({x:value.x1,y:value.y1},page);if(Math.abs(p.x-q.x)>=3&&Math.abs(p.y-q.y)>=3)onDraw?.(pageIndex,[Math.min(p.x,q.x),Math.min(p.y,q.y),Math.max(p.x,q.x),Math.max(p.y,q.y)]);}} onPointerCancel={()=>{dragRef.current=null;setDrag(null);}}>
         <canvas ref={canvas} style={{visibility:displayedCurrent?"visible":"hidden",...(page&&!displayedCurrent?{aspectRatio:`${page.widthPt} / ${page.heightPt}`}:{})}} aria-label={`${pageIndex + 1}ページの${livePreview?"記入プレビュー":"原書類"}`} />
         {drag&&<div aria-hidden="true" className="drawn-field" style={{left:`${Math.min(drag.x0,drag.x1)*100}%`,top:`${Math.min(drag.y0,drag.y1)*100}%`,width:`${Math.abs(drag.x1-drag.x0)*100}%`,height:`${Math.abs(drag.y1-drag.y0)*100}%`}}/>}
-        {page && locations.filter(location=>!compact||location.field.id===selectedId).map(location => {
+        {page && locations.filter(location=>!compact||location.field.id===selectedId||choiceAt(location)).map(location => {
           const [x0, y0, x1, y1] = quadToScreenBox(location.placement.quad, page),field=location.field;
+          const choice = choiceAt(location);
+          if (choice) return <button type="button" key={location.key} role="checkbox" aria-label={`PDF上の${choice.label}`} aria-checked={choice.checked} data-field-id={field.id} data-option-id={choice.optionId} className={`pdf-field-overlay pdf-choice-toggle${field.id===selectedId?" selected":""}`} style={{left:`${x0*100}%`,top:`${y0*100}%`,width:`${(x1-x0)*100}%`,height:`${(y1-y0)*100}%`}} disabled={drawing||choicesDisabled} onClick={()=>onToggleChoice?.(field.id,choice.optionId)}/>;
           if(compact)return <div aria-hidden="true" key={location.key} className="pdf-field-overlay selected" style={{ left:`${x0*100}%`,top:`${y0*100}%`,width:`${(x1-x0)*100}%`,height:`${(y1-y0)*100}%`,pointerEvents:"none" }}/>;
           return <button type="button" key={location.key} data-field-id={field.id} data-location-key={location.key} data-placement-aliases={JSON.stringify(location.aliases)} className={`pdf-field-overlay ${selectedLocation===location.key ? "selected" : ""}`} style={{ left: `${x0 * 100}%`, top: `${y0 * 100}%`, width: `${(x1 - x0) * 100}%`, height: `${(y1 - y0) * 100}%` }} aria-label={`原書類の「${field.label}」。${pageIndex + 1}ページの位置${location.number}。${location.optionLabels.length?`選択肢：${location.optionLabels.join("／")}。`:""}${field.mappingState==="rejected"?"対象外の候補の位置と内容を確認":selectionPurpose==="inspection"||pdfFieldReadOnly(field)?"位置と内容を確認":"質問へ移動"}`} aria-pressed={selectedLocation===location.key} disabled={drawing} onClick={() => chooseLocation(location)} />;
         })}

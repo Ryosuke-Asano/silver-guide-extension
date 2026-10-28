@@ -180,7 +180,7 @@ describe("content lifetime and current document", () => {
     const stop = window.__silverGuideV3Stop;
     window.dispatchEvent(new PageTransitionEvent("pagehide", { persisted: true }));
     expect(window.__silverGuideV3Stop).toBe(stop);
-    expect(mock.api.runtime.onMessage.listeners.size).toBe(1);
+    expect(mock.api.runtime.onMessage.listeners.size).toBe(2);
     window.dispatchEvent(new PageTransitionEvent("pageshow", { persisted: true }));
     field.blur();
     field.focus();

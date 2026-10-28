@@ -1,6 +1,7 @@
 import { startFormTooltip } from "./features/form-tooltip";
 import { startTermPopup } from "./features/term-popup";
 import { selectedPublicText } from "./features/selected-text";
+import { startPdfHandoff } from "./features/pdf-handoff";
 import { getWebExtensionApi } from "./shared/webextension";
 import { trustedBackgroundSender } from "./shared/protocol";
 import { GET_SELECTION, SELECTION_CHANGED, type SelectionSnapshot } from "./shared/v3-protocol";
@@ -14,6 +15,7 @@ if (api && !window.__silverGuideV3Stop && ["http:", "https:"].includes(location.
   const entropy = new Uint32Array(4);
   crypto.getRandomValues(entropy);
   const documentToken = Array.from(entropy, value => value.toString(16)).join("-");
+  const handoff = startPdfHandoff(api, document, documentToken);
   let pageUrl = location.href;
   let generation = 0;
   let last: Pick<SelectionSnapshot, "text" | "status"> = { text: null, status: "empty" };
@@ -53,6 +55,7 @@ if (api && !window.__silverGuideV3Stop && ["http:", "https:"].includes(location.
     clearTimeout(timer);
     tooltip.stop();
     termPopup.stop();
+    handoff.stop();
     document.removeEventListener("selectionchange", changed);
     window.removeEventListener("popstate", changed);
     window.removeEventListener("hashchange", changed);

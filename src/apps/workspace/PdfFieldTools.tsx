@@ -19,6 +19,7 @@ export function PdfFieldTools({field,onChangeField}:{field:PdfField;onChangeFiel
     {field.native?<p>元からの入力欄では、PDFに指定された向きと書式を保ちます。</p>:<>
       <label htmlFor={`${id}-cells`}>1文字ずつ入れるマスの数</label><input id={`${id}-cells`} type="number" min={0} max={100} value={field.placements[0]?.cells?.length??0} onChange={event=>changeCells(Number(event.target.value))}/><p>0 はマス目を使いません。</p>
     </>}
+    {field.kind==="select"&&!field.native?<label className="check-row"><input type="checkbox" checked={field.multiple===true} onChange={event=>update({multiple:event.target.checked})}/>複数の項目を選べる</label>:null}
     {field.kind==="radio"||field.kind==="select"?<OptionEditor field={field} prefix={id} onChange={update}/>:null}
   </div>;
 }

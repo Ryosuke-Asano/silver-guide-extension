@@ -1,5 +1,5 @@
 import fontkit from "@pdf-lib/fontkit";
-import { PDFCheckBox, PDFDocument, PDFDropdown, PDFOptionList, PDFRadioGroup, PDFTextField, PDFRef, degrees, rgb, type PDFFont, type PDFPage } from "pdf-lib";
+import { PDFCheckBox, PDFDocument, PDFDropdown, PDFOptionList, PDFRadioGroup, PDFTextField, PDFRef, TextAlignment, adjustDimsForRotation, componentsToColor, defaultTextFieldAppearanceProvider, degrees, drawTextField, reduceRotation, rgb, rotateInPlace, type AppearanceProviderFor, type PDFFont, type PDFPage } from "pdf-lib";
 import { PDF_MAX_OUTPUT_BYTES, PdfEngineError, pdfFieldApplicability,pdfFieldReadOnly,pdfFieldSourceReadOnly, quadToBox, type PdfAnswer, type PdfExportOptions, type PdfField, type PdfIssue, type PdfPageInfo, type PdfPlacement, type PdfPoint } from "../../domain/pdf";
 import { abortIfNeeded, graphemes, isInside } from "./geometry";
 import { extractNativeFields, inspectNativeDocument, sanitizePdf } from "./native";
@@ -7,13 +7,13 @@ import { area, intersection } from "./geometry";
 import { validatePdfFields } from "./validation";
 
 export type BuildExportInput={inputMode?:"direct";original:Uint8Array;pages:PdfPageInfo[];fields:PdfField[];answers:PdfExportOptions["answers"];answerStatus?:Record<string,string>;mode:NonNullable<PdfExportOptions["mode"]>;fontBytes:Uint8Array;allowIncomplete:boolean;actionRemovalConfirmed:boolean};
-const textBounds=new WeakMap<PDFFont,(text:string)=>{ascent:number;descent:number}>();
+const textBounds=new WeakMap<PDFFont,(text:string)=>{ascent:number;descent:number;left:number;right:number}>();
 /** TrueType subsets retain actual Japanese outlines; CFF uses the verified full-font fallback. */
 export async function embedJapaneseFont(doc:PDFDocument,bytes:Uint8Array):Promise<PDFFont>{
   const trueType=bytes.length>4&&bytes[0]===0&&bytes[1]===1&&bytes[2]===0&&bytes[3]===0;
   const parsed=fontkit.create(bytes) as ReturnType<typeof fontkit.create>&{variationAxes?:Record<string,unknown>};
   if(parsed.variationAxes&&Object.keys(parsed.variationAxes).length)throw new PdfEngineError("VARIABLE_FONT_UNSUPPORTED","可変フォントは静的な書き出し用フォントへ変換してから利用してください。");
-  doc.registerFontkit({create:()=>parsed});const embedded=await doc.embedFont(bytes,{subset:trueType});textBounds.set(embedded,text=>{const run=parsed.layout(text.replace(/[\r\n]/g,""));let ascent=0,descent=0;for(let index=0;index<run.glyphs.length;index++){const box=run.glyphs[index].bbox,offset=run.positions[index]?.yOffset??0;if(Number.isFinite(box.maxY))ascent=Math.max(ascent,box.maxY+offset);if(Number.isFinite(box.minY))descent=Math.min(descent,box.minY+offset);}return {ascent:ascent/parsed.unitsPerEm,descent:descent/parsed.unitsPerEm};});return embedded;
+  doc.registerFontkit({create:()=>parsed});const embedded=await doc.embedFont(bytes,{subset:trueType});textBounds.set(embedded,text=>{const run=parsed.layout(text.replace(/[\r\n]/g,""));let ascent=0,descent=0,left=Infinity,right=-Infinity,advance=0;for(let index=0;index<run.glyphs.length;index++){const box=run.glyphs[index].bbox,position=run.positions[index],offset=position?.yOffset??0;if(Number.isFinite(box.maxY))ascent=Math.max(ascent,box.maxY+offset);if(Number.isFinite(box.minY))descent=Math.min(descent,box.minY+offset);if(Number.isFinite(box.minX))left=Math.min(left,advance+(position?.xOffset??0)+box.minX);if(Number.isFinite(box.maxX))right=Math.max(right,advance+(position?.xOffset??0)+box.maxX);advance+=position?.xAdvance??0;}return {ascent:ascent/parsed.unitsPerEm,descent:descent/parsed.unitsPerEm,left:Number.isFinite(left)?left/parsed.unitsPerEm:0,right:Number.isFinite(right)?right/parsed.unitsPerEm:0};});return embedded;
 }
 export type BuildExportResult={bytes:Uint8Array;issues:PdfIssue[];written:Array<{fieldId:string;value:PdfAnswer;nativeName:string|null;texts:string[]}>};
 const isEmpty=(value:PdfAnswer|undefined)=>value===null||value===undefined||value===""||(Array.isArray(value)&&value.length===0);
@@ -21,6 +21,17 @@ const answerText=(value:PdfAnswer):string=>typeof value==="string"?value:Array.i
 const issue=(code:string,message:string,field?:PdfField):PdfIssue=>({code,message,fieldId:field?.id,severity:"error"});
 const dist=(a:PdfPoint,b:PdfPoint)=>Math.hypot(a.x-b.x,a.y-b.y);
 function fieldInset(width:number,height:number,userUnit:number):number{return Math.min(2/userUnit,Math.min(width,height)*.06);}
+// An absent override is automatic. Explicit sizes retain their existing floor
+// and small-type confirmation semantics for restored tasks.
+function fontRange(field:PdfField,userUnit:number){
+  const automatic=field.style?.fontSizePt===undefined;
+  const physicalSize=field.style?.fontSizePt??14;
+  return {automatic,fontSize:physicalSize/userUnit,minSize:(automatic?4:field.style?.allowSmallFont?physicalSize:10)/userUnit,step:.25/userUnit};
+}
+function inkFont(font:PDFFont,text:string){
+  const bounds=textBounds.get(font)?.(text);
+  return {bounds,metrics:bounds?{widthOfTextAtSize:font.widthOfTextAtSize.bind(font),heightAtSize:(size:number)=>(bounds.ascent-bounds.descent)*size}:font};
+}
 
 function validateInput(input:BuildExportInput,doc:PDFDocument):PdfIssue[]{
   const errors:PdfIssue[]=validatePdfFields(input.fields,input.answers,input.pages,{allowIncomplete:input.allowIncomplete,answerStatus:input.answerStatus,inputMode:input.inputMode});const ids=new Set<string>();const existingFields=doc.getForm().getFields(),originalFields=extractNativeFields(doc).fields,sourceConstraints=new Map(originalFields.map(field=>[field.native!.fieldRef,field]));const protectedPlacements=originalFields.filter(pdfFieldReadOnly).flatMap(f=>f.placements);
@@ -47,26 +58,76 @@ function validateInput(input:BuildExportInput,doc:PDFDocument):PdfIssue[]{
   }return errors;
 }
 
-/** Width fitting never drops characters or silently goes below the physical 10pt floor. */
-export function fitText(text:string,font:Pick<PDFFont,"widthOfTextAtSize"|"heightAtSize">,width:number,height:number,options:{fontSize:number;minSize:number;multiline:boolean}):{size:number;lines:string[]}{
-  for(let size=options.fontSize;size>=options.minSize-.01;size-=.25){const lines:string[]=[];let current="";
-    for(const char of graphemes(text)){if(char==="\n"){if(!options.multiline)throw new PdfEngineError("MULTILINE_NOT_ALLOWED","改行を含む回答が一行の欄に指定されています。");lines.push(current);current="";continue;}if(font.widthOfTextAtSize(current+char,size)>width){if(!options.multiline||!current){current="";lines.length=0;break;} // prevent prohibited punctuation at the start of the next line
-        if(/^[、。，．）］｝」』】〕〉》！？：；]/.test(char)&&graphemes(current).length>1){const chars=graphemes(current);const last=chars.pop()!;lines.push(chars.join(""));current=last+char;}else{lines.push(current);current=char;}}
-      else current+=char;
+/** Fit every grapheme within both dimensions, respecting the caller's floor. */
+export function fitText(text:string,font:Pick<PDFFont,"widthOfTextAtSize"|"heightAtSize">,width:number,height:number,options:{fontSize:number;minSize:number;multiline:boolean;step?:number}):{size:number;lines:string[]}{
+  const step=options.step??.25,characters=graphemes(text.replace(/\r\n?/g,"\n"));
+  for(let attempt=0;attempt<=Math.ceil((options.fontSize-options.minSize)/step);attempt++){
+    const size=Math.max(options.minSize,options.fontSize-attempt*step),lines=[""];let failed=false;
+    for(const char of characters){
+      if(char==="\n"){if(!options.multiline)throw new PdfEngineError("MULTILINE_NOT_ALLOWED","改行を含む回答が一行の欄に指定されています。");lines.push("");continue;}
+      const index=lines.length-1,current=lines[index];
+      if(font.widthOfTextAtSize(current+char,size)<=width+.01){lines[index]+=char;continue;}
+      if(!options.multiline||!current){failed=true;break;}
+      // Keep closing punctuation with the preceding grapheme when wrapping.
+      if(/^[、。，．）］｝」』】〕〉》！？：；]/.test(char)&&graphemes(current).length>1){const previous=graphemes(current),last=previous.pop()!;lines[index]=previous.join("");lines.push(last+char);}
+      else lines.push(char);
+      if(font.widthOfTextAtSize(lines[lines.length-1],size)>width+.01){failed=true;break;}
     }
-    if(current||text==="")lines.push(current);const inkHeight=font.heightAtSize(size),neededHeight=inkHeight+Math.max(0,lines.length-1)*inkHeight*1.3;if(lines.length&&lines.every(line=>font.widthOfTextAtSize(line,size)<=width+.01)&&neededHeight<=height+.01)return {size,lines};
+    const inkHeight=font.heightAtSize(size),neededHeight=inkHeight+Math.max(0,lines.length-1)*inkHeight*1.3;
+    if(!failed&&neededHeight<=height+.01)return {size,lines};
   }throw new PdfEngineError("TEXT_DOES_NOT_FIT","文字が記入枠に収まりません。枠や文字サイズを確認してください。");
 }
 
 function drawCheck(page:PDFPage,placement:PdfPlacement,userUnit:number){const q=placement.quad;const point=(x:number,y:number)=>({x:q[0].x+(q[1].x-q[0].x)*x+(q[3].x-q[0].x)*y,y:q[0].y+(q[1].y-q[0].y)*x+(q[3].y-q[0].y)*y});page.drawLine({start:point(.18,.5),end:point(.43,.23),thickness:1.4/userUnit,color:rgb(0,0,0)});page.drawLine({start:point(.43,.23),end:point(.82,.79),thickness:1.4/userUnit,color:rgb(0,0,0)});}
 
 function drawAnswer(page:PDFPage,placement:PdfPlacement,text:string,font:PDFFont,field:PdfField,pageInfo:PdfPageInfo):string[]{
-  const unit=pageInfo.userUnit||1,q=placement.quad,padding=fieldInset(dist(q[0],q[1]),dist(q[0],q[3]),unit),width=dist(q[0],q[1])-padding*2,height=dist(q[0],q[3])-padding*2;const angle=Math.atan2(q[1].y-q[0].y,q[1].x-q[0].x),c=Math.cos(angle),s=Math.sin(angle);const point=(x:number,y:number)=>({x:q[0].x+x*c-y*s,y:q[0].y+x*s+y*c});const physicalSize=field.style?.fontSizePt??14,minSize=field.style?.allowSmallFont?physicalSize:10;
-  if(physicalSize<10&&!field.style?.allowSmallFont)throw new PdfEngineError("SMALL_FONT_UNCONFIRMED","小さい文字サイズを使う場合は、拡大プレビューで確認してください。");
+  const unit=pageInfo.userUnit||1,q=placement.quad,padding=fieldInset(dist(q[0],q[1]),dist(q[0],q[3]),unit),width=dist(q[0],q[1])-padding*2,height=dist(q[0],q[3])-padding*2;const angle=Math.atan2(q[1].y-q[0].y,q[1].x-q[0].x),c=Math.cos(angle),s=Math.sin(angle);const point=(x:number,y:number)=>({x:q[0].x+x*c-y*s,y:q[0].y+x*s+y*c});const range=fontRange(field,unit);
+  if(!range.automatic&&range.fontSize*unit<10&&!field.style?.allowSmallFont)throw new PdfEngineError("SMALL_FONT_UNCONFIRMED","小さい文字サイズを使う場合は、拡大プレビューで確認してください。");
   if(placement.cells?.length){const chars=graphemes(text);if(chars.length>placement.cells.length)throw new PdfEngineError("CELL_OVERFLOW","回答がマス目の数を超えています。");for(let i=0;i<chars.length;i++)drawAnswer(page,{...placement,quad:placement.cells[i],cells:undefined},chars[i],font,{...field,kind:"text",style:{...field.style,alignment:"center"}},pageInfo);return chars;}
-  if(placement.writingMode==="vertical"){const chars=graphemes(text);let size=physicalSize/unit;const minimum=minSize/unit;while(size>=minimum&&((font.heightAtSize(size)*1.25)*chars.length>height||font.widthOfTextAtSize("漢",size)>width))size-=.25/unit;if(size<minimum)throw new PdfEngineError("TEXT_DOES_NOT_FIT","縦書きの記入枠に収まりません。");for(let i=0;i<chars.length;i++){const char=chars[i],p=point(padding+(width-font.widthOfTextAtSize(char,size))/2,padding+height-size*(i+1)*1.25);const rotate=/^[ー―…（）「」『』［］｛｝]$/.test(char)?90:0;page.drawText(char,{...p,font,size,rotate:degrees(angle*180/Math.PI+rotate),color:rgb(0,0,0)});}return chars;}
-  const bounds=textBounds.get(font)?.(text),metricFont=bounds?{widthOfTextAtSize:font.widthOfTextAtSize.bind(font),heightAtSize:(size:number)=>(bounds.ascent-bounds.descent)*size}:font;const layout=fitText(text,metricFont,width,height,{fontSize:physicalSize/unit,minSize:minSize/unit,multiline:field.kind==="multiline"});const lineHeight=metricFont.heightAtSize(layout.size)*1.3,ascent=bounds?bounds.ascent*layout.size:font.heightAtSize(layout.size);
+  if(placement.writingMode==="vertical"&&range.automatic){
+    const chars=graphemes(text),boxes=chars.map(char=>{const bounds=textBounds.get(font)?.(char),rotation=/^[ー―…（）「」『』［］｛｝]$/.test(char)?90:0,left=bounds?.left??0,right=bounds?.right??font.widthOfTextAtSize(char,1),bottom=bounds?.descent??0,top=bounds?.ascent??font.heightAtSize(1);return rotation?{left:-top,right:-bottom,bottom:left,top:right,rotation}:{left,right,bottom,top,rotation};});
+    const widest=Math.max(...boxes.map(box=>box.right-box.left)),tallest=Math.max(...boxes.map(box=>box.top-box.bottom));let size:number|undefined;
+    for(let attempt=0;attempt<=Math.ceil((range.fontSize-range.minSize)/range.step);attempt++){const candidate=Math.max(range.minSize,range.fontSize-attempt*range.step);if(widest*candidate<=width+.01&&tallest*candidate*(1+Math.max(0,chars.length-1)*1.25)<=height+.01){size=candidate;break;}}
+    if(size===undefined)throw new PdfEngineError("TEXT_DOES_NOT_FIT","縦書きの記入枠に収まりません。");
+    for(let i=0;i<chars.length;i++){const box=boxes[i],p=point(padding+(width-(box.right-box.left)*size)/2-box.left*size,padding+height-i*tallest*size*1.25-box.top*size);page.drawText(chars[i],{...p,font,size,rotate:degrees(angle*180/Math.PI+box.rotation),color:rgb(0,0,0)});}return chars;
+  }
+  if(placement.writingMode==="vertical"){const chars=graphemes(text);let size:number|undefined;for(let attempt=0;attempt<=Math.ceil((range.fontSize-range.minSize)/range.step);attempt++){const candidate=Math.max(range.minSize,range.fontSize-attempt*range.step);if((font.heightAtSize(candidate)*1.25)*chars.length<=height&&font.widthOfTextAtSize("漢",candidate)<=width){size=candidate;break;}}if(size===undefined)throw new PdfEngineError("TEXT_DOES_NOT_FIT","縦書きの記入枠に収まりません。");for(let i=0;i<chars.length;i++){const char=chars[i],p=point(padding+(width-font.widthOfTextAtSize(char,size))/2,padding+height-size*(i+1)*1.25);const rotate=/^[ー―…（）「」『』［］｛｝]$/.test(char)?90:0;page.drawText(char,{...p,font,size,rotate:degrees(angle*180/Math.PI+rotate),color:rgb(0,0,0)});}return chars;}
+  const {bounds,metrics:metricFont}=inkFont(font,text);const layout=fitText(text,metricFont,width,height,{...range,multiline:field.kind==="multiline"});const lineHeight=metricFont.heightAtSize(layout.size)*1.3,ascent=bounds?bounds.ascent*layout.size:font.heightAtSize(layout.size);
   for(let i=0;i<layout.lines.length;i++){const line=layout.lines[i],lineWidth=font.widthOfTextAtSize(line,layout.size);const align=field.style?.alignment;const x=padding+(align==="center"?(width-lineWidth)/2:align==="right"?width-lineWidth:0);const p=point(x,padding+height-ascent-i*lineHeight);page.drawText(line,{...p,size:layout.size,font,rotate:degrees(angle*180/Math.PI),color:rgb(0,0,0)});}return layout.lines;
+}
+
+/** Native widgets use the same glyph metrics and Japanese line breaks as overlays.
+ * The stock provider uses whole-font ascenders and whitespace-only wrapping,
+ * which can clip short kana rows or unspaced Japanese despite a successful fit.
+ */
+function automaticTextAppearance(field:PdfField,pages:PdfPageInfo[]):AppearanceProviderFor<PDFTextField>{
+  return (native,widget,font)=>{
+    const widgets=native.acroField.getWidgets(),index=widgets.findIndex(candidate=>candidate.dict===widget.dict),placement=field.placements[index];
+    if(!placement)throw new PdfEngineError("WIDGET_MAPPING_MISSING","原書類の入力欄の配置が不足しています。");
+    const unit=pages[placement.pageIndex].userUnit||1,rectangle=widget.getRectangle(),appearance=widget.getAppearanceCharacteristics(),borderWidth=widget.getBorderStyle()?.getWidth()??0,rotation=reduceRotation(appearance?.getRotation());
+    const {width,height}=adjustDimsForRotation(rectangle,rotation),padding=fieldInset(width-borderWidth*2,height-borderWidth*2,unit),inset=borderWidth+padding,availableWidth=width-inset*2,availableHeight=height-inset*2;
+    const text=native.getText()??"";
+    // Unanswered widgets have no ink to fit, even when their source borders
+    // leave no usable interior. Preserve the stock blank appearance behavior.
+    if(!text)return defaultTextFieldAppearanceProvider(native,widget,font);
+    const {bounds,metrics}=inkFont(font,text),range=fontRange(field,unit),characters=graphemes(text),cellCount=native.isCombed()?native.getMaxLength()??0:0;
+    let layout:{size:number;lines:string[]};
+    if(native.isCombed()){
+      if(!cellCount||characters.length>cellCount)throw new PdfEngineError("CELL_OVERFLOW","回答がマス目の数を超えています。");
+      const sizes=characters.map(character=>fitText(character,metrics,availableWidth/cellCount,availableHeight,{...range,multiline:false}).size);
+      layout={size:sizes.length?Math.min(...sizes):range.fontSize,lines:characters};
+    }else layout=fitText(text,metrics,availableWidth,availableHeight,{...range,multiline:native.isMultiline()});
+    const size=layout.size,inkHeight=metrics.heightAtSize(size),ascent=bounds?bounds.ascent*size:font.heightAtSize(size),descent=bounds?bounds.descent*size:0,lineHeight=inkHeight*1.3;
+    const alignment=field.style?.alignment??(native.getAlignment()===TextAlignment.Center?"center":native.getAlignment()===TextAlignment.Right?"right":"left");
+    const textLines=layout.lines.map((line,lineIndex)=>{
+      const lineWidth=font.widthOfTextAtSize(line,size),cellWidth=availableWidth/cellCount;
+      const x=native.isCombed()?inset+lineIndex*cellWidth+(cellWidth-lineWidth)/2:inset+(alignment==="center"?(availableWidth-lineWidth)/2:alignment==="right"?availableWidth-lineWidth:0);
+      const y=native.isMultiline()?inset+availableHeight-ascent-lineIndex*lineHeight:inset+(availableHeight-inkHeight)/2-descent;
+      return {encoded:font.encodeText(line),x,y};
+    });
+    widget.setDefaultAppearance(`/${font.name} ${size} Tf 0 g`);
+    return [...rotateInPlace({...rectangle,rotation}),...drawTextField({x:borderWidth/2,y:borderWidth/2,width:width-borderWidth,height:height-borderWidth,borderWidth,borderColor:componentsToColor(appearance?.getBorderColor()),color:componentsToColor(appearance?.getBackgroundColor()),textColor:rgb(0,0,0),font:font.name,fontSize:size,padding,textLines})];
+  };
 }
 
 export async function buildPdfExport(input:BuildExportInput,signal?:AbortSignal,onProgress?:(completed:number,total:number,detail:string)=>void):Promise<BuildExportResult>{
@@ -78,7 +139,7 @@ export async function buildPdfExport(input:BuildExportInput,signal?:AbortSignal,
   for(const field of input.fields){abortIfNeeded(signal);onProgress?.(2+processed++,total,"記入欄へ回答を配置しています");const value=Object.prototype.hasOwnProperty.call(input.answers,field.id)?input.answers[field.id]:field.initialValue;if(pdfFieldReadOnly(field)||field.mappingState==="rejected"||!field.native&&pdfFieldApplicability(field,input.answers,{answerStatus:input.answerStatus})===false)continue;const text=answerText(value);if(!isEmpty(value)&&!["checkbox","radio","select"].includes(field.kind))for(const char of Array.from(text)){if(char==="\n"||char==="\r")continue;if(!supported.has(char.codePointAt(0)!))throw new PdfEngineError("GLYPH_UNAVAILABLE",`「${field.label}」の文字「${char}」を同梱フォントで表示できません。`,[issue("GLYPH_UNAVAILABLE","表示できない文字があります。",field)]);}
     if(field.native){const native=form.getFields().find(f=>f.ref.toString()===field.native!.fieldRef);if(!native)throw new PdfEngineError("NATIVE_FIELD_MISMATCH","入力欄が見つかりません。");const original=sourceConstraints.get(native.ref.toString());if(native.isReadOnly()||!original||pdfFieldSourceReadOnly(original))continue;
       const widgets=native.acroField.getWidgets();for(let wi=0;wi<widgets.length;wi++){const placement=field.placements[wi];if(!placement)throw new PdfEngineError("WIDGET_MAPPING_MISSING","原書類の入力欄の配置が不足しています。");const widget=widgets[wi],box=quadToBox(placement.quad);widget.setRectangle({x:box[0],y:box[1],width:box[2]-box[0],height:box[3]-box[1]});const previous=doc.getPages().find(p=>p.ref.toString()===widget.P()?.toString()),target=doc.getPage(placement.pageIndex);if(previous&&previous!==target){const refEntry=doc.context.enumerateIndirectObjects().find(([,object])=>object===widget.dict);const ref=refEntry?.[0]??native.ref;const annotations=previous.node.Annots();if(annotations)for(let ai=annotations.size()-1;ai>=0;ai--)if(annotations.get(ai).toString()===ref.toString())annotations.remove(ai);target.node.addAnnot(ref);widget.setP(target.ref);}}
-      if(native instanceof PDFTextField){native.setText(isEmpty(value)?"":text);if(!isEmpty(value)){for(let wi=0;wi<widgets.length;wi++){const p=field.placements[wi],b=quadToBox(p.quad),unit=input.pages[p.pageIndex].userUnit;const size=fitText(text,font,b[2]-b[0]-4/unit,b[3]-b[1]-4/unit,{fontSize:(field.style?.fontSizePt??14)/unit,minSize:(field.style?.allowSmallFont?(field.style.fontSizePt??10):10)/unit,multiline:native.isMultiline()}).size;widgets[wi].setDefaultAppearance(`/${font.name} ${size} Tf 0 g`);}}native.updateAppearances(font);}
+      if(native instanceof PDFTextField){native.setText(isEmpty(value)?"":text);if(field.style?.fontSizePt===undefined)native.updateAppearances(font,automaticTextAppearance(field,input.pages));else{if(!isEmpty(value)){for(let wi=0;wi<widgets.length;wi++){const p=field.placements[wi],b=quadToBox(p.quad),unit=input.pages[p.pageIndex].userUnit;const size=fitText(text,font,b[2]-b[0]-4/unit,b[3]-b[1]-4/unit,{...fontRange(field,unit),multiline:native.isMultiline()}).size;widgets[wi].setDefaultAppearance(`/${font.name} ${size} Tf 0 g`);}}native.updateAppearances(font);}}
       else if(native instanceof PDFCheckBox){if(value===true)native.check();else native.uncheck();}
       else if(native instanceof PDFRadioGroup){if(isEmpty(value))native.clear();else native.select(String(value));}
       else if(native instanceof PDFDropdown||native instanceof PDFOptionList){if(isEmpty(value))native.clear();else native.select(Array.isArray(value)?value:String(value));native.updateAppearances(font);}

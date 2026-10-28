@@ -1,0 +1,186 @@
+{
+  "title": "横浜市立図書館利用申込書",
+  "source_url": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/guide/toroku/riyo-touroku.files/0007_20240126.pdf",
+  "retrieved_at": "2026-10-21",
+  "original": {
+    "file": "library-application-original.pdf",
+    "sha256": "cd6ad4a7291340abcc8c70b94c191367ce1b9fa4c01a604889c5c9a4d6b01ff7",
+    "modified": false,
+    "pages": 1,
+    "acroform_fields": 0
+  },
+  "controlled_fixture": {
+    "file": "library-application-fillable.pdf",
+    "official": false,
+    "changes": "透明な入力欄13個と日本語入力用フォント、非公式検証用の文書メタデータを追加。元の印刷内容を維持。",
+    "blank_raster_identical_at_120dpi": true,
+    "original_content_stream_preserved": true,
+    "canonical_and_widget_values_validated": true,
+    "fields": [
+      {
+        "name": "family_name_kana",
+        "label": "フリガナ（姓）",
+        "x": 64,
+        "y": 473.5,
+        "w": 89,
+        "h": 11,
+        "size": 7.5,
+        "max": 12,
+        "required": true
+      },
+      {
+        "name": "given_name_kana",
+        "label": "フリガナ（名）",
+        "x": 158,
+        "y": 473.5,
+        "w": 89,
+        "h": 11,
+        "size": 7.5,
+        "max": 12,
+        "required": true
+      },
+      {
+        "name": "family_name",
+        "label": "氏名（姓）",
+        "x": 64,
+        "y": 440,
+        "w": 89,
+        "h": 20,
+        "size": 10,
+        "max": 10,
+        "required": true
+      },
+      {
+        "name": "given_name",
+        "label": "氏名（名）",
+        "x": 158,
+        "y": 440,
+        "w": 89,
+        "h": 20,
+        "size": 10,
+        "max": 10,
+        "required": true
+      },
+      {
+        "name": "postal_code_prefix",
+        "label": "郵便番号（前3桁）",
+        "x": 77,
+        "y": 401,
+        "w": 22,
+        "h": 12,
+        "size": 8,
+        "max": 3
+      },
+      {
+        "name": "postal_code_suffix",
+        "label": "郵便番号（後4桁）",
+        "x": 110,
+        "y": 401,
+        "w": 30,
+        "h": 12,
+        "size": 8,
+        "max": 4
+      },
+      {
+        "name": "address",
+        "label": "住所",
+        "x": 65,
+        "y": 368,
+        "w": 315,
+        "h": 29,
+        "size": 9,
+        "max": 100,
+        "multiline": true
+      },
+      {
+        "name": "home_phone_area",
+        "label": "自宅電話（市外局番）",
+        "x": 112,
+        "y": 337,
+        "w": 33,
+        "h": 13,
+        "size": 9,
+        "max": 5,
+        "center": true
+      },
+      {
+        "name": "home_phone_local",
+        "label": "自宅電話（市内局番）",
+        "x": 157,
+        "y": 337,
+        "w": 35,
+        "h": 13,
+        "size": 9,
+        "max": 4,
+        "center": true
+      },
+      {
+        "name": "home_phone_number",
+        "label": "自宅電話（加入者番号）",
+        "x": 205,
+        "y": 337,
+        "w": 61,
+        "h": 13,
+        "size": 9,
+        "max": 4,
+        "center": true
+      },
+      {
+        "name": "mobile_phone_prefix",
+        "label": "携帯電話（前3桁）",
+        "x": 112,
+        "y": 314,
+        "w": 33,
+        "h": 13,
+        "size": 9,
+        "max": 3,
+        "center": true
+      },
+      {
+        "name": "mobile_phone_middle",
+        "label": "携帯電話（中4桁）",
+        "x": 157,
+        "y": 314,
+        "w": 35,
+        "h": 13,
+        "size": 9,
+        "max": 4,
+        "center": true
+      },
+      {
+        "name": "mobile_phone_suffix",
+        "label": "携帯電話（後4桁）",
+        "x": 205,
+        "y": 314,
+        "w": 61,
+        "h": 13,
+        "size": 9,
+        "max": 4,
+        "center": true
+      }
+    ]
+  },
+  "extension_overlay": {
+    "field_count": 14,
+    "original_unchanged": true,
+    "coordinate_system": "Unrotated PDF user space; original MediaBox origin is (-11.9622, 11.9622).",
+    "additional_fields": [{
+      "name": "procedure", "label": "手続の内容", "kind": "select", "multiple": true,
+      "options": [
+        { "id": "new-registration", "label": "新規登録", "x": 77.64, "y": 514.33, "w": 9.6, "h": 9.6 },
+        { "id": "change-registration", "label": "登録内容変更", "x": 131.16, "y": 514.33, "w": 9.6, "h": 9.6 },
+        { "id": "renew-registration", "label": "登録更新", "x": 204.12, "y": 514.33, "w": 9.6, "h": 9.6 },
+        { "id": "lost-card", "label": "紛失", "x": 257.64, "y": 514.33, "w": 9.6, "h": 9.6 },
+        { "id": "temporary-loan", "label": "臨時貸出", "x": 291.72, "y": 514.33, "w": 9.6, "h": 9.6 },
+        { "id": "other", "label": "その他", "x": 345.24, "y": 514.33, "w": 9.6, "h": 9.6 }
+      ]
+    }]
+  },
+  "preview": {
+    "file": "library-application-preview.png",
+    "source": "original",
+    "dpi": 120,
+    "width": 700,
+    "height": 992
+  }
+}

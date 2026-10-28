@@ -103,6 +103,24 @@ describe("3.0 PDF controller and dedicated tab",()=>{
       expect(await call(page,"failSaveDownload")).toMatchObject({state:"ready",stage:"reviewing",error:expect.stringContaining("保存が中断"),answersRetained:true,originalRetained:true,validated:true,revoked:2,listeners:0});
     }finally{await call(page,"finishSaveDownload");await page.close();}
   },30000);
+  it("keeps Next clickable without scrolling the page in a short desktop window",async()=>{
+    const page=await harness();
+    try{
+      const bytes=await page.evaluate(()=>(window as unknown as {pdfTest:{nativeFixture:()=>Promise<number[]>}}).pdfTest.nativeFixture());
+      await page.setViewportSize({width:1440,height:420});await page.goto(`${origin}/workspace.html`);
+      await page.getByLabel("開くPDFファイル").setInputFiles({name:"short-window.pdf",mimeType:"application/pdf",buffer:Buffer.from(bytes)});
+      const next=page.getByRole("button",{name:"次へ",exact:true});await next.waitFor();
+      await page.locator("[data-pdf-answer]").fill("山田 花子");
+      const position=await next.evaluate(button=>{
+        const rect=button.getBoundingClientRect(),x=rect.x+rect.width/2,y=rect.y+rect.height/2;
+        return{x,y,fullyVisible:rect.top>=0&&rect.bottom<=innerHeight,receivesClick:document.elementFromPoint(x,y)===button};
+      });
+      expect(position.fullyVisible).toBe(true);expect(position.receivesClick).toBe(true);
+      await page.mouse.click(position.x,position.y);
+      await expect.poll(()=>page.locator(".pdf-entry-progress").textContent()).toMatch(/^2 \/ /u);
+      await page.getByRole("button",{name:"戻る",exact:true}).click();expect(await page.locator("[data-pdf-answer]").inputValue()).toBe("山田 花子");
+    }finally{await page.close();}
+  },30000);
   it("opens the dedicated tab, corrects/cancels a field, moves back, and saves an actual Japanese PDF",async()=>{
     const page=await harness(),errors:string[]=[];page.on("pageerror",error=>errors.push(error.message));
     try{

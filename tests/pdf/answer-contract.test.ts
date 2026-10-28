@@ -76,6 +76,15 @@ describe("raw PDF writer preserves incompatible retained answers instead of coer
     } finally { await session.dispose(); }
   });
 
+  it("permits explicit overlay multi-choice answers without weakening native or single-choice types", () => {
+    const field = { ...makeManualPdfField(0, [60, 220, 85, 245], "手続の内容", "select"), multiple: true };
+    expect(pdfAnswerTypeCompatible(field, ["new", "renew"])).toBe(true);
+    expect(pdfAnswerTypeCompatible(field, [])).toBe(true);
+    expect(pdfAnswerTypeCompatible(field, "new")).toBe(false);
+    expect(pdfAnswerTypeCompatible({ ...field, multiple: false }, ["new"])).toBe(false);
+    expect(pdfAnswerTypeCompatible({ ...field, kind: "text" }, ["new"])).toBe(false);
+    expect(pdfAnswerTypeCompatible({ ...field, native: { multiSelect: false } as NonNullable<PdfField["native"]> }, ["new"])).toBe(false);
+  });
   it("rejects incompatible retained types, including empty arrays, before blank/condition/incomplete skips", async () => {
     const { bytes, session, fields, name } = await openFixture(), fontBytes = await font();
     const find = (label: string) => fields.find(field => field.native?.name === label)!;

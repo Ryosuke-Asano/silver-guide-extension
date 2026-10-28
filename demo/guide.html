@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light">
+  <title>検証の進め方｜横浜市立図書館・検証用モック</title>
+  <link rel="icon" href="data:,"><link rel="stylesheet" href="mock.css">
+</head>
+<body class="yk-page">
+  <a class="yk-skip" href="#main">本文へ移動</a>
+  <header class="yk-header"><div class="yk-container"><p class="yk-site-title">横浜市立図書館蔵書検索ページ</p><nav class="yk-nav" aria-label="検証ページ"><a href="./">利用者情報仮登録</a><a href="./#pdf-fields">申込書に入力</a><a href="guide.html" aria-current="page">検証の進め方</a></nav></div></header>
+  <div class="yk-container">
+    <p class="yk-mock-notice"><strong>検証用モックです。</strong> 横浜市の公式サイトではありません。入力内容は送信されません。</p>
+    <main id="main" class="yk-main">
+      <div class="yk-page-heading"><h1>検証の進め方</h1><a href="#sources">出典</a></div>
+      <div class="yk-content">
+        <p>1つのフォームで、基本情報の入力、PDFへの記入、模擬提出を試せます。対応するSilver Guideを有効にすると、PDFへの記入後の添付・模擬提出まで続けて進めます。</p>
+        <h2>最初に試す入力例</h2>
+        <p>以下は入力操作のための見本です。実際の利用者情報は必要ありません。</p>
+        <table class="yk-data-table"><thead><tr><th scope="col">項目</th><th scope="col">見本</th></tr></thead><tbody><tr><th scope="row">登録条件</th><td>在住</td></tr><tr><th scope="row">名前</th><td>桜木　町子</td></tr><tr><th scope="row">名前カタカナ</th><td>サクラギ　マチコ</td></tr><tr><th scope="row">生年月日</th><td>1994年2月22日</td></tr><tr><th scope="row">郵便番号</th><td>220 ／ 0032</td></tr><tr><th scope="row">住所</th><td>西区みほん町1－2－3（架空の番地）</td></tr><tr><th scope="row">電話番号</th><td>市外局番は空欄 ／ 000 ／ 0000（接続先のない見本）</td></tr><tr><th scope="row">予約連絡方法</th><td>連絡不要</td></tr><tr><th scope="row">メールを試す場合</th><td>machiko@example.invalid</td></tr></tbody></table>
+        <h2>ウェブの入力を確認する</h2>
+        <ol>
+          <li>はじめにブラウザーで拡張機能を無効にし、<a href="./">利用者情報仮登録</a>から入力・確認・修正を試します。</li>
+          <li>次に拡張機能を有効にし、このローカルページへのアクセスを許可して再読み込みします。</li>
+          <li>同じ操作を繰り返し、案内の表示・入力欄の操作・元のページのエラーを比較します。</li>
+        </ol>
+        <ul class="yk-checklist">
+          <li><label><input type="checkbox">名前：日本語の変換・確定ができ、姓と名の間の空白がそのまま残る。</label></li>
+          <li><label><input type="checkbox">名前カタカナ：変換中の操作を妨げず、確定した文字を入力できる。</label></li>
+          <li><label><input type="checkbox">名前カタカナ：「さくらぎ　まちこ」で確認に進むと、形式のエラーが表示される。</label></li>
+          <li><label><input type="checkbox">電話番号：Tabで3欄を移動でき、値が勝手に書き換わらない。045を省略した入力でも確認へ進める。</label></li>
+          <li><label><input type="checkbox">電話番号：全角数字「０００」を入力すると、確認時に半角数字の案内が出る。</label></li>
+          <li><label><input type="checkbox">追加欄：「在勤」「在学」を選ぶと勤務先・学校の欄が現れ、「在住」に戻すと隠れる。</label></li>
+          <li><label><input type="checkbox">内容確認：「入力画面に戻る」で名前・カナ・電話番号が保たれる。リセットで空欄に戻る。</label></li>
+        </ul>
+        <div class="yk-guide-note"><p><strong>補助が出ない場合も、元のフォームの性質を確認します。</strong></p><p>実フォームに合わせ、名前・電話番号は通常のテキスト欄として再現しています。名前カタカナは形式の案内の対象ですが、近くの欄と重ならずに表示できる空間が必要です。すべての欄に補助が出るとは限りません。ページ側のエラーが表示されている間は、そちらの案内を優先します。</p></div>
+        <h2 id="pdf-checks">PDFに記入して模擬提出する</h2>
+        <p>先に基本情報を入力し、<a href="./#pdf-fields">E-mailの下にある申込書欄</a>で、PDFリンクの横に拡張が表示する「Silver Guideで記入」を選びます。原本PDFと提出先を引き継ぎ、そのまま氏名から入力できます。記入後の「入力を完了」で添付・模擬提出まで自動で進みます。ダウンロード・アップロード・保存して選び直す操作は不要です。</p>
+        <p>手元の別PDFを使う場合は、通常のファイル欄で選びます。拡張が「選択したPDFに記入」を表示します。添付先が複数ある場合は、記入画面で欄を選びます。</p>
+        <p>基本情報に未入力やエラーがあれば、記入済みPDFを添付したままエラーへ戻ります。PDFの検出・入力・添付は、拡張が通常サイトでも扱う機能です。このデモの模擬提出手順は拡張内のサイト用アダプターで扱います。拡張なしでは、ダウンロードした原本に記入し、保存したPDFを選択する手順を使えます。</p>
+        <ul class="yk-checklist">
+          <li><label><input type="checkbox">提出先として、元のフォームと申込書欄が表示される。</label></li>
+          <li><label><input type="checkbox">「Silver Guideで記入」の1クリックで、ファイル選択を挟まず氏名欄へ進める。</label></li>
+          <li><label><input type="checkbox">最後の「入力を完了」で、記入済みPDFが添付され、模擬提出の完了画面へ戻る。</label></li>
+          <li><label><input type="checkbox">基本情報が不足する場合は、PDFを添付した状態でエラーへ戻る。</label></li>
+          <li><label><input type="checkbox">「図書館利用申込書.pdf をダウンロード」から、PDF原本を保存できる。</label></li>
+          <li><label><input type="checkbox">Silver Guideで姓・名と、それぞれのフリガナを記入できる。</label></li>
+          <li><label><input type="checkbox">日本語の変換・確定、3分割の電話番号の入力、記入済みPDFの保存を試せる。</label></li>
+          <li><label><input type="checkbox">記入済みPDFをアップロード欄で選択すると、ファイル名が表示される。</label></li>
+          <li><label><input type="checkbox">内容確認へ進み、入力画面に戻っても選択したファイルが保たれる。</label></li>
+          <li><label><input type="checkbox">「選択を解除」または「リセット」で、ファイルの選択を解除できる。</label></li>
+          <li><label><input type="checkbox">PDF以外や20MBを超えるファイルでは、エラーが表示される。</label></li>
+        </ul>
+        <div class="yk-guide-note"><p>アップロードは操作確認のためのものです。ファイルは端末内だけで扱い、サーバーへの送信や保管は行いません。PDFの記入操作は、導入したSilver Guideで確認してください。</p><p>比較用の<a href="assets/library-application-fillable.pdf?download=1" download="library-application-fillable.pdf">入力欄追加版PDF</a>もあります。原本の印刷内容に透明なフォーム欄を13個追加した非公式の派生物です。Silver Guideは他の欄も推定するため、表示される質問数は13とは限りません。</p></div>
+        <h2>用語の説明を確認する</h2>
+        <p>利用者登録、在住、在勤、在学、広域利用、予約受取館、申込書、氏名、フリガナ、市外局番、全角、半角、添付、アップロード、原本、写し、プレビュー、ダウンロードなどの用語を辞書に追加しています。</p>
+        <p>拡張機能を有効にすると、説明文の対象語からやさしい説明を開けます。入力欄・ラベル・ボタンの文字には辞書を重ねず、元のフォームの操作を保ちます。</p>
+        <h2 id="sources">再現元と、このモックで変えたところ</h2>
+        <p>参照・取得日：2026年10月21日。色と配置は、横浜市立図書館の公開フォームと公式の案内画像・スタイルを基準にしています。</p>
+        <ul>
+          <li><a href="https://opac.lib.city.yokohama.lg.jp/winj/opac/preregister.do" target="_blank" rel="noopener">横浜市立図書館・実際の利用者情報仮登録フォーム ↗</a></li>
+          <li><a href="https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/guide/toroku/onlineshinsei.html" target="_blank" rel="noopener">横浜市・オンラインによる利用者登録の手続のご案内 ↗</a></li>
+          <li><a href="https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/guide/toroku/riyo-touroku.html" target="_blank" rel="noopener">横浜市・登録（初めて図書を借りるとき）・申込書の配布元 ↗</a></li>
+        </ul>
+        <table class="yk-data-table"><thead><tr><th scope="col">再現しているもの</th><th scope="col">検証用に変更したもの</th></tr></thead><tbody><tr><td>名前1欄、名前カタカナ、3分割の電話番号、郵便番号、生年月日、在勤・在学による追加欄。</td><td>本番のパスワード・本人確認書類を省略。入力→確認→模擬完了の3段階に短縮し、E-mailの下にPDFのダウンロードリンクとアップロード欄を追加。</td></tr><tr><td>白い用紙、青い見出し・ラベル欄、橙色の操作ボタン、Meiryoを優先する文字組み。</td><td>狭い画面ではラベルと入力欄を縦に配置。色のコントラストとキーボード操作を調整。</td></tr><tr><td>名前の空白案内、カタカナの許容文字、半角数字、045省略、電話番号の後半2欄が合計7桁以上という条件。</td><td>エラーをページ内に表示。日付の実在チェックを追加。住所検索は3件のローカル見本だけで動作。</td></tr><tr><td>中央・鶴見など18図書館からの受取館選択。</td><td>移動図書館と図書取次所の選択は省略。受付や通知の送信は行わない。</td></tr><tr><td>横浜市が公開しているPDF原本。</td><td>同じフォームの末尾からダウンロードとアップロードを試せる。比較用の「入力欄追加版」も同梱。</td></tr></tbody></table>
+        <p class="yk-scope-note">このページの入力値とチェックは保存しません。Silver Guideの画面・書体・配色・部品は読み込まず、補助表示はブラウザーに導入した拡張機能が行います。</p>
+      </div>
+    </main>
+    <footer class="yk-footer"><p>この検証用モックは横浜市の提供・監修によるものではありません。</p><p><a href="./">ウェブの入力に戻る</a> ／ <a href="./#pdf-fields">申込書に入力</a></p></footer>
+  </div>
+</body>
+</html>

@@ -24,6 +24,18 @@ const delay=async()=>act(async()=>{await vi.advanceTimersByTimeAsync(350);});
 function deferred<T>(){let resolve!:(value:T)=>void,reject!:(cause:unknown)=>void;const promise=new Promise<T>((accept,fail)=>{resolve=accept;reject=fail;});return{promise,resolve,reject};}
 
 describe("live PDF preview rendering",()=>{
+  it("toggles the exact PDF choice and exposes its checked state without enabling ambiguous or protected targets",async()=>{
+    const choice={...field(),kind:"select" as const,multiple:true,options:[{id:"new",label:"新規登録",exportValue:"new",placements:field().placements},{id:"renew",label:"登録更新",exportValue:"renew",placements:makeManualPdfField(0,[380,620,400,640]).placements}]};
+    choice.placements=choice.options.flatMap(option=>option.placements);
+    const onToggleChoice=vi.fn(),session={renderPreview:vi.fn(async(_index:number,canvas:HTMLCanvasElement,options:{answers:PdfAnswers})=>marked(canvas,options.answers)),render:vi.fn()} as unknown as PdfSession;
+    const render=async(fields=[choice],disabled=false)=>act(async()=>root.render(<PdfPreview compact session={session} pages={[page]} fields={fields} selectedId="name" pageIndex={0} onPageChange={()=>{}} onSelect={()=>{}} onToggleChoice={onToggleChoice} choicesDisabled={disabled} preview={{answers:{name:["new"]}}}/>));
+    await render();const boxes=()=>[...container.querySelectorAll<HTMLButtonElement>('[role="checkbox"]')];
+    expect(boxes().map(box=>box.getAttribute("aria-checked"))).toEqual(["true","false"]);
+    await act(async()=>{boxes()[1].click();});expect(onToggleChoice).toHaveBeenCalledExactlyOnceWith("name","renew");
+    await render([choice],true);await act(async()=>{boxes()[0].click();});expect(onToggleChoice).toHaveBeenCalledTimes(1);
+    await render([{...choice,readOnly:true}]);expect(boxes()).toHaveLength(0);
+    await render([{...choice,options:choice.options.map(option=>({...option,placements:choice.placements.slice(0,1)})),placements:choice.placements.slice(0,1)}]);expect(boxes()).toHaveLength(0);
+  });
   it("debounces rapid edits into the latest answer snapshot and copies only completed renders",async()=>{
     const fields=[field()],renderPreview=vi.fn(async(_index:number,canvas:HTMLCanvasElement,options:{answers:PdfAnswers})=>marked(canvas,options.answers));
     const session={renderPreview,render:vi.fn()} as unknown as PdfSession;
