@@ -66,24 +66,35 @@ describe("simple, source-preserving explanation panel", () => {
     expect(container.querySelector("blockquote")!.textContent).toBe(original);
     expect(container.querySelector<HTMLDetailsElement>(".sidebar-original-details")!.open).toBe(false);
   });
-  it("asks for a complete sentence when only an ending and a known word were selected", async () => {
+  it("uses surrounding sentences automatically and highlights the exact selected fragment in the source", async () => {
     const original = "してください。申込書";
-    await renderView(context({ selection: original }));
-    expect(container.querySelector("h1")!.textContent).toBe("前後の文も選んでください");
-    expect(container.textContent).toContain("文の途中だけでは、何をするか説明できません。");
-    expect(container.querySelector(".sidebar-organization")).toBeNull();
+    const full = "利用者情報を入力してください。申込書は窓口で受け取れます。";
+    await renderView(context({ selection: original, selectionContext: { text: full, start: full.indexOf(original), end: full.indexOf(original) + original.length } }));
+    expect(container.querySelector("h1")!.textContent).toBe("文章の説明");
+    expect(container.querySelector("dd")!.textContent).toBe("利用者情報を入力してください。");
+    expect(container.textContent).toContain("前後の文も含めて整理しました");
+    expect(container.textContent).not.toContain("前後の文も選んでください");
     expect(container.querySelector<HTMLDetailsElement>(".sidebar-terms")!.open).toBe(false);
-    expect(container.querySelector(".sidebar-term-original")!.textContent).toBe("申込書");
-    expect(container.querySelector(".sidebar-original-details")).toBeNull();
-    expect(container.querySelector("blockquote")!.textContent).toBe(original);
-    expect(container.textContent).not.toContain("一部を整理しました");
+    expect(container.querySelector<HTMLDetailsElement>(".sidebar-original-details")!.open).toBe(false);
+    expect(container.querySelector("blockquote")!.textContent).toBe(full);
+    expect(container.querySelector("blockquote mark")!.textContent).toBe(original);
   });
   it("does not claim an unexplained bare ending is an instruction", async () => {
     await renderView(context({ selection: "してください。" }));
-    expect(container.querySelector("h1")!.textContent).toBe("前後の文も選んでください");
+    expect(container.querySelector("h1")!.textContent).toBe("文章の説明");
+    expect(container.textContent).not.toContain("前後の文も選んでください");
     expect(container.querySelector(".sidebar-organization")).toBeNull();
     expect(container.querySelector("blockquote")!.textContent).toBe("してください。");
     expect(container.textContent).not.toContain("説明は見つかりません");
+  });
+  it("keeps the concise word explanation while offering its surrounding source", async () => {
+    const full = "申込書は窓口で受け取れます。";
+    await renderView(context({ selection: "申込書", selectionContext: { text: full, start: 0, end: 3 } }));
+    expect(container.querySelector("h1")!.textContent).toBe("申込書");
+    expect(container.querySelector(".sidebar-organization")).toBeNull();
+    expect(container.querySelector("blockquote")!.textContent).toBe(full);
+    expect(container.querySelector("mark")!.textContent).toBe("申込書");
+    expect(container.querySelector(".sidebar-original-details summary")!.textContent).toBe("前後を含めた原文を見る");
   });
   it.each([
     ["原本に記入しないでください。", "してはいけないこと"],

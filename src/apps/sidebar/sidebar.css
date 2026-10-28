@@ -58,6 +58,11 @@ body {
   white-space: pre-wrap;
 }
 
+.sidebar-original mark {
+  background: #cbe9e5;
+  color: inherit;
+}
+
 .sidebar-term + .sidebar-term {
   margin-top: 28px;
 }

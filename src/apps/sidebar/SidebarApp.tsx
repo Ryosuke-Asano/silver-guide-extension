@@ -9,7 +9,7 @@ const ELEMENT_LABELS: Record<ExplanationElement["kind"], string> = {
   exception: "例外・注意", deadline: "期限・期間", term: "言葉", original: "原文"
 };
 
-function Explanation({ explanation }: { explanation: TextExplanation }) {
+function Explanation({ explanation, expanded }: { explanation: TextExplanation; expanded: boolean }) {
   const incomplete = explanation.sentences.some(sentence => sentence.incomplete);
   const terms = [...new Map(explanation.glossary.map(term => [term.dictionaryId, term])).values()];
   const organized = explanation.sentences.map(sentence => {
@@ -31,8 +31,8 @@ function Explanation({ explanation }: { explanation: TextExplanation }) {
   </section>);
 
   return <section className="sidebar-explanation" aria-labelledby="explanation-heading">
-    <h1 id="explanation-heading">{incomplete ? "前後の文も選んでください" : explanation.status === "original-only" ? "説明" : organized.length > 0 ? "文章の説明" : singleTerm ? terms[0].term : "言葉の意味"}</h1>
-    {incomplete ? <p>文の途中だけでは、何をするか説明できません。</p> : null}
+    <h1 id="explanation-heading">{incomplete ? "文章の説明" : explanation.status === "original-only" ? "説明" : organized.length > 0 ? "文章の説明" : singleTerm ? terms[0].term : "言葉の意味"}</h1>
+    {incomplete ? <p>この範囲だけでは、何をするか読み取れませんでした。</p> : null}
     {explanation.status === "original-only" && !incomplete ? <>
       <p className="sidebar-result-notice" role="status">この言葉や文章の説明は見つかりません。</p>
       <p>前後の文章も合わせてご確認ください。</p>
@@ -49,22 +49,29 @@ function Explanation({ explanation }: { explanation: TextExplanation }) {
       {singleTerm ? <p>{terms[0].explanation}</p> : terms.length > 0 ? organized.length > 0 || incomplete ? <details className="sidebar-terms">
         <summary>言葉の意味</summary>{definitions}
       </details> : definitions : null}
-      {!incomplete && explanation.status === "partial" && organized.length > 0 ? <p className="sidebar-result-notice">一部を整理しました。条件や数字は、原文も確認してください。</p> : null}
+      {!incomplete && explanation.status === "partial" && organized.length > 0 ? <p className="sidebar-result-notice">{expanded ? "前後の文も含めて整理しました。" : "一部を整理しました。"}条件や数字は、原文も確認してください。</p> : null}
     </> : null}
   </section>;
 }
 
 function ContextView({ context }: { context: PanelContext }) {
-  const explanation = useMemo(() => context.status === "ready" && context.selection
-    ? explainText(context.selection, { url: context.url, sourceId: context.documentToken ?? undefined, sourceRevision: context.generation })
-    : null, [context.status, context.selection, context.url, context.documentToken, context.generation]);
+  const explanation = useMemo(() => {
+    if (context.status !== "ready" || !context.selection) return null;
+    const options = { url: context.url, sourceId: context.documentToken ?? undefined, sourceRevision: context.generation, surroundingText: context.selectionContext?.text };
+    const selected = explainText(context.selection, options);
+    // Exact dictionary words keep their concise definition. Sentence fragments
+    // use the actual surrounding source, never a generated missing instruction.
+    return context.selectionContext && selected.status !== "explained" ? explainText(context.selectionContext.text, options) : selected;
+  }, [context.status, context.selection, context.selectionContext?.text, context.url, context.documentToken, context.generation]);
   useEffect(() => {
     document.scrollingElement?.scrollTo?.({ top: 0 });
   }, [context.tabId, context.documentToken, context.generation]);
 
   const incomplete = explanation?.sentences.some(sentence => sentence.incomplete) ?? false;
+  const expanded = explanation !== null && explanation.original !== context.selection;
   const selectionAnnouncement = explanation
-    ? incomplete ? "説明したい文章を、前後も含めて選んでください。"
+    ? incomplete ? "この範囲の内容は読み取れませんでした。"
+      : expanded ? "選んだ部分の前後を含めて説明しました。"
       : `${explanation.original.length <= 40 ? `「${explanation.original}」` : "選んだ文章"}の${explanation.status === "original-only" ? "説明は見つかりませんでした" : explanation.status === "partial" ? "一部を整理しました" : "説明を表示しました"}。`
     : "";
 
@@ -74,15 +81,16 @@ function ContextView({ context }: { context: PanelContext }) {
     return <section className="sidebar-empty"><h1>説明したい言葉や文章を選んでください</h1><p>{context.notice ?? "元のページで選ぶと、ここに説明が表示されます。"}</p></section>;
   }
 
-  const original = <blockquote>{explanation.original}</blockquote>;
+  const source = context.selectionContext;
+  const original = <blockquote>{source ? <>{source.text.slice(0, source.start)}<mark>{context.selection}</mark>{source.text.slice(source.end)}</> : explanation.original}</blockquote>;
   return <>
     <p className="sidebar-screen-reader-status" role="status" aria-atomic="true">{selectionAnnouncement}</p>
-    <Explanation key={`${context.documentToken}:${context.generation}`} explanation={explanation} />
+    <Explanation key={`${context.documentToken}:${context.generation}`} explanation={explanation} expanded={expanded} />
     {explanation.status === "original-only" || incomplete ? <section className="sidebar-original" aria-labelledby="original-heading">
-      <h2 id="original-heading">選んだ原文</h2>
+      <h2 id="original-heading">{source ? "前後を含めた原文" : "選んだ原文"}</h2>
       {original}
     </section> : <details className="sidebar-original sidebar-original-details" key={`source:${context.documentToken}:${context.generation}`}>
-      <summary>原文を見る</summary>{original}
+      <summary>{source ? "前後を含めた原文を見る" : "原文を見る"}</summary>{original}
     </details>}
   </>;
 }

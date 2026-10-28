@@ -1,8 +1,9 @@
-import { MAX_SELECTION_LENGTH } from "../shared/v3-protocol";
+import { MAX_SELECTION_LENGTH, type SelectionContext } from "../shared/v3-protocol";
+import { selectionContext } from "./selection-context";
 const EDITABLE = "input,textarea,select,[contenteditable]:not([contenteditable=false]),[role=textbox],[role=combobox],[data-silver-guide-term-popup]";
 const element = (node: Node | null): Element | null => node?.nodeType === 1 ? node as Element : node?.parentElement ?? null;
 /** Reject editors and our own explanation before reading selected text. */
-export function selectedPublicText(doc: Document): { text: string | null; status: "ready" | "empty" | "too-long" } {
+export function selectedPublicText(doc: Document): { text: string | null; status: "ready" | "empty" | "too-long"; selectionContext?: SelectionContext } {
   const empty = { text: null, status: "empty" as const };
   const selection = doc.defaultView?.getSelection();
   if (!selection || selection.isCollapsed || !selection.rangeCount || doc.designMode === "on") return empty;
@@ -13,7 +14,9 @@ export function selectedPublicText(doc: Document): { text: string | null; status
     if (!ancestor) return empty;
     for (const editor of ancestor.querySelectorAll(EDITABLE)) if (selection.getRangeAt(index).intersectsNode(editor)) return empty;
   }
-  const text = selection.toString().trim();
+  const raw = selection.toString(), text = raw.trim();
   if (!text) return empty;
-  return text.length > MAX_SELECTION_LENGTH ? { text: null, status: "too-long" } : { text, status: "ready" };
+  if (text.length > MAX_SELECTION_LENGTH) return { text: null, status: "too-long" };
+  const surrounding = selection.rangeCount === 1 ? selectionContext(selection.getRangeAt(0), raw) : undefined;
+  return { text, status: "ready", ...(surrounding ? { selectionContext: surrounding } : {}) };
 }

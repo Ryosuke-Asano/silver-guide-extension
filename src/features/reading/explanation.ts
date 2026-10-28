@@ -133,7 +133,7 @@ function advanceBrackets(text: string, index: number, closings: string[]): void 
 }
 
 /** Quoted punctuation and parenthesized qualifications belong to their sentence. */
-function sourceSentences(text: string): SourceSpan[] {
+export function sourceSentences(text: string): SourceSpan[] {
   const spans: SourceSpan[] = [], closings: string[] = [];
   let start = 0;
   for (let index = 0; index < text.length; index++) {

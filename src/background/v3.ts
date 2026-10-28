@@ -20,6 +20,7 @@ export async function resolvePanelContext(api: WebExtensionApi, windowId: number
     return { ok: true, context: unavailable(windowId, active) };
   return { ok: true, context: { windowId, tabId: tab.id, url, title: value.title,
     documentToken: value.documentToken, generation: value.generation, selection: value.text, status: value.status,
+    ...(value.selectionContext ? { selectionContext: { text: value.selectionContext.text, start: value.selectionContext.start, end: value.selectionContext.end } } : {}),
     ...(value.status === "too-long" ? { notice: "文章が長いため、短い範囲を選んでください。" } : {}) } };
 }
 export function startBackground(api: WebExtensionApi): void {

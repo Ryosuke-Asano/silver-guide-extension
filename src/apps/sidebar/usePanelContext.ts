@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { trustedBackgroundSender } from "../../shared/protocol";
-import type { PanelContext, PanelContextReply } from "../../shared/v3-protocol";
+import { isSelectionContext, type PanelContext, type PanelContextReply } from "../../shared/v3-protocol";
 import type { WebExtensionApi } from "../../shared/webextension";
 
 export type PanelState = {
@@ -23,7 +23,8 @@ function validContext(value: unknown, windowId: number): value is PanelContext {
     ["ready", "empty", "restricted", "too-long"].includes(String(context.status)) &&
     (context.status === "ready"
       ? typeof context.selection === "string" && context.selection.trim().length > 0 && context.selection.length <= 5000 && context.tabId !== null && context.documentToken !== null
-      : context.selection === null);
+        && (context.selectionContext === undefined || isSelectionContext(context.selectionContext, context.selection))
+      : context.selection === null && context.selectionContext === undefined);
 }
 
 /** Each response belongs to this panel's window and to its latest request. */

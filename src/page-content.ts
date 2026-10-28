@@ -18,13 +18,15 @@ if (api && !window.__silverGuideV3Stop && ["http:", "https:"].includes(location.
   const handoff = startPdfHandoff(api, document, documentToken);
   let pageUrl = location.href;
   let generation = 0;
-  let last: Pick<SelectionSnapshot, "text" | "status"> = { text: null, status: "empty" };
+  let last: Pick<SelectionSnapshot, "text" | "status" | "selectionContext"> = { text: null, status: "empty" };
   let timer: ReturnType<typeof setTimeout> | undefined;
   const snapshot = (): SelectionSnapshot => {
     if (pageUrl !== location.href) { pageUrl = location.href; last = { text: null, status: "empty" }; generation++; }
     const selected = selectedPublicText(document);
     // Keep the last public selection when clicking the native panel collapses it.
-    if (selected.status !== "empty" && (selected.text !== last.text || selected.status !== last.status)) {
+    if (selected.status !== "empty" && (selected.text !== last.text || selected.status !== last.status
+      || selected.selectionContext?.text !== last.selectionContext?.text || selected.selectionContext?.start !== last.selectionContext?.start
+      || selected.selectionContext?.end !== last.selectionContext?.end)) {
       last = selected;
       generation++;
     }

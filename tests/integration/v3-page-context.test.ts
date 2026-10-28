@@ -124,6 +124,20 @@ describe("public selection boundary", () => {
 });
 
 describe("content lifetime and current document", () => {
+  it("retains nearby sentences and updates their generation even when the selected words stay the same", async () => {
+    document.body.innerHTML = '<p><span id="prefix">本人の場合は、申請</span><span id="public">してください。</span></p>';
+    const mock = await mountContent();
+    selectText(document.getElementById("public")!);
+    const first = mock.read();
+    expect(first.selectionContext?.text).toBe("本人の場合は、申請してください。");
+    document.getElementById("prefix")!.textContent = "代理人の場合は、申請";
+    const changed = mock.read();
+    expect(changed.text).toBe(first.text);
+    expect(changed.selectionContext?.text).toBe("代理人の場合は、申請してください。");
+    expect(changed.generation).toBeGreaterThan(first.generation);
+    window.getSelection()!.removeAllRanges();
+    expect(mock.read()).toEqual(changed);
+  });
   it("retains the last public selection while the panel is read, without collecting an editor", async () => {
     document.body.innerHTML = '<p id="public">必要書類</p><input id="input" value="private">';
     const values = protectValues();
@@ -213,6 +227,19 @@ describe("content lifetime and current document", () => {
 });
 
 describe("background context integrity", () => {
+  it("relays only bounded context that contains the exact selected source", async () => {
+    const mock = mockApi(), text = "してください。", full = "申請してください。";
+    const selectionContext = { text: full, start: full.indexOf(text), end: full.length };
+    mock.api.tabs.sendMessage.mockResolvedValueOnce(snapshot({ text, selectionContext }));
+    expect(await resolvePanelContext(mock.asApi(), 1)).toMatchObject({ ok: true, context: { selection: text, selectionContext } });
+    for (const invalid of [
+      { ...selectionContext, start: -1 }, { ...selectionContext, end: full.length + 1 },
+      { ...selectionContext, text: "別の文書の内容です。" }, { ...selectionContext, text: "あ".repeat(5001) },
+    ]) {
+      mock.api.tabs.sendMessage.mockResolvedValueOnce(snapshot({ text, selectionContext: invalid }));
+      expect(await resolvePanelContext(mock.asApi(), 1)).toMatchObject({ ok: true, context: { selection: null, status: "restricted" } });
+    }
+  });
   it("opens Chromium's native panel within the first click even while panel behavior setup is pending", async () => {
     const mock = mockApi();
     const setup = deferred<void>();
