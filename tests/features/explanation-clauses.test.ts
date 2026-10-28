@@ -43,6 +43,37 @@ const cases = [
 ] as const;
 
 describe("source-linked administrative clauses", () => {
+  it.each(["してください。", "ください。", "お願いします。", "する必要があります。", "必要ありません。", "できません。"])("keeps a fragment as source rather than inventing its missing instruction: %s", text => {
+    const result = explainText(text, { dictionary: [] });
+    expect(result.status).toBe("original-only");
+    expect(result.sentences[0]).toMatchObject({ organized: false, incomplete: true });
+    expect(result.elements).toHaveLength(1);
+    expect(result.elements[0]).toMatchObject({ kind: "original", sourceSpan: { start: 0, end: text.length, text } });
+  });
+
+  it.each(["支払いは6月30日までにしてください。", "本人の場合は、窓口への連絡をお願いします。"])("does not detach an instruction from its object or mistake its full sentence for a selected ending: %s", text => {
+    const result = explainText(text, { dictionary: [] });
+    expect(result.sentences[0].incomplete).toBe(false);
+    const actions = result.elements.filter(element => element.kind === "action");
+    expect(actions).toHaveLength(1);
+    expect(actions[0].contextSpan!.text).toBe(text);
+    expect(actions[0].sourceSpan.text).not.toBe("してください。");
+  });
+
+  it("retains a matched word beside the selected sentence ending without making that ending an action", () => {
+    const result = explainText("してください。申込書");
+    expect(result.sentences[0].incomplete).toBe(true);
+    expect(result.elements.some(element => element.kind === "action")).toBe(false);
+    expect(result.glossary.some(term => term.term === "申込書")).toBe(true);
+    expect(result.original).toBe("してください。申込書");
+  });
+
+  it.each(["利用者情報を入力してください。", "記入してください。", "窓口へ連絡をお願いします。", "書類を提出する必要はありません。", "申請できません。"])("retains a meaningful action or negated result: %s", text => {
+    const result = explainText(text, { dictionary: [] });
+    expect(result.sentences[0].incomplete).toBe(false);
+    expect(result.elements.some(element => ["action", "conclusion"].includes(element.kind) && element.sourceSpan.text === text)).toBe(true);
+  });
+
   it.each(cases)("separates the actual source clauses: $text", ({ text, parts }) => {
     const result = explainText(text, { dictionary: [] });
     for (const [kind, source] of parts) {

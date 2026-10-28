@@ -24,6 +24,6 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: npm run check
       - run: node scripts/build-extension.mjs --chromium
-      - run: pnpm exec vitest run tests/dev --no-file-parallelism --maxWorkers=1
+      - run: pnpm exec vitest run tests/dev tests/sidebar/sidebar.test.tsx tests/features/explanation --no-file-parallelism --maxWorkers=1
         env:
           SILVERGUIDE_DEMO_SMOKE: "1"

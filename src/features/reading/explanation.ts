@@ -27,6 +27,7 @@ export type SentenceExplanation = {
   glossary: GlossaryMatch[];
   organized: boolean;
   needsContextReview: boolean;
+  incomplete: boolean;
 };
 export type TextExplanation = {
   status: "explained" | "partial" | "original-only";
@@ -106,10 +107,19 @@ const CONDITION_WORD = /(?:場合|とき|時|であれば|(?:方|者|人)のみ)
 const ELIGIBILITY_WORD = /(?:に限り|条件|対象者は|であれば|(?:方|者|人)のみ)/gu;
 const ACTION_END = /(?:ください|下さい|お願いします|お願い申し上げます|しなければなりません|する必要があります|する必要はありません)[。！？!?]*$/u;
 const CONCLUSION_END = /(?:必要です|必要ありません|不要です|不要となります|できます|できません|できる|できない|受け付けます|受け付けません|受け付けない|対象です|対象となります|対象ではありません|交付します|交付されます|交付しません|交付されません|発行します|発行されます|発行できません|廃止されます|無効です|有効です|免除されます|減免されます|異なります)[。！？!?]*$/u;
+// A polite ending or a bare result does not say what the reader should do.
+// Keep its exact source, rather than presenting it as a useful instruction.
+const BARE_PREDICATE = /^(?:(?:して|て|しないで|ないで)(?:ください|下さい)|ください|下さい|お願いします|お願い申し上げます|しなければなりません|する必要があります|する必要はありません|必要です|必要ありません|不要です|できます|できません|できる|できない)[。！？!?]*$/u;
 const DEADLINE_WORD = /(?:締切|期限|までに|以内に|必着|消印有効|有効期間|受付期間)/gu;
 const DEADLINE_BOUNDARY = /(?:までに|以内に)(?:[、，,])?\s*/gu;
 const EXCEPTION_PREFIX = /^(?:ただし|但し|なお|※|注[０-９0-9]*[：:])(?:[、，,])?/u;
 const COMPLEX_CONNECTOR = /(?:又は|または|若しくは|もしくは|及び|および|かつ|ただし|但し|一方|それ以外|以外の|が[、，,]|けれど|しかし)/gu;
+
+export function actionLabel(text: string): string {
+  if (/する必要はありません[。！？!?]*$/u.test(text)) return "しなくてよいこと";
+  if (/ないで(?:ください|下さい)[。！？!?]*$/u.test(text)) return "してはいけないこと";
+  return "やること";
+}
 
 function advanceBrackets(text: string, index: number, closings: string[]): void {
   const character = text[index]!;
@@ -192,32 +202,45 @@ function organizeSentence(text: string, sourceSpan: SourceSpan, glossary: Glossa
       if (prefix && remainder) { add("deadline", prefix, "期限・期間"); cursor = boundary; organized = true; }
     }
   }
-  const body = trimmedSpan(text, cursor, sourceSpan.end) ?? sourceSpan;
+  let body = trimmedSpan(text, cursor, sourceSpan.end) ?? sourceSpan;
+  const bareBody = BARE_PREDICATE.test(body.text.replace(/\s/gu, ""));
+  const incomplete = bareBody && BARE_PREDICATE.test(local.replace(/\s/gu, ""));
+  if (bareBody && !incomplete) {
+    // Splitting a deadline can itself detach the verb: "支払いは6月30日までに
+    // してください" is complete. Restore its whole sentence before classifying.
+    elements.length = 0;
+    body = sourceSpan;
+    organized = false;
+  }
   const bodyText = body.text;
   const beforeBody = elements.length;
   const action = ACTION_END.test(bodyText), conclusion = CONCLUSION_END.test(bodyText) ||
     /(?:手数料|費用|料金|金額).*[０-９0-9]+円(?:です|となります|になります)?[。！？!?]*$/u.test(bodyText);
-  if (needsContextReview) {
+  if (incomplete) {
+    elements.length = 0;
+    add("original", sourceSpan, "元の文");
+    organized = false;
+  } else if (needsContextReview) {
     if (conditionWords.length || topLevelMatches(local, ELIGIBILITY_WORD).length) add("condition", sourceSpan, "条件の関係は原文で確認");
     if (topLevelMatches(local, /(?:ただし|但し|なお|例外)/gu).length) add("exception", sourceSpan, "例外と注意");
     if (topLevelMatches(local, DEADLINE_WORD).length) add("deadline", sourceSpan, "期限・期間");
-    if (action) add("action", sourceSpan, "行動と制約");
+    if (action) add("action", sourceSpan, actionLabel(bodyText));
     if (conclusion) add("conclusion", sourceSpan, "原文が示す結果・扱い");
   } else {
     if (!organized && (markers.length || topLevelMatches(bodyText, ELIGIBILITY_WORD).length)) add("condition", body, "当てはまる条件");
     if (EXCEPTION_PREFIX.test(bodyText)) add("exception", body, "例外と注意");
     if (topLevelMatches(bodyText, DEADLINE_WORD).length) add("deadline", body, "期限・期間");
-    if (action) add("action", body, "行動と制約");
+    if (action) add("action", body, actionLabel(bodyText));
     if (conclusion) add("conclusion", body, "原文が示す結果・扱い");
     // A standalone recognized action/result is useful without claiming a complete
     // explanation of a scheme; the public result still remains partial.
     organized ||= action || conclusion;
   }
-  if (elements.length === beforeBody) add("original", body, "元の文");
+  if (!incomplete && elements.length === beforeBody) add("original", body, "元の文");
   for (const term of sentenceGlossary.filter(entry => entry.status === "matched")) {
     elements.push({ kind: "term", displayText: term.term + "：" + term.plainLabel + "。" + term.explanation, sourceSpan: term.span, contextSpan: sourceSpan, dictionaryIds: [term.dictionaryId] });
   }
-  return { sourceSpan, elements, glossary: sentenceGlossary, organized, needsContextReview };
+  return { sourceSpan, elements, glossary: sentenceGlossary, organized, needsContextReview, incomplete };
 }
 
 /** Organizes exact source clauses; qualifications always retain their parent sentence. */

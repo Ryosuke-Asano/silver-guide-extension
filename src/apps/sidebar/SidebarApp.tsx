@@ -1,39 +1,43 @@
 import { useEffect, useMemo, useRef, useState, type MouseEvent } from "react";
-import { explainText, type ExplanationElement, type TextExplanation } from "../../features/reading/explanation";
+import { actionLabel, explainText, type ExplanationElement, type TextExplanation } from "../../features/reading/explanation";
 import { getWebExtensionApi, type WebExtensionApi } from "../../shared/webextension";
 import type { PanelContext } from "../../shared/v3-protocol";
 import { usePanelContext, type PanelState } from "./usePanelContext";
 
 const ELEMENT_LABELS: Record<ExplanationElement["kind"], string> = {
-  conclusion: "結果・扱い", condition: "条件", action: "すること・制約",
+  conclusion: "結果・扱い", condition: "条件", action: "やること",
   exception: "例外・注意", deadline: "期限・期間", term: "言葉", original: "原文"
 };
 
 function Explanation({ explanation }: { explanation: TextExplanation }) {
+  const incomplete = explanation.sentences.some(sentence => sentence.incomplete);
   const terms = [...new Map(explanation.glossary.map(term => [term.dictionaryId, term])).values()];
   const organized = explanation.sentences.map(sentence => {
     const items = new Map<string, { labels: string[]; text: string }>();
     for (const element of sentence.elements) {
       if (element.kind === "term" || element.kind === "original") continue;
+      const label = element.kind === "action" ? actionLabel(element.sourceSpan.text) : ELEMENT_LABELS[element.kind];
       const key = `${element.sourceSpan.start}:${element.sourceSpan.end}`;
       const previous = items.get(key);
-      if (previous) previous.labels.push(ELEMENT_LABELS[element.kind]);
-      else items.set(key, { labels: [ELEMENT_LABELS[element.kind]], text: element.sourceSpan.text });
+      if (previous) previous.labels.push(label);
+      else items.set(key, { labels: [label], text: element.sourceSpan.text });
     }
     return { sentence, items: [...items.values()] };
   }).filter(item => item.items.length > 0);
-  const singleTerm = organized.length === 0 && terms.length === 1;
+  const singleTerm = !incomplete && organized.length === 0 && terms.length === 1;
   const definitions = terms.map(term => <section className="sidebar-term" key={term.dictionaryId}>
     <h2 className="sidebar-term-original">{term.term}</h2>
     <p>{term.explanation}</p>
   </section>);
 
   return <section className="sidebar-explanation" aria-labelledby="explanation-heading">
-    <h1 id="explanation-heading">{explanation.status === "original-only" ? "説明" : organized.length > 0 ? "文章のポイント" : singleTerm ? terms[0].term : "言葉の意味"}</h1>
-    {explanation.status === "original-only" ? <>
+    <h1 id="explanation-heading">{incomplete ? "前後の文も選んでください" : explanation.status === "original-only" ? "説明" : organized.length > 0 ? "文章の説明" : singleTerm ? terms[0].term : "言葉の意味"}</h1>
+    {incomplete ? <p>文の途中だけでは、何をするか説明できません。</p> : null}
+    {explanation.status === "original-only" && !incomplete ? <>
       <p className="sidebar-result-notice" role="status">この言葉や文章の説明は見つかりません。</p>
       <p>前後の文章も合わせてご確認ください。</p>
-    </> : <>
+    </> : null}
+    {explanation.status !== "original-only" ? <>
       {organized.length > 0 ? <section className="sidebar-organization" aria-label="原文の整理">
         {organized.map(({ sentence, items }) => <div className="sidebar-sentence" key={sentence.sourceSpan.start}>
           {sentence.needsContextReview ? <p className="sidebar-context-notice">条件や例外の関係は、原文全体で確認してください。</p> : null}
@@ -42,11 +46,11 @@ function Explanation({ explanation }: { explanation: TextExplanation }) {
           </div>)}</dl>
         </div>)}
       </section> : null}
-      {singleTerm ? <p>{terms[0].explanation}</p> : terms.length > 0 ? organized.length > 0 ? <details className="sidebar-terms">
+      {singleTerm ? <p>{terms[0].explanation}</p> : terms.length > 0 ? organized.length > 0 || incomplete ? <details className="sidebar-terms">
         <summary>言葉の意味</summary>{definitions}
       </details> : definitions : null}
-      {explanation.status === "partial" && organized.length > 0 ? <p className="sidebar-result-notice">一部を整理しました。条件や数字は、原文も確認してください。</p> : null}
-    </>}
+      {!incomplete && explanation.status === "partial" && organized.length > 0 ? <p className="sidebar-result-notice">一部を整理しました。条件や数字は、原文も確認してください。</p> : null}
+    </> : null}
   </section>;
 }
 
@@ -58,8 +62,10 @@ function ContextView({ context }: { context: PanelContext }) {
     document.scrollingElement?.scrollTo?.({ top: 0 });
   }, [context.tabId, context.documentToken, context.generation]);
 
+  const incomplete = explanation?.sentences.some(sentence => sentence.incomplete) ?? false;
   const selectionAnnouncement = explanation
-    ? `${explanation.original.length <= 40 ? `「${explanation.original}」` : "選んだ文章"}の${explanation.status === "original-only" ? "説明は見つかりませんでした" : explanation.status === "partial" ? "一部を整理しました" : "説明を表示しました"}。`
+    ? incomplete ? "説明したい文章を、前後も含めて選んでください。"
+      : `${explanation.original.length <= 40 ? `「${explanation.original}」` : "選んだ文章"}の${explanation.status === "original-only" ? "説明は見つかりませんでした" : explanation.status === "partial" ? "一部を整理しました" : "説明を表示しました"}。`
     : "";
 
   if (!explanation) {
@@ -72,7 +78,7 @@ function ContextView({ context }: { context: PanelContext }) {
   return <>
     <p className="sidebar-screen-reader-status" role="status" aria-atomic="true">{selectionAnnouncement}</p>
     <Explanation key={`${context.documentToken}:${context.generation}`} explanation={explanation} />
-    {explanation.status === "original-only" ? <section className="sidebar-original" aria-labelledby="original-heading">
+    {explanation.status === "original-only" || incomplete ? <section className="sidebar-original" aria-labelledby="original-heading">
       <h2 id="original-heading">選んだ原文</h2>
       {original}
     </section> : <details className="sidebar-original sidebar-original-details" key={`source:${context.documentToken}:${context.generation}`}>
