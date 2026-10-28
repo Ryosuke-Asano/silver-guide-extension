@@ -4,14 +4,38 @@
 
 ## 起動と操作
 
-1. `dist-chromium/` をChromeの開発者モードで読み込みます。Floorp・Firefoxは `dist/manifest.json` を一時的なアドオンとして読み込みます。
-2. `node demo/server.mjs` でフォームを起動し、`http://127.0.0.1:4187/` を開きます。4287番ポートでも起動できます。
+Node.js 24、インストール済みの依存パッケージ、最新版のGoogle Chromeを用意します。Windows・macOS・Linuxで同じコマンドです。
+
+```sh
+npm run dev:demo
+```
+
+1. 型検査とChromium版のビルドを実行します。
+2. 拡張を自動で読み込んだデモ用Chromeで `http://127.0.0.1:4287/` を開きます。「Silver Guideで記入」が表示されたことを確認して、ターミナルに準備完了を表示します。
 3. 通常の名前・生年月日・住所・電話番号などを入力します。
 4. E-mailの下の原本PDFリンクの横に、拡張が表示した「Silver Guideで記入」を押します。原本をダウンロード・アップロードし直す必要はありません。
 5. 添付先を引き継いで、最初に「手続の内容」を選べます。「次へ」で氏名から順に入力し、最後の「入力を完了」で記入済みPDFを元フォームに戻します。
 6. このデモのサイト用アダプターでは、通常の内容確認・模擬完了ボタンを拡張が順に操作し、完了画面を確認します。通常の入力に不足があればPDFを保持してエラーへ戻ります。
 
 通常サイトでは添付までが既定です。送信操作を希望する場合は、記入画面上部のボタン名と選択欄を確認します。複数の添付先は選択でき、添付欄がないページはPDFとして保存できます。設計と制約は[PDF連携の設計](decisions/pdf-web-workflow.md)を参照してください。
+
+### 終了・再実行と起動オプション
+
+Ctrl+C、またはデモ用Chromeのウィンドウをすべて閉じると、そのコマンドが起動したChrome・サーバーを終了し、一時プロフィールを削除します。書類の入力を残す場合は先にPDFを保存します。PDFの保存はChromeの通常の保存先・保存ダイアログを使います。ソースを変更したら終了して再実行すると、変更後の拡張を読み込みます。
+
+| 状況 | 操作 |
+| --- | --- |
+| 起動オプションを確認 | `npm run dev:demo -- --help` |
+| 4187番ポートを使う | `npm run dev:demo -- --port 4187` |
+| Chromeを標準以外の場所にインストールした | `npm run dev:demo -- --chrome "Chromeの実行ファイルへの絶対パス"` |
+| ポートが使用中 | 先に起動したデモサーバーを終了して再実行。他のプロセスは自動終了しません |
+| Chromeが見つからない・拡張を読み込めない | 最新版のGoogle Chromeをインストール／更新して再実行 |
+
+`SILVERGUIDE_DEMO_PORT` と `SILVERGUIDE_CHROME_EXECUTABLE` の環境変数も利用できます。ブラウザーや依存パッケージのダウンロードは起動コマンドに含みません。
+
+起動処理はシェルやOS固有のパスに依存しないNode.jsで実装し、Playwrightの `chrome` チャンネルで各OSのChromeを見つけます。毎回新しい一時プロフィールを使います。拡張の自動読み込みには、Chromeの[DevTools Protocolによる開発用API](https://chromium.googlesource.com/chromium/src.git/+/225b2eaa7f23c33b7c4e30c1bfc58f1bd99cbe1c%5E%21/)と専用のデバッグパイプを使います。[既存プロフィールの自動操作に関するPlaywrightの制約](https://playwright.dev/docs/api/class-browsertype#browser-type-launch-persistent-context)に従った構成です。
+
+モック単独は `npm run demo` で4187番ポートに起動できます。Floorp・Firefoxで使う場合は `dist/manifest.json`、手動でChromeへ読み込む場合は `dist-chromium/` を使います。
 
 ## 文章の説明と、単独のPDF記入
 

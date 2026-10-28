@@ -30,6 +30,16 @@ corepack pnpm@10.13.1 run build:chromium
 
 `dist/` は Floorp・Firefox 向け、`dist-chromium/` は Chromium 向けです。実行時の OCR モデル・日本語フォント・実行コードは同梱します。[資材とライセンス](docs/runtime-assets.md)に再生成手順があります。ブラウザーを使う PDF 試験には Playwright の対応ブラウザーが必要です。
 
+## デモを起動する
+
+依存パッケージをインストールした後、Windows・macOS・Linuxで同じコマンドを使えます。最新版のGoogle Chromeが必要です。
+
+```sh
+npm run dev:demo
+```
+
+型検査とChromium版のビルド後、拡張を読み込んだデモ専用Chromeで <http://127.0.0.1:4287/> を開きます。拡張の手動読み込みは不要です。Chromeのデモウィンドウをすべて閉じるか、ターミナルでCtrl+Cを押すと、サーバーと一時プロフィールを片付けます。ソースを変更したら終了して同じコマンドを再実行します。起動オプションは `npm run dev:demo -- --help`、詳しい手順は[デモの進め方](docs/demo-usability.md)を参照してください。
+
 ## 開発版を読み込む
 
 Floorp・Firefox では `about:debugging#/runtime/this-firefox` の「一時的なアドオンを読み込む」から `dist/manifest.json` を選びます。Chromium では `chrome://extensions` の開発者モードで `dist-chromium/` を「展開して読み込み」ます。
