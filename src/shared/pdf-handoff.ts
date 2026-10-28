@@ -1,5 +1,12 @@
 export const OPEN_PDF_HANDOFF = "silver-guide-pdf-open-v1";
 export const PDF_HANDOFF_REQUEST = "silver-guide-pdf-request-v1";
+export const PDF_HANDOFF_TIMING_EVENT = "silver-guide-pdf-timing";
+export type PdfHandoffTimings = { sourceMs: number; prepareMs: number; outputMs: number };
+export function isPdfHandoffTimings(value: unknown): value is PdfHandoffTimings {
+  if (!value || typeof value !== "object") return false;
+  const item = value as Partial<PdfHandoffTimings>;
+  return [item.sourceMs, item.prepareMs, item.outputMs].every(time => Number.isSafeInteger(time) && Number(time) >= 0 && Number(time) <= 86_400_000);
+}
 export const HANDOFF_MAX_BYTES = 20 * 1024 * 1024;
 export const PDF_HANDOFF_STATUSES = ["attached", "submitted", "submission-requested", "needs-input"] as const;
 export type PdfHandoffResult = { status: typeof PDF_HANDOFF_STATUSES[number]; message: string };

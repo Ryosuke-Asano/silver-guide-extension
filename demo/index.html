@@ -19,12 +19,23 @@
         <a href="./" aria-current="page">利用者情報仮登録</a>
         <a href="#pdf-fields">申込書・アップロード</a>
         <a href="guide.html">検証の進め方</a>
+        <a href="results.html" id="measurement-results-link" hidden>計測結果</a>
       </nav>
     </div>
   </header>
   <div class="yk-container">
     <p class="yk-mock-notice"><strong>検証用モックです。</strong> 横浜市の公式サイトではありません。入力内容は送信されません。</p>
     <main id="main" class="yk-main">
+      <details id="measurement" class="yk-measurement" hidden>
+        <summary>入力時間を計測 <span id="measurement-condition"></span></summary>
+        <div class="yk-measurement-controls"><label for="measurement-participant">参加者番号</label><input id="measurement-participant" type="number" min="1" max="9999" step="1" value="1" required>
+          <button id="measurement-start" class="yk-button yk-button-small" type="button">入力をクリアして計測開始</button>
+          <button id="measurement-stop" class="yk-button yk-button-small" type="button" hidden>計測を中止</button>
+          <button id="measurement-retry" class="yk-button yk-button-small" type="button" hidden>保存を再試行</button>
+          <a href="results.html" target="_blank" rel="noopener">計測結果・CSV</a></div>
+        <p class="yk-scope-note">開始から模擬完了までを計測します。同じ入力例で、PDFを添付して完了してください。氏名・住所・入力内容・PDFは記録しません。<a href="guide.html#timing" target="_blank" rel="noopener">比較する入力例と手順</a></p>
+        <p id="measurement-status" role="status">計測は開始していません。</p><output id="measurement-elapsed" aria-hidden="true"></output>
+      </details>
       <div class="yk-page-heading"><h1>利用者情報仮登録</h1><a href="guide.html#sources">再現元・変更点</a></div>
       <ol id="steps" class="yk-steps" aria-label="入力の進み具合">
         <li class="is-current" data-step="entry" aria-current="step"><span>1</span>入力</li>

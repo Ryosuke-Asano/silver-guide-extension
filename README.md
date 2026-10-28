@@ -40,6 +40,8 @@ npm run dev:demo
 
 型検査とChromium版のビルド後、拡張を読み込んだデモ専用Chromeで <http://127.0.0.1:4287/> を開きます。拡張の手動読み込みは不要です。Chromeのデモウィンドウをすべて閉じるか、ターミナルでCtrl+Cを押すと、サーバーと一時プロフィールを片付けます。ソースを変更したら終了して同じコマンドを再実行します。起動オプションは `npm run dev:demo -- --help`、詳しい手順は[デモの進め方](docs/demo-usability.md)を参照してください。
 
+手作業との所要時間を比較する場合は、`npm run dev:demo -- --manual` で拡張なしのChromeを起動できます。フォーム上部の「入力時間を計測」から参加者番号を設定して開始すると、1周とPDF作業を自動計測し、結果画面で平均・中央値・短縮時間・短縮率を比較できます。CSVも保存できます。数値記録はGit対象外の `.demo-results/runs.json` に残り、入力内容やPDFは記録しません。
+
 ## 開発版を読み込む
 
 Floorp・Firefox では `about:debugging#/runtime/this-firefox` の「一時的なアドオンを読み込む」から `dist/manifest.json` を選びます。Chromium では `chrome://extensions` の開発者モードで `dist-chromium/` を「展開して読み込み」ます。

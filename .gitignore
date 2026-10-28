@@ -7,3 +7,4 @@ demo/*.webm
 demo/*.mp4
 demo/*.png
 demo/*.json
+.demo-results/

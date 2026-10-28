@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { getWebExtensionApi } from "../../shared/webextension";
-import { base64ToPdfBytes, bytesToBase64, isPdfPageUrl, isHandoffId, PDF_HANDOFF_REQUEST, PDF_HANDOFF_STATUSES, readPdfResponse, type PdfHandoffDestination, type PdfHandoffResult } from "../../shared/pdf-handoff";
+import { base64ToPdfBytes, bytesToBase64, isPdfPageUrl, isHandoffId, PDF_HANDOFF_REQUEST, PDF_HANDOFF_STATUSES, readPdfResponse, type PdfHandoffDestination, type PdfHandoffResult, type PdfHandoffTimings } from "../../shared/pdf-handoff";
 import type { usePdfWorkspace } from "./usePdfWorkspace";
 
 type Parameters = { requestId: string; sourceTab: number; documentToken: string };
@@ -20,6 +20,7 @@ export function usePdfHandoff(pdf: ReturnType<typeof usePdfWorkspace>) {
   const [message, setMessage] = useState<string | null>(null);
   const input = useRef<Uint8Array | null>(null), mounted = useRef(true), submitting = useRef(false), opening = useRef(false);
   const fileName = useRef("申込書.pdf");
+  const timings = useRef<PdfHandoffTimings>({ sourceMs: 0, prepareMs: 0, outputMs: 0 });
   const [delivered, setDelivered] = useState<{ taskId: string; revision: number } | null>(null);
   const request = useCallback(async (action: string, body: Record<string, unknown> = {}) => {
     const api = getWebExtensionApi();
@@ -35,7 +36,10 @@ export function usePdfHandoff(pdf: ReturnType<typeof usePdfWorkspace>) {
     try {
       if (selected) await request("accept", { destinationId: selected.id });
       if (!mounted.current || !input.current) return;
-      const opened = await pdf.open(input.current, fileName.current);
+      const started = performance.now();
+      let opened;
+      try { opened = await pdf.open(input.current, fileName.current); }
+      finally { timings.current.prepareMs += Math.round(performance.now() - started); }
       if (!mounted.current) return;
       if (!opened) {
         if (pdf.taskRef.current) { input.current.fill(0); input.current = null; setPhase("filling"); }
@@ -48,6 +52,7 @@ export function usePdfHandoff(pdf: ReturnType<typeof usePdfWorkspace>) {
   }, [pdf.open, pdf.taskRef, request]);
   useEffect(() => {
     mounted.current = true; let cancelled = false;
+    const sourceStarted = performance.now();
     if (parameters) void request("get").then(async reply => {
       if (cancelled) return;
       if (typeof reply.fileName !== "string" || !Array.isArray(reply.destinations) || reply.destinations.some((target: PdfHandoffDestination) => !isHandoffId(target.id) || !isPdfPageUrl(target.url))) throw new Error("添付先を確認できませんでした。");
@@ -63,6 +68,7 @@ export function usePdfHandoff(pdf: ReturnType<typeof usePdfWorkspace>) {
         if (cancelled) { input.current?.fill(0); input.current = null; return; }
       }
       const selected = reply.destinations.find((target: PdfHandoffDestination) => target.id === reply.destination?.id) ?? null;
+      timings.current.sourceMs = Math.round(performance.now() - sourceStarted);
       setDestinations(reply.destinations); setDestination(selected); setSubmitAfterAttach(selected?.defaultSubmit ?? false);
       if (reply.directEntry === true) await openDestination(selected);
       else setPhase("choose");
@@ -85,10 +91,12 @@ export function usePdfHandoff(pdf: ReturnType<typeof usePdfWorkspace>) {
     submitting.current = true; setPhase("sending"); setMessage(null);
     let output: Awaited<ReturnType<typeof pdf.preparePdfForHandoff>> = null;
     try {
-      output = await pdf.preparePdfForHandoff();
+      const started = performance.now();
+      try { output = await pdf.preparePdfForHandoff(); }
+      finally { timings.current.outputMs += Math.round(performance.now() - started); }
       if (!mounted.current) return;
       if (!output) { setPhase("filling"); return; }
-      const reply = await request("deliver", { fileName: output.fileName, pdf: bytesToBase64(output.bytes), submit: submitAfterAttach });
+      const reply = await request("deliver", { fileName: output.fileName, pdf: bytesToBase64(output.bytes), submit: submitAfterAttach, timings: { ...timings.current } });
       if (!mounted.current) return;
       if (pdf.taskRef.current?.id !== output.taskId || pdf.taskRef.current.revision !== output.revision) throw new Error("入力内容が変わりました。もう一度入力を完了してください。");
       const result = reply.result as PdfHandoffResult;

@@ -1,4 +1,5 @@
 // This page is a local form mock. Values stay in memory and are never submitted.
+import { initializeMeasurement } from "./measurement.js";
 const KANA = /^[ァ-ヶーA-Za-zＡ-Ｚａ-ｚ\s　]+$/;
 const DIGITS = /^[0-9]+$/;
 const LOCAL_ADDRESSES = new Map([
@@ -121,6 +122,7 @@ export function lookupLocalAddress(first, last) {
 export function initializeMock(doc = document) {
   const form = doc.getElementById("registration-form");
   if (!form) return;
+  const measurement = initializeMeasurement(doc, () => form.reset());
   const get = id => doc.getElementById(id);
   const status = get("mock-status");
   const summary = get("form-errors");
@@ -242,6 +244,7 @@ export function initializeMock(doc = document) {
   };
 
   const clearAttachment = () => {
+    measurement.cleared();
     attachmentVersion++;
     attachment = null;
     attachmentState = "empty";
@@ -263,8 +266,10 @@ export function initializeMock(doc = document) {
     if (result.valid) {
       attachment = result;
       attachmentState = "ready";
+      measurement.attached();
     } else {
       attachmentState = "invalid";
+      measurement.cleared();
       attachmentError = result.error;
       // Clearing permits the same file to trigger change after it is repaired.
       upload.value = "";
@@ -357,7 +362,7 @@ export function initializeMock(doc = document) {
     const issues = validateRegistration(data);
     const pdfIssue = attachmentIssue();
     if (pdfIssue) issues.push(pdfIssue);
-    if (issues.length) { showErrors(issues); return; }
+    if (issues.length) { measurement.validationFailure(); showErrors(issues); return; }
     clearErrors();
     buildReview(data);
     setStage("review");
@@ -370,6 +375,7 @@ export function initializeMock(doc = document) {
     }
   });
   form.addEventListener("reset", () => {
+    measurement.reset();
     clearAttachment();
     clearErrors();
     get("review-values")?.replaceChildren();
@@ -390,6 +396,7 @@ export function initializeMock(doc = document) {
   });
   get("complete-button")?.addEventListener("click", () => {
     setStage("complete");
+    measurement.complete();
     announce("模擬の登録を完了しました。横浜市への申請・送信は行っていません。");
   });
   get("start-again")?.addEventListener("click", () => form.reset());

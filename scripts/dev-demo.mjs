@@ -1,21 +1,22 @@
 import { spawn } from "node:child_process";
-import { mkdtemp, rm } from "node:fs/promises";
+import { mkdtemp, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
 import { chromium } from "playwright";
 import { listenDemoServer } from "../demo/server.mjs";
+import { lockMeasurements } from "../demo/measurement-store.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
 export function demoOptions(args = [], env = process.env) {
   const { values } = parseArgs({ args, options: {
-    port: { type: "string" }, chrome: { type: "string" }, help: { type: "boolean", short: "h" },
+    port: { type: "string" }, chrome: { type: "string" }, manual: { type: "boolean" }, help: { type: "boolean", short: "h" },
   } });
   const port = Number(values.port ?? env.SILVERGUIDE_DEMO_PORT ?? 4287);
   if (!Number.isInteger(port) || port < 1024 || port > 65535) throw new Error("ポート番号は1024〜65535を指定してください。");
-  return { port, chromeExecutable: values.chrome ?? env.SILVERGUIDE_CHROME_EXECUTABLE, help: values.help };
+  return { port, chromeExecutable: values.chrome ?? env.SILVERGUIDE_CHROME_EXECUTABLE, manual: values.manual ?? false, help: values.help };
 }
 
 export function chromeOptions({ chromeExecutable, headless = false } = {}) {
@@ -44,10 +45,10 @@ async function buildLatest(signal) {
 }
 
 export async function startDemo(options = {}, dependencies = {}) {
-  const { port = 4287, signal } = options;
+  const { port = 4287, signal, manual = false, resultsFile = join(root, ".demo-results", "runs.json") } = options;
   const build = dependencies.build ?? buildLatest;
   const launch = dependencies.launch ?? ((profile, settings) => chromium.launchPersistentContext(profile, settings));
-  let server, context, profile, closing;
+  let server, context, profile, closing, releaseMeasurements;
   let finish;
   const closed = new Promise(resolveClosed => { finish = resolveClosed; });
   const onAbort = () => { void close().catch(error => { console.error(`デモの終了処理に失敗しました: ${error.message}`); process.exitCode = 1; }); };
@@ -59,21 +60,26 @@ export async function startDemo(options = {}, dependencies = {}) {
     finally {
       try {
         if (server?.listening) await new Promise(resolveClose => { server.close(resolveClose); server.closeAllConnections(); });
+        await server?.flushMeasurements?.();
       } finally {
-        try { if (profile) await rm(profile, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 }); }
-        finally { finish(); }
+        try { await releaseMeasurements?.(); }
+        finally {
+          try { if (profile) await rm(profile, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 }); }
+          finally { finish(); }
+        }
       }
     }
   });
   try {
     signal?.throwIfAborted();
-    try { server = await listenDemoServer(port); }
+    try { server = await listenDemoServer(port, { measurement: { filename: resultsFile, condition: manual ? "manual" : "silver-guide",
+      getBuildId: async () => JSON.parse(await readFile(join(root, "dist-chromium", "build-info.json"), "utf8")).sourceHash } }); }
     catch (error) {
       if (error.code === "EADDRINUSE") throw new Error(`${port}番ポートは使用中です。先に起動したデモサーバーを終了してから再実行してください。`, { cause: error });
       throw error;
     }
-    console.log("最新の拡張をビルドしています…");
-    await build(signal);
+    releaseMeasurements = await lockMeasurements(resultsFile);
+    if (!manual) { console.log("最新の拡張をビルドしています…"); await build(signal); }
     signal?.throwIfAborted();
     profile = await mkdtemp(join(tmpdir(), "silver-guide-demo-"));
     try { context = await launch(profile, chromeOptions(options)); }
@@ -83,7 +89,7 @@ export async function startDemo(options = {}, dependencies = {}) {
     signal?.throwIfAborted();
     const cdp = await context.browser().newBrowserCDPSession();
     let extensionId;
-    try { ({ id: extensionId } = await cdp.send("Extensions.loadUnpacked", { path: join(root, "dist-chromium") })); }
+    try { if (!manual) ({ id: extensionId } = await cdp.send("Extensions.loadUnpacked", { path: join(root, "dist-chromium") })); }
     catch (error) { throw new Error("拡張を自動で読み込めませんでした。Google Chromeを最新版に更新してください。\n" + error.message, { cause: error }); }
     // Preserve Chrome's normal save dialog and permanent Downloads folder.
     // Playwright's default download directory is deleted when the browser closes.
@@ -92,7 +98,7 @@ export async function startDemo(options = {}, dependencies = {}) {
     const page = context.pages()[0] ?? await context.newPage();
     const url = `http://127.0.0.1:${port}/`;
     await page.goto(url, { waitUntil: "domcontentloaded" });
-    await page.getByRole("button", { name: /Silver Guideで記入/ }).first().waitFor({ state: "visible", timeout: 15_000 });
+    if (!manual) await page.getByRole("button", { name: /Silver Guideで記入/ }).first().waitFor({ state: "visible", timeout: 15_000 });
     await page.bringToFront();
     signal?.throwIfAborted();
     context.once("close", onAbort);
@@ -100,7 +106,7 @@ export async function startDemo(options = {}, dependencies = {}) {
     context.pages().forEach(watchPage);
     context.on("page", watchPage);
     signal?.addEventListener("abort", onAbort, { once: true });
-    return { url, context, page, extensionId, profile, close, closed };
+    return { url, context, page, extensionId, profile, resultsFile, close, closed };
   } catch (error) {
     await close();
     throw error;
@@ -115,11 +121,11 @@ async function main() {
   try {
     const options = demoOptions(process.argv.slice(2));
     if (options.help) {
-      console.log("npm run dev:demo [-- --port 4287] [-- --chrome \"実行ファイルのパス\"]\nWindows・macOS・LinuxのGoogle Chromeで、最新版の拡張とデモを起動します。\n終了: Ctrl+C またはデモ用Chromeのウィンドウを閉じる。");
+      console.log("npm run dev:demo [-- --manual] [-- --port 4287] [-- --chrome \"実行ファイルのパス\"]\nWindows・macOS・LinuxのGoogle Chromeで、最新版の拡張とデモを起動します。\n--manual: 拡張を読み込まず、通常の手作業を計測します。\n終了: Ctrl+C またはデモ用Chromeのウィンドウを閉じる。");
       return;
     }
     const demo = await startDemo({ ...options, signal: controller.signal });
-    console.log(`\nデモの準備ができました: ${demo.url}\n最新版のSilver Guideを読み込んだChromeが開いています。\n終了: Ctrl+C またはデモ用Chromeのウィンドウを閉じる。`);
+    console.log(`\nデモの準備ができました: ${demo.url}\n${options.manual ? "拡張なしのChromeで、通常の手作業を比較できます。" : "最新版のSilver Guideを読み込んだChromeが開いています。"}\n計測結果: ${demo.url}results.html\n保存先: ${demo.resultsFile}\n終了: Ctrl+C またはデモ用Chromeのウィンドウを閉じる。`);
     await demo.closed;
   } catch (error) {
     if (!controller.signal.aborted) { console.error(error.message); process.exitCode = 1; }

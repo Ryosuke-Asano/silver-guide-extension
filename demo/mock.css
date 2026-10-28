@@ -154,3 +154,18 @@
 }
 @media (prefers-reduced-motion: no-preference) { .yk-page .yk-button, .yk-page .yk-nav a { transition: background-color .12s ease; } }
 @media (forced-colors: active) { .yk-nav a[aria-current="page"], .yk-button-primary { forced-color-adjust: auto; border: 2px solid ButtonText; } }
+.yk-measurement { margin: 0 0 18px; padding: 12px 16px; border: 1px solid #bccbde; background: #fff; }
+.yk-measurement summary { color: var(--yk-link); cursor: pointer; font-weight: 700; }
+.yk-measurement summary span { margin-left: 10px; font-weight: 400; }
+.yk-measurement-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 12px; }
+.yk-measurement input { width: 82px; min-height: 34px; padding: 4px 8px; border: 1px solid #9b9b9b; }
+.yk-measurement p:last-child { margin-bottom: 0; }
+.yk-results h1 { font-size: 24px; font-weight: 500; }
+.yk-results-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; }
+.yk-table-scroll { overflow-x: auto; margin: 20px 0; }
+.yk-table-scroll .yk-data-table { min-width: 680px; font-variant-numeric: tabular-nums; }
+.yk-table-scroll th, .yk-table-scroll td { white-space: nowrap; }
+.yk-result-cards { display: flex; flex-wrap: wrap; gap: 16px; }
+.yk-result-cards > div { flex: 1 1 240px; padding: 18px; background: #eff5fd; }
+.yk-result-cards dt { font-size: 14px; }
+.yk-result-cards dd { margin: 10px 0 0; font-size: 23px; font-variant-numeric: tabular-nums; }
