@@ -17,10 +17,6 @@
         <h2>最初に試す入力例</h2>
         <p>以下は入力操作のための見本です。実際の利用者情報は必要ありません。</p>
         <table class="yk-data-table"><thead><tr><th scope="col">項目</th><th scope="col">見本</th></tr></thead><tbody><tr><th scope="row">登録条件</th><td>在住</td></tr><tr><th scope="row">名前</th><td>桜木　町子</td></tr><tr><th scope="row">名前カタカナ</th><td>サクラギ　マチコ</td></tr><tr><th scope="row">生年月日</th><td>1994年2月22日</td></tr><tr><th scope="row">郵便番号</th><td>220 ／ 0032</td></tr><tr><th scope="row">住所</th><td>西区みほん町1－2－3（架空の番地）</td></tr><tr><th scope="row">電話番号</th><td>市外局番は空欄 ／ 000 ／ 0000（接続先のない見本）</td></tr><tr><th scope="row">予約連絡方法</th><td>連絡不要</td></tr><tr><th scope="row">メールを試す場合</th><td>machiko@example.invalid</td></tr></tbody></table>
-        <h2 id="timing">入力時間を比較する</h2>
-        <p id="timing-launch">Silver Guideありは <code>npm run dev:demo</code>、拡張なしの手作業は <code>npm run dev:demo -- --manual</code> で起動します。一方のデモを閉じてから、もう一方を起動してください。</p>
-        <ol><li>フォーム上部の「入力時間を計測」を開き、参加者番号を設定して「入力をクリアして計測開始」を押します。</li><li>両方式で上の架空の入力例を使い、フォームとPDFに記入します。PDFは「新規登録」を選び、姓・名、フリガナの姓・名、郵便番号、住所、自宅電話、携帯電話の14項目を対象にします。PDFの自宅電話は045／000／0000、携帯電話は000／0000／0000の接続先のない見本を使います。生年月日など、拡張の14項目にない欄は両方式とも今回の計測対象に含めません。</li><li>手作業では原本をダウンロードし、普段のPDF編集ソフトで記入・保存して添付します。拡張ありでは「Silver Guideで記入」から進みます。両方式とも模擬完了まで進むと記録します。</li><li>同じ参加者番号で両方式を実施し、参加者ごとに順序を交互にします。「計測結果・CSV」から1周・PDF作業の平均、中央値、同じ参加者での時間差を確認できます。</li></ol>
-        <p class="yk-scope-note">PDF作業は、PDFを開く操作から記入済みPDFの添付確認まで。拡張の読込・準備・出力時間は内訳として別に表示します。入力内容やPDFは記録しません。記録はこのPCに残り、次回の起動でも確認できます。</p>
         <h2>ウェブの入力を確認する</h2>
         <ol id="web-check-steps">
           <li>はじめにブラウザーで拡張機能を無効にし、<a href="./">利用者情報仮登録</a>から入力・確認・修正を試します。</li>

@@ -1,6 +1,6 @@
 import type { WebExtensionApi } from "../shared/webextension";
 import { trustedExtensionSender } from "../shared/protocol";
-import { base64ToPdfBytes, bytesToBase64, HANDOFF_MAX_BYTES, isHandoffId, isPdfPageUrl, isPdfHandoffTimings, OPEN_PDF_HANDOFF, PDF_HANDOFF_REQUEST, PDF_HANDOFF_TIMING_EVENT, readPdfResponse, safePdfFileName, type PdfHandoffDestination, type PdfHandoffResult } from "../shared/pdf-handoff";
+import { base64ToPdfBytes, bytesToBase64, HANDOFF_MAX_BYTES, isHandoffId, isPdfPageUrl, OPEN_PDF_HANDOFF, PDF_HANDOFF_REQUEST, readPdfResponse, safePdfFileName, type PdfHandoffDestination, type PdfHandoffResult } from "../shared/pdf-handoff";
 import { fieldLabel, PDF_ENTRY_HOST, pdfSource, pdfTargets, type PdfSource } from "./pdf/detection";
 import { sameSubmissionPlan, submissionPlan, submitAttachedPdf, type SubmissionPlan } from "./pdf/submission";
 
@@ -136,10 +136,6 @@ export function startPdfHandoff(api: WebExtensionApi, doc: Document, documentTok
     void (async () => {
       const bytes = base64ToPdfBytes(value.pdf), file = new File([bytes.slice().buffer], safePdfFileName(typeof value.fileName === "string" ? value.fileName : "記入済み.pdf"), { type: "application/pdf" }); bytes.fill(0);
       const transfer = new DataTransfer();
-      // An opt-in collector may observe numeric durations, never PDF answers.
-      // JSON detail also crosses Firefox's isolated content-script boundary.
-      if (doc.documentElement.hasAttribute("data-silver-guide-measure") && isPdfHandoffTimings(value.timings))
-        doc.dispatchEvent(new CustomEvent(PDF_HANDOFF_TIMING_EVENT, { detail: JSON.stringify({ id: item.id, sourceMs: value.timings.sourceMs, prepareMs: value.timings.prepareMs, outputMs: value.timings.outputMs }) }));
       if (target.multiple) for (const old of target.input.files ?? []) if (old !== item.source.file) transfer.items.add(old);
       transfer.items.add(file); target.input.files = transfer.files; target.files = fileSignature(target.input);
       if (![...target.input.files ?? []].some(current => current.name === file.name && current.size === file.size && current.lastModified === file.lastModified)) throw new Error("サイトの添付欄へPDFを設定できませんでした。回答は残っています。");

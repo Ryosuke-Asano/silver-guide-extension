@@ -7,10 +7,10 @@ import { tmpdir } from "node:os";
 
 // The desktop CI matrix builds the extension and uses its installed Chrome.
 // Ordinary unit tests do not launch an additional browser or claim port 4287.
-it.skipIf(process.env.SILVERGUIDE_DEMO_SMOKE !== "1")("measures assisted and manual PDF workflows and preserves their comparison across Chrome restarts", async () => {
-  const directory = await mkdtemp(join(tmpdir(), "silver-guide-demo-smoke-")), resultsFile = join(directory, "runs.json");
+it.skipIf(process.env.SILVERGUIDE_DEMO_SMOKE !== "1")("opens the local demo for immediate input and completes assisted and manual PDF workflows", async () => {
+  const directory = await mkdtemp(join(tmpdir(), "silver-guide-demo-smoke-"));
   let demo;
-  try { demo = await startDemo({ headless: true, resultsFile,
+  try { demo = await startDemo({ headless: true,
     chromeExecutable: process.env.SILVERGUIDE_CHROME_EXECUTABLE,
   }, { build: async () => {} }); }
   catch (error) { await rm(directory, { recursive: true, force: true }); throw error; }
@@ -37,9 +37,6 @@ it.skipIf(process.env.SILVERGUIDE_DEMO_SMOKE !== "1")("measures assisted and man
     expect(await panel.evaluate("document.querySelector('blockquote mark')?.textContent")).toBe("してください。申込書");
     expect(await panel.evaluate("document.querySelector('blockquote')?.textContent")).toContain("E-mail欄の下から試せます。");
     expect(await panel.evaluate("document.body.innerText")).not.toContain("前後の文も選んでください");
-    await demo.page.locator("#measurement > summary").click();
-    await demo.page.getByRole("button", { name: "入力をクリアして計測開始", exact: true }).click();
-    await demo.page.getByRole("status").filter({ hasText: "計測中：参加者" }).waitFor();
     for (const [id, value] of Object.entries({ "full-name": "桜木 町子", "name-kana": "サクラギ マチコ", "birth-year": "1994",
       "zip-first": "220", "zip-last": "0032", address: "西区みほん町1−2−3", "phone-first": "045", "phone-middle": "0000", "phone-last": "0000" }))
       await demo.page.locator(`#${id}`).fill(value);
@@ -61,22 +58,13 @@ it.skipIf(process.env.SILVERGUIDE_DEMO_SMOKE !== "1")("measures assisted and man
     await pdf.getByRole("heading", { name: "模擬提出が完了しました", exact: true }).waitFor({ timeout: 60_000 });
     expect(await demo.page.locator("#complete-stage").isVisible()).toBe(true);
     expect(await demo.page.locator("#pdf-upload").evaluate(input => input.files[0].type)).toBe("application/pdf");
-    await demo.page.locator("#measurement-status").filter({ hasText: "記録しました" }).waitFor();
-    const assisted = (await (await fetch(demo.url + "api/measurement/results")).json()).runs[0];
-    expect(assisted).toMatchObject({ condition: "silver-guide", status: "completed", participant: 1, measurements: { pdfAttached: true, pdfOpens: 1, validationFailures: 0 } });
-    expect(assisted.measurements.totalMs).toBeGreaterThanOrEqual(assisted.measurements.pdfMs);
-    expect(assisted.measurements.pdfMs).toBeGreaterThan(0);
-    expect(assisted.measurements.prepareMs).toBeGreaterThan(0);
-    expect(assisted.measurements.outputMs).toBeGreaterThan(0);
+    expect(await demo.page.locator("#measurement,#measurement-gate").count()).toBe(0);
     const filledPdf = Buffer.from(await demo.page.locator("#pdf-upload").evaluate(async input => Array.from(new Uint8Array(await input.files[0].arrayBuffer()))));
     await demo.close();
-    demo = await startDemo({ headless: true, manual: true, resultsFile, chromeExecutable: process.env.SILVERGUIDE_CHROME_EXECUTABLE }, { build: async () => {} });
+    demo = await startDemo({ headless: true, manual: true, chromeExecutable: process.env.SILVERGUIDE_CHROME_EXECUTABLE }, { build: async () => {} });
     demo.page.on("pageerror", error => errors.push(error.message));
     expect(demo.extensionId).toBeUndefined();
     expect(await demo.page.getByRole("button", { name: /Silver Guideで記入/ }).count()).toBe(0);
-    await demo.page.locator("#measurement > summary").click();
-    await demo.page.getByRole("button", { name: "入力をクリアして計測開始", exact: true }).click();
-    await demo.page.getByRole("status").filter({ hasText: "計測中：参加者" }).waitFor();
     for (const [id, value] of Object.entries({ "full-name": "桜木 町子", "name-kana": "サクラギ マチコ", "birth-year": "1994", "zip-first": "220", "zip-last": "0032", address: "西区みほん町1−2−3", "phone-first": "045", "phone-middle": "0000", "phone-last": "0000" }))
       await demo.page.locator(`#${id}`).fill(value);
     const cdp = await demo.context.browser().newBrowserCDPSession();
@@ -86,15 +74,10 @@ it.skipIf(process.env.SILVERGUIDE_DEMO_SMOKE !== "1")("measures assisted and man
     await demo.page.locator("#pdf-upload-status").filter({ hasText: "を添付しました" }).waitFor();
     await demo.page.getByRole("button", { name: "入力内容を確認する", exact: true }).click();
     await demo.page.getByRole("button", { name: "この内容で完了（模擬）", exact: true }).click();
-    await demo.page.locator("#measurement-status").filter({ hasText: "記録しました" }).waitFor();
-    const runs = (await (await fetch(demo.url + "api/measurement/results")).json()).runs;
-    expect(runs).toHaveLength(2);
-    expect(runs[1]).toMatchObject({ condition: "manual", status: "completed", measurements: { pdfAttached: true, sourceMs: null, prepareMs: null, outputMs: null } });
-    expect(JSON.stringify(runs)).not.toContain("桜木"); expect(JSON.stringify(runs)).not.toContain("fictional-filled.pdf");
-    await demo.page.goto(demo.url + "results.html");
-    await demo.page.locator("#results-pairs").filter({ hasText: "1人・1組" }).waitFor();
-    expect(await demo.page.locator("#results-runs tr").count()).toBe(2);
-    expect(await (await fetch(demo.url + "api/measurement/results.csv")).text()).toContain('"total_seconds"');
+    expect(await demo.page.locator("#complete-stage").isVisible()).toBe(true);
+    expect(await demo.page.locator("body").innerText()).not.toMatch(/計測|参加者番号|CSV/u);
+    expect((await fetch(demo.url + "results.html")).status).toBe(404);
+    expect((await fetch(demo.url + "api/measurement/config")).status).toBe(404);
     expect(errors).toEqual([]);
   } finally { await demo.close(); await rm(directory, { recursive: true, force: true }); }
 }, 120_000);

@@ -2,7 +2,7 @@
 // @vitest-environment-options {"url":"https://service.example/apply?case=123"}
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { startPdfHandoff } from "../../src/features/pdf-handoff";
-import { bytesToBase64, PDF_HANDOFF_REQUEST, PDF_HANDOFF_TIMING_EVENT } from "../../src/shared/pdf-handoff";
+import { bytesToBase64, PDF_HANDOFF_REQUEST } from "../../src/shared/pdf-handoff";
 import { pdfSource, pdfTargets } from "../../src/features/pdf/detection";
 import type { WebExtensionApi } from "../../src/shared/webextension";
 
@@ -24,7 +24,7 @@ beforeEach(() => {
   vi.stubGlobal("fetch", vi.fn(async () => new Response(bytes, { headers: { "Content-Type": "application/pdf" } })));
   stop = startPdfHandoff(api, document, token).stop;
 });
-afterEach(() => { stop(); document.documentElement.removeAttribute("data-silver-guide-measure"); vi.restoreAllMocks(); vi.unstubAllGlobals(); });
+afterEach(() => { stop(); vi.restoreAllMocks(); vi.unstubAllGlobals(); });
 
 describe("extension-owned PDF workflow", () => {
   it("detects a normal link and binds its ordinary form without page cooperation", async () => {
@@ -125,23 +125,6 @@ describe("extension-owned PDF workflow", () => {
     expect((await request("deliver", payload)).result.status).toBe("attached");
     expect(files[0].name).toBe("記入済み.pdf"); expect(changed).toHaveBeenCalledTimes(1);
     expect((await request("deliver", payload)).result.status).toBe("attached"); expect(changed).toHaveBeenCalledTimes(1);
-  });
-  it.each([false, true])("exposes only numeric timing before attachment, and only with a collector opt-in: %s", async optedIn => {
-    if (optedIn) document.documentElement.setAttribute("data-silver-guide-measure", "");
-    const field = document.getElementById("application") as HTMLInputElement;
-    let files: File[] = []; Object.defineProperty(field, "files", { configurable: true, get: () => files, set: value => { files = value; } });
-    vi.stubGlobal("DataTransfer", class { files: File[] = []; items = { add: (file: File) => this.files.push(file) }; });
-    const received: string[] = [], listener = (event: Event) => received.push((event as CustomEvent).detail);
-    document.addEventListener(PDF_HANDOFF_TIMING_EVENT, listener);
-    try {
-      field.addEventListener("change", () => expect(received).toHaveLength(optedIn ? 1 : 0));
-      await begin(); await request("accept", { destinationId: selected });
-      const payload = { pdf: bytesToBase64(bytes), timings: { sourceMs: 4, prepareMs: 25, outputMs: 40, answers: "private" } };
-      expect((await request("deliver", payload)).ok).toBe(true);
-      if (optedIn) expect(JSON.parse(received[0])).toEqual({ id: requestId, sourceMs: 4, prepareMs: 25, outputMs: 40 });
-      await request("deliver", payload);
-      expect(received).toHaveLength(optedIn ? 1 : 0);
-    } finally { document.removeEventListener(PDF_HANDOFF_TIMING_EVENT, listener); }
   });
   it("detects dynamic links, updates changed URLs, and removes its controls on stop", async () => {
     document.body.insertAdjacentHTML("beforeend", '<a href="/second.pdf">別紙</a>');

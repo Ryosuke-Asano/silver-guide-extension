@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { createServer } from "node:http";
-import { access, mkdtemp, rm } from "node:fs/promises";
+import { access } from "node:fs/promises";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { chromeOptions, demoOptions, startDemo } from "../../scripts/dev-demo.mjs";
@@ -8,11 +8,6 @@ import { listenDemoServer } from "../../demo/server.mjs";
 
 const cleanups = [];
 afterEach(async () => { for (const cleanup of cleanups.splice(0).reverse()) await cleanup(); vi.restoreAllMocks(); });
-async function isolatedDemo(options, dependencies) {
-  const directory = await mkdtemp(join(tmpdir(), "silver-guide-launcher-test-"));
-  cleanups.push(() => rm(directory, { recursive: true, force: true }));
-  return startDemo({ ...options, resultsFile: join(directory, "runs.json") }, dependencies);
-}
 const closeServer = server => new Promise(resolve => { server.close(resolve); server.closeAllConnections(); });
 async function freePort() {
   const server = createServer();
@@ -47,12 +42,12 @@ describe("desktop demo launcher", () => {
   it("starts a clean manual comparison without building or loading the extension", async () => {
     vi.spyOn(console, "log").mockImplementation(() => {});
     const port = await freePort(), { page, context, cdp } = fakeChrome(), build = vi.fn();
-    const demo = await isolatedDemo({ port, manual: true }, { build, launch: async () => context });
+    const demo = await startDemo({ port, manual: true }, { build, launch: async () => context });
     cleanups.push(() => demo.close());
     expect(build).not.toHaveBeenCalled();
     expect(cdp.send).not.toHaveBeenCalledWith("Extensions.loadUnpacked", expect.anything());
     expect(page.getByRole).not.toHaveBeenCalled();
-    expect(await (await fetch(demo.url + "api/measurement/config")).json()).toMatchObject({ enabled: true, condition: "manual" });
+    expect((await fetch(demo.url + "api/measurement/config")).status).toBe(404);
     expect(demo.extensionId).toBeUndefined();
   });
 
@@ -76,7 +71,7 @@ describe("desktop demo launcher", () => {
     vi.spyOn(console, "log").mockImplementation(() => {});
     const port = await freePort(), { page, context, cdp } = fakeChrome();
     const build = vi.fn(), launch = vi.fn(async () => context), controller = new AbortController();
-    const demo = await isolatedDemo({ port, signal: controller.signal }, { build, launch });
+    const demo = await startDemo({ port, signal: controller.signal }, { build, launch });
     cleanups.push(() => demo.close());
     expect(build).toHaveBeenCalledOnce();
     expect(launch).toHaveBeenCalledWith(demo.profile, expect.objectContaining({ channel: "chrome", args: expect.arrayContaining(["--enable-unsafe-extension-debugging"]) }));
@@ -98,7 +93,7 @@ describe("desktop demo launcher", () => {
     const server = await listenDemoServer(0);
     cleanups.push(() => closeServer(server));
     const port = server.address().port, build = vi.fn(), launch = vi.fn();
-    await expect(isolatedDemo({ port }, { build, launch })).rejects.toThrow("使用中");
+    await expect(startDemo({ port }, { build, launch })).rejects.toThrow("使用中");
     expect(build).not.toHaveBeenCalled(); expect(launch).not.toHaveBeenCalled();
     expect((await fetch(`http://127.0.0.1:${port}/`)).status).toBe(200);
   });
@@ -111,7 +106,7 @@ describe("desktop demo launcher", () => {
     const launch = async directory => { profile = directory; if (stage === "browser") fail(); return context; };
     if (stage === "extension") cdp.send.mockImplementation(fail);
     if (stage === "navigation") page.goto.mockImplementation(fail);
-    await expect(isolatedDemo({ port }, { build: stage === "build" ? fail : vi.fn(), launch })).rejects.toThrow();
+    await expect(startDemo({ port }, { build: stage === "build" ? fail : vi.fn(), launch })).rejects.toThrow();
     if (profile) await expect(access(profile)).rejects.toThrow();
     if (["extension", "navigation"].includes(stage)) expect(context.close).toHaveBeenCalledOnce();
     const restarted = await listenDemoServer(port);
@@ -121,7 +116,7 @@ describe("desktop demo launcher", () => {
   it("honors cancellation while building before opening Chrome", async () => {
     vi.spyOn(console, "log").mockImplementation(() => {});
     const port = await freePort(), controller = new AbortController(), launch = vi.fn();
-    await expect(isolatedDemo({ port, signal: controller.signal }, { build: () => controller.abort(), launch })).rejects.toThrow();
+    await expect(startDemo({ port, signal: controller.signal }, { build: () => controller.abort(), launch })).rejects.toThrow();
     expect(launch).not.toHaveBeenCalled();
     const restarted = await listenDemoServer(port);
     await closeServer(restarted);
@@ -130,7 +125,7 @@ describe("desktop demo launcher", () => {
   it("stops when the final demo tab closes", async () => {
     vi.spyOn(console, "log").mockImplementation(() => {});
     const port = await freePort(), { context, page } = fakeChrome();
-    const demo = await isolatedDemo({ port }, { build: vi.fn(), launch: async () => context });
+    const demo = await startDemo({ port }, { build: vi.fn(), launch: async () => context });
     cleanups.push(() => demo.close());
     const onClose = page.once.mock.calls.find(([event]) => event === "close")[1];
     context.pages.mockReturnValue([]);

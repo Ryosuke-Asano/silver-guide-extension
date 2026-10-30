@@ -43,7 +43,6 @@ export default defineConfig({
         background: "src/background.ts",
         demo: "demo/index.html",
         demoSetup: "demo/setup.html",
-        demoResults: "demo/results.html",
         demoGuide: "demo/guide.html",
         demoDayOf: "demo/day-of.html"
       },

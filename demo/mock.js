@@ -1,6 +1,5 @@
 // This page is a local form mock. Values stay in memory and are never submitted.
-import { initializeMeasurement } from "./measurement.js";
-import { isBundledDemo } from "./bundled.js";
+import "./bundled.js";
 const KANA = /^[ァ-ヶーA-Za-zＡ-Ｚａ-ｚ\s　]+$/;
 const DIGITS = /^[0-9]+$/;
 const LOCAL_ADDRESSES = new Map([
@@ -123,7 +122,6 @@ export function lookupLocalAddress(first, last) {
 export function initializeMock(doc = document) {
   const form = doc.getElementById("registration-form");
   if (!form) return;
-  const measurement = initializeMeasurement(doc, () => form.reset());
   const get = id => doc.getElementById(id);
   const status = get("mock-status");
   const summary = get("form-errors");
@@ -173,15 +171,13 @@ export function initializeMock(doc = document) {
       uploadStatus.textContent = attachmentState === "pending" ? "PDFの形式を確認しています。"
         : attachmentState === "ready" ? `${attachment.name}（${attachment.sizeLabel}）を添付しました。内容は送信されません。`
           : invalid ? "PDFを選び直すか、添付を取り消してください。"
-            : isBundledDemo ? "PDFは選択されていません。本番の計測では記入済みPDFを添付してください。" : "PDFは選択されていません。添付は任意です。";
+            : "PDFは選択されていません。添付は任意です。";
     }
   };
 
   const attachmentIssue = () => attachmentState === "pending"
     ? { ids: ["pdf-upload"], message: "PDFの形式を確認しています。確認が終わってから進んでください。" }
-    : attachmentState === "invalid" ? { ids: ["pdf-upload"], message: attachmentError }
-      : attachmentState === "empty" && isBundledDemo && doc.documentElement.hasAttribute("data-silver-guide-measure")
-        ? { ids: ["pdf-upload"], message: "比較の計測にはPDFが必要です。このフォームから原本を開き、記入済みPDFを添付してください。" } : null;
+    : attachmentState === "invalid" ? { ids: ["pdf-upload"], message: attachmentError } : null;
 
   const clearErrors = () => {
     for (const [field, errorIds] of errorDescriptions) {
@@ -247,7 +243,6 @@ export function initializeMock(doc = document) {
   };
 
   const clearAttachment = () => {
-    measurement.cleared();
     attachmentVersion++;
     attachment = null;
     attachmentState = "empty";
@@ -269,10 +264,8 @@ export function initializeMock(doc = document) {
     if (result.valid) {
       attachment = result;
       attachmentState = "ready";
-      measurement.attached();
     } else {
       attachmentState = "invalid";
-      measurement.cleared();
       attachmentError = result.error;
       // Clearing permits the same file to trigger change after it is repaired.
       upload.value = "";
@@ -365,7 +358,7 @@ export function initializeMock(doc = document) {
     const issues = validateRegistration(data);
     const pdfIssue = attachmentIssue();
     if (pdfIssue) issues.push(pdfIssue);
-    if (issues.length) { measurement.validationFailure(); showErrors(issues); return; }
+    if (issues.length) { showErrors(issues); return; }
     clearErrors();
     buildReview(data);
     setStage("review");
@@ -378,7 +371,6 @@ export function initializeMock(doc = document) {
     }
   });
   form.addEventListener("reset", () => {
-    measurement.reset();
     clearAttachment();
     clearErrors();
     get("review-values")?.replaceChildren();
@@ -399,7 +391,6 @@ export function initializeMock(doc = document) {
   });
   get("complete-button")?.addEventListener("click", () => {
     setStage("complete");
-    measurement.complete();
     announce("模擬の登録を完了しました。横浜市への申請・送信は行っていません。");
   });
   get("start-again")?.addEventListener("click", () => form.reset());

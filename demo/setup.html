@@ -5,15 +5,13 @@
   <header class="yk-header"><p class="yk-site-title">Silver Guide 比較デモ</p></header>
   <main class="yk-main yk-content">
     <h1>比較デモを始める</h1>
-    <p>同じ人が、同じフォームとPDFを両方式で入力します。</p>
-    <p><a href="day-of.html" target="_blank" rel="noopener">はじめに：当日の手順・入力カード</a>　／　<a href="results.html">計測結果・CSVを開く</a></p>
-    <div class="yk-setup-participant"><label for="setup-participant">参加者番号</label><input id="setup-participant" type="number" min="1" max="9999" step="1" value="1" required aria-describedby="setup-order"><p id="setup-order" role="status">参加者1：支援なし → Silver Guideあり の順です。</p></div>
+    <p>同じフォームとPDFで、Silver Guideの入力支援を試せます。</p>
+    <p><a href="day-of.html" target="_blank" rel="noopener">はじめに：当日の手順・入力カード</a></p>
     <div class="yk-demo-choices">
-      <section><a class="yk-demo-choice" href="index.html?condition=manual"><strong>支援なし</strong><span>PDFをダウンロード → 手作業で記入・保存 → 添付・模擬提出</span></a><a class="yk-practice-link" href="index.html?condition=manual&amp;practice=1">記録せずに練習する<span class="yk-visually-hidden">（支援なし）</span></a></section>
-      <section><a class="yk-demo-choice yk-demo-choice-assisted" href="index.html?condition=silver-guide"><strong>Silver Guideあり</strong><span>PDFを順番に入力 → 自動で添付・模擬提出</span></a><a class="yk-practice-link" href="index.html?condition=silver-guide&amp;practice=1">記録せずに練習する<span class="yk-visually-hidden">（Silver Guideあり）</span></a></section>
+      <a class="yk-demo-choice" href="index.html?condition=manual"><strong>支援なし</strong><span>PDFをダウンロード → 手作業で記入・保存 → 添付・模擬提出</span></a>
+      <a class="yk-demo-choice yk-demo-choice-assisted" href="index.html?condition=silver-guide"><strong>Silver Guideあり</strong><span>PDFを順番に入力 → 自動で添付・模擬提出</span></a>
     </div>
-    <p class="yk-scope-note">最初は両方式を練習。本番では、次の画面の「入力をクリアして計測開始」を押してから入力してください。同じ人は両方式・両端末で同じ参加者番号を使います。</p>
-    <p class="yk-guide-note"><strong>返却前に：</strong>各端末の結果画面から、CSVと移行用記録（JSON）を両方保存して持ち帰ります。</p>
+    <p class="yk-scope-note">方式を選ぶと、すぐにフォームを入力できます。入力例は手順書にあります。</p>
     <details><summary>端末・PDFの準備について</summary><p>この拡張だけで動くので、サーバーやWi-Fi接続は不要です。「支援なし」も拡張内のページです。拡張自体は無効にしません。</p><p>Chromebookに導入できない・PDFを編集できない場合は、持参Macで両方式を実施します。手作業のPDF編集は、開始前に必ず練習してください。<a href="day-of.html#input-card" target="_blank" rel="noopener">共通の入力例とPDF編集手順</a></p></details>
     <p id="setup-build" class="yk-scope-note" role="status"></p>
   </main><footer class="yk-footer"><p>横浜市の公式サービスではない検証用モックです。入力内容やPDFを外部へ送信しません。</p></footer>

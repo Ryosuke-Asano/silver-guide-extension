@@ -36,7 +36,7 @@ export async function verifyPackage(outputDirectory) {
     }
   }
   if (manifest.options_ui?.page === 'demo/setup.html') {
-    for (const page of ['index', 'setup', 'results', 'guide', 'day-of']) {
+    for (const page of ['index', 'setup', 'guide', 'day-of']) {
       const source = await readFile(inside(root, `demo/${page}.html`), 'utf8');
       for (const match of source.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["']/gi)) {
         if (/^(?:[a-z]+:|\/\/)/i.test(match[1])) throw new Error('Remote bundled demo script');
