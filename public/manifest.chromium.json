@@ -1,11 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "Silver Guide",
+  "name": "Silver Guide 比較デモ",
   "version": "3.0.0",
   "incognito": "split",
   "description": "入力欄のヒント、単語クリックの解説ポップアップ、文章のサイドパネル解説、PDFへの記入を端末内で支援します。",
   "action": {
-    "default_title": "Silver Guide",
+    "default_title": "比較デモを開く（支援ありの画面では文章の解説）",
     "default_icon": {
       "32": "icons/book-32.png",
       "16": "icons/book-16.png"
@@ -49,6 +49,10 @@
   ],
   "side_panel": {
     "default_path": "sidebar.html"
+  },
+  "options_ui": {
+    "page": "demo/setup.html",
+    "open_in_tab": true
   },
   "minimum_chrome_version": "122"
 }

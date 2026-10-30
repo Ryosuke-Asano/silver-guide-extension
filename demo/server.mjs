@@ -14,6 +14,8 @@ const routes = new Map([
   ["/mock.js", ["mock.js", "text/javascript; charset=utf-8"]],
   ["/measurement.js", ["measurement.js", "text/javascript; charset=utf-8"]],
   ["/measurement-model.js", ["measurement-model.js", "text/javascript; charset=utf-8"]],
+  ["/bundled.js", ["bundled.js", "text/javascript; charset=utf-8"]],
+  ["/local-measurement.js", ["local-measurement.js", "text/javascript; charset=utf-8"]],
   ["/results.html", ["results.html", "text/html; charset=utf-8"]],
   ["/results.js", ["results.js", "text/javascript; charset=utf-8"]],
   ["/assets/library-application-original.pdf", ["assets/library-application-original.pdf", "application/pdf"]],

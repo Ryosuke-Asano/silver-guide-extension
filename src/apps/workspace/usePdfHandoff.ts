@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { getWebExtensionApi } from "../../shared/webextension";
+import { bundledPdfUrl } from "../../shared/bundled-demo";
 import { base64ToPdfBytes, bytesToBase64, isPdfPageUrl, isHandoffId, PDF_HANDOFF_REQUEST, PDF_HANDOFF_STATUSES, readPdfResponse, type PdfHandoffDestination, type PdfHandoffResult, type PdfHandoffTimings } from "../../shared/pdf-handoff";
 import type { usePdfWorkspace } from "./usePdfWorkspace";
 
-type Parameters = { requestId: string; sourceTab: number; documentToken: string };
+type Parameters = { requestId: string; sourceTab: number; documentToken: string; bundled?: true };
 type Phase = "none" | "loading" | "choose" | "opening" | "filling" | "sending" | PdfHandoffResult["status"] | "error";
 function handoffParameters(): Parameters | null {
   const values = new URLSearchParams(location.hash.slice(1)), requestId = values.get("handoff"), sourceTab = Number(values.get("sourceTab")), documentToken = values.get("document");
-  return isHandoffId(requestId) && values.has("sourceTab") && Number.isSafeInteger(sourceTab) && sourceTab >= 0 && documentToken && /^[a-f0-9-]{8,100}$/iu.test(documentToken) ? { requestId, sourceTab, documentToken } : null;
+  return isHandoffId(requestId) && values.has("sourceTab") && Number.isSafeInteger(sourceTab) && sourceTab >= 0 && documentToken && /^[a-f0-9-]{8,100}$/iu.test(documentToken) ? { requestId, sourceTab, documentToken, ...(values.get("bundled") === "1" ? { bundled: true } : {}) } : null;
 }
 
 export function usePdfHandoff(pdf: ReturnType<typeof usePdfWorkspace>) {
@@ -25,7 +26,9 @@ export function usePdfHandoff(pdf: ReturnType<typeof usePdfWorkspace>) {
   const request = useCallback(async (action: string, body: Record<string, unknown> = {}) => {
     const api = getWebExtensionApi();
     if (!api || !parameters) throw new Error("提出先との接続を確認できません。元のフォームでPDFを選び直してください。");
-    const reply = await api.tabs.sendMessage(parameters.sourceTab, { type: PDF_HANDOFF_REQUEST, ...parameters, clientId, action, ...body }, { frameId: 0 });
+    const message = { type: PDF_HANDOFF_REQUEST, ...parameters, clientId, action, ...body,
+      ...(parameters.bundled ? { bundledTabId: parameters.sourceTab } : {}) };
+    const reply = parameters.bundled ? await api.runtime.sendMessage(message) : await api.tabs.sendMessage(parameters.sourceTab, message, { frameId: 0 });
     if (!reply?.ok) throw new Error(reply?.message ?? "提出先との接続を確認できません。入力内容はこのタブに残っています。");
     return reply;
   }, [parameters, clientId]);
@@ -61,7 +64,7 @@ export function usePdfHandoff(pdf: ReturnType<typeof usePdfWorkspace>) {
       else {
         if (!isPdfPageUrl(reply.sourceUrl)) throw new Error("PDFの取得元を確認できませんでした。");
         const url = new URL(reply.sourceUrl), api = getWebExtensionApi();
-        if (!await api?.permissions.contains({ origins: [`${url.protocol}//${url.hostname}/*`] })) throw new Error("PDF配布元へのアクセス権限がありません。ブラウザーの拡張設定でサイトへのアクセスを許可してください。");
+        if (!bundledPdfUrl(url.href) && !await api?.permissions.contains({ origins: [`${url.protocol}//${url.hostname}/*`] })) throw new Error("PDF配布元へのアクセス権限がありません。ブラウザーの拡張設定でサイトへのアクセスを許可してください。");
         const controller = new AbortController(), timeout = setTimeout(() => controller.abort(), 20_000);
         try { input.current = await readPdfResponse(await fetch(url.href, { credentials: url.origin === reply.sourceOrigin ? "include" : "omit", redirect: "error", signal: controller.signal })); }
         finally { clearTimeout(timeout); }

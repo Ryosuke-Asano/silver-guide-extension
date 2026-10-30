@@ -2,20 +2,20 @@ import { startFormTooltip } from "./features/form-tooltip";
 import { startTermPopup } from "./features/term-popup";
 import { selectedPublicText } from "./features/selected-text";
 import { startPdfHandoff } from "./features/pdf-handoff";
-import { getWebExtensionApi } from "./shared/webextension";
+import { getWebExtensionApi, type WebExtensionApi } from "./shared/webextension";
 import { trustedBackgroundSender } from "./shared/protocol";
 import { GET_SELECTION, SELECTION_CHANGED, type SelectionSnapshot } from "./shared/v3-protocol";
 
 declare global { interface Window { __silverGuideV3Stop?: () => void } }
 
-const api = getWebExtensionApi();
-if (api && !window.__silverGuideV3Stop && ["http:", "https:"].includes(location.protocol)) {
+export function startPageHelpers(api: WebExtensionApi, bundledTabId?: number): void {
+  if (window.__silverGuideV3Stop) return;
   const tooltip = startFormTooltip({ document });
   const termPopup = startTermPopup({ document });
   const entropy = new Uint32Array(4);
   crypto.getRandomValues(entropy);
   const documentToken = Array.from(entropy, value => value.toString(16)).join("-");
-  const handoff = startPdfHandoff(api, document, documentToken);
+  const handoff = startPdfHandoff(api, document, documentToken, bundledTabId);
   let pageUrl = location.href;
   let generation = 0;
   let last: Pick<SelectionSnapshot, "text" | "status" | "selectionContext"> = { text: null, status: "empty" };
@@ -34,12 +34,14 @@ if (api && !window.__silverGuideV3Stop && ["http:", "https:"].includes(location.
   };
   const notify = () => {
     const current = snapshot();
-    void api.runtime.sendMessage({ type: SELECTION_CHANGED, documentToken, generation: current.generation }).catch(() => {});
+    void api.runtime.sendMessage({ type: SELECTION_CHANGED, documentToken, generation: current.generation,
+      ...(bundledTabId === undefined ? {} : { bundledTabId }) }).catch(() => {});
   };
   const changed = () => { clearTimeout(timer); timer = setTimeout(notify, 120); };
   const listener = (message: unknown, sender: browser.runtime.MessageSender, respond: (value: SelectionSnapshot) => void) => {
     if (!trustedBackgroundSender(sender, api.runtime.getURL(""), api.runtime.id)
-      || !message || typeof message !== "object" || (message as { type?: unknown }).type !== GET_SELECTION) return;
+      || !message || typeof message !== "object" || (message as { type?: unknown }).type !== GET_SELECTION
+      || bundledTabId !== undefined && (message as { bundledTabId?: unknown }).bundledTabId !== bundledTabId) return;
     respond(snapshot());
   };
   document.addEventListener("selectionchange", changed);
@@ -72,3 +74,5 @@ if (api && !window.__silverGuideV3Stop && ["http:", "https:"].includes(location.
   // Access may have been granted after the panel's first context request.
   notify();
 }
+const api = getWebExtensionApi();
+if (api && ["http:", "https:"].includes(location.protocol)) startPageHelpers(api);

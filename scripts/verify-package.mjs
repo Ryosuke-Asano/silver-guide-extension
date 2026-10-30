@@ -35,6 +35,20 @@ export async function verifyPackage(outputDirectory) {
       await stat(inside(root, match[1].replace(/^\//, '')));
     }
   }
+  if (manifest.options_ui?.page === 'demo/setup.html') {
+    for (const page of ['index', 'setup', 'results', 'guide']) {
+      const source = await readFile(inside(root, `demo/${page}.html`), 'utf8');
+      for (const match of source.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["']/gi)) {
+        if (/^(?:[a-z]+:|\/\/)/i.test(match[1])) throw new Error('Remote bundled demo script');
+        await stat(inside(root, match[1].replace(/^\//, '')));
+      }
+    }
+    for (const name of ['original', 'fillable']) {
+      const source = await readFile(`demo/assets/library-application-${name}.pdf`);
+      const packaged = await readFile(inside(root, `demo/assets/library-application-${name}.pdf`));
+      if (!source.equals(packaged)) throw new Error('Bundled comparison PDF changed');
+    }
+  }
   const assetRoot = join(root, 'assets');
   const runtime = JSON.parse(await readFile(join(assetRoot, 'runtime-manifest.json'), 'utf8'));
   for (const entry of runtime.files) {

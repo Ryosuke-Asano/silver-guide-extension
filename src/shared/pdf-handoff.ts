@@ -1,3 +1,5 @@
+import { assistedDemoUrl, bundledPdfUrl } from "./bundled-demo";
+
 export const OPEN_PDF_HANDOFF = "silver-guide-pdf-open-v1";
 export const PDF_HANDOFF_REQUEST = "silver-guide-pdf-request-v1";
 export const PDF_HANDOFF_TIMING_EVENT = "silver-guide-pdf-timing";
@@ -12,11 +14,11 @@ export const PDF_HANDOFF_STATUSES = ["attached", "submitted", "submission-reques
 export type PdfHandoffResult = { status: typeof PDF_HANDOFF_STATUSES[number]; message: string };
 export type PdfHandoffDestination = { id: string; title: string; label: string; url: string; fileName: string; submitLabel: string | null; defaultSubmit: boolean; replacesFile: boolean };
 
-export function isPdfPageUrl(value: unknown): value is string {
+export function isPdfPageUrl(value: unknown, root?: string): value is string {
   if (typeof value !== "string") return false;
   try {
     const url = new URL(value);
-    return ["http:", "https:"].includes(url.protocol) && !url.username && !url.password;
+    return ["http:", "https:"].includes(url.protocol) && !url.username && !url.password || !!assistedDemoUrl(value, root) || bundledPdfUrl(value, root);
   } catch { return false; }
 }
 export function safePdfFileName(value: string): string {

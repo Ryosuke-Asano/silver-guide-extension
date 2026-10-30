@@ -1,4 +1,5 @@
 import { CONDITIONS, MAX_DURATION_MS } from "./measurement-model.js";
+import { demoReady, demoCondition, isBundledDemo, localStore } from "./bundled.js";
 
 /** Only counters and elapsed times leave this controller, never form values. */
 export function initializeMeasurement(doc, resetForm) {
@@ -17,6 +18,7 @@ export function initializeMeasurement(doc, resetForm) {
       sourceMs: sum("sourceMs"), prepareMs: sum("prepareMs"), outputMs: sum("outputMs") };
   };
   const api = async body => {
+    if (isBundledDemo) return localStore.apply(body, demoCondition, config?.buildId ?? "");
     const response = await view.fetch("/api/measurement", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), keepalive: true });
     const result = await response.json();
     if (!response.ok) throw new Error(result.error);
@@ -85,16 +87,28 @@ export function initializeMeasurement(doc, resetForm) {
     const body = { action: frozen?.action ?? "cancel", runId: run.id, measurements: frozen?.measurements ?? report() };
     clearInterval(timer); run = null; frozen = null;
     doc.documentElement.removeAttribute("data-silver-guide-measure");
-    view.navigator.sendBeacon?.("/api/measurement", new Blob([JSON.stringify(body)], { type: "application/json" }));
+    if (isBundledDemo) void api(body).catch(() => {}); // Uncommitted runs remain excluded after an abrupt browser exit.
+    else view.navigator.sendBeacon?.("/api/measurement", new Blob([JSON.stringify(body)], { type: "application/json" }));
     status.textContent = "ページを離れたため、計測を終了しました。"; controls();
   });
-  void view.fetch("/api/measurement/config").then(response => response.json()).then(value => {
+  start.disabled = true;
+  const configuration = async () => {
+    await demoReady;
+    if (!isBundledDemo) return view.fetch("/api/measurement/config").then(response => response.json());
+    const info = await view.fetch("../build-info.json").then(response => response.json());
+    if (!/^[a-f0-9]{64}$/u.test(info.sourceHash)) throw new Error("ビルド情報を確認できません。");
+    return { enabled: true, condition: demoCondition, buildId: info.sourceHash };
+  };
+  void configuration().then(value => {
     if (!value.enabled || !Object.hasOwn(CONDITIONS, value.condition)) return;
     config = value;
-    get("measurement-condition").textContent = CONDITIONS[value.condition];
+    get("measurement-condition").textContent = isBundledDemo && value.condition === "manual" ? "支援なし" : CONDITIONS[value.condition];
     root.hidden = false; get("measurement-results-link").hidden = false;
     controls();
-  }).catch(() => { /* A standalone static mock can operate without measurement. */ });
+  }).catch(error => {
+    if (isBundledDemo) { root.hidden = false; status.textContent = error.message ?? "計測を準備できません。デモを開き直してください。"; }
+    // An ordinary standalone static mock can operate without measurement.
+  });
   return {
     attached() { if (run && !frozen) run.attachedAt = elapsed(); },
     cleared() { if (run && !frozen) run.attachedAt = null; },

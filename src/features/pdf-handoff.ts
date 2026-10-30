@@ -10,14 +10,14 @@ const fileSignature = (input: HTMLInputElement) => [...input.files ?? []].map(fi
 const STYLE = `:host{display:inline-block!important;margin:6px 8px!important;max-width:100%;vertical-align:middle}button{box-sizing:border-box;max-width:100%;padding:7px 12px;border:1px solid #078196;border-radius:5px;color:#fff;background:#078196;font:600 15px/1.5 system-ui,sans-serif;cursor:pointer}button:focus-visible{outline:3px solid #102c46;outline-offset:3px}button:disabled{opacity:.6;cursor:wait}p{max-width:34em;margin:5px 0;color:#8f201a;font:14px/1.5 system-ui,sans-serif}p:empty{display:none}@media(forced-colors:active){button{color:ButtonText;background:ButtonFace;border-color:ButtonText}}`;
 
 /** Detects ordinary web PDF sources. No website message bridge or page IDs. */
-export function startPdfHandoff(api: WebExtensionApi, doc: Document, documentToken: string): { stop(): void } {
+export function startPdfHandoff(api: WebExtensionApi, doc: Document, documentToken: string, bundledTabId?: number): { stop(): void } {
   const view = doc.defaultView;
-  if (!view || !isPdfPageUrl(doc.location.href)) return { stop() {} };
+  if (!view || !isPdfPageUrl(doc.location.href, api.runtime.getURL(""))) return { stop() {} };
   let stopped = false, timer: ReturnType<typeof setTimeout> | undefined;
   const entries = new Map<Element, { host: HTMLElement; signature: string }>(), pending = new Map<string, Pending>();
   const live = (item: Pending) => !stopped && pending.get(item.id) === item && doc.location.href === item.pageUrl;
   const targetLive = (target: Target) => target.input.isConnected && target.input.ownerDocument === doc && !target.input.disabled && !target.input.matches(":disabled") && target.input.form === target.form && target.input.accept === target.accept && target.input.multiple === target.multiple && fileSignature(target.input) === target.files;
-  const describe = (target: Target, fileName: string): PdfHandoffDestination => ({ id: target.id, title: doc.title.slice(0, 200), label: fieldLabel(target.input), url: doc.location.origin + doc.location.pathname, fileName, submitLabel: target.plan?.label ?? null, defaultSubmit: target.plan?.defaultSubmit ?? false, replacesFile: !!target.files && !target.multiple });
+  const describe = (target: Target, fileName: string): PdfHandoffDestination => ({ id: target.id, title: doc.title.slice(0, 200), label: fieldLabel(target.input), url: bundledTabId === undefined ? doc.location.origin + doc.location.pathname : doc.location.href, fileName, submitLabel: target.plan?.label ?? null, defaultSubmit: target.plan?.defaultSubmit ?? false, replacesFile: !!target.files && !target.multiple });
   const readSource = async (item: Pending) => {
     if (item.source.file) {
       if (item.source.file.size > HANDOFF_MAX_BYTES) throw new Error("連携できるPDFは20MBまでです。");
@@ -48,7 +48,8 @@ export function startPdfHandoff(api: WebExtensionApi, doc: Document, documentTok
     if (pending.size >= 4) pending.delete(pending.keys().next().value!);
     pending.set(item.id, item);
     try {
-      const reply = await api.runtime.sendMessage({ type: OPEN_PDF_HANDOFF, requestId: item.id, documentToken });
+      const reply = await api.runtime.sendMessage({ type: OPEN_PDF_HANDOFF, requestId: item.id, documentToken,
+        ...(bundledTabId === undefined ? {} : { bundledTabId }) });
       if (!live(item)) return;
       if (!reply?.ok || !Number.isSafeInteger(reply.tabId)) throw new Error("Silver Guideの記入画面を開けませんでした。");
       if (item.workspaceTab !== null && item.workspaceTab !== reply.tabId) throw new Error("記入画面との接続が変わりました。");
@@ -93,7 +94,11 @@ export function startPdfHandoff(api: WebExtensionApi, doc: Document, documentTok
     if (!message || typeof message !== "object" || !trustedExtensionSender(sender, api.runtime.getURL(""), api.runtime.id, ["workspace.html"])) return;
     const value = message as Record<string, unknown>;
     if (value.type !== PDF_HANDOFF_REQUEST) return;
+    // Extension pages share runtime messages. Only the addressed demo tab may
+    // answer; an unrelated tab must never win sendResponse's first-reply race.
+    if (bundledTabId !== undefined && value.bundledTabId !== bundledTabId) return;
     const item = pending.get(String(value.requestId)), address = new URLSearchParams(new URL(sender.url!).hash.slice(1));
+    if (bundledTabId !== undefined && (address.get("sourceTab") !== String(bundledTabId) || address.get("bundled") !== "1")) return;
     if (!item || !live(item) || value.documentToken !== documentToken || address.get("handoff") !== item.id || address.get("document") !== documentToken || !isHandoffId(value.clientId) || item.clientId !== null && item.clientId !== value.clientId || sender.tab?.id !== undefined && item.workspaceTab !== null && item.workspaceTab !== sender.tab.id) { respond({ ok: false, message: "元のページとの接続が変わりました。PDFから開き直してください。" }); return; }
     if (item.clientId === null && value.action !== "get") { respond({ ok: false, message: "先に元のPDFを確認してください。" }); return; }
     item.clientId = value.clientId; if (sender.tab?.id !== undefined) item.workspaceTab = sender.tab.id;
