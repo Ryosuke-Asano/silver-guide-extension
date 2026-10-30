@@ -36,6 +36,7 @@
         <p class="yk-scope-note">開始から模擬完了までを計測します。同じ入力例で、PDFを添付して完了してください。氏名・住所・入力内容・PDFは記録しません。<a href="guide.html#timing" target="_blank" rel="noopener">比較する入力例と手順</a></p>
         <p id="measurement-status" role="status">計測は開始していません。</p><output id="measurement-elapsed" aria-hidden="true"></output>
       </details>
+      <p id="measurement-gate" hidden>先に上の「入力をクリアして計測開始」を押してください。開始すると入力できます。</p>
       <div class="yk-page-heading"><h1>利用者情報仮登録</h1><a href="guide.html#sources">再現元・変更点</a></div>
       <ol id="steps" class="yk-steps" aria-label="入力の進み具合">
         <li class="is-current" data-step="entry" aria-current="step"><span>1</span>入力</li>
@@ -81,7 +82,7 @@
             <div class="yk-actions"><button class="yk-button" id="reset-button" type="reset">リセット</button><button class="yk-button yk-button-primary" id="review-button" type="submit">入力内容を確認する</button></div>
         </section>
         <section id="review-stage" class="yk-result" hidden><h2 tabindex="-1">入力内容の確認</h2><p>名前の表記・読み方と電話番号を確認してください。</p><dl id="review-values" class="yk-review-values"></dl><p class="yk-scope-note">この画面の内容は、このタブの中だけで扱います。</p><div class="yk-actions"><button class="yk-button" id="edit-button" type="button">入力画面に戻る</button><button class="yk-button yk-button-primary" id="complete-button" type="button">この内容で完了（模擬）</button></div></section>
-        <section id="complete-stage" class="yk-result" hidden><h2 tabindex="-1">入力の検証が完了しました</h2><p>ここまでがモックの登録操作です。入力内容・添付ファイルは送信していません。</p><div class="yk-actions"><button class="yk-button" id="start-again" type="button">最初から試す</button></div></section>
+        <section id="complete-stage" class="yk-result" hidden><h2 tabindex="-1">入力の検証が完了しました</h2><p>ここまでがモックの登録操作です。入力内容・添付ファイルは送信していません。</p><p id="complete-measurement-status" role="status"></p><div id="measurement-next" hidden><a id="measurement-next-condition" class="yk-button yk-button-primary" href="setup.html">残りの方式へ</a><a href="results.html" target="_blank" rel="noopener">計測結果・CSVを開く</a><a id="measurement-next-participant" href="setup.html">次の参加者・開始画面へ</a></div><div class="yk-actions"><button class="yk-button" id="start-again" type="button">最初から試す</button></div></section>
         <p id="mock-status" class="yk-status" role="status" aria-live="polite"></p>
         </form>
       </div>

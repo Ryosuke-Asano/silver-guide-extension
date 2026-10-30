@@ -16,7 +16,7 @@ export function startPdfHandoff(api: WebExtensionApi, doc: Document, documentTok
   let stopped = false, timer: ReturnType<typeof setTimeout> | undefined;
   const entries = new Map<Element, { host: HTMLElement; signature: string }>(), pending = new Map<string, Pending>();
   const live = (item: Pending) => !stopped && pending.get(item.id) === item && doc.location.href === item.pageUrl;
-  const targetLive = (target: Target) => target.input.isConnected && target.input.ownerDocument === doc && !target.input.disabled && !target.input.matches(":disabled") && target.input.form === target.form && target.input.accept === target.accept && target.input.multiple === target.multiple && fileSignature(target.input) === target.files;
+  const targetLive = (target: Target) => target.input.isConnected && target.input.ownerDocument === doc && !target.input.disabled && !target.input.matches(":disabled") && !target.input.closest('[inert],[aria-disabled="true"]') && target.input.form === target.form && target.input.accept === target.accept && target.input.multiple === target.multiple && fileSignature(target.input) === target.files;
   const describe = (target: Target, fileName: string): PdfHandoffDestination => ({ id: target.id, title: doc.title.slice(0, 200), label: fieldLabel(target.input), url: bundledTabId === undefined ? doc.location.origin + doc.location.pathname : doc.location.href, fileName, submitLabel: target.plan?.label ?? null, defaultSubmit: target.plan?.defaultSubmit ?? false, replacesFile: !!target.files && !target.multiple });
   const readSource = async (item: Pending) => {
     if (item.source.file) {
@@ -87,6 +87,17 @@ export function startPdfHandoff(api: WebExtensionApi, doc: Document, documentTok
     for (const [id, item] of pending) if (!item.delivering && (item.selected?.input === event.target || item.source.element === event.target)) pending.delete(id);
     schedule();
   };
+  const reset = (event: Event) => {
+    const form = event.target;
+    if (!(form instanceof view.HTMLFormElement)) return;
+    // Native reset does not emit a file change. A workspace opened before the
+    // reset must never submit its previous answers into the next form attempt.
+    for (const [id, item] of pending) {
+      const sourceForm = item.source.element.tagName === "INPUT" ? (item.source.element as HTMLInputElement).form : item.source.element.closest("form");
+      if (sourceForm === form || item.targets.some(target => target.form === form)) pending.delete(id);
+    }
+    schedule();
+  };
   const observer = new view.MutationObserver(records => {
     if (records.some(record => !(record.target.nodeType === 1 ? record.target as Element : record.target.parentElement)?.closest(`[${PDF_ENTRY_HOST}]`))) schedule();
   });
@@ -143,7 +154,8 @@ export function startPdfHandoff(api: WebExtensionApi, doc: Document, documentTok
   };
   api.runtime.onMessage.addListener(listener);
   doc.addEventListener("change", changed, true);
-  observer.observe(doc.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ["href", "src", "data", "type", "accept", "download", "hidden", "disabled", "class", "style", "multiple"] });
+  doc.addEventListener("reset", reset, true);
+  observer.observe(doc.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ["href", "src", "data", "type", "accept", "download", "hidden", "inert", "disabled", "class", "style", "multiple"] });
   scan();
-  return { stop() { stopped = true; clearTimeout(timer); observer.disconnect(); doc.removeEventListener("change", changed, true); api.runtime.onMessage.removeListener(listener); for (const entry of entries.values()) entry.host.remove(); entries.clear(); pending.clear(); } };
+  return { stop() { stopped = true; clearTimeout(timer); observer.disconnect(); doc.removeEventListener("change", changed, true); doc.removeEventListener("reset", reset, true); api.runtime.onMessage.removeListener(listener); for (const entry of entries.values()) entry.host.remove(); entries.clear(); pending.clear(); } };
 }

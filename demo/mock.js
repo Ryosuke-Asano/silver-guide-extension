@@ -1,5 +1,6 @@
 // This page is a local form mock. Values stay in memory and are never submitted.
 import { initializeMeasurement } from "./measurement.js";
+import { isBundledDemo } from "./bundled.js";
 const KANA = /^[ァ-ヶーA-Za-zＡ-Ｚａ-ｚ\s　]+$/;
 const DIGITS = /^[0-9]+$/;
 const LOCAL_ADDRESSES = new Map([
@@ -172,13 +173,15 @@ export function initializeMock(doc = document) {
       uploadStatus.textContent = attachmentState === "pending" ? "PDFの形式を確認しています。"
         : attachmentState === "ready" ? `${attachment.name}（${attachment.sizeLabel}）を添付しました。内容は送信されません。`
           : invalid ? "PDFを選び直すか、添付を取り消してください。"
-            : "PDFは選択されていません。添付は任意です。";
+            : isBundledDemo ? "PDFは選択されていません。本番の計測では記入済みPDFを添付してください。" : "PDFは選択されていません。添付は任意です。";
     }
   };
 
   const attachmentIssue = () => attachmentState === "pending"
     ? { ids: ["pdf-upload"], message: "PDFの形式を確認しています。確認が終わってから進んでください。" }
-    : attachmentState === "invalid" ? { ids: ["pdf-upload"], message: attachmentError } : null;
+    : attachmentState === "invalid" ? { ids: ["pdf-upload"], message: attachmentError }
+      : attachmentState === "empty" && isBundledDemo && doc.documentElement.hasAttribute("data-silver-guide-measure")
+        ? { ids: ["pdf-upload"], message: "比較の計測にはPDFが必要です。このフォームから原本を開き、記入済みPDFを添付してください。" } : null;
 
   const clearErrors = () => {
     for (const [field, errorIds] of errorDescriptions) {

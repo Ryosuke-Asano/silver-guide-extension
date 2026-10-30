@@ -1,13 +1,19 @@
 import { CONDITIONS, MAX_DURATION_MS } from "./measurement-model.js";
-import { demoReady, demoCondition, isBundledDemo, localStore } from "./bundled.js";
+import { demoReady, demoCondition, isBundledDemo, isPractice, localStore } from "./bundled.js";
 
 /** Only counters and elapsed times leave this controller, never form values. */
 export function initializeMeasurement(doc, resetForm) {
   const root = doc.getElementById("measurement"), view = doc.defaultView;
   const noop = { attached() {}, cleared() {}, validationFailure() {}, complete() {}, reset() {} };
-  if (!root || !view || typeof view.fetch !== "function") return noop;
+  if (!root || !view || typeof view.fetch !== "function" || isPractice) return noop;
   const get = id => doc.getElementById(id), start = get("measurement-start"), stop = get("measurement-stop"), retry = get("measurement-retry"), participant = get("measurement-participant"), status = get("measurement-status");
+  const participantParam = new URLSearchParams(view.location.search).get("participant");
+  if (isBundledDemo && /^[1-9][0-9]{0,3}$/u.test(participantParam ?? "")) participant.value = participantParam;
   let config, run = null, frozen = null, saving = false, timer;
+  const showStatus = message => {
+    status.textContent = message;
+    if (isBundledDemo && get("complete-measurement-status")) get("complete-measurement-status").textContent = message;
+  };
   const now = () => view.performance.now();
   const elapsed = () => Math.min(MAX_DURATION_MS, Math.max(0, Math.round(now() - run.started)));
   const report = () => {
@@ -25,19 +31,33 @@ export function initializeMeasurement(doc, resetForm) {
     return result.run;
   };
   const controls = () => {
-    start.disabled = !!run || saving; participant.disabled = !!run || saving;
+    start.disabled = !config || !!run || saving; participant.disabled = !!run || saving;
     stop.hidden = !run || !!frozen; retry.hidden = !frozen || saving;
+    if (isBundledDemo) {
+      const locked = !run || !!frozen || saving;
+      for (const id of ["input-stage", "review-stage"]) if (get(id)) get(id).inert = locked;
+      if (get("measurement-gate")) get("measurement-gate").hidden = !locked || !get("complete-stage")?.hidden;
+    }
   };
+  controls();
   const save = async () => {
     if (!run || !frozen || saving) return;
     saving = true; controls();
     try {
       const result = await api({ action: frozen.action, runId: run.id, measurements: frozen.measurements });
       const m = result.measurements;
-      status.textContent = result.status === "completed" ? `記録しました：1周 ${(m.totalMs / 1000).toFixed(1)}秒${m.pdfMs === null ? "（PDF作業は比較対象外）" : ` ／ PDF作業 ${(m.pdfMs / 1000).toFixed(1)}秒`}` : "中止した計測を記録しました。完了時間の集計には含めません。";
+      showStatus(result.status === "completed" ? `記録しました：1周 ${(m.totalMs / 1000).toFixed(1)}秒${m.pdfMs === null ? "（PDF作業は比較対象外）" : ` ／ PDF作業 ${(m.pdfMs / 1000).toFixed(1)}秒`}` : "中止した計測を記録しました。完了時間の集計には含めません。");
+      if (isBundledDemo && result.status === "completed" && get("measurement-next")) {
+        const next = get("measurement-next-condition"), other = demoCondition === "manual" ? "silver-guide" : "manual";
+        next.href = `index.html?condition=${other}&participant=${result.participant}`;
+        next.textContent = `同じ参加者で${other === "manual" ? "支援なし" : "Silver Guideあり"}へ`;
+        get("measurement-next-participant").href = `setup.html?participant=${Math.min(9999, result.participant + 1)}`;
+        get("complete-measurement-status").textContent += " 両方式を1回ずつ終えたら、計測結果を確認して次の参加者へ進んでください。";
+        get("measurement-next").hidden = false;
+      }
       doc.documentElement.removeAttribute("data-silver-guide-measure");
       run = null; frozen = null;
-    } catch (error) { status.textContent = `${error.message ?? "計測結果を保存できませんでした。"}「保存を再試行」を押してください。`; }
+    } catch (error) { showStatus(`${error.message ?? "計測結果を保存できませんでした。"}ページ上部の「保存を再試行」を押してください。`); }
     finally { saving = false; controls(); }
   };
   const finish = action => {
@@ -45,7 +65,7 @@ export function initializeMeasurement(doc, resetForm) {
     clearInterval(timer);
     get("measurement-elapsed").textContent = "";
     frozen = { action, measurements: report() };
-    status.textContent = "計測結果を保存しています…";
+    showStatus("計測結果を保存しています…");
     void save();
   };
   start.addEventListener("click", async () => {
@@ -53,13 +73,14 @@ export function initializeMeasurement(doc, resetForm) {
     if (!participant.reportValidity()) return;
     saving = true; controls();
     try {
+      if (get("measurement-next")) get("measurement-next").hidden = true;
       // The button explicitly clears inputs, so both conditions begin equally.
       resetForm();
       const started = now();
       const record = await api({ action: "start", participant: Number(participant.value) });
       run = { id: record.id, started, pdfAt: null, attachedAt: null, pdfOpens: 0, validationFailures: 0, timings: new Map() };
       doc.documentElement.setAttribute("data-silver-guide-measure", "");
-      status.textContent = `計測中：参加者 ${record.participant} ／ ${CONDITIONS[config.condition]}`;
+      showStatus(`計測中：参加者 ${record.participant} ／ ${isBundledDemo && config.condition === "manual" ? "支援なし" : CONDITIONS[config.condition]}`);
       const tick = () => { get("measurement-elapsed").textContent = `経過 ${Math.floor(elapsed() / 1000)}秒`; };
       tick(); timer = setInterval(tick, 1000);
       root.open = true;
@@ -114,6 +135,6 @@ export function initializeMeasurement(doc, resetForm) {
     cleared() { if (run && !frozen) run.attachedAt = null; },
     validationFailure() { if (run && !frozen) run.validationFailures = Math.min(10_000, run.validationFailures + 1); },
     complete() { finish("finish"); },
-    reset() { finish("cancel"); }
+    reset() { finish("cancel"); queueMicrotask(controls); }
   };
 }

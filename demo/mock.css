@@ -180,6 +180,17 @@
 .yk-demo-choice span { font-size: 16px; line-height: 1.8; }
 .yk-demo-choice-assisted { border-color: #078196; background: #effafa; }
 .yk-demo-choice-assisted:hover { background: #e1f4f4; }
+.yk-demo-choices > section { display: flex; flex-direction: column; gap: 12px; }
+.yk-demo-choices .yk-demo-choice { flex: 1; }
+.yk-practice-link { display: inline-block; padding: 8px 4px; align-self: flex-start; }
+.yk-setup-participant { margin-top: 24px; padding: 16px; background: #f1f5fa; }
+.yk-setup-participant label { margin-right: 12px; font-weight: 700; }
+.yk-setup-participant input { width: 100px; min-height: 42px; padding: 6px 10px; font: inherit; }
+.yk-setup-participant p { margin: 10px 0 0; }
+#measurement-gate { padding: 12px 16px; border-left: 4px solid #0b5fc2; background: #eff5fd; }
+#complete-measurement-status { font-weight: 700; }
+#measurement-next { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin: 20px 0; }
+#measurement-next[hidden] { display: none; }
 .yk-setup-steps { padding-left: 1.5em; line-height: 1.9; }
 .yk-setup-steps li + li { margin-top: 12px; }
 .yk-bundled-mode { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: -6px; padding: 14px 0; }

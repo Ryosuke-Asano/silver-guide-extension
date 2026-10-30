@@ -5,6 +5,7 @@ const ownRoot = extension?.runtime?.getURL?.("");
 export const isBundledDemo = !!ownRoot && new URL(ownRoot).protocol === location.protocol && new URL(ownRoot).host === location.host
   && ["chrome-extension:", "moz-extension:"].includes(location.protocol) && location.pathname.startsWith("/demo/");
 export const demoCondition = new URLSearchParams(location.search).get("condition");
+export const isPractice = isBundledDemo && new URLSearchParams(location.search).get("practice") === "1";
 export const localStore = isBundledDemo ? localMeasurementStore(window) : null;
 
 export const demoReady = (async () => {
@@ -15,7 +16,12 @@ export const demoReady = (async () => {
     const url = new URL(link.href);
     if (url.protocol !== location.protocol || url.host !== location.host) continue;
     if (url.pathname === "/demo/") url.pathname = "/demo/index.html";
-    if (["/demo/index.html", "/demo/guide.html"].includes(url.pathname) && ["manual", "silver-guide"].includes(demoCondition)) url.searchParams.set("condition", demoCondition);
+    if (["/demo/index.html", "/demo/guide.html"].includes(url.pathname) && ["manual", "silver-guide"].includes(demoCondition)) {
+      url.searchParams.set("condition", demoCondition);
+      if (isPractice) url.searchParams.set("practice", "1");
+      const participant = new URLSearchParams(location.search).get("participant");
+      if (/^[1-9][0-9]{0,3}$/u.test(participant ?? "")) url.searchParams.set("participant", participant);
+    }
     if (url.pathname === "/demo/index.html" && !url.searchParams.has("condition")) url.pathname = "/demo/setup.html";
     link.href = url.href;
   }
@@ -30,8 +36,10 @@ export const demoReady = (async () => {
   const mode = document.createElement("p");
   mode.id = "bundled-mode"; mode.className = "yk-bundled-mode";
   const label = document.createElement("strong"), change = document.createElement("a");
-  label.textContent = demoCondition === "manual" ? "支援なし（入力補助を停止）" : "Silver Guideあり";
-  change.href = "setup.html"; change.textContent = "方式を選び直す";
+  label.textContent = `${isPractice ? "練習（記録しません） ／ " : ""}${demoCondition === "manual" ? "支援なし（入力補助を停止）" : "Silver Guideあり"}`;
+  const participant = new URLSearchParams(location.search).get("participant");
+  change.href = /^[1-9][0-9]{0,3}$/u.test(participant ?? "") ? `setup.html?participant=${participant}` : "setup.html";
+  change.textContent = isPractice ? "練習を終えて開始画面へ" : "方式を選び直す";
   mode.append(label, change);
   document.querySelector(".yk-mock-notice").before(mode);
   const measurement = document.getElementById("measurement");

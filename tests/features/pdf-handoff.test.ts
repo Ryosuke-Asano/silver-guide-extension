@@ -75,6 +75,46 @@ describe("extension-owned PDF workflow", () => {
     Object.defineProperty(document.getElementById("application"), "files", { configurable: true, value: [new File([bytes], "another.pdf")] });
     expect((await request("deliver", { pdf: bytesToBase64(bytes) })).ok).toBe(false);
   });
+  it("invalidates an old workspace on native form reset even when its file input stays empty", async () => {
+    await begin(); await request("accept", { destinationId: selected });
+    const field = document.getElementById("application") as HTMLInputElement;
+    const changed = vi.fn(); field.addEventListener("change", changed);
+    document.querySelector("form")!.reset();
+    expect(changed).not.toHaveBeenCalled();
+    expect((await request("deliver", { pdf: bytesToBase64(bytes), submit: true })).ok).toBe(false);
+    expect(field.files).toHaveLength(0);
+    // The next attempt must open a fresh workspace, which remains usable.
+    expect((await begin()).destination).not.toBeNull();
+    expect((await request("accept", { destinationId: selected })).ok).toBe(true);
+  });
+  it.each(["source", "destination"])("invalidates a cross-form workspace when its %s form resets", async role => {
+    const sourceForm = document.querySelector("form")!;
+    const destinationForm = document.createElement("form"); document.body.append(destinationForm);
+    destinationForm.append(document.getElementById("application")!);
+    const reply = await begin();
+    expect(reply.destination).toBeNull();
+    selected = reply.destinations[0].id;
+    expect((await request("accept", { destinationId: selected })).ok).toBe(true);
+    (role === "source" ? sourceForm : destinationForm).reset();
+    expect((await request("deliver", { pdf: bytesToBase64(bytes), submit: true })).ok).toBe(false);
+  });
+  it("keeps a workspace usable when an unrelated form resets", async () => {
+    const other = document.createElement("form"); document.body.append(other);
+    await begin(); other.reset();
+    expect((await request("get")).destination.id).toBe(selected);
+    expect((await request("accept", { destinationId: selected })).ok).toBe(true);
+  });
+  it("rejects delivery into an inert form and updates its PDF entry when the gate changes", async () => {
+    await begin(); await request("accept", { destinationId: selected });
+    const form = document.querySelector("form")!;
+    form.setAttribute("inert", "");
+    expect((await request("deliver", { pdf: bytesToBase64(bytes), submit: true })).ok).toBe(false);
+    await new Promise(resolve => setTimeout(resolve, 150));
+    expect(document.querySelector('[data-silver-guide-pdf-entry]')).toBeNull();
+    form.removeAttribute("inert");
+    await new Promise(resolve => setTimeout(resolve, 150));
+    expect(document.querySelector('[data-silver-guide-pdf-entry]')).not.toBeNull();
+  });
   it("assigns a PDF and dispatches native input/change events only once on retries", async () => {
     const field = document.getElementById("application") as HTMLInputElement;
     let files: File[] = []; Object.defineProperty(field, "files", { configurable: true, get: () => files, set: value => { files = value; } });

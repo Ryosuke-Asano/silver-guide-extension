@@ -44,7 +44,8 @@ export default defineConfig({
         demo: "demo/index.html",
         demoSetup: "demo/setup.html",
         demoResults: "demo/results.html",
-        demoGuide: "demo/guide.html"
+        demoGuide: "demo/guide.html",
+        demoDayOf: "demo/day-of.html"
       },
       output: {
         entryFileNames: (chunk) =>

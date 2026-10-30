@@ -40,15 +40,22 @@ async function refresh() {
 get("results-refresh").addEventListener("click", () => void refresh());
 if (isBundledDemo) {
   get("results-transfer").hidden = false;
+  const downloaded = new Set();
+  const showDownload = kind => {
+    downloaded.add(kind);
+    get("results-download-status").textContent = downloaded.size === 2
+      ? "CSVとJSONのダウンロードを開始しました。両方のファイルがあることを確認し、持ち帰れる場所へコピーしてください。"
+      : `${kind}のダウンロードを開始しました。続けて${kind === "CSV" ? "「端末間で移す記録を保存」でJSON" : "「CSVを保存」"}も保存してください。`;
+  };
   document.querySelector(".yk-footer p").textContent = "記録はこのChromeプロフィールの端末内に保存されます。返却・拡張の削除・プロフィールの削除前に、CSVと移行用記録を保存してください。";
   get("results-csv").href = "#";
   get("results-csv").addEventListener("click", async event => {
     event.preventDefault();
-    try { downloadRecord(resultsCsv(await localStore.all()), "silver-guide-results.csv", "text/csv;charset=utf-8"); }
+    try { downloadRecord(resultsCsv(await localStore.all()), "silver-guide-results.csv", "text/csv;charset=utf-8"); showDownload("CSV"); }
     catch (error) { get("results-status").textContent = error.message; }
   });
   get("results-export").addEventListener("click", async () => {
-    try { downloadRecord(JSON.stringify(recordsFile(await localStore.all()), null, 2), "silver-guide-records.json", "application/json"); }
+    try { downloadRecord(JSON.stringify(recordsFile(await localStore.all()), null, 2), "silver-guide-records.json", "application/json"); showDownload("JSON"); }
     catch (error) { get("results-import-status").textContent = error.message; }
   });
   get("results-import").addEventListener("change", async event => {
