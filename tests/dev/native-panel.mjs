@@ -1,5 +1,8 @@
 /** Attach to Chrome's native extension panel, which is not a Playwright tab. */
 export async function nativePanel(demo) {
+  // Installation may open the bundled launcher after the local form loads.
+  // A native panel belongs to the active tab in the window being exercised.
+  await demo.page.bringToFront();
   const cdp = await demo.context.browser().newBrowserCDPSession();
   const tabs = (await cdp.send("Target.getTargets", { filter: [{ type: "tab", exclude: false }, { exclude: true }] })).targetInfos;
   await cdp.send("Extensions.triggerAction", { id: demo.extensionId, targetId: tabs.find(tab => tab.url === demo.url).targetId });
