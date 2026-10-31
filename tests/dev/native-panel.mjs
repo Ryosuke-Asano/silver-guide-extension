@@ -1,5 +1,15 @@
 /** Attach to Chrome's native extension panel, which is not a Playwright tab. */
 export async function nativePanel(demo) {
+  const root = `chrome-extension://${demo.extensionId}/`;
+  const worker = demo.context.serviceWorkers().find(value => value.url() === root + "background.js")
+    ?? await demo.context.waitForEvent("serviceworker", { predicate: value => value.url() === root + "background.js" });
+  // Content scripts can finish before the worker has configured the native
+  // panel. Wait for its API round trip before sending the synthetic action.
+  await worker.evaluate(async () => {
+    await chrome.sidePanel.getPanelBehavior();
+    globalThis.__silverGuideSmokeAction = null;
+    chrome.action.onClicked.addListener(tab => { globalThis.__silverGuideSmokeAction = { id: tab.id, windowId: tab.windowId, url: tab.url }; });
+  });
   // Installation may open the bundled launcher after the local form loads.
   // A native panel belongs to the active tab in the window being exercised.
   await demo.page.bringToFront();
@@ -8,10 +18,13 @@ export async function nativePanel(demo) {
   await cdp.send("Extensions.triggerAction", { id: demo.extensionId, targetId: tabs.find(tab => tab.url === demo.url).targetId });
   let target;
   for (let attempt = 0; attempt < 100 && !target; attempt++) {
-    target = (await cdp.send("Target.getTargets")).targetInfos.find(candidate => candidate.url.endsWith("/sidebar.html"));
+    target = (await cdp.send("Target.getTargets")).targetInfos.find(candidate => candidate.url.startsWith(root) && new URL(candidate.url).pathname === "/sidebar.html");
     if (!target) await demo.page.waitForTimeout(100);
   }
-  if (!target) throw new Error("Native extension panel did not open");
+  if (!target) {
+    const state = await worker.evaluate(async () => ({ action: globalThis.__silverGuideSmokeAction, behavior: await chrome.sidePanel.getPanelBehavior(), options: await chrome.sidePanel.getOptions({}), tabs: (await chrome.tabs.query({})).map(tab => ({ id: tab.id, windowId: tab.windowId, active: tab.active, url: tab.url })) }));
+    throw new Error(`Native extension panel did not open: ${JSON.stringify(state)}`);
+  }
   const { sessionId } = await cdp.send("Target.attachToTarget", { targetId: target.targetId, flatten: false });
   let sequence = 0;
   const pending = new Map();
