@@ -1,11 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "Silver Guide 比較デモ",
+  "name": "Silver Guide",
   "version": "3.0.0",
   "incognito": "split",
   "description": "入力欄のヒント、単語クリックの解説ポップアップ、文章のサイドパネル解説、PDFへの記入を端末内で支援します。",
   "action": {
-    "default_title": "比較デモを開く（支援ありの画面では文章の解説）",
+    "default_title": "Silver Guide（文章の解説）",
     "default_icon": {
       "32": "icons/book-32.png",
       "16": "icons/book-16.png"

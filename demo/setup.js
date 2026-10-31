@@ -1,9 +1,6 @@
-import { demoReady, isBundledDemo } from "./bundled.js";
-await demoReady;
-const status = document.getElementById("setup-build");
-if (isBundledDemo) {
-  try {
-    const info = await fetch("../build-info.json").then(response => response.json());
-    status.textContent = `比較デモ ${info.version} ／ ビルド ${info.sourceHash.slice(0, 12)}`;
-  } catch { status.textContent = "ビルド情報を確認できません。拡張を読み込み直してください。"; }
-} else status.textContent = "この画面は、比較デモ同封版のChrome拡張から開いてください。";
+import { DEMO_SITE_URL } from "../src/shared/demo-site";
+document.getElementById("demo-site-link").href = DEMO_SITE_URL;
+try {
+  const info = await fetch("../build-info.json").then(response => response.json());
+  document.getElementById("setup-build").textContent = `Silver Guide ${info.version} ／ ビルド ${info.sourceHash.slice(0, 12)}`;
+} catch { document.getElementById("setup-build").textContent = "拡張を読み込み直してください。"; }

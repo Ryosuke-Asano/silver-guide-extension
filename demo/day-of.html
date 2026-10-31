@@ -16,20 +16,21 @@
   <header>
     <p class="eyebrow">SILVER GUIDE · 当日の進行用</p>
     <h1>当日は、この3ステップで。</h1>
-    <p class="lead">準備 → フォームに入力 → PDFを記入して模擬完了。<br>両方式で同じフォームと原本PDFを使います。サーバーの起動やWi-Fi接続は不要です。</p>
+    <p class="lead">準備 → フォームに入力 → PDFを記入して模擬完了。<br>両方式で同じフォームと原本PDFを使います。公開デモにはインターネット接続が必要です。</p>
     <nav class="quick" aria-label="手順の目次"><a href="#prepare">1　準備<small>最初に1回</small></a><a href="#trial">2　フォーム<small>見本を入力</small></a><a href="#finish">3　PDF・完了<small>支援あり／なし</small></a></nav>
   </header>
 
   <section class="step" id="prepare">
     <h2><span class="number">1</span>端末に入れて、デモを開く</h2>
     <ol>
-      <li>配布ZIPを展開し、中の <strong>Chrome フォルダー</strong>を端末に保存します。</li>
+      <li>配布ZIPを展開し、中の <strong>Chrome フォルダー</strong>を端末に保存します。Silver Guideを重複して読み込まないようにします。</li>
       <li>Chromeのアドレス欄へ <code>chrome://extensions</code> と入力。「デベロッパーモード」をオン →「パッケージ化されていない拡張機能を読み込む」→ <strong>Chrome フォルダー</strong>を選びます。</li>
-      <li>「比較デモを始める」が開きます。閉じたときは、<code>chrome://extensions</code> でSilver Guideの「詳細」→「拡張機能のオプション」から開きます。</li>
-      <li>開始画面から<strong>「支援なし」</strong>または<strong>「Silver Guideあり」</strong>を選びます。フォームは開いたらすぐに入力できます。</li>
+      <li>導入済みの場合は同じChromeフォルダーを更新版で置き換え、<code>chrome://extensions</code> でSilver Guideを再読み込みします。</li>
+      <li><a href="https://ryosuke-asano.github.io/silver-guide-extension/">公開デモページを開きます</a>。同じURLを両端末で使えます。</li>
+      <li><strong>支援あり：</strong>Silver GuideをONにして公開ページを再読み込み。<strong>支援なし：</strong>OFFにして同じページを再読み込みします。フォームはすぐに入力できます。</li>
     </ol>
     <p><strong>Chromebookが2台使える：</strong>同じZIPを両方に入れます。<br><strong>拡張を入れられない／PDF編集ができない：</strong>持参Macで両方式を試します。</p>
-    <p class="check"><strong>準備OK：</strong>開始画面からフォームを開ける。手作業のPDF編集は、最初に文字・チェックを入れて保存できるか試します。</p>
+    <p class="check"><strong>準備OK：</strong>公開URLでフォームを開ける。手作業のPDF編集は、最初に文字・チェックを入れて保存できるか試します。</p>
   </section>
 
   <section class="step" id="trial">
@@ -47,7 +48,7 @@
     <p><strong>Silver Guideあり：</strong>PDFリンクの横の「Silver Guideで記入」→ 14項目を入力 →「入力を完了」。記入済みPDFの添付と模擬提出が自動で進みます。元のフォームにエラーがあれば修正して続けます。</p>
     <p><strong>支援なし：</strong>「図書館利用申込書.pdf をダウンロード」→ 標準のPDF編集アプリで記入・保存 →「記入済み申込書のアップロード」→「入力内容を確認する」→「この内容で完了（模擬）」。</p>
     <p class="check"><strong>完了OK：</strong>元のフォームに「入力の検証が完了しました」と表示される。実際の申請やファイル送信は行いません。</p>
-    <p>やり直す場合は「最初から試す」。方式を変える場合はページ最下部の「デモの開始画面へ」から戻ります。</p>
+    <p>やり直す場合は「最初から試す」。方式を変える場合は、Silver GuideのON／OFFを切り替えて同じURLを再読み込みします。</p>
   </section>
 
   <section class="card input-card" id="input-card">
@@ -90,15 +91,17 @@
 
   <details id="troubleshooting"><summary>困ったときだけ開く</summary><div>
     <h3>「支援なし」にするには？</h3>
-    <p>開始画面で「支援なし」を選びます。<strong>拡張そのものは無効にしません。</strong>デモも拡張に入っているためです。</p>
+    <p><code>chrome://extensions</code> でSilver GuideをOFFにして、公開デモページを再読み込みします。デモは拡張をOFFにしても使えます。</p>
     <h3>Chromeフォルダーを読み込めない</h3>
     <p>ZIPを展開し、<code>manifest.json</code> が直接入っているChromeフォルダーを選びます。「デベロッパーモード」が管理者に制限されている場合は、持参Macへ切り替えます。Chromebook本体の開発者モードへ変更する作業はありません。</p>
     <h3>「Silver Guideで記入」が出ない</h3>
-    <p>開始画面で「Silver Guideあり」を選び直し、E-mail欄の下のPDFリンクを確認します。通常のウェブサイトでは、ブラウザーの拡張設定でそのサイトへのアクセスを許可してください。</p>
+    <p>Silver GuideをONにし、公開ページを再読み込みしてE-mail欄の下を確認します。ブラウザーの拡張設定で <code>ryosuke-asano.github.io</code> へのアクセスを許可してください。</p>
     <h3>PDFを記入したのに完了しない</h3>
     <p>元のフォームに戻り、名前・生年月日などのエラーを直してください。添付済みのPDFは残っています。「入力内容を確認する」→「この内容で完了（模擬）」で進めます。</p>
     <h3>途中でやり直したい</h3>
     <p>PDFの記入画面を閉じ、元のフォームで「リセット」を押します。完了後は「最初から試す」で入力をクリアできます。</p>
+    <h3>インターネット接続が使えない</h3>
+    <p>持参Macのリポジトリで <code>npm run dev:demo</code> を実行すると、ローカルの <code>http://127.0.0.1:4287/</code> で同じ操作を試せます。</p>
     <h3>ボタンが画面の下に隠れる</h3>
     <p>ウィンドウを最大化し、ページを下へスクロールします。拡大率が大きい場合は、Chromebookでは Ctrl＋0、Macでは ⌘＋0 で標準に戻します。</p>
   </div></details>

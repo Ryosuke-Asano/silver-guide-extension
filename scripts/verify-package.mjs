@@ -36,17 +36,17 @@ export async function verifyPackage(outputDirectory) {
     }
   }
   if (manifest.options_ui?.page === 'demo/setup.html') {
-    for (const page of ['index', 'setup', 'guide', 'day-of']) {
+    for (const page of ['setup']) {
       const source = await readFile(inside(root, `demo/${page}.html`), 'utf8');
       for (const match of source.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["']/gi)) {
         if (/^(?:[a-z]+:|\/\/)/i.test(match[1])) throw new Error('Remote bundled demo script');
         await stat(inside(root, match[1].replace(/^\//, '')));
       }
     }
-    for (const name of ['original', 'fillable']) {
-      const source = await readFile(`demo/assets/library-application-${name}.pdf`);
-      const packaged = await readFile(inside(root, `demo/assets/library-application-${name}.pdf`));
-      if (!source.equals(packaged)) throw new Error('Bundled comparison PDF changed');
+    for (const name of ['index.html', 'guide.html', 'day-of.html']) {
+      try { await stat(inside(root, `demo/${name}`)); }
+      catch (error) { if (error.code === 'ENOENT') continue; throw error; }
+      throw new Error('Demo forms must be hosted over HTTPS, not in the extension');
     }
   }
   const assetRoot = join(root, 'assets');

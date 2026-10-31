@@ -1,5 +1,4 @@
 // This page is a local form mock. Values stay in memory and are never submitted.
-import "./bundled.js";
 const KANA = /^[ァ-ヶーA-Za-zＡ-Ｚａ-ｚ\s　]+$/;
 const DIGITS = /^[0-9]+$/;
 const LOCAL_ADDRESSES = new Map([

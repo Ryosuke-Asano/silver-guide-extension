@@ -1,6 +1,7 @@
 node_modules/
 dist/
 dist-chromium/
+dist-demo/
 *.log
 .DS_Store
 demo/*.webm

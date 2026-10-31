@@ -10,7 +10,6 @@ const routes = new Map([
   ["/guide.html", ["guide.html", "text/html; charset=utf-8"]],
   ["/mock.css", ["mock.css", "text/css; charset=utf-8"]],
   ["/mock.js", ["mock.js", "text/javascript; charset=utf-8"]],
-  ["/bundled.js", ["bundled.js", "text/javascript; charset=utf-8"]],
   ["/assets/library-application-original.pdf", ["assets/library-application-original.pdf", "application/pdf"]],
   ["/assets/library-application-fillable.pdf", ["assets/library-application-fillable.pdf", "application/pdf"]],
   ["/assets/library-application-preview.png", ["assets/library-application-preview.png", "image/png"]],

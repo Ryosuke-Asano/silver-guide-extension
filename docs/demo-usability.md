@@ -43,7 +43,7 @@ Ctrl+C、またはデモ用Chromeのウィンドウをすべて閉じると、�
 
 フォームを開いたらそのまま入力できます。手作業では原本をダウンロードし、標準のPDF編集アプリで記入・保存してから添付し、内容確認・模擬完了へ進みます。拡張ありでは「Silver Guideで記入」からPDF入力・自動添付・模擬提出まで進めます。
 
-サーバー不要の同封デモは、開始画面で「支援なし」または「Silver Guideあり」を選びます。[当日の手順](bundled-comparison-demo.md)を参照してください。
+公開デモは https://ryosuke-asano.github.io/silver-guide-extension/ です。同じURLで拡張をON／OFFし、ページを再読み込みして比較します。[当日の手順](bundled-comparison-demo.md)を参照してください。
 
 ## 文章の説明と、単独のPDF記入
 

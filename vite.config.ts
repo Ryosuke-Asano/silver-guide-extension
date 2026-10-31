@@ -41,10 +41,7 @@ export default defineConfig({
         sidebar: "sidebar.html",
         workspace: "workspace.html",
         background: "src/background.ts",
-        demo: "demo/index.html",
-        demoSetup: "demo/setup.html",
-        demoGuide: "demo/guide.html",
-        demoDayOf: "demo/day-of.html"
+        demoSetup: "demo/setup.html"
       },
       output: {
         entryFileNames: (chunk) =>

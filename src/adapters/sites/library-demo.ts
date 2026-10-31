@@ -1,13 +1,14 @@
 import type { PdfSiteSubmissionAdapter } from "./types";
 import { elementVisible } from "../../features/pdf/detection";
 import { assistedDemoUrl } from "../../shared/bundled-demo";
+import { isPublishedDemoForm } from "../../shared/demo-site";
 
 /** An example multi-step site adapter. The demo page remains ordinary HTML/JS. */
 export const libraryDemoAdapter: PdfSiteSubmissionAdapter = {
   id: "library-demo", defaultSubmit: true,
   matches({ document: doc, form, button }) {
     const url = new URL(doc.location.href);
-    return (url.hostname === "127.0.0.1" && ["4187", "4287"].includes(url.port) || !!assistedDemoUrl(url.href)) && form.id === "registration-form" && button.id === "review-button" && !!doc.getElementById("complete-button") && !!doc.getElementById("complete-stage");
+    return (url.hostname === "127.0.0.1" && ["4187", "4287"].includes(url.port) || isPublishedDemoForm(url.href) || !!assistedDemoUrl(url.href)) && form.id === "registration-form" && button.id === "review-button" && !!doc.getElementById("complete-button") && !!doc.getElementById("complete-stage");
   },
   async afterInitialSubmit({ document: doc }, live) {
     const errors = doc.getElementById("form-errors");

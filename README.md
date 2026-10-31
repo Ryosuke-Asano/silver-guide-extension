@@ -1,6 +1,6 @@
 # Silver Guide 3.0.0
 
-このブランチは、フォームとPDFを拡張に同封したデモ用です。**サーバーなしでChromebook・Mac・Windows・LinuxのChromeから開けます。** 導入と当日の手順は[同封デモの使い方](docs/bundled-comparison-demo.md)を参照してください。「支援なし」は同じ拡張内で補助を停止する方式です。
+このブランチは、[GitHub Pagesの公開デモ](https://ryosuke-asano.github.io/silver-guide-extension/)でフォーム・PDF入力を試すための版です。デモはHTTPSで配信し、Silver Guideは通常のWebサイトと同じ仕組みで動作します。支援なしは同じURLで拡張をOFFにして再読み込みします。[当日の手順](docs/bundled-comparison-demo.md)を参照してください。
 
 元のページの入力欄には小さな Tooltip、下線の単語にはページ内の解説ポップアップ、PDF の記入には専用タブを使う拡張機能です。長い文章を範囲選択する解説は、ブラウザーのサイドパネルにも残しています。機能を三つに絞り、独自のパスワード・保管庫・下書き管理・別入力画面を廃止しました。
 

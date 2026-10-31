@@ -1,5 +1,5 @@
 import { build } from "vite";
-import { readFile, writeFile, copyFile, cp, rm, readdir, stat } from "node:fs/promises";
+import { readFile, writeFile, copyFile, rm, readdir, stat } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { verifyPackage } from "./verify-package.mjs";
 const chromium = process.argv.includes("--chromium");
@@ -16,7 +16,6 @@ await build({ define, build: { outDir } });
 // executeScript(files) requires a self-contained classic script, not an ESM entry.
 await build({ configFile:false, define, build:{outDir,emptyOutDir:false,copyPublicDir:false,lib:{entry:"src/content.ts",name:"SilverGuideContent",formats:["iife"],fileName:()=>"content.js"},rollupOptions:{output:{inlineDynamicImports:true}}} });
 if(chromium) await copyFile(`${outDir}/manifest.chromium.json`,`${outDir}/manifest.json`);
-await cp("demo/assets", `${outDir}/demo/assets`, { recursive: true });
 // Font sources and the CFF comparison fixture remain build inputs; runtime uses the static TTF.
 const developmentFontInputs = new Set(["fonts/NotoSansCJKjp-Regular.otf", "fonts/NotoSansJP-VF.ttf"]);
 const runtimeManifestPath = `${outDir}/assets/runtime-manifest.json`;
